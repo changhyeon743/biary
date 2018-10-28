@@ -10,15 +10,12 @@ import UIKit
 
 class NavigationVC: UINavigationController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let nav = self.navigationController?.navigationBar
-        
-        // 2
-        nav?.barStyle = UIBarStyle.black
-        nav?.tintColor = UIColor.yellow
-        
-        // Do any additional setup after loading the view.
-    }
+}
 
+struct Navigation {
+    static func clear(forBar navBar: UINavigationBar) {
+        navBar.setBackgroundImage(UIImage(), for: .default)
+        navBar.shadowImage = UIImage()
+        navBar.isTranslucent = true
+    }
 }
