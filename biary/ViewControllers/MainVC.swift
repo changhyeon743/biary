@@ -18,15 +18,23 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         makeNavigationBar()
         // Do any additional setup after loading the view.
-        tableView.estimatedRowHeight = 80
+        //tableView.rowHeight = UITableView.automaticDimension
+        //tableView.estimatedRowHeight = 44
     }
     
     func makeNavigationBar() {
         if let navController = navigationController {
             Navigation.clear(forBar: navController.navigationBar)
             navController.view.backgroundColor = .clear
-            makeSubTitle(withString: "총 26권의 책이 있습니다.")
+            //makeSubTitle(withString: "총 26권의 책이 있습니다.")
         }
+    }
+    
+    func titleView() -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100)) // 95
+        
+        
+        return view
     }
     
     func makeSubTitle(withString str:String) {
@@ -49,7 +57,7 @@ class MainVC: UIViewController {
 
 extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,8 +67,10 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! BookTableCell
-        return cell.collectionView.collectionViewLayout.collectionViewContentSize.height
+        
+        return cell.collectionView.collectionViewLayout.collectionViewContentSize.height+cell.titleLabel.frame.height+24+12+12
     }
     
 }

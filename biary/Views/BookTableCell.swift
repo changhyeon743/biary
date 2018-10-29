@@ -20,6 +20,7 @@ class BookTableCell: UITableViewCell {
         collectionView.dataSource = self
         
         
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,9 +29,9 @@ class BookTableCell: UITableViewCell {
 
 }
 
-extension BookTableCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension BookTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -38,8 +39,14 @@ extension BookTableCell: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.imageView.image = UIImage(named: "ssss")
         
         
-        return cell;
+        return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 83, height: 128)
+    }
+    
+    
     
     
 }
