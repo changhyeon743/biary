@@ -14,7 +14,7 @@ class BookCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOffset = CGSize(width: 2, height: 2)
+        self.layer.shadowOffset = CGSize(width: 3, height: 3)
         self.layer.shadowRadius = 7
         self.layer.shadowOpacity = 0.5
         self.layer.shouldRasterize = true
