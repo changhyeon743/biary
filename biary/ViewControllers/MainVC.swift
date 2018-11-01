@@ -15,20 +15,18 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        self.navigationController!.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 500)
-        print(self.navigationController!.navigationBar.frame.debugDescription)
-        self.navigationController!.navigationBar.sizeToFit()
-
     }
     
     func setNavigationBar() {
         //self.tabBarController?.navigationItem.title = "나의 서재"
         if let navController = navigationController {
-//            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-//            titleLabel.text = "나의 서재"
-//            titleLabel.textColor = UIColor.black
-//            titleLabel.font = UIFont.systemFont(ofSize: 22,weight: .semibold)
-//            navigationItem.titleView = titleLabel
+           // Do any additional setup after loading the view.
+            let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+            titleLabel.text = "나의 서재"
+            titleLabel.textColor = UIColor.black
+            titleLabel.font = UIFont.systemFont(ofSize: 22,weight: .semibold)
+            
+            navigationItem.titleView = titleLabel
 //
 //            navController.navigationBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
             

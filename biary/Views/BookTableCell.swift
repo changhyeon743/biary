@@ -39,7 +39,7 @@ extension BookTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "book", for: indexPath) as! BookCollectionCell
-        cell.imageView.image = UIImage(named: "dddd")
+        cell.imageView.image = UIImage(named: "ssss")
         
         
         return cell
