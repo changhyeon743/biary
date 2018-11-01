@@ -9,49 +9,23 @@
 import UIKit
 
 class MainVC: UIViewController {
-    
-    var subTitle:UILabel!
     @IBOutlet weak var tableView:UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeNavigationBar()
-        // Do any additional setup after loading the view.
-        //tableView.rowHeight = UITableView.automaticDimension
-        //tableView.estimatedRowHeight = 44
     }
     
     func makeNavigationBar() {
         if let navController = navigationController {
-            Navigation.clear(forBar: navController.navigationBar)
+            navController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navController.navigationBar.shadowImage = UIImage()
+            navController.navigationBar.isTranslucent = true
             navController.view.backgroundColor = .clear
-            //makeSubTitle(withString: "총 26권의 책이 있습니다.")
         }
     }
     
-    func titleView() -> UIView {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100)) // 95
-        
-        
-        return view
-    }
-    
-    func makeSubTitle(withString str:String) {
-        self.subTitle = UILabel(frame: CGRect(x: 34, y: 78, width: 200, height: 18))
-        self.subTitle?.textColor = UIColor.gray
-        self.subTitle?.text = str
-        
-        self.navigationController?.navigationBar.addSubview(self.subTitle)
-        
-        if let titleFrame:CGRect = self.navigationItem.titleView?.frame {
-            
-            
-        }
-    }
-    
-
-
 }
 
 

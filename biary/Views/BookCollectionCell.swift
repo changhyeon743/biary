@@ -12,6 +12,8 @@ class BookCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView:UIImageView!
     
+    
+    
     override func awakeFromNib() {
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 3, height: 3)

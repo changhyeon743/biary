@@ -14,7 +14,6 @@
 		78DA2523218137D800DAEDE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78DA2522218137D800DAEDE4 /* Assets.xcassets */; };
 		78DA2526218137D800DAEDE4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DA2524218137D800DAEDE4 /* LaunchScreen.storyboard */; };
 		78F071A0218348410034E417 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0719F218348410034E417 /* MainVC.swift */; };
-		78F071A22183485F0034E417 /* NavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F071A12183485F0034E417 /* NavigationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		78DA2525218137D800DAEDE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78DA2527218137D800DAEDE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78F0719F218348410034E417 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		78F071A12183485F0034E417 /* NavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +83,6 @@
 		78F0719B218346CF0034E417 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				78F071A12183485F0034E417 /* NavigationVC.swift */,
 				78F0719F218348410034E417 /* MainVC.swift */,
 			);
 			path = ViewControllers;
@@ -185,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				781D8DBF21855281006D9551 /* BookTableCell.swift in Sources */,
-				78F071A22183485F0034E417 /* NavigationVC.swift in Sources */,
 				781D8DC121855376006D9551 /* BookCollectionCell.swift in Sources */,
 				78DA251C218137D600DAEDE4 /* AppDelegate.swift in Sources */,
 				78F071A0218348410034E417 /* MainVC.swift in Sources */,

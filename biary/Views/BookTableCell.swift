@@ -14,13 +14,16 @@ class BookTableCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     
+    var title:String = ""{
+        didSet {
+            titleLabel.text = title
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
