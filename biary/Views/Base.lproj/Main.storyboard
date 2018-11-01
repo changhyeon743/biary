@@ -12,24 +12,24 @@
         <!--나의 서재-->
         <scene sceneID="fMw-q4-7nc">
             <objects>
-                <viewController id="m0Z-EO-PFq" customClass="MainVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="나의 서재" id="m0Z-EO-PFq" customClass="MainVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lsR-HW-xo3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VKq-EM-UTc">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="190" id="ZDq-uF-cka" customClass="BookTableCell" customModule="biary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="190"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="210" id="ZDq-uF-cka" customClass="BookTableCell" customModule="biary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZDq-uF-cka" id="8cK-W3-v2k">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eng-BD-jP3">
-                                                    <rect key="frame" x="0.0" y="42.5" width="375" height="139.5"/>
+                                                    <rect key="frame" x="0.0" y="50.5" width="375" height="147.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="23" minimumInteritemSpacing="23" id="b3N-P4-TDr">
                                                         <size key="itemSize" width="83" height="128"/>
@@ -39,7 +39,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="book" id="JpV-pZ-60q" customClass="BookCollectionCell" customModule="biary" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="6" width="83" height="128"/>
+                                                            <rect key="frame" x="15" y="10" width="83" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="128"/>
@@ -69,8 +69,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="eng-BD-jP3" secondAttribute="bottom" constant="8" id="Aoh-3k-4js"/>
-                                                <constraint firstItem="eng-BD-jP3" firstAttribute="top" secondItem="0SQ-NU-2fZ" secondAttribute="bottom" constant="12" id="E1U-hN-yFt"/>
+                                                <constraint firstAttribute="bottom" secondItem="eng-BD-jP3" secondAttribute="bottom" constant="12" id="Aoh-3k-4js"/>
+                                                <constraint firstItem="eng-BD-jP3" firstAttribute="top" secondItem="0SQ-NU-2fZ" secondAttribute="bottom" constant="20" id="E1U-hN-yFt"/>
                                                 <constraint firstItem="eng-BD-jP3" firstAttribute="leading" secondItem="8cK-W3-v2k" secondAttribute="leading" id="JlQ-8w-W06"/>
                                                 <constraint firstItem="0SQ-NU-2fZ" firstAttribute="leading" secondItem="8cK-W3-v2k" secondAttribute="leadingMargin" id="LW9-Ox-505"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="0SQ-NU-2fZ" secondAttribute="trailing" id="h1u-6Y-yM3"/>
@@ -100,7 +100,8 @@
                         <viewLayoutGuide key="safeArea" id="Je3-aB-QL1"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="9IY-ft-Uuh"/>
-                    <navigationItem key="navigationItem" title="나의 서재" id="6A4-Cd-cwM"/>
+                    <navigationItem key="navigationItem" title="타이틀" id="gS1-y8-fZb"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="VKq-EM-UTc" id="Bf1-YM-Z6g"/>
                     </connections>
@@ -109,10 +110,10 @@
             </objects>
             <point key="canvasLocation" x="2247.1999999999998" y="-498.80059970014997"/>
         </scene>
-        <!--NavigationVC-->
+        <!--Navigation Controller-->
         <scene sceneID="v7S-Wg-apR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qR9-6O-hLw" customClass="NavigationVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qR9-6O-hLw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tUO-Tk-qmT">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -120,31 +121,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ERr-3a-Y5H" kind="relationship" relationship="rootViewController" id="G7G-RD-GAH"/>
+                        <segue destination="m0Z-EO-PFq" kind="relationship" relationship="rootViewController" id="iQQ-bb-AY8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZo-24-raH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368.80000000000001" y="-498.80059970014997"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="wpp-LQ-Ek3">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ERr-3a-Y5H" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Ahq-sw-ful"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="J9M-En-iAC">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="m0Z-EO-PFq" kind="relationship" relationship="viewControllers" id="nCe-VO-PV8"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rIk-5s-kfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1308" y="-498.80059970014997"/>
+            <point key="canvasLocation" x="1206" y="-499"/>
         </scene>
     </scenes>
 </document>
