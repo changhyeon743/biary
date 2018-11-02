@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UINavigationItem_Margin
 
 class MainVC: UIViewController {
     @IBOutlet weak var tableView:UITableView!
@@ -14,7 +15,11 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigationBar()
+        navigationController?.navigationBar.isHidden = true
+        
+        
+        
+        //setNavigationBar()
     }
     
     func setNavigationBar() {
@@ -27,6 +32,7 @@ class MainVC: UIViewController {
             titleLabel.font = UIFont.systemFont(ofSize: 22,weight: .semibold)
             
             navigationItem.titleView = titleLabel
+            navigationItem.leftMargin = 17
 //
 //            navController.navigationBar.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
             
@@ -53,11 +59,11 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         return cell;
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! BookTableCell
-        
-        return cell.collectionView.collectionViewLayout.collectionViewContentSize.height+cell.titleLabel.frame.height+24+12+12
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! BookTableCell
+//
+//        return cell.collectionView.collectionViewLayout.collectionViewContentSize.height+cell.titleLabel.frame.height+24+12+12
+//    }
     
 }
