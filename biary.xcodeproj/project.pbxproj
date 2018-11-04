@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7810740F218F0D6D0039A92A /* stickyNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810740E218F0D6D0039A92A /* stickyNavigationBar.swift */; };
 		781D8DBF21855281006D9551 /* BookTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781D8DBE21855281006D9551 /* BookTableCell.swift */; };
 		781D8DC121855376006D9551 /* BookCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781D8DC021855376006D9551 /* BookCollectionCell.swift */; };
 		783341F2218ECD510032678C /* BookDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783341F1218ECD510032678C /* BookDetailVC.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		14B6D4FCFB618B8DDC4E35A6 /* Pods-biary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biary.debug.xcconfig"; path = "Pods/Target Support Files/Pods-biary/Pods-biary.debug.xcconfig"; sourceTree = "<group>"; };
 		693EE712C11E1EC02693D9DD /* Pods_biary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_biary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7810740E218F0D6D0039A92A /* stickyNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stickyNavigationBar.swift; sourceTree = "<group>"; };
 		781D8DBE21855281006D9551 /* BookTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableCell.swift; sourceTree = "<group>"; };
 		781D8DC021855376006D9551 /* BookCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionCell.swift; sourceTree = "<group>"; };
 		783341F1218ECD510032678C /* BookDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookDetailVC.swift; path = biary/ViewControllers/BookDetailVC.swift; sourceTree = SOURCE_ROOT; };
@@ -90,6 +92,7 @@
 				781D8DBE21855281006D9551 /* BookTableCell.swift */,
 				781D8DC021855376006D9551 /* BookCollectionCell.swift */,
 				783341F3218ECE140032678C /* BookDetailHeaderView.swift */,
+				7810740E218F0D6D0039A92A /* stickyNavigationBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7810740F218F0D6D0039A92A /* stickyNavigationBar.swift in Sources */,
 				781D8DBF21855281006D9551 /* BookTableCell.swift in Sources */,
 				781D8DC121855376006D9551 /* BookCollectionCell.swift in Sources */,
 				783341F2218ECD510032678C /* BookDetailVC.swift in Sources */,

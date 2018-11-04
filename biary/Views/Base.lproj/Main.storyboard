@@ -139,21 +139,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="kWI-hD-yur">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="kWI-hD-yur" customClass="BookDetailHeaderView" customModule="biary" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ssss" translatesAutoresizingMaskIntoConstraints="NO" id="ZjL-TA-1AY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
-                                </imageView>
-                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="ZjL-TA-1AY" secondAttribute="bottom" id="7Dz-Uc-QxY"/>
-                                <constraint firstItem="ZjL-TA-1AY" firstAttribute="leading" secondItem="kWI-hD-yur" secondAttribute="leading" id="Vme-Wn-QYg"/>
-                                <constraint firstAttribute="trailing" secondItem="ZjL-TA-1AY" secondAttribute="trailing" id="iqG-ab-pGI"/>
-                                <constraint firstItem="ZjL-TA-1AY" firstAttribute="top" secondItem="kWI-hD-yur" secondAttribute="top" id="pya-TV-3bQ"/>
-                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="HWa-4v-Sse" style="IBUITableViewCellStyleDefault" id="1Yz-sy-t9e">
@@ -179,6 +168,7 @@
                             <outlet property="delegate" destination="fMl-Yq-J7L" id="CSH-0j-nC3"/>
                         </connections>
                     </tableView>
+                    <nil key="simulatedTopBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KNV-fE-LYR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,7 +212,4 @@
             <point key="canvasLocation" x="2060" y="-500"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ssss" width="300" height="440"/>
-    </resources>
 </document>

@@ -10,12 +10,12 @@ import UIKit
 
 class BookDetailVC: UITableViewController {
 
-    var headerView:UIView!
+    var headerView:BookDetailHeaderView!
+    var headerOpacityView = UIView()
+    
     var newHeaderLayer: CAShapeLayer!
     
     private let headerHeight: CGFloat = 250
-    private let headerCut: CGFloat = 0
-    
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -23,11 +23,14 @@ class BookDetailVC: UITableViewController {
     
     override func viewDidLoad() {
         self.updateView()
+        
     }
     
     func updateView() {
         tableView.backgroundColor = UIColor.white
-        headerView = tableView.tableHeaderView
+        headerView = tableView.tableHeaderView as! BookDetailHeaderView
+        headerView.setUpView()
+        headerView.titleLabel.text = "타이틀"
         tableView.tableHeaderView = nil
         tableView.rowHeight = UITableView.automaticDimension
         tableView.addSubview(headerView)
@@ -36,28 +39,31 @@ class BookDetailVC: UITableViewController {
         newHeaderLayer.fillColor = UIColor.black.cgColor
         headerView.layer.mask = newHeaderLayer
         
-        let newheight = headerHeight - headerCut / 2
+        let newheight = headerHeight
         tableView.contentInset = UIEdgeInsets(top: newheight, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -newheight)
+        
+        
         
         self.setUpNewView()
     }
     
     func setUpNewView() {
-        let newheight = headerHeight - headerCut / 2
+        let newheight = headerHeight
         var getheaderframe = CGRect(x: 0, y: -newheight, width: tableView.bounds.width, height: headerHeight)
         if tableView.contentOffset.y < newheight
         {
             getheaderframe.origin.y = tableView.contentOffset.y
-            getheaderframe.size.height = -tableView.contentOffset.y + headerCut / 2
+            getheaderframe.size.height = -tableView.contentOffset.y
         }
+        
         
         headerView.frame = getheaderframe
         let cutdirection = UIBezierPath()
         cutdirection.move(to: CGPoint(x: 0, y: 0))
         cutdirection.addLine(to: CGPoint(x: getheaderframe.width, y: 0))
         cutdirection.addLine(to: CGPoint(x: getheaderframe.width, y: getheaderframe.height))
-        cutdirection.addLine(to: CGPoint(x: 0, y: getheaderframe.height - headerCut))
+        cutdirection.addLine(to: CGPoint(x: 0, y: getheaderframe.height))
         newHeaderLayer.path = cutdirection.cgPath
     }
     
