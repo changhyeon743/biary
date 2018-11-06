@@ -8,7 +8,11 @@
 
 import UIKit
 
-class BookDetailVC: UITableViewController {
+class BookDetailVC: UIViewController {
+    
+    var customNavigationBar: stickyNavigationBar!
+    
+    @IBOutlet weak var tableView:UITableView!
 
     var headerView:BookDetailHeaderView!
     var headerOpacityView = UIView()
@@ -22,15 +26,30 @@ class BookDetailVC: UITableViewController {
     }
     
     override func viewDidLoad() {
+        setNavigationBar()
         self.updateView()
         
+    }
+    
+    func setNavigationBar() {
+        customNavigationBar = stickyNavigationBar(frame: CGRect.zero)
+        self.view.addSubview(customNavigationBar)
+        customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
+
+        let navigationConstraints:[NSLayoutConstraint] = [
+            customNavigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
+            customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+       customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
+
+            ]
+        NSLayoutConstraint.activate(navigationConstraints)
     }
     
     func updateView() {
         tableView.backgroundColor = UIColor.white
         headerView = tableView.tableHeaderView as! BookDetailHeaderView
         headerView.setUpView()
-        headerView.titleLabel.text = "타이틀"
         tableView.tableHeaderView = nil
         tableView.rowHeight = UITableView.automaticDimension
         tableView.addSubview(headerView)
@@ -65,30 +84,36 @@ class BookDetailVC: UITableViewController {
         cutdirection.addLine(to: CGPoint(x: getheaderframe.width, y: getheaderframe.height))
         cutdirection.addLine(to: CGPoint(x: 0, y: getheaderframe.height))
         newHeaderLayer.path = cutdirection.cgPath
+        
+        if tableView.contentOffset.y > 0 {
+            customNavigationBar.turnIntoWhite()
+        } else {
+            customNavigationBar.turnIntoClear()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         tableView.decelerationRate = UIScrollView.DecelerationRate.fast
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setUpNewView()
     }
     
     
 }
 
-extension BookDetailVC {
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         cell.textLabel?.text = "텍스트"
         return cell
     }
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return UITableView.automaticDimension
     }
     
