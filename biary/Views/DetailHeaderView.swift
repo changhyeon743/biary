@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookDetailHeaderView: UIView {
+class DetailHeaderView: UIView {
     
     var imageView:UIImageView!
     var colorView:UIView!

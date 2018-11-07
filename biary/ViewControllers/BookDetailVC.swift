@@ -14,7 +14,7 @@ class BookDetailVC: UIViewController {
     
     @IBOutlet weak var tableView:UITableView!
 
-    var headerView:BookDetailHeaderView!
+    var headerView:DetailHeaderView!
     var headerOpacityView = UIView()
     
     var newHeaderLayer: CAShapeLayer!
@@ -28,7 +28,7 @@ class BookDetailVC: UIViewController {
     override func viewDidLoad() {
         setNavigationBar()
         self.updateView()
-        
+        tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
     func setNavigationBar() {
@@ -48,7 +48,7 @@ class BookDetailVC: UIViewController {
     
     func updateView() {
         tableView.backgroundColor = UIColor.white
-        headerView = tableView.tableHeaderView as! BookDetailHeaderView
+        headerView = tableView.tableHeaderView as! DetailHeaderView
         headerView.setUpView()
         tableView.tableHeaderView = nil
         tableView.rowHeight = UITableView.automaticDimension
@@ -109,8 +109,9 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
-        cell.textLabel?.text = "텍스트"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DetailCell
+        cell.title = "제목"
+        cell.content = "\(indexPath.row)번째"
         return cell
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

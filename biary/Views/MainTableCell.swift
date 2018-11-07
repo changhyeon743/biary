@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookTableCell: UITableViewCell {
+class MainTableCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -30,13 +30,13 @@ class BookTableCell: UITableViewCell {
 
 }
 
-extension BookTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+extension MainTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "book", for: indexPath) as! BookCollectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "book", for: indexPath) as! MainCollectionCell
         cell.imageView.image = UIImage(named: "ssss")
         
         return cell
