@@ -111,7 +111,7 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DetailCell
         cell.title = "제목"
-        cell.content = "\(indexPath.row)번째"
+        cell.content = "가을 별 언덕 멀듯이, 당신은 마리아 너무나 까닭이요, 있습니다. 것은 하나에 밤이 남은 토끼, 거외다. 슬퍼하는 시와 못 거외다."
         return cell
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Bqg-CK-52j">
-                        <rect key="frame" x="23" y="32" width="274" height="17"/>
+                        <rect key="frame" x="23" y="36" width="274" height="17"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 책을 선택한 이유" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aU5-Nm-2WS">
                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="17"/>
@@ -36,7 +36,7 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아무 위에 하늘에는 있습니다. 까닭이요, 오면 별 비둘기,토끼, 하나에 버리었습니다. 때 별이 많은 토끼, 별 밤이 잠, 계십니다. 때 하나에 써 추억과 위에 까닭입니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coN-dG-YOn">
-                        <rect key="frame" x="23" y="62" width="274" height="73.5"/>
+                        <rect key="frame" x="23" y="66" width="274" height="69.5"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                     <constraint firstAttribute="bottom" secondItem="coN-dG-YOn" secondAttribute="bottom" id="Iwv-eJ-oVf"/>
                     <constraint firstItem="coN-dG-YOn" firstAttribute="top" secondItem="Bqg-CK-52j" secondAttribute="bottom" constant="13" id="J7S-53-x7R"/>
                     <constraint firstItem="Bqg-CK-52j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="Nni-bC-LoO"/>
-                    <constraint firstItem="Bqg-CK-52j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="21" id="ha5-mQ-HF6"/>
+                    <constraint firstItem="Bqg-CK-52j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="25" id="ha5-mQ-HF6"/>
                     <constraint firstItem="coN-dG-YOn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="orh-3b-6Uy"/>
                 </constraints>
             </tableViewCellContentView>
