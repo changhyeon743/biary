@@ -85,20 +85,38 @@ class BookDetailVC: UIViewController {
         cutdirection.addLine(to: CGPoint(x: 0, y: getheaderframe.height))
         newHeaderLayer.path = cutdirection.cgPath
         
-        if tableView.contentOffset.y > 0 {
-            customNavigationBar.turnIntoWhite()
-        } else {
-            customNavigationBar.turnIntoClear()
-        }
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         tableView.decelerationRate = UIScrollView.DecelerationRate.fast
     }
     
+    private var lastContentOffset:CGFloat = 0;
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         setUpNewView()
+        
+        if tableView.contentOffset.y > 0 {
+            customNavigationBar.turnIntoWhite()
+        } else {
+            customNavigationBar.turnIntoClear()
+        }
+        
+//        if (self.lastContentOffset > scrollView.contentOffset.y) {
+//            if tableView.contentOffset.y > 0 {
+//                customNavigationBar.turnIntoWhite()
+//            }
+//        }
+//        else if (self.lastContentOffset < scrollView.contentOffset.y) {
+//            customNavigationBar.turnIntoClear()
+//        }
+        
+        // update the new position acquired
+        self.lastContentOffset = scrollView.contentOffset.y
+        
     }
+    
     
     
 }

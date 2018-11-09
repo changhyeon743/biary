@@ -47,18 +47,22 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 68))
         view.backgroundColor = .white
+        
         
         
         let label = UILabel(frame: CGRect(x: 17, y: 0, width: 200, height: headerHeight))
         label.text = "소설"
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
-        let button = UIButton(frame: CGRect(x: self.view.frame.width - 60, y: 0, width: 50, height: headerHeight))
-        button.setTitle("Close", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        let expandImage = UIImage(named: "arrow_back")!
+        let button = UIButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width - 12, y: expandImage.size.height/2, width: expandImage.size.width, height: expandImage.size.height))
+        button.tintColor = 
+        button.setImage(expandImage, for: .normal)
+        
+        //button.setTitle("", for: .normal)
+        turn(button: button, to: CGFloat(Double.pi / 2))
         
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         
@@ -71,6 +75,12 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
     }
     
+    func turn(button:UIButton,to:CGFloat) {
+        if let temp = button.imageView {
+            temp.transform = temp.transform.rotated(by: to);
+        }
+    }
+    
     @objc func handleExpandClose(button: UIButton) {
         let indexPaths = [IndexPath(row: 0, section: button.tag)]
         
@@ -79,11 +89,13 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
         if (expandedData[button.tag]) {
             tableView.insertRows(at: indexPaths, with: .automatic)
+            turn(button: button, to: CGFloat(Double.pi))
         } else {
             tableView.deleteRows(at: indexPaths, with: .automatic)
+            turn(button: button, to: CGFloat(Double.pi))
         }
         
-        button.setTitle(expandedData[button.tag] ? "Close" : "Open", for: .normal)
+        //button.setTitle(expandedData[button.tag] ? "Close" : "Open", for: .normal)
     }
     
     
