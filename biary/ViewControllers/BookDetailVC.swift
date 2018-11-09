@@ -35,15 +35,25 @@ class BookDetailVC: UIViewController {
         customNavigationBar = stickyNavigationBar(frame: CGRect.zero)
         self.view.addSubview(customNavigationBar)
         customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        customNavigationBar.backBtnHandler = {
+            print("backButton")
+            self.navigationController?.popViewController(animated: true)
+        }
+        customNavigationBar.moreBtnHandler = {
+            print("More button pressed")
+        }
+        customNavigationBar.peopleBtnHandler = {
+            print("People button pressed")
+        }
 
-        let navigationConstraints:[NSLayoutConstraint] = [
+        NSLayoutConstraint.activate([
             customNavigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
             customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-       customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
-
-            ]
-        NSLayoutConstraint.activate(navigationConstraints)
+            customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
+            
+        ])
     }
     
     func updateView() {

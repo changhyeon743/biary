@@ -11,9 +11,17 @@ import UIKit
 class stickyNavigationBar: UIView {
 
     var backButton = UIButton()
+    var backBtnHandler:(()->Void)!
+    
     var titleLabel = UILabel()
+    
     var moreButton = UIButton()
+    var moreBtnHandler:(()->Void)!
+    
     var peopleButton = UIButton()
+    var peopleBtnHandler:(()->Void)!
+    
+    
 
     
     override init(frame: CGRect) {
@@ -31,12 +39,31 @@ class stickyNavigationBar: UIView {
         moreButton.setImage(UIImage(named:"more"), for: .normal)
         peopleButton.setImage(UIImage(named:"people"), for: .normal)
         
+        backButton.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+        moreButton.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
+        peopleButton.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
         
         self.addSubview(backButton)
         self.addSubview(titleLabel)
         self.addSubview(moreButton)
         self.addSubview(peopleButton)
     }
+    @objc func buttonAction(_ button:UIButton) {
+        switch button {
+        case backButton:
+            self.backBtnHandler();
+            break;
+        case moreButton:
+            self.moreBtnHandler();
+            break;
+        case peopleButton:
+            self.peopleBtnHandler();
+            break;
+        default:
+            break;
+        }
+    }
+    
     
     func setConstraints() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
@@ -58,13 +85,13 @@ class stickyNavigationBar: UIView {
         
         //MoreButton
         NSLayoutConstraint.activate([
-            moreButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 14),
+            moreButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -14),
             moreButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
         
         //MoreButton
         NSLayoutConstraint.activate([
-            peopleButton.rightAnchor.constraint(equalTo: self.moreButton.leftAnchor, constant: 14),
+            peopleButton.rightAnchor.constraint(equalTo: self.moreButton.leftAnchor, constant: -14),
             peopleButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
         
