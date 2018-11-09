@@ -58,7 +58,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
         let expandImage = UIImage(named: "arrow_back")!
         let button = UIButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width - 12, y: expandImage.size.height/2, width: expandImage.size.width, height: expandImage.size.height))
-        button.tintColor = 
+        button.tintColor = UIColor.Gray
         button.setImage(expandImage, for: .normal)
         
         //button.setTitle("", for: .normal)
