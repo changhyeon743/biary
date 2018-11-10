@@ -37,7 +37,7 @@ class BookDetailVC: UIViewController {
         customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
         
         customNavigationBar.backBtnHandler = {
-            print("backButton")
+            print("backButton button pressed")
             self.navigationController?.popViewController(animated: true)
         }
         customNavigationBar.moreBtnHandler = {
