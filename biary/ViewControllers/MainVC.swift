@@ -62,6 +62,10 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         return headerHeight
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return expandedData.count
     }
@@ -126,7 +130,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150;
+        return 140; //150
     }
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
