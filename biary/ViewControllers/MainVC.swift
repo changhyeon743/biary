@@ -13,14 +13,34 @@ class MainVC: UIViewController {
     @IBOutlet weak var tableView:UITableView!
     
     let sectionCount = 5
-    
     let headerHeight:CGFloat = 40;
-    
     var expandedData = [true,true,true,true,true]
+    
+    var navigationBar:NavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
+        self.view.addSubview(navigationBar)
+        
+
+        NSLayoutConstraint.activate([
+            navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            navigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            navigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            navigationBar.heightAnchor.constraint(equalToConstant: 80)
+            
+            ])
+        navigationBar.setConstraints()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor)
+        ])
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
