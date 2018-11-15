@@ -8,7 +8,7 @@
 
 import UIKit
 
-class stickyNavigationBar: UIView {
+class DetailNavigationBar: UIView {
 
     var backButton = UIButton()
     var backBtnHandler:(()->Void)!
@@ -21,13 +21,11 @@ class stickyNavigationBar: UIView {
     var peopleButton = UIButton()
     var peopleBtnHandler:(()->Void)!
     
-    
-
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setContents()
         setConstraints()
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setContents() {
@@ -73,25 +71,16 @@ class stickyNavigationBar: UIView {
         
         //BackButton
         NSLayoutConstraint.activate([
-            backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 14),
+            backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        ])
-        
         //TitleLabel
-        NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        ])
-        
         //MoreButton
-        NSLayoutConstraint.activate([
-            moreButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -14),
+            moreButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
             moreButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-        ])
-        
-        //MoreButton
-        NSLayoutConstraint.activate([
-            peopleButton.rightAnchor.constraint(equalTo: self.moreButton.leftAnchor, constant: -14),
+        //People
+            peopleButton.rightAnchor.constraint(equalTo: self.moreButton.leftAnchor, constant: -16),
             peopleButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
         

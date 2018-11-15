@@ -12,9 +12,8 @@ import UINavigationItem_Margin
 class MainVC: UIViewController {
     @IBOutlet weak var tableView:UITableView!
     
-    let sectionCount = 5
-    let headerHeight:CGFloat = 40;
-    var expandedData = [true,true,true,true,true]
+    let headerHeight:CGFloat = 60;
+    var expandedData = [true,true,true]
     
     var navigationBar:NavigationBar!
     
@@ -71,7 +70,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 68))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: headerHeight))
         view.backgroundColor = .white
         
         
@@ -81,7 +80,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         let expandImage = UIImage(named: "arrow_back")!
-        let button = UIButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width - 12, y: expandImage.size.height/2, width: expandImage.size.width, height: expandImage.size.height))
+        let button = UIButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width - 12, y: view.frame.height/2 - expandImage.size.height/2, width: expandImage.size.width, height: expandImage.size.height))
         button.tintColor = UIColor.Gray
         button.setImage(expandImage, for: .normal)
         

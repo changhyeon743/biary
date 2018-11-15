@@ -10,7 +10,7 @@ import UIKit
 
 class BookDetailVC: UIViewController {
     
-    var customNavigationBar: stickyNavigationBar!
+    var customNavigationBar: DetailNavigationBar!
     
     @IBOutlet weak var tableView:UITableView!
 
@@ -27,17 +27,20 @@ class BookDetailVC: UIViewController {
     
     override func viewDidLoad() {
         setNavigationBar()
-        self.updateView()
+        self.setUpHeaderView()
         tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     
+    @IBAction func writeButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "write", sender: self)
+    }
     func setNavigationBar() {
-        customNavigationBar = stickyNavigationBar(frame: CGRect.zero)
+        customNavigationBar = DetailNavigationBar(frame: CGRect.zero)
         self.view.addSubview(customNavigationBar)
-        customNavigationBar.translatesAutoresizingMaskIntoConstraints = false
+        
         
         customNavigationBar.backBtnHandler = {
-            print("backButton button pressed")
+            print("backButton button pressed") 
             self.navigationController?.popViewController(animated: true)
         }
         customNavigationBar.moreBtnHandler = {
@@ -56,10 +59,17 @@ class BookDetailVC: UIViewController {
         ])
     }
     
-    func updateView() {
+    func setUpHeaderView() {
         tableView.backgroundColor = UIColor.white
         headerView = tableView.tableHeaderView as! DetailHeaderView
         headerView.setUpView()
+        
+        headerView.title = "나미야 잡화점의 기적"
+        headerView.subTitle = "코리 닥터로우 저 . 아작"
+        headerView.author = "이창현 작성"
+        headerView.date = Date()
+        
+        
         tableView.tableHeaderView = nil
         tableView.rowHeight = UITableView.automaticDimension
         tableView.addSubview(headerView)
@@ -71,13 +81,12 @@ class BookDetailVC: UIViewController {
         let newheight = headerHeight
         tableView.contentInset = UIEdgeInsets(top: newheight, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -newheight)
+        headerView.setDescriptionViews(margin: -20)
         
-        
-        
-        self.setUpNewView()
+        self.updateHeaderView()
     }
     
-    func setUpNewView() {
+    func updateHeaderView() {
         let newheight = headerHeight
         var getheaderframe = CGRect(x: 0, y: -newheight, width: tableView.bounds.width, height: headerHeight)
         if tableView.contentOffset.y < newheight
@@ -105,7 +114,7 @@ class BookDetailVC: UIViewController {
     private var lastContentOffset:CGFloat = 0;
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        setUpNewView()
+        updateHeaderView()
         
         if tableView.contentOffset.y > 0 {
             customNavigationBar.turnIntoWhite()

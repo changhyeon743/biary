@@ -13,7 +13,31 @@ class DetailHeaderView: UIView {
     var imageView:UIImageView!
     var colorView:UIView!
     var bgColor = UIColor(red: 235/255, green: 96/255, blue: 91/255, alpha: 1)
-    var titleLabel = UILabel()
+    
+    
+    //Description
+    private var titleLbl = UILabel()
+    private var subTitleLbl = UILabel()
+    private var authorLbl = UILabel()
+    private var dateLbl = UILabel()
+    
+    var title:String = "" {
+        didSet {titleLbl.text = title}
+    }
+    var subTitle:String = "" {
+        didSet {subTitleLbl.text = subTitle}
+    }
+    var author:String = "" {
+        didSet {authorLbl.text = author}
+    }
+    var date:Date = Date() {
+        didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM-dd-yyyy"
+            dateLbl.text = dateFormatter.string(from: date)
+        }
+    }
+    
     
     func setUpView() {
         self.backgroundColor = .white
@@ -29,6 +53,7 @@ class DetailHeaderView: UIView {
             imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
             colorView.topAnchor.constraint(equalTo: self.topAnchor),
             colorView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             colorView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -42,17 +67,10 @@ class DetailHeaderView: UIView {
         
         colorView.backgroundColor = UIColor.black
         colorView.alpha = 0.6
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(titleLabel)
-        let titlesConstraints:[NSLayoutConstraint] = [
-            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 28),
-            ]
-        NSLayoutConstraint.activate(titlesConstraints)
         
-        titleLabel.font = UIFont.systemFont(ofSize: 15)
-        titleLabel.textAlignment = .center
+        
+        
         //        articleIcon = UIImageView()
         //        articleIcon.translatesAutoresizingMaskIntoConstraints = false
         //        self.addSubview(articleIcon)
@@ -66,5 +84,45 @@ class DetailHeaderView: UIView {
         //        articleIcon.image = UIImage(named: "article")
     }
     
-
+    func setDescriptionViews(margin:CGFloat) {
+        titleLbl.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(titleLbl)
+        titleLbl.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLbl.textColor = UIColor.white
+        
+        subTitleLbl.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(subTitleLbl)
+        subTitleLbl.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        subTitleLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
+        
+        authorLbl.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(authorLbl)
+        authorLbl.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        authorLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
+        
+        dateLbl.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(dateLbl)
+        dateLbl.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        dateLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
+        dateLbl.textAlignment = .right
+        
+        
+        
+        let horizontalMargin:CGFloat = 16;
+        NSLayoutConstraint.activate([
+            authorLbl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: horizontalMargin),
+            authorLbl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
+            
+            subTitleLbl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: horizontalMargin),
+            subTitleLbl.bottomAnchor.constraint(equalTo: authorLbl.topAnchor, constant: -24),
+            
+            titleLbl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: horizontalMargin),
+            titleLbl.bottomAnchor.constraint(equalTo: subTitleLbl.topAnchor, constant: -7),
+            
+            dateLbl.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -horizontalMargin),
+            dateLbl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12)
+        ])
+    }
+    
+    
 }

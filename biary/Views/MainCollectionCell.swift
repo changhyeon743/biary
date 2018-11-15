@@ -20,9 +20,9 @@ class MainCollectionCell: UICollectionViewCell {
 //        self.layer.shadowRadius = 6
 //        self.layer.shadowOpacity = 0.6
 //        self.layer.masksToBounds = false
-        
-//        self.imageView.layer.cornerRadius = 5
-//        self.imageView.clipsToBounds = true
+//
+        self.imageView.layer.cornerRadius = 5
+        self.imageView.clipsToBounds = true
     }
     
 }

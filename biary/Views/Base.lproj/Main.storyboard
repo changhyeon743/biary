@@ -30,7 +30,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eng-BD-jP3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="17" minimumInteritemSpacing="17" id="b3N-P4-TDr">
                                                         <size key="itemSize" width="83" height="128"/>
@@ -117,23 +117,74 @@
                                     <outlet property="delegate" destination="Nue-bm-cuJ" id="7bc-YO-6kd"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuH-8X-6Mk">
+                                <rect key="frame" x="297.5" y="589.5" width="58.5" height="58.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58.5" id="Qqx-Gm-YjO"/>
+                                    <constraint firstAttribute="width" constant="58.5" id="itf-Gb-YCH"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="write"/>
+                                <connections>
+                                    <action selector="writeButtonPressed:" destination="Nue-bm-cuJ" eventType="touchUpInside" id="Czg-Q2-9f7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="owY-0D-YKe" firstAttribute="bottom" secondItem="TuH-8X-6Mk" secondAttribute="bottom" constant="19" id="1pa-EC-aD4"/>
                             <constraint firstItem="rgD-zp-seD" firstAttribute="trailing" secondItem="owY-0D-YKe" secondAttribute="trailing" id="6sy-zA-5fN"/>
                             <constraint firstAttribute="bottom" secondItem="rgD-zp-seD" secondAttribute="bottom" id="EoP-WH-Rzo"/>
                             <constraint firstItem="rgD-zp-seD" firstAttribute="leading" secondItem="owY-0D-YKe" secondAttribute="leading" id="QVq-1o-RSJ"/>
+                            <constraint firstItem="owY-0D-YKe" firstAttribute="trailing" secondItem="TuH-8X-6Mk" secondAttribute="trailing" constant="19" id="ios-ex-dQw"/>
                             <constraint firstItem="rgD-zp-seD" firstAttribute="top" secondItem="owY-0D-YKe" secondAttribute="top" id="q3H-HW-SZJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="owY-0D-YKe"/>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="rgD-zp-seD" id="8vK-eT-uQN"/>
+                        <segue destination="ogA-mg-Kex" kind="show" identifier="write" id="i1H-B9-pgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ah-sA-MdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3841" y="-501"/>
+            <point key="canvasLocation" x="3840.8000000000002" y="-501.49925037481262"/>
+        </scene>
+        <!--WriteVC-->
+        <scene sceneID="Cjl-2R-gbG">
+            <objects>
+                <viewController id="ogA-mg-Kex" customClass="WriteVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bge-9R-sA0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6ZO-yq-1TE">
+                                <rect key="frame" x="0.0" y="225" width="375" height="442"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIu-J7-Wkk">
+                                <rect key="frame" x="159" y="149" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="1dZ-3v-Woh"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentTextView" destination="6ZO-yq-1TE" id="qUM-fd-FE2"/>
+                        <outlet property="titleLbl" destination="VIu-J7-Wkk" id="mTH-yc-4JT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C9X-8h-iwv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4652" y="-501.49925037481262"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="v7S-Wg-apR">
@@ -173,4 +224,7 @@
             <point key="canvasLocation" x="2060" y="-500"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="write" width="29.5" height="29.5"/>
+    </resources>
 </document>

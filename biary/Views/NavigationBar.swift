@@ -25,7 +25,7 @@ class NavigationBar: UIView {
         self.addSubview(titleLbl)
         
         line.backgroundColor = UIColor(r: 217, g: 217, b: 217)
-       
+        line.isHidden = true
         self.addSubview(line)
         
 //
@@ -63,7 +63,7 @@ class NavigationBar: UIView {
             self.topAnchor.constraint(equalTo: superView.topAnchor),
             self.leftAnchor.constraint(equalTo: superView.leftAnchor),
             self.rightAnchor.constraint(equalTo: superView.rightAnchor),
-            self.heightAnchor.constraint(equalToConstant: 80)
+            self.heightAnchor.constraint(equalToConstant: 65)
         ])
     }
     
