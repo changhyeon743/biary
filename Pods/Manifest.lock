@@ -1,16 +1,3 @@
-PODS:
-  - "UINavigationItem+Margin (2.1.1)"
-
-DEPENDENCIES:
-  - "UINavigationItem+Margin"
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - "UINavigationItem+Margin"
-
-SPEC CHECKSUMS:
-  "UINavigationItem+Margin": 7368d506fb2f7daa0c0489846cc8c2384ab1ab6d
-
-PODFILE CHECKSUM: c57d205f4857bd3848346787f302a3afd262abe6
+PODFILE CHECKSUM: 04c664f30a3b12c3725334fe92dd996bfe5f2a20
 
 COCOAPODS: 1.5.3

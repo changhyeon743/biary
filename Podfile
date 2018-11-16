@@ -6,6 +6,5 @@ target 'biary' do
   use_frameworks!
 
   # Pods for biary
-pod 'UINavigationItem+Margin'
 
 end

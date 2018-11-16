@@ -46,7 +46,8 @@ extension WriteVC : UITextViewDelegate {
         var toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        let highLightBtn = UIBarButtonItem(image: UIImage(named:"highlight"), style: .plain, target: self, action: #selector(highlightPressed))
+        let highLightBtn = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(highlightPressed))
+        
         
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         
@@ -57,7 +58,7 @@ extension WriteVC : UITextViewDelegate {
         
         let redoBtn_ = UIButton(frame: CGRect(x: 0, y: 0, width: -24, height: 24))
         redoBtn_.setBackgroundImage(UIImage(named: "undo"), for: .normal)
-        redoBtn_.addTarget(self, action: #selector(redoPressedxq), for: .touchUpInside)
+        redoBtn_.addTarget(self, action: #selector(redoPressed), for: .touchUpInside)
         let redoBtn = UIBarButtonItem(customView: redoBtn_)
         
         
