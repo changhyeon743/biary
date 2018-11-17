@@ -61,7 +61,7 @@ class BookDetailVC: UIViewController {
     
     func setUpHeaderView() {
         tableView.backgroundColor = UIColor.white
-        headerView = tableView.tableHeaderView as! DetailHeaderView
+        headerView = tableView.tableHeaderView as? DetailHeaderView
         headerView.setUpView()
         
         headerView.title = "나미야 잡화점의 기적"

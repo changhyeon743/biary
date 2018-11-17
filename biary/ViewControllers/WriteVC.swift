@@ -13,6 +13,7 @@ class WriteVC: UIViewController {
     @IBOutlet weak var titleLbl:UILabel!
     @IBOutlet weak var contentTextView:UITextView!
     
+    let toolBar = UIToolbar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +44,10 @@ class WriteVC: UIViewController {
 
 extension WriteVC : UITextViewDelegate {
     func addToolBar(textView: UITextView){
-        var toolBar = UIToolbar()
+        
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
-        let highLightBtn = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(highlightPressed))
+        let highLightBtn = UIBarButtonItem(image: UIImage(named:"highlight"), style: .plain, target: self, action: #selector(highlightPressed))
         
         
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
@@ -56,20 +57,50 @@ extension WriteVC : UITextViewDelegate {
         undoBtn_.addTarget(self, action: #selector(undoPressed), for: .touchUpInside)
         let undoBtn = UIBarButtonItem(customView: undoBtn_)
         
-        let redoBtn_ = UIButton(frame: CGRect(x: 0, y: 0, width: -24, height: 24))
-        redoBtn_.setBackgroundImage(UIImage(named: "undo"), for: .normal)
+        let fixedSpaceBetweenBtns = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: self, action: nil)
+        fixedSpaceBetweenBtns.width = 10
+        
+        let redoBtn_ = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        redoBtn_.setBackgroundImage(UIImage(named: "undo")?.withHorizontallyFlippedOrientation(), for: .normal)
         redoBtn_.addTarget(self, action: #selector(redoPressed), for: .touchUpInside)
         let redoBtn = UIBarButtonItem(customView: redoBtn_)
         
         
         
-        toolBar.setItems([highLightBtn,space,undoBtn, redoBtn], animated: false)
+        toolBar.setItems([highLightBtn,space,undoBtn,fixedSpaceBetweenBtns,redoBtn], animated: false)
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
         
         textView.delegate = self
         textView.inputAccessoryView = toolBar
+        
+        updateUndoBtns()
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        updateUndoBtns()
+    }
+    
+    func updateUndoBtns() {
+        let undo = toolBar.items![2]
+        let redo = toolBar.items![4]
+        if (contentTextView.undoManager?.canUndo == true) {
+            undo.tintColor = UIColor(r: 85, g: 85, b: 85)
+            //dark
+        } else {
+            undo.tintColor = UIColor(r: 188, g: 188, b: 188)
+            //gray
+        }
+        
+        if (contentTextView.undoManager?.canRedo == true) {
+            redo.tintColor = UIColor(r: 85, g: 85, b: 85)
+            //dark
+        } else {
+            redo.tintColor = UIColor(r: 188, g: 188, b: 188)
+            //gray
+        }
+    }
+    
     @objc func highlightPressed() {
         view.endEditing(true)
     }
