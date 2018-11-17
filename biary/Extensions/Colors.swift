@@ -29,4 +29,6 @@ extension UIColor {
     }
     
     static let Gray = UIColor(r: 112, g: 112, b: 112)
+    
+    static let mainColor = UIColor(r: 188, g: 140, b: 94)
 }
