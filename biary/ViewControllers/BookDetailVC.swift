@@ -19,7 +19,7 @@ class BookDetailVC: UIViewController {
     
     var newHeaderLayer: CAShapeLayer!
     
-    private let headerHeight: CGFloat = 250
+    private var headerHeight: CGFloat = 250
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -27,13 +27,26 @@ class BookDetailVC: UIViewController {
     
     override func viewDidLoad() {
         setNavigationBar()
+        
+        headerHeight = UIWindow().screen.bounds.height * 0.4
+        
+        //ratio
         self.setUpHeaderView()
         tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
+    }
+    
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        headerHeight = UIWindow().screen.bounds.height * 0.4
+        self.updateHeaderView()
+        self.tableView.reloadData()
+        
     }
     
     @IBAction func writeButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "write", sender: self)
     }
+    
+    
     func setNavigationBar() {
         customNavigationBar = DetailNavigationBar(frame: CGRect.zero)
         self.view.addSubview(customNavigationBar)
@@ -55,7 +68,6 @@ class BookDetailVC: UIViewController {
             customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
-            
         ])
     }
     

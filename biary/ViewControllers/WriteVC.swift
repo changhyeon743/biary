@@ -11,6 +11,7 @@ import UIKit
 class WriteVC: UIViewController {
     
     @IBOutlet weak var titleLbl:UILabel!
+    let line = UIView()
     @IBOutlet weak var contentTextView:UITextView!
     
     let toolBar = UIToolbar()
@@ -21,6 +22,18 @@ class WriteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createViews()
+        setConstraints()
+        
+        contentTextView.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
+        
+        //TextView
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
+        addToolBar(textView: contentTextView)
+    }
+    
+    func createViews() {
         backBtn.setImage(UIImage(named:"arrow_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(back(_:)), for: .touchUpInside)
         backBtn.tintColor = UIColor.mainColor
@@ -30,21 +43,19 @@ class WriteVC: UIViewController {
         doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         doneBtn.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
         
+        line.backgroundColor = UIColor(r: 112, g: 112, b: 112)
         
+        view.addSubview(line)
         view.addSubview(backBtn)
         view.addSubview(doneBtn)
-        
-        setConstraints()
-        
-        //TextView
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
-        addToolBar(textView: contentTextView)
     }
     
     func setConstraints() {
         backBtn.translatesAutoresizingMaskIntoConstraints = false
         doneBtn.translatesAutoresizingMaskIntoConstraints = false
+        titleLbl.translatesAutoresizingMaskIntoConstraints = false
+        line.translatesAutoresizingMaskIntoConstraints = false
+        contentTextView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             backBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
@@ -52,12 +63,21 @@ class WriteVC: UIViewController {
             
             doneBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             doneBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            doneBtn.heightAnchor.constraint(equalToConstant: 19),
 
             titleLbl.topAnchor.constraint(equalTo: doneBtn.bottomAnchor, constant: 25),
-            titleLbl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            titleLbl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 16)
+            titleLbl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 26),
+            titleLbl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 26),
+            titleLbl.heightAnchor.constraint(equalToConstant: 28),
             
+            line.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 26),
+            line.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -26),
+            line.heightAnchor.constraint(equalToConstant: 2),
+            line.topAnchor.constraint(equalTo: titleLbl.bottomAnchor, constant: 2.5),
+            
+            contentTextView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 13.5),
+            contentTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 26),
+            contentTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -26),
+            contentTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 26)
 
         ])
     }
@@ -77,10 +97,12 @@ class WriteVC: UIViewController {
         
         let keyboardEndFrame = self.view.convert(keyboardEndFrameScreenCoordinates, to: view.window)
         
+        let offset:CGFloat = 48
+        
         if notification.name == UIWindow.keyboardWillHideNotification {
             contentTextView.contentInset = UIEdgeInsets.zero
         } else {
-            contentTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardEndFrame.height, right: 0)
+            contentTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardEndFrame.height + offset, right: 0)
             contentTextView.scrollIndicatorInsets = contentTextView.contentInset
         }
         
