@@ -27,8 +27,11 @@ class WelcomeVC: UIViewController {
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let vc  = storyboard.instantiateInitialViewController() as! UITabBarController
-
+//        let ad = UIApplication.shared.delegate as! AppDelegate
+//        ad.setRootVC(to: vc)
+        self.view.window?.rootViewController = vc
         self.present(vc, animated: true, completion: nil)
+        //vc.dismiss(animated: true, completion: nil)
 
     }
     

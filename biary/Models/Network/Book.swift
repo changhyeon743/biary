@@ -29,6 +29,7 @@ struct Book {
     var isbn: String
     var imageURL: String
     var writerToken: String
+    var writerName: String
     var token: String
     var description: String
     var date: Date
@@ -46,6 +47,7 @@ extension Book {
                                   isbn: $0["isbn"].stringValue,
                                   imageURL: $0["imageURL"].stringValue,
                                   writerToken: $0["writerToken"].stringValue,
+                                  writerName: $0["writerName"].stringValue,
                                   token: $0["token"].stringValue,
                                   description: $0["description"].stringValue,
                                   date: dateFormatter.date(from: $0["date"].stringValue) ?? Date())}

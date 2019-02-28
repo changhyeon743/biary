@@ -31,7 +31,9 @@ class MainVC: UIViewController {
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
 
         navigationBar.settingBtnHandler = {
-            self.performSegue(withIdentifier: "bookshelfSegue", sender: nil)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
+            self.present(vc, animated: true, completion: nil)
+            //self.performSegue(withIdentifier: "bookshelfSegue", sender: nil)
         }
         self.view.addSubview(navigationBar)
         

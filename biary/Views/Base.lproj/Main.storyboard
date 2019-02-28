@@ -109,13 +109,13 @@
         <!--Book ShelfVC-->
         <scene sceneID="dKJ-0E-bkL">
             <objects>
-                <viewController storyboardIdentifier="BookShelfVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sd1-rZ-uks" customClass="BookShelfVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bookshelf" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sd1-rZ-uks" customClass="BookShelfVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rmI-A7-iNz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAb-tW-0G3">
-                                <rect key="frame" x="14" y="81" width="24" height="24"/>
+                                <rect key="frame" x="14" y="37" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="BmL-mb-xgp"/>
                                     <constraint firstAttribute="width" constant="24" id="ssF-b0-CmZ"/>
@@ -127,19 +127,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-PK-aqp">
-                                <rect key="frame" x="24" y="121" width="54" height="43"/>
+                                <rect key="frame" x="24" y="77" width="54" height="43"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 5개의 책장이 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNY-aM-h2X">
-                                <rect key="frame" x="24" y="165" width="130" height="18"/>
+                                <rect key="frame" x="24" y="121" width="130" height="18"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="12"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKQ-6p-zUE">
-                                <rect key="frame" x="328" y="78" width="30" height="35"/>
+                                <rect key="frame" x="328" y="34" width="30" height="35"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="15"/>
                                 <state key="normal" title="편집">
                                     <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -149,14 +149,17 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezw-Cx-BUj">
-                                <rect key="frame" x="251" y="78" width="60" height="35"/>
+                                <rect key="frame" x="251" y="34" width="60" height="35"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="15"/>
                                 <state key="normal" title="책장 추가">
                                     <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addBtnPressed:" destination="sd1-rZ-uks" eventType="touchUpInside" id="meT-RA-g59"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xa3-V0-Roz">
-                                <rect key="frame" x="0.0" y="201" width="375" height="417"/>
+                                <rect key="frame" x="0.0" y="157" width="375" height="461"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="BoM-mg-1m9" style="IBUITableViewCellStyleDefault" id="hTv-1f-ehC">
@@ -204,6 +207,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m0j-KE-zIp"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="editBtn" destination="TKQ-6p-zUE" id="btq-R4-H6x"/>
                         <outlet property="tableView" destination="Xa3-V0-Roz" id="Sjn-8q-OLo"/>
@@ -306,10 +310,10 @@
         <!--Tab Bar Controller-->
         <scene sceneID="zM5-Ct-Ksv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VRh-au-lhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="wW7-SM-7Ai" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Mj0-1t-PBK">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -317,6 +321,7 @@
                         <segue destination="NV3-xZ-Y06" kind="relationship" relationship="viewControllers" id="ALa-TH-rxK"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VRh-au-lhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2941.5999999999999" y="-501.49925037481262"/>
         </scene>

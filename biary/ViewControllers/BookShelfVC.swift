@@ -35,10 +35,27 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func closeBtnPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func addBtnPressed(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "Password"
+            textField.isSecureTextEntry = true
+        }
+        let confirmAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
+            guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
+            print("Current password \(String(describing: textField.text))")
+            //compare the current password and do action here
+        }
+        alertController.addAction(confirmAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
-    @IBAction func editBtnPressed(_ sender: Any) {
+    @IBAction func closeBtnPressed(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func editBtnPressed(_ sender: UIButton) {
         if(self.tableView.isEditing == true) {
             self.tableView.isEditing = false
             editBtn.setTitle("편집", for: .normal)

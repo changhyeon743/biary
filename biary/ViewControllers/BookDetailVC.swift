@@ -85,7 +85,7 @@ class BookDetailVC: UIViewController {
         
         headerView.title = bookInfo.title
         headerView.subTitle = bookInfo.author + " . " + bookInfo.publisher
-        headerView.author = bookInfo.writerToken
+        headerView.author = bookInfo.writerName
         headerView.date = bookInfo.date
         headerView.imageView.sd_setImage(with: URL(string: bookInfo.imageURL), completed: nil)
         
