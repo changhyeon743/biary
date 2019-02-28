@@ -24,6 +24,8 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = false;
+
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
@@ -58,12 +60,12 @@ class MainVC: UIViewController {
         
     }
     
-    func gotoDetail() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "BookDetailVC") as! BookDetailVC
-//        let nvc = storyboard.instantiateViewController(withIdentifier: "navigation") as! UINavigationController
-        print(navigationController)
-        //navigationBar. .pushViewController(vc, animated: true)
+    func gotoDetail(withBook book:Book) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "BookDetailVC") as! BookDetailVC
+        vc.bookInfo = book
+        vc.contents = API.currentContents.filter{$0.bookToken == book.token}
+        print(API.currentContents,"중\n",vc.contents)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -155,7 +157,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         cell.collectionView.reloadData()
        
         //print("저는 ",indexPath.row,"번 책장입니다. \n 제가 가지고 있는 책은",cell.shelfInfo?.books.count ?? 0)
-        print("저는 ",indexPath.section,"번 책장입니다. \n 제가 가지고 있는 책은",API.currentUser.bookShelf)
+        //print("저는 ",indexPath.section,"번 책장입니다. \n 제가 가지고 있는 책은",API.currentUser.bookShelf)
 
         
         return cell;

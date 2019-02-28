@@ -25,10 +25,10 @@ class WelcomeVC: UIViewController {
     
     @IBAction func nonLoginPressed(_ sender: Any) {
         
-        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let homeView  = sampleStoryBoard.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc  = storyboard.instantiateInitialViewController() as! UITabBarController
 
-        self.present(homeView, animated: true, completion: nil)
+        self.present(vc, animated: true, completion: nil)
 
     }
     

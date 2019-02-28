@@ -30,7 +30,6 @@ extension Content {
                                         article: $0["article"].stringValue,
                                         bookToken: $0["bookToken"].stringValue,
                                         date: dateFormatter.date(from: $0["date"].stringValue) ?? Date())}
-        print(contents)
         
         return contents
     }

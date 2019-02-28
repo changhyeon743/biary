@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class BookDetailVC: UIViewController {
     
@@ -21,13 +22,18 @@ class BookDetailVC: UIViewController {
     
     private var headerHeight: CGFloat = 250
     
+    //data
+    var bookInfo: Book!
+    var contents: [Content] = []
+    
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
     
     override func viewDidLoad() {
         setNavigationBar()
-        
+        tabBarController?.tabBar.isHidden = true;
         headerHeight = UIWindow().screen.bounds.height * 0.4
         
         //ratio
@@ -77,10 +83,11 @@ class BookDetailVC: UIViewController {
         headerView = tableView.tableHeaderView as? DetailHeaderView
         headerView.setUpView()
         
-        headerView.title = "나미야 잡화점의 기적"
-        headerView.subTitle = "코리 닥터로우 저 . 아작"
-        headerView.author = "이창현 작성"
-        headerView.date = Date()
+        headerView.title = bookInfo.title
+        headerView.subTitle = bookInfo.author + " . " + bookInfo.publisher
+        headerView.author = bookInfo.writerToken
+        headerView.date = bookInfo.date
+        headerView.imageView.sd_setImage(with: URL(string: bookInfo.imageURL), completed: nil)
         
         
         tableView.tableHeaderView = nil
@@ -155,13 +162,17 @@ class BookDetailVC: UIViewController {
 
 extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return contents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DetailCell
-        cell.title = "제목"
-        cell.content = "가을 별 언덕 멀듯이, 당신은 마리아 너무나 까닭이요, 있습니다. 것은 하나에 밤이 남은 토끼, 거외다. 슬퍼하는 시와 못 거외다."
+        cell.title = contents[indexPath.row].title
+        cell.content = contents[indexPath.row].article
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        cell.dateLabel.text = dateFormatter.string(from: contents[indexPath.row].date)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

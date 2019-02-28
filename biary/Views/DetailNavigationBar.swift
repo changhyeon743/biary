@@ -72,7 +72,7 @@ class DetailNavigationBar: UIView {
         //BackButton
         NSLayoutConstraint.activate([
             backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
-            backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 8),
         //TitleLabel
             titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),

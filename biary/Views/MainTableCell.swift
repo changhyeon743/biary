@@ -47,7 +47,8 @@ extension MainTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        mainViewController.gotoDetail()
+        
+        mainViewController.gotoDetail(withBook: self.bookInfo[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
