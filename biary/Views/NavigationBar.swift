@@ -8,11 +8,20 @@
 
 import Foundation
 import UIKit
+import SwiftSVG
 
 class NavigationBar: UIView {
     
     var titleLbl = UILabel()
     var line = UIView()
+    
+    var settingBtn = UIButton()
+    var addBtn = UIButton()
+    var searchBtn = UIButton()
+    
+    var settingBtnHandler:(()->Void)!
+    var addBtnHandler:(()->Void)!
+    var searchBtnHandler:(()->Void)!
     
     init(frame:CGRect,title:String,subTitle:String="") {
         super.init(frame: frame)
@@ -28,6 +37,23 @@ class NavigationBar: UIView {
         line.isHidden = true
         self.addSubview(line)
         
+        
+        settingBtn.setImage(UIImage(named: "setting"), for: .normal)
+        settingBtn.tintColor = UIColor.black
+        settingBtn.addTarget(self, action: #selector(settingPressed), for: .touchUpInside)
+        self.addSubview(settingBtn)
+        
+        addBtn.setImage(UIImage(named: "add"), for: .normal)
+        addBtn.tintColor = UIColor.black
+        addBtn.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
+
+        self.addSubview(addBtn)
+        
+        searchBtn.setImage(UIImage(named: "search"), for: .normal)
+        searchBtn.tintColor = UIColor.black
+        searchBtn.addTarget(self, action: #selector(searchPressed), for: .touchUpInside)
+
+        self.addSubview(searchBtn)
 //
 //        let subTitleLbl = UILabel()
 //        subTitleLbl.text = subTitle;
@@ -36,14 +62,34 @@ class NavigationBar: UIView {
 //            subTitleLbl.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 17)
 //        ])
     }
+    @objc func settingPressed() {
+        self.settingBtnHandler()
+    }
+    @objc func addPressed() {
+        self.addBtnHandler()
+    }
+    @objc func searchPressed() {
+        self.searchBtnHandler()
+    }
     
     func setConstraints() {
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         line.translatesAutoresizingMaskIntoConstraints = false
-        
+        settingBtn.translatesAutoresizingMaskIntoConstraints = false
+        addBtn.translatesAutoresizingMaskIntoConstraints = false
+        searchBtn.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             titleLbl.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 5),
-            titleLbl.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 17)
+            titleLbl.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 17),
+            
+            settingBtn.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 5),
+            addBtn.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 5),
+            searchBtn.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 5),
+            
+            settingBtn.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
+            addBtn.rightAnchor.constraint(equalTo: settingBtn.rightAnchor, constant: -16-20),
+            searchBtn.rightAnchor.constraint(equalTo: addBtn.rightAnchor, constant: -16-20),
         ])
         NSLayoutConstraint.activate([
             line.leftAnchor.constraint(equalTo: self.leftAnchor),

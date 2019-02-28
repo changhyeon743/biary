@@ -14,9 +14,35 @@
 		783341F4218ECE140032678C /* DetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783341F3218ECE140032678C /* DetailHeaderView.swift */; };
 		783D31DA218B35D8004B5DBC /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D31D9218B35D8004B5DBC /* UINavigationBar.swift */; };
 		783FFBED219D8606002B6977 /* WriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FFBEC219D8606002B6977 /* WriteVC.swift */; };
+		784E4FEB2221EA2300B617AA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E4FEA2221EA2300B617AA /* API.swift */; };
+		785FFF58222620D00040E1F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785FFF57222620D00040E1F4 /* ViewController.swift */; };
+		785FFF5A222626880040E1F4 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785FFF59222626880040E1F4 /* UserAPI.swift */; };
+		786BA3D72223BF2900280503 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3D62223BF2900280503 /* Book.swift */; };
+		786BA3D92223BF9E00280503 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3D82223BF9E00280503 /* Content.swift */; };
+		786BA3DB2223BFA400280503 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3DA2223BFA400280503 /* User.swift */; };
+		786BA3DD2223BFFB00280503 /* Bookshelf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3DC2223BFFB00280503 /* Bookshelf.swift */; };
+		786BA3DF2223C56E00280503 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3DE2223C56E00280503 /* WelcomeVC.swift */; };
+		786BA3E12223D33300280503 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3E02223D33300280503 /* AuthAPI.swift */; };
+		786BA3E32223D42300280503 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3E22223D42300280503 /* Token.swift */; };
+		786BA3E6222532F200280503 /* search.svg in Resources */ = {isa = PBXBuildFile; fileRef = 786BA3E5222532F200280503 /* search.svg */; };
+		786BA3E8222532F600280503 /* add.svg in Resources */ = {isa = PBXBuildFile; fileRef = 786BA3E7222532F600280503 /* add.svg */; };
+		786BA3EA222532FC00280503 /* setting.svg in Resources */ = {isa = PBXBuildFile; fileRef = 786BA3E9222532FC00280503 /* setting.svg */; };
+		786BA3EC2225367A00280503 /* swiftSVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786BA3EB2225367A00280503 /* swiftSVG.swift */; };
 		787DDFD5219326A300332121 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787DDFD3219326A300332121 /* DetailCell.swift */; };
 		787DDFD6219326A300332121 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787DDFD4219326A300332121 /* DetailCell.xib */; };
 		78A239F72195C6EB00F2A835 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A239F62195C6EB00F2A835 /* Colors.swift */; };
+		78A517AC2225415000CB3035 /* BookShelfVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A517AB2225415000CB3035 /* BookShelfVC.swift */; };
+		78BBE4392221DFB900D6ACDD /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4382221DFB900D6ACDD /* Welcome.storyboard */; };
+		78BBE4442221E1C600D6ACDD /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4432221E1BA00D6ACDD /* NotoSansCJKkr-Black.otf */; };
+		78BBE4452221E1C600D6ACDD /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43B2221E1B300D6ACDD /* NotoSansCJKkr-Bold.otf */; };
+		78BBE4462221E1C600D6ACDD /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43F2221E1B600D6ACDD /* NotoSansCJKkr-DemiLight.otf */; };
+		78BBE4472221E1C600D6ACDD /* NotoSansCJKkr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4422221E1B900D6ACDD /* NotoSansCJKkr-Light.otf */; };
+		78BBE4482221E1C600D6ACDD /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4402221E1B700D6ACDD /* NotoSansCJKkr-Medium.otf */; };
+		78BBE4492221E1C600D6ACDD /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43D2221E1B400D6ACDD /* NotoSansCJKkr-Regular.otf */; };
+		78BBE44A2221E1C600D6ACDD /* NotoSansCJKkr-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43C2221E1B300D6ACDD /* NotoSansCJKkr-Thin.otf */; };
+		78BBE44B2221E1C600D6ACDD /* NotoSansMonoCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43E2221E1B500D6ACDD /* NotoSansMonoCJKkr-Bold.otf */; };
+		78BBE44C2221E1C600D6ACDD /* NotoSansMonoCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4412221E1B800D6ACDD /* NotoSansMonoCJKkr-Regular.otf */; };
+		78BBE4502221E59A00D6ACDD /* facebook.svg in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE44F2221E59A00D6ACDD /* facebook.svg */; };
 		78C33983219AE6AE0074B389 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C33982219AE6AE0074B389 /* NavigationBar.swift */; };
 		78DA251C218137D600DAEDE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DA251B218137D600DAEDE4 /* AppDelegate.swift */; };
 		78DA2521218137D600DAEDE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78DA251F218137D600DAEDE4 /* Main.storyboard */; };
@@ -36,9 +62,35 @@
 		783341F3218ECE140032678C /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		783D31D9218B35D8004B5DBC /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		783FFBEC219D8606002B6977 /* WriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WriteVC.swift; path = biary/ViewControllers/WriteVC.swift; sourceTree = SOURCE_ROOT; };
+		784E4FEA2221EA2300B617AA /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		785FFF57222620D00040E1F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		785FFF59222626880040E1F4 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		786BA3D62223BF2900280503 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		786BA3D82223BF9E00280503 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		786BA3DA2223BFA400280503 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		786BA3DC2223BFFB00280503 /* Bookshelf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookshelf.swift; sourceTree = "<group>"; };
+		786BA3DE2223C56E00280503 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		786BA3E02223D33300280503 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthAPI.swift; path = biary/Models/Network/AuthAPI.swift; sourceTree = SOURCE_ROOT; };
+		786BA3E22223D42300280503 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		786BA3E5222532F200280503 /* search.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = search.svg; sourceTree = "<group>"; };
+		786BA3E7222532F600280503 /* add.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = add.svg; sourceTree = "<group>"; };
+		786BA3E9222532FC00280503 /* setting.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setting.svg; sourceTree = "<group>"; };
+		786BA3EB2225367A00280503 /* swiftSVG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftSVG.swift; sourceTree = "<group>"; };
 		787DDFD3219326A300332121 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		787DDFD4219326A300332121 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		78A239F62195C6EB00F2A835 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		78A517AB2225415000CB3035 /* BookShelfVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfVC.swift; sourceTree = "<group>"; };
+		78BBE4382221DFB900D6ACDD /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
+		78BBE43B2221E1B300D6ACDD /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
+		78BBE43C2221E1B300D6ACDD /* NotoSansCJKkr-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Thin.otf"; sourceTree = "<group>"; };
+		78BBE43D2221E1B400D6ACDD /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
+		78BBE43E2221E1B500D6ACDD /* NotoSansMonoCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansMonoCJKkr-Bold.otf"; sourceTree = "<group>"; };
+		78BBE43F2221E1B600D6ACDD /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
+		78BBE4402221E1B700D6ACDD /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
+		78BBE4412221E1B800D6ACDD /* NotoSansMonoCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansMonoCJKkr-Regular.otf"; sourceTree = "<group>"; };
+		78BBE4422221E1B900D6ACDD /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
+		78BBE4432221E1BA00D6ACDD /* NotoSansCJKkr-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Black.otf"; sourceTree = "<group>"; };
+		78BBE44F2221E59A00D6ACDD /* facebook.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = facebook.svg; sourceTree = "<group>"; };
 		78C33982219AE6AE0074B389 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		78DA2518218137D600DAEDE4 /* biary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = biary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DA251B218137D600DAEDE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +114,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		786BA3E4222532DA00280503 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				78BBE44F2221E59A00D6ACDD /* facebook.svg */,
+				786BA3E9222532FC00280503 /* setting.svg */,
+				786BA3E7222532F600280503 /* add.svg */,
+				786BA3E5222532F200280503 /* search.svg */,
+				78BBE43A2221E1A500D6ACDD /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		78BBE43A2221E1A500D6ACDD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				78BBE4432221E1BA00D6ACDD /* NotoSansCJKkr-Black.otf */,
+				78BBE43B2221E1B300D6ACDD /* NotoSansCJKkr-Bold.otf */,
+				78BBE43F2221E1B600D6ACDD /* NotoSansCJKkr-DemiLight.otf */,
+				78BBE4422221E1B900D6ACDD /* NotoSansCJKkr-Light.otf */,
+				78BBE4402221E1B700D6ACDD /* NotoSansCJKkr-Medium.otf */,
+				78BBE43D2221E1B400D6ACDD /* NotoSansCJKkr-Regular.otf */,
+				78BBE43C2221E1B300D6ACDD /* NotoSansCJKkr-Thin.otf */,
+				78BBE43E2221E1B500D6ACDD /* NotoSansMonoCJKkr-Bold.otf */,
+				78BBE4412221E1B800D6ACDD /* NotoSansMonoCJKkr-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		78DA250F218137D600DAEDE4 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +163,7 @@
 		78DA251A218137D600DAEDE4 /* biary */ = {
 			isa = PBXGroup;
 			children = (
+				786BA3E4222532DA00280503 /* Resources */,
 				78F0719A218346BE0034E417 /* Views */,
 				78F0719B218346CF0034E417 /* ViewControllers */,
 				78F0719C218346DB0034E417 /* Models */,
@@ -98,6 +179,7 @@
 		78F0719A218346BE0034E417 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				78BBE4382221DFB900D6ACDD /* Welcome.storyboard */,
 				78DA251F218137D600DAEDE4 /* Main.storyboard */,
 				781D8DBE21855281006D9551 /* MainTableCell.swift */,
 				781D8DC021855376006D9551 /* MainCollectionCell.swift */,
@@ -116,6 +198,8 @@
 				783FFBEC219D8606002B6977 /* WriteVC.swift */,
 				78F0719F218348410034E417 /* MainVC.swift */,
 				783341F1218ECD510032678C /* BookDetailVC.swift */,
+				786BA3DE2223C56E00280503 /* WelcomeVC.swift */,
+				78A517AB2225415000CB3035 /* BookShelfVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -124,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				78F0719E218346E70034E417 /* Network */,
+				786BA3E22223D42300280503 /* Token.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,6 +218,8 @@
 			children = (
 				783D31D9218B35D8004B5DBC /* UINavigationBar.swift */,
 				78A239F62195C6EB00F2A835 /* Colors.swift */,
+				786BA3EB2225367A00280503 /* swiftSVG.swift */,
+				785FFF57222620D00040E1F4 /* ViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -140,6 +227,13 @@
 		78F0719E218346E70034E417 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				784E4FEA2221EA2300B617AA /* API.swift */,
+				785FFF59222626880040E1F4 /* UserAPI.swift */,
+				786BA3E02223D33300280503 /* AuthAPI.swift */,
+				786BA3D62223BF2900280503 /* Book.swift */,
+				786BA3D82223BF9E00280503 /* Content.swift */,
+				786BA3DA2223BFA400280503 /* User.swift */,
+				786BA3DC2223BFFB00280503 /* Bookshelf.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -172,6 +266,7 @@
 				78DA2514218137D600DAEDE4 /* Sources */,
 				78DA2515218137D600DAEDE4 /* Frameworks */,
 				78DA2516218137D600DAEDE4 /* Resources */,
+				5FB90BC21DBE7254E83930B4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -220,16 +315,54 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78BBE4462221E1C600D6ACDD /* NotoSansCJKkr-DemiLight.otf in Resources */,
 				78DA2526218137D800DAEDE4 /* LaunchScreen.storyboard in Resources */,
+				78BBE4392221DFB900D6ACDD /* Welcome.storyboard in Resources */,
+				786BA3E6222532F200280503 /* search.svg in Resources */,
+				786BA3EA222532FC00280503 /* setting.svg in Resources */,
+				78BBE44A2221E1C600D6ACDD /* NotoSansCJKkr-Thin.otf in Resources */,
+				78BBE4442221E1C600D6ACDD /* NotoSansCJKkr-Black.otf in Resources */,
 				78DA2523218137D800DAEDE4 /* Assets.xcassets in Resources */,
+				78BBE4452221E1C600D6ACDD /* NotoSansCJKkr-Bold.otf in Resources */,
 				787DDFD6219326A300332121 /* DetailCell.xib in Resources */,
+				78BBE4472221E1C600D6ACDD /* NotoSansCJKkr-Light.otf in Resources */,
 				78DA2521218137D600DAEDE4 /* Main.storyboard in Resources */,
+				78BBE44C2221E1C600D6ACDD /* NotoSansMonoCJKkr-Regular.otf in Resources */,
+				78BBE4482221E1C600D6ACDD /* NotoSansCJKkr-Medium.otf in Resources */,
+				786BA3E8222532F600280503 /* add.svg in Resources */,
+				78BBE4502221E59A00D6ACDD /* facebook.svg in Resources */,
+				78BBE44B2221E1C600D6ACDD /* NotoSansMonoCJKkr-Bold.otf in Resources */,
+				78BBE4492221E1C600D6ACDD /* NotoSansCJKkr-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5FB90BC21DBE7254E83930B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-biary/Pods-biary-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSVG/SwiftSVG.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSVG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-biary/Pods-biary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C2D89F3FCFA39E019E2EA465 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,14 +390,26 @@
 			files = (
 				7810740F218F0D6D0039A92A /* DetailNavigationBar.swift in Sources */,
 				78A239F72195C6EB00F2A835 /* Colors.swift in Sources */,
+				78A517AC2225415000CB3035 /* BookShelfVC.swift in Sources */,
 				781D8DBF21855281006D9551 /* MainTableCell.swift in Sources */,
+				786BA3D92223BF9E00280503 /* Content.swift in Sources */,
 				787DDFD5219326A300332121 /* DetailCell.swift in Sources */,
+				786BA3DF2223C56E00280503 /* WelcomeVC.swift in Sources */,
+				785FFF58222620D00040E1F4 /* ViewController.swift in Sources */,
+				786BA3EC2225367A00280503 /* swiftSVG.swift in Sources */,
 				781D8DC121855376006D9551 /* MainCollectionCell.swift in Sources */,
 				78C33983219AE6AE0074B389 /* NavigationBar.swift in Sources */,
+				786BA3DB2223BFA400280503 /* User.swift in Sources */,
 				783341F2218ECD510032678C /* BookDetailVC.swift in Sources */,
 				783341F4218ECE140032678C /* DetailHeaderView.swift in Sources */,
+				786BA3E32223D42300280503 /* Token.swift in Sources */,
+				786BA3D72223BF2900280503 /* Book.swift in Sources */,
 				783FFBED219D8606002B6977 /* WriteVC.swift in Sources */,
+				785FFF5A222626880040E1F4 /* UserAPI.swift in Sources */,
 				78DA251C218137D600DAEDE4 /* AppDelegate.swift in Sources */,
+				786BA3E12223D33300280503 /* AuthAPI.swift in Sources */,
+				784E4FEB2221EA2300B617AA /* API.swift in Sources */,
+				786BA3DD2223BFFB00280503 /* Bookshelf.swift in Sources */,
 				78F071A0218348410034E417 /* MainVC.swift in Sources */,
 				783D31DA218B35D8004B5DBC /* UINavigationBar.swift in Sources */,
 			);
@@ -416,7 +561,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = biary/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = changhyeon.biary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -432,7 +580,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = biary/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = changhyeon.biary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

@@ -8,11 +8,22 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NotoSansCJKkr-Bold.otf">
+            <string>NotoSansCJKkr-Bold</string>
+        </array>
+        <array key="NotoSansCJKkr-Medium.otf">
+            <string>NotoSansCJKkr-Medium</string>
+        </array>
+        <array key="NotoSansCJKkr-Regular.otf">
+            <string>NotoSansCJKkr-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--나의 서재-->
         <scene sceneID="fMw-q4-7nc">
             <objects>
-                <viewController title="나의 서재" id="m0Z-EO-PFq" customClass="MainVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" title="나의 서재" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m0Z-EO-PFq" customClass="MainVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lsR-HW-xo3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,26 +97,133 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="9IY-ft-Uuh"/>
                     <navigationItem key="navigationItem" title="타이틀" id="gS1-y8-fZb"/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="VKq-EM-UTc" id="Bf1-YM-Z6g"/>
                         <segue destination="Nue-bm-cuJ" kind="show" identifier="gotoDetail" id="4uR-qm-kaG"/>
+                        <segue destination="sd1-rZ-uks" kind="show" identifier="bookshelfSegue" id="TH7-i3-Bt8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hx-lj-H3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2941.5999999999999" y="-501.49925037481262"/>
         </scene>
+        <!--Book ShelfVC-->
+        <scene sceneID="dKJ-0E-bkL">
+            <objects>
+                <viewController storyboardIdentifier="BookShelfVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sd1-rZ-uks" customClass="BookShelfVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rmI-A7-iNz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAb-tW-0G3">
+                                <rect key="frame" x="14" y="81" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="BmL-mb-xgp"/>
+                                    <constraint firstAttribute="width" constant="24" id="ssF-b0-CmZ"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeBtnPressed:" destination="sd1-rZ-uks" eventType="touchUpInside" id="gNP-w4-BYn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-PK-aqp">
+                                <rect key="frame" x="24" y="121" width="54" height="43"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 5개의 책장이 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNY-aM-h2X">
+                                <rect key="frame" x="24" y="165" width="130" height="18"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="12"/>
+                                <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKQ-6p-zUE">
+                                <rect key="frame" x="328" y="78" width="30" height="35"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="15"/>
+                                <state key="normal" title="편집">
+                                    <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="editBtnPressed:" destination="sd1-rZ-uks" eventType="touchUpInside" id="pPj-UJ-erO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezw-Cx-BUj">
+                                <rect key="frame" x="251" y="78" width="60" height="35"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="15"/>
+                                <state key="normal" title="책장 추가">
+                                    <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xa3-V0-Roz">
+                                <rect key="frame" x="0.0" y="201" width="375" height="466"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="BoM-mg-1m9" style="IBUITableViewCellStyleDefault" id="hTv-1f-ehC">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hTv-1f-ehC" id="30f-V6-mlX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BoM-mg-1m9">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="8"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="sd1-rZ-uks" id="qVJ-1G-za3"/>
+                                    <outlet property="delegate" destination="sd1-rZ-uks" id="BjE-Nf-T5z"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m0j-KE-zIp" firstAttribute="trailing" secondItem="Xa3-V0-Roz" secondAttribute="trailing" id="1CC-v2-g83"/>
+                            <constraint firstItem="zNY-aM-h2X" firstAttribute="leading" secondItem="m0j-KE-zIp" secondAttribute="leading" constant="24" id="23Q-5a-LLu"/>
+                            <constraint firstItem="m0j-KE-zIp" firstAttribute="trailing" secondItem="TKQ-6p-zUE" secondAttribute="trailing" constant="17" id="53F-cp-VYF"/>
+                            <constraint firstItem="Zbh-PK-aqp" firstAttribute="top" secondItem="UAb-tW-0G3" secondAttribute="bottom" constant="16" id="56D-Kr-I51"/>
+                            <constraint firstItem="TKQ-6p-zUE" firstAttribute="leading" secondItem="ezw-Cx-BUj" secondAttribute="trailing" constant="17" id="BTz-pB-qnA"/>
+                            <constraint firstItem="UAb-tW-0G3" firstAttribute="leading" secondItem="m0j-KE-zIp" secondAttribute="leading" constant="14" id="EBF-4u-e1W"/>
+                            <constraint firstItem="TKQ-6p-zUE" firstAttribute="top" secondItem="m0j-KE-zIp" secondAttribute="top" constant="14" id="GoW-wl-MOq"/>
+                            <constraint firstItem="UAb-tW-0G3" firstAttribute="top" secondItem="m0j-KE-zIp" secondAttribute="top" constant="17" id="LcA-1Z-Gee"/>
+                            <constraint firstItem="zNY-aM-h2X" firstAttribute="top" secondItem="Zbh-PK-aqp" secondAttribute="bottom" constant="1" id="LnX-36-2fo"/>
+                            <constraint firstItem="Zbh-PK-aqp" firstAttribute="leading" secondItem="m0j-KE-zIp" secondAttribute="leading" constant="24" id="eFk-zY-ou3"/>
+                            <constraint firstItem="Xa3-V0-Roz" firstAttribute="top" secondItem="zNY-aM-h2X" secondAttribute="bottom" constant="18" id="f3d-QT-Szz"/>
+                            <constraint firstItem="Xa3-V0-Roz" firstAttribute="leading" secondItem="m0j-KE-zIp" secondAttribute="leading" id="jYO-Ig-R3h"/>
+                            <constraint firstItem="ezw-Cx-BUj" firstAttribute="top" secondItem="m0j-KE-zIp" secondAttribute="top" constant="14" id="mhX-4j-xMt"/>
+                            <constraint firstItem="m0j-KE-zIp" firstAttribute="bottom" secondItem="Xa3-V0-Roz" secondAttribute="bottom" id="t2M-y1-5ap"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="m0j-KE-zIp"/>
+                    </view>
+                    <connections>
+                        <outlet property="editBtn" destination="TKQ-6p-zUE" id="btq-R4-H6x"/>
+                        <outlet property="tableView" destination="Xa3-V0-Roz" id="Sjn-8q-OLo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EEN-PA-mnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2942" y="256"/>
+        </scene>
         <!--Book DetailVC-->
         <scene sceneID="KCj-7j-DL2">
             <objects>
-                <viewController id="Nue-bm-cuJ" customClass="BookDetailVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nue-bm-cuJ" customClass="BookDetailVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IX1-jl-V2b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rgD-zp-seD">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="n8m-VF-R7C" customClass="DetailHeaderView" customModule="biary" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -148,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ah-sA-MdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3840.8000000000002" y="-501.49925037481262"/>
+            <point key="canvasLocation" x="3807" y="-501"/>
         </scene>
         <!--WriteVC-->
         <scene sceneID="Cjl-2R-gbG">
@@ -189,7 +307,7 @@
         <!--Navigation Controller-->
         <scene sceneID="v7S-Wg-apR">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qR9-6O-hLw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qR9-6O-hLw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tUO-Tk-qmT">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -225,6 +343,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close" width="48" height="48"/>
         <image name="write" width="29.5" height="29.5"/>
     </resources>
 </document>

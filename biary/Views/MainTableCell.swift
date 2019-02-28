@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MainTableCell: UITableViewCell {
     
@@ -14,9 +15,8 @@ class MainTableCell: UITableViewCell {
     
     var mainViewController = MainVC()
 
-    //TODO: 가벼운 책 정보(이미지 링크, 책 제목, 저자 등)
-    var bookInfo = "책 제목"
-    
+    var shelfInfo: Bookshelf?
+    var bookInfo: [Book] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,18 +32,22 @@ class MainTableCell: UITableViewCell {
 
 extension MainTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return bookInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "book", for: indexPath) as! MainCollectionCell
-        cell.imageView.image = UIImage(named: "ssss")
+        
+        if (bookInfo.count > 0) {
+            cell.imageView.sd_setImage(with: URL(string: bookInfo[indexPath.row].imageURL), completed: nil)
+        }
+        
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        mainViewController.performSegue(withIdentifier: "gotoDetail", sender: mainViewController)
+        mainViewController.gotoDetail()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

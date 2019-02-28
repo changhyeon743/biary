@@ -53,8 +53,9 @@ class BookDetailVC: UIViewController {
         
         
         customNavigationBar.backBtnHandler = {
-            print("backButton button pressed") 
-            self.navigationController?.popViewController(animated: true)
+            print("backButton button pressed")
+            self.dismiss(animated: true, completion: nil)
+            //self.navigationController?.popViewController(animated: true)
         }
         customNavigationBar.moreBtnHandler = {
             print("More button pressed")
