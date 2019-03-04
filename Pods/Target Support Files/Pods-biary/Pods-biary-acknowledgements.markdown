@@ -48,12 +48,9 @@ THE SOFTWARE.
 
 
 
-## SwiftSVG
+## Spring
 
-
-SwiftSVG
-
-Copyright (c) 2015 Michael Choe, Strauss LLC
+Copyright (c) 2014-2015 Meng To (meng@designcode.io)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

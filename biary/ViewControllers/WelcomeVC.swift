@@ -14,7 +14,7 @@ class WelcomeVC: UIViewController {
         super.viewDidLoad()
         API.User.fetch(token: "changhyeontoken123") { (temp) in
             let json = temp["data"]
-            print(json)
+            //print(json)
             API.User.setUser(fromJSON: json)
             API.User.setBooks(fromJSON: json)
             API.User.setContents(fromJSON: json)

@@ -14,17 +14,23 @@ class MainVC: UIViewController {
     @IBOutlet weak var tableView:UITableView!
     
     let headerHeight:CGFloat = 60;
-    var expended = [true,true,true]
-    
+    //var expanded = [true,true,true]
+    var bookshelfs: [Bookshelf] {
+        get {
+            return API.currentUser.bookShelf
+        }
+    }
     var navigationBar:NavigationBar!
     
     override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
+        reloadBooks()
+        tabBarController?.tabBar.isHidden = false;
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.isHidden = false;
+    
 
         navigationController?.navigationBar.isHidden = true
         
@@ -37,10 +43,7 @@ class MainVC: UIViewController {
         }
         self.view.addSubview(navigationBar)
         
-
-        self.expended = Array(repeating: true, count: API.currentUser.bookShelf.count)
         
-        self.tableView.reloadData()
         NSLayoutConstraint.activate([
             navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             navigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
@@ -62,23 +65,28 @@ class MainVC: UIViewController {
         
     }
     
+    func reloadBooks() {
+        //self.expanded = Array(repeating: true, count: API.currentUser.bookShelf.count)
+        self.tableView.reloadData()
+    }
+    
     func gotoDetail(withBook book:Book) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "BookDetailVC") as! BookDetailVC
         vc.bookInfo = book
-        vc.contents = API.currentContents.filter{$0.bookToken == book.token}
-        print(API.currentContents,"중\n",vc.contents)
+        //print(API.currentContents,"중\n",vc.contents)
         navigationController?.pushViewController(vc, animated: true)
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        self.tableView.reloadData()
+        reloadBooks()
     }
 }
 
 
 extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if expended[section] {
+        
+        if bookshelfs[section].expanded {
             return 1
         } else {
             return 0
@@ -94,7 +102,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return expended.count
+        return bookshelfs.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -113,7 +121,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         button.setImage(expandImage, for: .normal)
         
         //button.setTitle("", for: .normal)
-        turn(button: button, to: CGFloat(Double.pi / 2))
+        turn(button: button, to: self.bookshelfs[section].expanded)
         
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         
@@ -125,9 +133,27 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         return view
     }
     
-    func turn(button:UIButton,to:CGFloat) {
+    func turn(button:UIButton,to: Bool) {
+    
+        //CGFloat(Double.pi / 2)
+        
+        if let temp = button.imageView {
+            temp.transform = temp.transform.rotated(by: CGFloat(Double.pi / 2));
+            if (to == false) {
+                temp.transform = temp.transform.rotated(by: CGFloat(Double.pi));
+            }
+        }
+    }
+    
+    func turn(button:UIButton,to: CGFloat) {
+        
+        //CGFloat(Double.pi / 2)
         if let temp = button.imageView {
             temp.transform = temp.transform.rotated(by: to);
+            //음수 = 열기
+            //양수 = 닫기
+            let current = atan2(temp.transform.b, temp.transform.a)
+            //print(current)
         }
     }
     
@@ -135,9 +161,9 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         let indexPaths = [IndexPath(row: 0, section: button.tag)]
         
         //Change
-        expended[button.tag] = !expended[button.tag]
+        API.currentUser.bookShelf[button.tag].expanded = !bookshelfs[button.tag].expanded
         
-        if (expended[button.tag]) {
+        if (bookshelfs[button.tag].expanded) {
             tableView.insertRows(at: indexPaths, with: .automatic)
             turn(button: button, to: CGFloat(Double.pi))
         } else {

@@ -9,7 +9,8 @@
 import Foundation
 
 class Token {
-    static func create(length: Int) -> String {
+    static func create() -> String {
+        let length = 15
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0...length-1).map{ _ in letters.randomElement()! })
     }

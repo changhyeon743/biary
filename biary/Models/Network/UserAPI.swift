@@ -37,7 +37,7 @@ class UserAPI {
             "Content-Type": "application/x-www-form-urlencoded"
         ]
         let parameters = [
-            "token" : (token.isEmpty) ? Token.create(length: 15) : token
+            "token" : (token.isEmpty) ? Token.create() : token
         ]
         
         Alamofire.request("\(API.base_url)/fetch",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
@@ -57,12 +57,12 @@ class UserAPI {
     
     func setBooks(fromJSON json:JSON){
         API.currentBooks = Book.transformBook(fromJSON: json["books"])
-        print(API.currentBooks)
+        //print(API.currentBooks)
     }
     
     func setContents(fromJSON json:JSON){
         API.currentContents = Content.transformContent(fromJSON: json["contents"])
-        print(API.currentContents)
+        //print(API.currentContents)
     }
     
     static func getJSON() {

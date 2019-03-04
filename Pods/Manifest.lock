@@ -3,28 +3,36 @@ PODS:
   - SDWebImage (4.4.5):
     - SDWebImage/Core (= 4.4.5)
   - SDWebImage/Core (4.4.5)
-  - SwiftSVG (2.2.0)
+  - Spring (1.0.6)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - SDWebImage (~> 4.0)
-  - SwiftSVG (~> 2.0)
+  - Spring (from `https://github.com/MengTo/Spring.git`)
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - SDWebImage
-    - SwiftSVG
     - SwiftyJSON
+
+EXTERNAL SOURCES:
+  Spring:
+    :git: https://github.com/MengTo/Spring.git
+
+CHECKOUT OPTIONS:
+  Spring:
+    :commit: fafd0b2e8d4d46405bd86fa7ba84bb7f73a20b13
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
-  SwiftSVG: 19bc4e434dcf236ece45ddf75f5ee1d3ef8061e6
+  Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 88f06fe0200277d735c974f823ede96209f94887
+PODFILE CHECKSUM: 5048788371706fd239eaf966aa1f7500bac7eebb
 
 COCOAPODS: 1.5.3

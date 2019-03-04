@@ -8,7 +8,8 @@ target 'biary' do
   # Pods for biary
     pod 'SwiftyJSON', '~> 4.0'
     pod 'Alamofire'
+pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
+
 pod 'SDWebImage', '~> 4.0'
-pod 'SwiftSVG', '~> 2.0'
 
 end

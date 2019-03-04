@@ -55,7 +55,7 @@ extension User {
                         token: json["token"].stringValue,
                         bookShelf: json["bookShelf"].arrayValue.map{Bookshelf.transformBookshelf(fromJSON: $0)})
         
-        print(user)
+        //print(user)
         return user
     }
 }

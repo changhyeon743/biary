@@ -24,7 +24,11 @@ class BookDetailVC: UIViewController {
     
     //data
     var bookInfo: Book!
-    var contents: [Content] = []
+    var contents: [Content] {
+        get {
+            return API.currentContents.filter{$0.bookToken == self.bookInfo.token}
+        }
+    }
     
     
     override var prefersStatusBarHidden: Bool {
@@ -40,6 +44,9 @@ class BookDetailVC: UIViewController {
         self.setUpHeaderView()
         tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         headerHeight = UIWindow().screen.bounds.height * 0.4
@@ -52,6 +59,10 @@ class BookDetailVC: UIViewController {
         performSegue(withIdentifier: "write", sender: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let writeVC = segue.destination as! WriteVC
+        writeVC.bookInfo = self.bookInfo
+    }
     
     func setNavigationBar() {
         customNavigationBar = DetailNavigationBar(frame: CGRect.zero)
@@ -60,8 +71,8 @@ class BookDetailVC: UIViewController {
         
         customNavigationBar.backBtnHandler = {
             print("backButton button pressed")
-            self.dismiss(animated: true, completion: nil)
-            //self.navigationController?.popViewController(animated: true)
+            //self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
         customNavigationBar.moreBtnHandler = {
             print("More button pressed")
@@ -169,14 +180,18 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DetailCell
         cell.title = contents[indexPath.row].title
         cell.content = contents[indexPath.row].article
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        cell.dateLabel.text = dateFormatter.string(from: contents[indexPath.row].date)
+        cell.dateLabel.text = contents[indexPath.row].date.getDate()
         return cell
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "WriteVC") as! WriteVC
+        vc.bookInfo = self.bookInfo
+        vc.contentInfo = self.contents[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

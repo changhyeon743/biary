@@ -36,24 +36,27 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
 
     @IBAction func addBtnPressed(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.placeholder = "Password"
-            textField.isSecureTextEntry = true
+        let alertController = UIAlertController(title: "책장 추가", message: "", preferredStyle: .alert)
+        alertController.addTextField { (textfield) in
+            textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요."
         }
-        let confirmAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
+        let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
             guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
-            print("Current password \(String(describing: textField.text))")
+            if (textField.text?.isEmpty == false) {
+                Bookshelf.append(title: textField.text ?? "")
+            }
+            
+            self.tableView.reloadData()
             //compare the current password and do action here
         }
         alertController.addAction(confirmAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
     @IBAction func closeBtnPressed(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
+        //self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     @IBAction func editBtnPressed(_ sender: UIButton) {
         if(self.tableView.isEditing == true) {
@@ -73,7 +76,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
             // Delete the row from the TableView tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
             API.User.update { (json) in
-                print(json)
+                //print(json)
             }
             
             tableView.reloadData()
@@ -86,7 +89,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         API.currentUser.bookShelf.insert(rowToMove, at: toIndexPath.row)
         
         API.User.update { (json) in
-            print(json)
+            //print(json)
         }
         
         tableView.reloadData()

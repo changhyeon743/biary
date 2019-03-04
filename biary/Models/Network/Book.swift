@@ -52,7 +52,7 @@ extension Book {
                                   description: $0["description"].stringValue,
                                   date: dateFormatter.date(from: $0["date"].stringValue) ?? Date())}
         
-        print(books)
+        //print(books)
         
         return books
     }

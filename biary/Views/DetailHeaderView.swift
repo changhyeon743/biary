@@ -32,9 +32,7 @@ class DetailHeaderView: UIView {
     }
     var date:Date = Date() {
         didSet {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM-dd-yyyy"
-            dateLbl.text = dateFormatter.string(from: date)
+            dateLbl.text = date.getRealDate()
         }
     }
     
@@ -87,28 +85,28 @@ class DetailHeaderView: UIView {
     func setDescriptionViews(margin:CGFloat) {
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLbl)
-        titleLbl.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        titleLbl.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
         titleLbl.textColor = UIColor.white
         
         subTitleLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(subTitleLbl)
-        subTitleLbl.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        subTitleLbl.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
         subTitleLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
         
         authorLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(authorLbl)
-        authorLbl.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        authorLbl.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
         authorLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
         
         dateLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(dateLbl)
-        dateLbl.font = UIFont.systemFont(ofSize: 11, weight: .medium)
+        dateLbl.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
         dateLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
         dateLbl.textAlignment = .right
         
         
         
-        let horizontalMargin:CGFloat = 16;
+        let horizontalMargin:CGFloat = 20;
         NSLayoutConstraint.activate([
             authorLbl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: horizontalMargin),
             authorLbl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
@@ -117,7 +115,7 @@ class DetailHeaderView: UIView {
             subTitleLbl.bottomAnchor.constraint(equalTo: authorLbl.topAnchor, constant: -24),
             
             titleLbl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: horizontalMargin),
-            titleLbl.bottomAnchor.constraint(equalTo: subTitleLbl.topAnchor, constant: -7),
+            titleLbl.bottomAnchor.constraint(equalTo: subTitleLbl.topAnchor, constant: -5),
             
             dateLbl.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -horizontalMargin),
             dateLbl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12)

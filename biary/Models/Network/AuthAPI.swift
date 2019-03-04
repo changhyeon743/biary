@@ -19,7 +19,7 @@ class AuthAPI {
             "name" : name,
             "facebookId" : facebookId,
             "profileURL" : profileURL,
-            "token" : (token.isEmpty) ? Token.create(length: 15) : token
+            "token" : (token.isEmpty) ? Token.create() : token
         ]
         
         Alamofire.request("\(API.base_url)/auth/register",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)

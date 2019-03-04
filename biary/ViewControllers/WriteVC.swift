@@ -7,23 +7,28 @@
 //
 
 import UIKit
+import Spring
 
 class WriteVC: UIViewController {
     
-    @IBOutlet weak var titleLbl:UILabel!
+    @IBOutlet weak var titleLbl:SpringLabel!
     let line = UIView()
-    @IBOutlet weak var contentTextView:UITextView!
+    @IBOutlet weak var contentTextView:SpringTextView!
     
     let toolBar = UIToolbar()
     
     let backBtn = UIButton()
     let doneBtn = UIButton()
-
+    
+    var bookInfo:Book!
+    var contentInfo:Content?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        line.isHidden = true
         createViews()
         setConstraints()
+        setContent()
         
         contentTextView.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
         
@@ -33,17 +38,30 @@ class WriteVC: UIViewController {
         addToolBar(textView: contentTextView)
     }
     
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    func setContent() {
+        if (contentInfo != nil) {
+            contentTextView.text = contentInfo?.article
+            titleLbl.text = contentInfo?.title
+        }
+    }
+    
     func createViews() {
+        
         backBtn.setImage(UIImage(named:"arrow_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(back(_:)), for: .touchUpInside)
-        backBtn.tintColor = UIColor.mainColor
+        backBtn.tintColor = UIColor(r: 90, g: 90, b: 90)
         
         doneBtn.setTitle("완료", for: .normal)
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
-        doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        doneBtn.titleLabel?.font = UIFont(name: "NotoKrB", size: 14)
         doneBtn.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
         
-        line.backgroundColor = UIColor(r: 112, g: 112, b: 112)
+        line.backgroundColor = UIColor(r: 90, g: 90, b: 90, alpha: 1)
         
         view.addSubview(line)
         view.addSubview(backBtn)
@@ -59,35 +77,59 @@ class WriteVC: UIViewController {
         
         NSLayoutConstraint.activate([
             backBtn.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             
-            doneBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            doneBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            doneBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
+            doneBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
 
-            titleLbl.topAnchor.constraint(equalTo: doneBtn.bottomAnchor, constant: 25),
+            titleLbl.topAnchor.constraint(equalTo: doneBtn.bottomAnchor, constant: 18),
             titleLbl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 26),
             titleLbl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 26),
             titleLbl.heightAnchor.constraint(equalToConstant: 28),
             
             line.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 26),
             line.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -26),
-            line.heightAnchor.constraint(equalToConstant: 2),
-            line.topAnchor.constraint(equalTo: titleLbl.bottomAnchor, constant: 2.5),
+            line.heightAnchor.constraint(equalToConstant: 1),
+            line.topAnchor.constraint(equalTo: titleLbl.bottomAnchor, constant: 7),
             
-            contentTextView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 13.5),
-            contentTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 26),
-            contentTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -26),
+            contentTextView.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 4),
+            contentTextView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 22),
+            contentTextView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -22),
             contentTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 26)
 
         ])
     }
     
+    
     @objc func back(_ button: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     @objc func done(_ button: UIButton) {
-        view.endEditing(true)
+        if (contentTextView.isFirstResponder) {
+            
+            view.endEditing(true)
+            
+        } else {
+//            guard let title = titleLbl.text, !title.isEmpty else {
+//                self.titleLbl.animation = "shake"
+//                self.titleLbl.force = 0.5
+//                self.titleLbl.animate()
+//                return
+//            }
+            guard let title = titleLbl.text, !title.isEmpty else { return }
+            guard let content = contentTextView.text, !content.isEmpty else { return }
+            
+            if (contentInfo == nil) { //새로 생성 중
+                Content.append(title: title, article: content, token: bookInfo.token)
+            } else {
+                Content.edit(title: title, article: content, bookToken: bookInfo.token, contentToken: contentInfo!.token)
+            }
+            
+            
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func updateTextView(notification:Notification) {
@@ -176,7 +218,7 @@ extension WriteVC : UITextViewDelegate {
 //            //gray
 //        }
         
-        print("changed")
+        //print("changed")
     }
     
     @objc func highlightPressed() {
