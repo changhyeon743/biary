@@ -87,6 +87,19 @@ extension Book {
         }
     }
     
+    static func append(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf]) {
+        let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: Token.create(), description: description, date: Date())
+        
+        API.currentBooks.append(book);
+        
+        for i in bookshelfs {
+            for (index,l) in API.currentUser.bookShelf.enumerated() {
+                if (l.title == i.title) {
+                    API.currentUser.bookShelf[index].books.append(book.token);
+                }
+            }
+        }
+    }
     
 }
 

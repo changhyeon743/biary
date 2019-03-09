@@ -43,6 +43,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
             guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
             if (textField.text?.isEmpty == false) {
+                print(API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""})
                 if (API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""}.count > 0) {
                     
                     Bookshelf.append(title: textField.text ?? "")

@@ -486,12 +486,23 @@
                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="부제" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xqe-zp-sPB" customClass="SpringTextField" customModule="Spring">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nJE-VT-x8D">
                                         <rect key="frame" x="0.0" y="33" width="223" height="21"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="작가" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xqe-zp-sPB" customClass="SpringTextField" customModule="Spring">
+                                                <rect key="frame" x="0.0" y="0.0" width="108" height="21"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="출판사" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sad-sm-4od" customClass="SpringTextField" customModule="Spring">
+                                                <rect key="frame" x="115" y="0.0" width="108" height="21"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w1y-Wl-xCi" customClass="SpringTextView" customModule="Spring">
                                         <rect key="frame" x="0.0" y="61" width="223" height="84"/>
                                         <constraints>
@@ -505,8 +516,8 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="w1y-Wl-xCi" secondAttribute="trailing" id="9Iz-xd-CaH"/>
                                     <constraint firstItem="w1y-Wl-xCi" firstAttribute="leading" secondItem="NOg-Vh-t2H" secondAttribute="leading" id="O42-xu-7bc"/>
-                                    <constraint firstAttribute="trailing" secondItem="Xqe-zp-sPB" secondAttribute="trailing" id="URl-2E-RrI"/>
                                     <constraint firstAttribute="trailing" secondItem="DXN-Qi-x6q" secondAttribute="trailing" id="Zkd-pv-0Zr"/>
+                                    <constraint firstAttribute="trailing" secondItem="nJE-VT-x8D" secondAttribute="trailing" id="nxA-Ze-VJF"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-Fk-0Qn">
@@ -559,11 +570,12 @@
                         <viewLayoutGuide key="safeArea" id="ZWj-ex-wqZ"/>
                     </view>
                     <connections>
+                        <outlet property="authorField" destination="Xqe-zp-sPB" id="CUp-p5-aAq"/>
                         <outlet property="bookImageView" destination="HGb-Mr-5ay" id="1lq-1t-8py"/>
                         <outlet property="bookShelfsBtn" destination="xbd-6W-XIR" id="Qah-TM-ELM"/>
-                        <outlet property="explainLbl" destination="w1y-Wl-xCi" id="CFY-Kn-r1z"/>
-                        <outlet property="subTitleLbl" destination="Xqe-zp-sPB" id="CUp-p5-aAq"/>
-                        <outlet property="titleLbl" destination="DXN-Qi-x6q" id="BiW-q7-kjN"/>
+                        <outlet property="explainTextView" destination="w1y-Wl-xCi" id="CFY-Kn-r1z"/>
+                        <outlet property="publisherField" destination="sad-sm-4od" id="8aA-Wx-pi3"/>
+                        <outlet property="titleField" destination="DXN-Qi-x6q" id="BiW-q7-kjN"/>
                         <segue destination="iC2-qa-ZAc" kind="show" identifier="search" id="8Im-Lb-qUo"/>
                     </connections>
                 </viewController>

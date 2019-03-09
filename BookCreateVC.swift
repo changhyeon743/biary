@@ -11,9 +11,11 @@ import SDWebImage
 import Spring
 
 class BookCreateVC: UIViewController,UITextViewDelegate {
-    @IBOutlet weak var titleLbl: SpringTextField!
-    @IBOutlet weak var subTitleLbl: SpringTextField!
-    @IBOutlet weak var explainLbl: SpringTextView!
+    @IBOutlet weak var titleField: SpringTextField!
+    @IBOutlet weak var authorField: SpringTextField!
+    @IBOutlet weak var publisherField: SpringTextField!
+    
+    @IBOutlet weak var explainTextView: SpringTextView!
     
     @IBOutlet weak var bookShelfsBtn: SpringButton!
     
@@ -24,21 +26,11 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
     
     var bookTitle = "무제"{
         didSet {
-            titleLbl.text = bookTitle;
+            titleField.text = bookTitle;
         }
     }
     
-    var subTitle = "부제"{
-        didSet {
-            subTitleLbl.text = subTitle;
-        }
-    }
     
-    var explain = "없습니다."{
-        didSet {
-            explainLbl.text = explain;
-        }
-    }
     
     var imgLink = "" {
         didSet {
@@ -67,12 +59,13 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        explainLbl.text = "설명"
-        explainLbl.textColor = UIColor.lightGray
-        explainLbl.delegate = self
+        explainTextView.text = "설명"
+        explainTextView.textColor = UIColor.lightGray
+        explainTextView.delegate = self
         
-        explainLbl.textContainerInset = UIEdgeInsets.zero
-        explainLbl.textContainer.lineFragmentPadding = 0
+        
+        explainTextView.textContainerInset = UIEdgeInsets.zero
+        explainTextView.textContainer.lineFragmentPadding = 0
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "책 추가하기")
         
@@ -110,22 +103,28 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
     }
     
     @objc func doneBtnPressed(_ sender: Any) {
-        guard let title = titleLbl.text, !title.isEmpty else {
-            self.titleLbl.animation = "shake"
-            self.titleLbl.force = 0.5
-            self.titleLbl.animate()
+        guard let title = titleField.text, !title.isEmpty else {
+            self.titleField.animation = "shake"
+            self.titleField.force = 0.5
+            self.titleField.animate()
             return
         }
-        guard let subTitle = subTitleLbl.text, !subTitle.isEmpty else {
-            self.subTitleLbl.animation = "shake"
-            self.subTitleLbl.force = 0.5
-            self.subTitleLbl.animate()
+        guard let author = authorField.text, !author.isEmpty else {
+            self.authorField.animation = "shake"
+            self.authorField.force = 0.5
+            self.authorField.animate()
             return
         }
-        guard let explain = explainLbl.text, !explain.isEmpty else {
-            self.explainLbl.animation = "shake"
-            self.explainLbl.force = 0.5
-            self.explainLbl.animate()
+        guard let publisher = publisherField.text, !publisher.isEmpty else {
+            self.publisherField.animation = "shake"
+            self.publisherField.force = 0.5
+            self.publisherField.animate()
+            return
+        }
+        guard let explain = explainTextView.text, !explain.isEmpty else {
+            self.explainTextView.animation = "shake"
+            self.explainTextView.force = 0.5
+            self.explainTextView.animate()
             return
         }
         if (bookshelfs.count == 0) {
@@ -135,6 +134,14 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
             return
         }
         
+        //bookImageView.image = imageWith(name: title)
+        if let book = importedBook {
+            Book.append(title: book.title, author: book.author, publisher: book.publisher, isbn: book.isbn, imageURL: book.imageURL, description: book.description, bookshelfs: bookshelfs)
+        } else {
+            Book.append(title: title, author: author, publisher: publisher, isbn: "", imageURL: "", description: description, bookshelfs: bookshelfs)
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
     
     

@@ -155,9 +155,10 @@ extension BookAddSearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = bookCreateVC {
             let book = result[indexPath.row]
-            vc.titleLbl.text = book.title.withoutHtml
-            vc.subTitle = book.author.withoutHtml + " . " + book.publisher.withoutHtml
-            vc.explain = book.description.withoutHtml
+            vc.titleField.text = book.title.withoutHtml
+            vc.authorField.text = book.author.withoutHtml
+            vc.publisherField.text = book.publisher.withoutHtml
+            vc.explainTextView.text = book.description.withoutHtml
             vc.imgLink = book.imageURL
             vc.importedBook = book
         }
