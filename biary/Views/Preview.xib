@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController storyboardIdentifier="PreviewVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="yN5-fJ-QSk" customClass="PreviewVC" customModule="biary" customModuleProvider="target">
+            <view key="view" contentMode="scaleToFill" id="h0v-EU-PKO">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tib-Nc-cpK">
+                        <rect key="frame" x="281" y="279" width="70" height="109.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="cRF-2l-03x"/>
+                            <constraint firstAttribute="height" constant="109.5" id="r9D-km-N2o"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="nes-f7-Jw8">
+                        <rect key="frame" x="24" y="44" width="233" height="599"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 제목" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbJ-nD-JK6">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="i5u-fI-IJy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="부제" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yb-KX-dXS">
+                                <rect key="frame" x="0.0" y="24" width="24.5" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="9Lq-WG-EZE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설명" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIf-a4-mdX">
+                                <rect key="frame" x="0.0" y="48" width="24.5" height="551"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="nes-f7-Jw8" firstAttribute="leading" secondItem="HKx-bD-VNP" secondAttribute="leading" constant="24" id="BPh-NT-0hn"/>
+                    <constraint firstItem="nes-f7-Jw8" firstAttribute="top" secondItem="HKx-bD-VNP" secondAttribute="top" constant="24" id="Hys-Oo-vkT"/>
+                    <constraint firstItem="Tib-Nc-cpK" firstAttribute="leading" secondItem="nes-f7-Jw8" secondAttribute="trailing" constant="24" id="PnQ-8W-hhe"/>
+                    <constraint firstItem="Tib-Nc-cpK" firstAttribute="centerY" secondItem="h0v-EU-PKO" secondAttribute="centerY" id="UTL-En-ubh"/>
+                    <constraint firstItem="HKx-bD-VNP" firstAttribute="trailing" secondItem="Tib-Nc-cpK" secondAttribute="trailing" constant="24" id="W0K-DQ-7dY"/>
+                    <constraint firstItem="HKx-bD-VNP" firstAttribute="bottom" secondItem="nes-f7-Jw8" secondAttribute="bottom" constant="24" id="oec-Qb-J4b"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="HKx-bD-VNP"/>
+            </view>
+            <connections>
+                <outlet property="bookImageView" destination="Tib-Nc-cpK" id="Lhd-me-s3l"/>
+                <outlet property="explainLbl" destination="NIf-a4-mdX" id="kA4-h1-i07"/>
+                <outlet property="subTitleLbl" destination="2yb-KX-dXS" id="Dsd-AM-jfx"/>
+                <outlet property="titleLbl" destination="tbJ-nD-JK6" id="Ptd-Ys-ihW"/>
+            </connections>
+            <point key="canvasLocation" x="3881" y="936"/>
+        </viewController>
+    </objects>
+</document>

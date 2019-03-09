@@ -51,6 +51,23 @@ class UserAPI {
         
     }
     
+    func search(query: String="",completion:@escaping (JSON)->Void) {
+        
+        let parameters = [
+            "query" : query
+        ]
+        
+        Alamofire.request("\(API.base_url)/book/search",method:.get,parameters:parameters)
+            .responseJSON(completionHandler: { (response) in
+                //1. JSON 변환
+                if let value = response.result.value,response.result.isSuccess {
+                    completion(JSON(value))
+                }
+            })
+        
+        
+    }
+    
     func setUser(fromJSON json:JSON) {
         API.currentUser = User.transformUser(fromJSON: json["user"])
     }

@@ -22,6 +22,7 @@ class MainVC: UIViewController {
     }
     var navigationBar:NavigationBar!
     
+    
     override func viewDidAppear(_ animated: Bool) {
         reloadBooks()
         tabBarController?.tabBar.isHidden = false;
@@ -35,11 +36,16 @@ class MainVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
-
+        
         navigationBar.settingBtnHandler = {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
             self.present(vc, animated: true, completion: nil)
             //self.performSegue(withIdentifier: "bookshelfSegue", sender: nil)
+        }
+        
+        navigationBar.addBtnHandler = {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
+            self.present(vc, animated: true, completion: nil)
         }
         self.view.addSubview(navigationBar)
         
@@ -76,6 +82,8 @@ class MainVC: UIViewController {
         //print(API.currentContents,"중\n",vc.contents)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         reloadBooks()

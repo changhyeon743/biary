@@ -96,6 +96,7 @@
                         <viewLayoutGuide key="safeArea" id="Je3-aB-QL1"/>
                     </view>
                     <navigationItem key="navigationItem" title="타이틀" id="gS1-y8-fZb"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="VKq-EM-UTc" id="Bf1-YM-Z6g"/>
                         <segue destination="Nue-bm-cuJ" kind="show" identifier="gotoDetail" id="4uR-qm-kaG"/>
@@ -104,12 +105,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Hx-lj-H3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4820" y="-501.49925037481262"/>
+            <point key="canvasLocation" x="4774" y="-501"/>
         </scene>
-        <!--Item-->
+        <!--BookShelfSelecting-->
         <scene sceneID="6Ai-67-j4E">
             <objects>
-                <viewController storyboardIdentifier="BookShelfSelectingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LCv-bk-8pS" customClass="BookShelfSelectingVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookShelfSelectingVC" title="BookShelfSelecting" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LCv-bk-8pS" customClass="BookShelfSelectingVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HtD-Kk-P8Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sDv-jo-BzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5684" y="256"/>
+            <point key="canvasLocation" x="6530" y="256"/>
         </scene>
         <!--Item-->
         <scene sceneID="KHU-Rc-UB0">
@@ -171,7 +172,54 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2o-kn-77s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3881" y="256"/>
+            <point key="canvasLocation" x="2942" y="256"/>
+        </scene>
+        <!--Book Add SearchVC-->
+        <scene sceneID="9Gx-f5-Xkr">
+            <objects>
+                <viewController storyboardIdentifier="BookAddSearchVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iC2-qa-ZAc" customClass="BookAddSearchVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5oY-hH-KDH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p0s-e1-wbD">
+                                <rect key="frame" x="0.0" y="266" width="375" height="401"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iC2-qa-ZAc" id="cq8-kD-DrJ"/>
+                                    <outlet property="delegate" destination="iC2-qa-ZAc" id="GLc-K7-QOo"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Gf-9d-6BV">
+                                <rect key="frame" x="197" y="225" width="32" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="17"/>
+                                <state key="normal" title="검색">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목, isbn, 작가 등" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-Pr-sOD">
+                                <rect key="frame" x="139" y="228" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZGU-kT-d6s"/>
+                    </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBtn" destination="6Gf-9d-6BV" id="vLh-3u-y4h"/>
+                        <outlet property="searchField" destination="4jb-Pr-sOD" id="io4-ep-9jN"/>
+                        <outlet property="tableView" destination="p0s-e1-wbD" id="NLv-qA-syX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dnY-sj-Svm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5684" y="955"/>
         </scene>
         <!--Book ShelfVC-->
         <scene sceneID="dKJ-0E-bkL">
@@ -194,7 +242,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-PK-aqp">
-                                <rect key="frame" x="24" y="77" width="54" height="43"/>
+                                <rect key="frame" x="24" y="77" width="53.5" height="43"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -282,7 +330,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EEN-PA-mnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4820" y="256"/>
+            <point key="canvasLocation" x="4774" y="256"/>
         </scene>
         <!--Book DetailVC-->
         <scene sceneID="KCj-7j-DL2">
@@ -293,7 +341,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rgD-zp-seD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="n8m-VF-R7C" customClass="DetailHeaderView" customModule="biary" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -389,7 +437,6 @@
                     <connections>
                         <segue destination="NV3-xZ-Y06" kind="relationship" relationship="viewControllers" id="ALa-TH-rxK"/>
                         <segue destination="IBF-L8-F6u" kind="relationship" relationship="viewControllers" id="Xrd-vR-aFA"/>
-                        <segue destination="LCv-bk-8pS" kind="relationship" relationship="viewControllers" id="UbG-kP-G1T"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRh-au-lhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,6 +461,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y8c-gC-Erp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3880.8000000000002" y="-501.49925037481262"/>
+        </scene>
+        <!--Book CreateVC-->
+        <scene sceneID="LcJ-D0-nB4">
+            <objects>
+                <viewController storyboardIdentifier="BookCreateVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fH7-cZ-goN" customClass="BookCreateVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8xs-ce-Cp5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-Mr-5ay" customClass="BookImageView" customModule="biary" customModuleProvider="target">
+                                <rect key="frame" x="271" y="239.5" width="80" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="atG-50-Mfm"/>
+                                    <constraint firstAttribute="height" constant="128" id="t1a-nd-tQH"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="NOg-Vh-t2H">
+                                <rect key="frame" x="24" y="231" width="223" height="145"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DXN-Qi-x6q" customClass="SpringTextField" customModule="Spring">
+                                        <rect key="frame" x="0.0" y="0.0" width="223" height="26"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="부제" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xqe-zp-sPB" customClass="SpringTextField" customModule="Spring">
+                                        <rect key="frame" x="0.0" y="33" width="223" height="21"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w1y-Wl-xCi" customClass="SpringTextView" customModule="Spring">
+                                        <rect key="frame" x="0.0" y="61" width="223" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="bD3-np-01B"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </string>
+                                        <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="w1y-Wl-xCi" secondAttribute="trailing" id="9Iz-xd-CaH"/>
+                                    <constraint firstItem="w1y-Wl-xCi" firstAttribute="leading" secondItem="NOg-Vh-t2H" secondAttribute="leading" id="O42-xu-7bc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xqe-zp-sPB" secondAttribute="trailing" id="URl-2E-RrI"/>
+                                    <constraint firstAttribute="trailing" secondItem="DXN-Qi-x6q" secondAttribute="trailing" id="Zkd-pv-0Zr"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-Fk-0Qn">
+                                <rect key="frame" x="299" y="375.5" width="52" height="33"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
+                                <state key="normal" title="불러오기">
+                                    <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="importBtnPressed:" destination="fH7-cZ-goN" eventType="touchUpInside" id="6Jb-nV-vdw"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AW2-Mb-Pcr">
+                                <rect key="frame" x="24" y="215.5" width="327" height="1"/>
+                                <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="FTD-qX-ABN"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbd-6W-XIR" customClass="SpringButton" customModule="Spring">
+                                <rect key="frame" x="24" y="181.5" width="327" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="bSV-Hg-73Q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
+                                <state key="normal" title=" 눌러서 책장을 선택하세요.">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="bookshelfBtnPressed:" destination="fH7-cZ-goN" eventType="touchUpInside" id="jfM-u5-HnO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NOg-Vh-t2H" firstAttribute="top" secondItem="AW2-Mb-Pcr" secondAttribute="bottom" constant="14.5" id="1tr-OB-xea"/>
+                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="xbd-6W-XIR" secondAttribute="trailing" constant="24" id="8h0-qA-KJK"/>
+                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="AW2-Mb-Pcr" secondAttribute="trailing" constant="24" id="9Qj-hA-M0S"/>
+                            <constraint firstItem="NOg-Vh-t2H" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="IRp-Ij-BOn"/>
+                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="qLJ-Fk-0Qn" secondAttribute="trailing" constant="24" id="NOG-5l-i21"/>
+                            <constraint firstItem="xbd-6W-XIR" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="WOF-Fd-0Wj"/>
+                            <constraint firstItem="HGb-Mr-5ay" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="XpU-hq-Io8"/>
+                            <constraint firstItem="AW2-Mb-Pcr" firstAttribute="top" secondItem="xbd-6W-XIR" secondAttribute="bottom" constant="4" id="bDb-xf-RiJ"/>
+                            <constraint firstItem="NOg-Vh-t2H" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="cuu-e1-mN9"/>
+                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="HGb-Mr-5ay" secondAttribute="trailing" constant="24" id="dly-ik-DYM"/>
+                            <constraint firstItem="HGb-Mr-5ay" firstAttribute="leading" secondItem="NOg-Vh-t2H" secondAttribute="trailing" constant="24" id="gsP-pS-O19"/>
+                            <constraint firstItem="AW2-Mb-Pcr" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="rb6-lu-0kG"/>
+                            <constraint firstItem="qLJ-Fk-0Qn" firstAttribute="top" secondItem="HGb-Mr-5ay" secondAttribute="bottom" constant="8" id="wyV-dg-SEN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZWj-ex-wqZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="bookImageView" destination="HGb-Mr-5ay" id="1lq-1t-8py"/>
+                        <outlet property="bookShelfsBtn" destination="xbd-6W-XIR" id="Qah-TM-ELM"/>
+                        <outlet property="explainLbl" destination="w1y-Wl-xCi" id="CFY-Kn-r1z"/>
+                        <outlet property="subTitleLbl" destination="Xqe-zp-sPB" id="CUp-p5-aAq"/>
+                        <outlet property="titleLbl" destination="DXN-Qi-x6q" id="BiW-q7-kjN"/>
+                        <segue destination="iC2-qa-ZAc" kind="show" identifier="search" id="8Im-Lb-qUo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Lp-uZ-DZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5684" y="256"/>
         </scene>
     </scenes>
     <resources>

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class MainCollectionCell: UICollectionViewCell {
+class MainCollectionCell: UICollectionViewCell,UIGestureRecognizerDelegate {
+    
+    
     
     @IBOutlet weak var imageView:UIImageView!
 
@@ -16,13 +18,20 @@ class MainCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         
 //        self.layer.shadowColor = UIColor.gray.cgColor
-//        self.layer.shadowOffset = CGSize(width: 0, height: 2)
+//        self.layer.shadowOffset = CGSize(width: 0, height: 0)
 //        self.layer.shadowRadius = 6
 //        self.layer.shadowOpacity = 0.6
 //        self.layer.masksToBounds = false
 //
         self.imageView.layer.cornerRadius = 5
         self.imageView.clipsToBounds = true
+//
+//        if (traitCollection.forceTouchCapability == .available) {
+//            registerfor
+//        }
+        
     }
+    
+    
     
 }

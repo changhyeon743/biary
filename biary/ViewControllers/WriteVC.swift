@@ -57,8 +57,10 @@ class WriteVC: UIViewController {
         backBtn.tintColor = UIColor(r: 90, g: 90, b: 90)
         
         doneBtn.setTitle("완료", for: .normal)
+        
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
-        doneBtn.titleLabel?.font = UIFont(name: "NotoKrB", size: 14)
+        doneBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+
         doneBtn.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
         
         line.backgroundColor = UIColor(r: 90, g: 90, b: 90, alpha: 1)
@@ -80,7 +82,7 @@ class WriteVC: UIViewController {
             backBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
             
             doneBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
-            doneBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 24),
+            doneBtn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
 
             titleLbl.topAnchor.constraint(equalTo: doneBtn.bottomAnchor, constant: 18),
             titleLbl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 26),
@@ -118,18 +120,27 @@ class WriteVC: UIViewController {
 //                self.titleLbl.animate()
 //                return
 //            }
-            guard let title = titleLbl.text, !title.isEmpty else { return }
-            guard let content = contentTextView.text, !content.isEmpty else { return }
-            
-            if (contentInfo == nil) { //새로 생성 중
-                Content.append(title: title, article: content, token: bookInfo.token)
-            } else {
-                Content.edit(title: title, article: content, bookToken: bookInfo.token, contentToken: contentInfo!.token)
-            }
+            save()
             
             
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func save() {
+        guard let title = titleLbl.text, !title.isEmpty else { return }
+        guard let content = contentTextView.text, !content.isEmpty else { return }
+        
+        if (contentInfo == nil) { //새로 생성 중
+            Content.append(title: title, article: content, token: bookInfo.token)
+        } else {
+            Content.edit(title: title, article: content, bookToken: bookInfo.token, contentToken: contentInfo!.token)
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        save()
     }
     
     @objc func updateTextView(notification:Notification) {

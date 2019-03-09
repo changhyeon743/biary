@@ -22,6 +22,35 @@ class MainTableCell: UITableViewCell {
         super.awakeFromNib()
         collectionView.delegate = self
         collectionView.dataSource = self
+        let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
+        longPressGR.minimumPressDuration = 0.5
+        longPressGR.delaysTouchesBegan = true
+        self.collectionView.addGestureRecognizer(longPressGR)
+    
+    }
+    
+    
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        if sender.state == UIGestureRecognizer.State.began {
+            
+            let touchPoint = sender.location(in: self.collectionView)
+            if let indexPath = collectionView.indexPathForItem(at: touchPoint) {
+                let cb = bookInfo[indexPath.row];
+                let actionSheet = UIAlertController(title: cb.title, message: cb.description, preferredStyle: .actionSheet)
+                let action = UIAlertAction(title: NSLocalizedString("Share", comment: ""), style: .default, handler: { _ in
+                })
+                //let image = UIImage(named: "ssss")
+                //action.setValue(image?.withRenderingMode(.alwaysOriginal), forKey: "image")
+                actionSheet.addAction(action)
+                actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                
+                self.mainViewController.present(actionSheet, animated: true, completion: nil)
+
+                print("Long pressed row: \(indexPath.row)")
+            }
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

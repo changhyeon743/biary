@@ -9,6 +9,7 @@ target 'biary' do
     pod 'SwiftyJSON', '~> 4.0'
     pod 'Alamofire'
 pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
+pod 'PeekPop', '~> 1.0'
 
 pod 'SDWebImage', '~> 4.0'
 

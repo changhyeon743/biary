@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7EC3963C0410A46CB75F62C3DB8B768A"
-               BlueprintName = "Spring"
+               BlueprintIdentifier = "6DD965CF444FDB1C8FB235C5A417C39C"
+               BlueprintName = "PeekPop"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Spring.framework">
+               BuildableName = "PeekPop.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

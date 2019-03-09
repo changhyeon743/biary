@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.1)
+  - PeekPop (1.0.0)
   - SDWebImage (4.4.5):
     - SDWebImage/Core (= 4.4.5)
   - SDWebImage/Core (4.4.5)
@@ -8,6 +9,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - PeekPop (~> 1.0)
   - SDWebImage (~> 4.0)
   - Spring (from `https://github.com/MengTo/Spring.git`)
   - SwiftyJSON (~> 4.0)
@@ -15,6 +17,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - PeekPop
     - SDWebImage
     - SwiftyJSON
 
@@ -29,10 +32,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  PeekPop: dcac0f339476b99eb50f8e3bc584f332c744ecf1
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 5048788371706fd239eaf966aa1f7500bac7eebb
+PODFILE CHECKSUM: 9116e78745b124dfe8798976b83b26dce53b3b1a
 
 COCOAPODS: 1.5.3

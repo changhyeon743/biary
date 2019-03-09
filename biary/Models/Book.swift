@@ -57,6 +57,25 @@ extension Book {
         return books
     }
     
+    static func transformNaverBook(fromJSON temp:JSON) -> [Book] {
+        let json = temp["items"].arrayValue
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let books = json.map{Book(title: $0["title"].stringValue,
+            author: $0["author"].stringValue,
+            publisher: $0["publisher"].stringValue,
+            isbn: $0["isbn"].stringValue,
+            imageURL: $0["image"].stringValue,
+            writerToken: "",
+            writerName: "",
+            token: "",
+            description: $0["description"].stringValue,
+            date: dateFormatter.date(from: $0["pubdate"].stringValue) ?? Date())}
+        
+        return books;
+    }
+    
     static func findBook(withToken token:String) -> Book{
         if (API.currentBooks.count != 0) {
             let index = API.currentBooks.firstIndex(where: { (book) -> Bool in
