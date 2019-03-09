@@ -38,7 +38,7 @@ extension Content {
     
     static func append(title:String,article: String,token: String) {
         let content = Content(title: title, article: article, bookToken: token, date: Date(), token: Token.create())
-        
+        print("appended")
         API.currentContents.append(content);
     }
     

@@ -380,7 +380,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="rgD-zp-seD" id="8vK-eT-uQN"/>
-                        <segue destination="ogA-mg-Kex" kind="show" identifier="write" id="i1H-B9-pgf"/>
+                        <segue destination="ogA-mg-Kex" kind="presentation" identifier="write" id="i1H-B9-pgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ah-sA-MdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -470,13 +470,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-Mr-5ay" customClass="BookImageView" customModule="biary" customModuleProvider="target">
-                                <rect key="frame" x="271" y="239.5" width="80" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="atG-50-Mfm"/>
-                                    <constraint firstAttribute="height" constant="128" id="t1a-nd-tQH"/>
-                                </constraints>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="NOg-Vh-t2H">
                                 <rect key="frame" x="24" y="231" width="223" height="145"/>
                                 <subviews>
@@ -521,8 +514,8 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-Fk-0Qn">
-                                <rect key="frame" x="299" y="375.5" width="52" height="33"/>
-                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
+                                <rect key="frame" x="285" y="287" width="52" height="33"/>
+                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="불러오기">
                                     <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -530,6 +523,13 @@
                                     <action selector="importBtnPressed:" destination="fH7-cZ-goN" eventType="touchUpInside" id="6Jb-nV-vdw"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-Mr-5ay" customClass="BookImageView" customModule="biary" customModuleProvider="target">
+                                <rect key="frame" x="271" y="239.5" width="80" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="atG-50-Mfm"/>
+                                    <constraint firstAttribute="height" constant="128" id="t1a-nd-tQH"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AW2-Mb-Pcr">
                                 <rect key="frame" x="24" y="215.5" width="327" height="1"/>
                                 <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
@@ -557,15 +557,15 @@
                             <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="xbd-6W-XIR" secondAttribute="trailing" constant="24" id="8h0-qA-KJK"/>
                             <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="AW2-Mb-Pcr" secondAttribute="trailing" constant="24" id="9Qj-hA-M0S"/>
                             <constraint firstItem="NOg-Vh-t2H" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="IRp-Ij-BOn"/>
-                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="qLJ-Fk-0Qn" secondAttribute="trailing" constant="24" id="NOG-5l-i21"/>
+                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="qLJ-Fk-0Qn" secondAttribute="trailing" constant="38" id="NOG-5l-i21"/>
                             <constraint firstItem="xbd-6W-XIR" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="WOF-Fd-0Wj"/>
                             <constraint firstItem="HGb-Mr-5ay" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="XpU-hq-Io8"/>
                             <constraint firstItem="AW2-Mb-Pcr" firstAttribute="top" secondItem="xbd-6W-XIR" secondAttribute="bottom" constant="4" id="bDb-xf-RiJ"/>
                             <constraint firstItem="NOg-Vh-t2H" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="cuu-e1-mN9"/>
                             <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="HGb-Mr-5ay" secondAttribute="trailing" constant="24" id="dly-ik-DYM"/>
                             <constraint firstItem="HGb-Mr-5ay" firstAttribute="leading" secondItem="NOg-Vh-t2H" secondAttribute="trailing" constant="24" id="gsP-pS-O19"/>
+                            <constraint firstItem="qLJ-Fk-0Qn" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="o5R-zE-zCd"/>
                             <constraint firstItem="AW2-Mb-Pcr" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="rb6-lu-0kG"/>
-                            <constraint firstItem="qLJ-Fk-0Qn" firstAttribute="top" secondItem="HGb-Mr-5ay" secondAttribute="bottom" constant="8" id="wyV-dg-SEN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZWj-ex-wqZ"/>
                     </view>

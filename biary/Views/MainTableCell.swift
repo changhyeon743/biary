@@ -68,7 +68,11 @@ extension MainTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UI
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "book", for: indexPath) as! MainCollectionCell
         
         if (bookInfo.count > 0) {
-            cell.imageView.sd_setImage(with: URL(string: bookInfo[indexPath.row].imageURL), completed: nil)
+            if (bookInfo[indexPath.row].imageURL.isEmpty) {
+                cell.imageView.image = imageWith(name: bookInfo[indexPath.row].title)
+            } else {
+                cell.imageView.sd_setImage(with: URL(string: bookInfo[indexPath.row].imageURL), completed: nil)
+            }
         }
         
         

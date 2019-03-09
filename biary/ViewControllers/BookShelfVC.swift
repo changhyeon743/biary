@@ -44,8 +44,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
             guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
             if (textField.text?.isEmpty == false) {
                 print(API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""})
-                if (API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""}.count > 0) {
-                    
+                if (API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""}.count <= 0) {
                     Bookshelf.append(title: textField.text ?? "")
                 }
             }

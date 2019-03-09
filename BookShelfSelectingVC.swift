@@ -45,6 +45,9 @@ class BookShelfSelectingVC: UIViewController {
             self.present(vc, animated: true, completion: nil)
             //self.performSegue(withIdentifier: "bookshelfSegue", sender: nil)
         }
+        navigationBar.closeBtnHandler = {
+            self.dismiss(animated: true, completion: nil)
+        }
         
         
         self.view.addSubview(navigationBar)

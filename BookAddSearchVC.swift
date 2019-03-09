@@ -15,7 +15,7 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     
     var navigationBar:NavigationBar!
     
-    var doneBtn: UIButton!
+    var searchWithBarcodeBtn: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -46,20 +46,21 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
         
         
         self.view.addSubview(navigationBar)
-        doneBtn = UIButton()
-        doneBtn.setTitle("바코드로 검색하기", for: .normal)
-        doneBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
-        doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
+        searchWithBarcodeBtn = UIButton()
+        searchWithBarcodeBtn.setTitle("바코드로 검색하기", for: .normal)
+        searchWithBarcodeBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        searchWithBarcodeBtn.setTitleColor(UIColor.mainColor, for: .normal)
+        searchWithBarcodeBtn.addTarget(self, action: #selector(barcode(sender:)), for: .touchUpInside)
         
-        self.view.addSubview(doneBtn)
-        doneBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(searchWithBarcodeBtn)
+        searchWithBarcodeBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             navigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             navigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             navigationBar.heightAnchor.constraint(equalToConstant: 130),
-            doneBtn.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-            doneBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12)
+            searchWithBarcodeBtn.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
+            searchWithBarcodeBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12)
             ])
         navigationBar.setConstraints()
         navigationBar.setToAnotherNavigation(sub: "Naver Books에서 검색됩니다.")
@@ -95,14 +96,23 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
         searchField.addBorderBottom(height: 1, color: UIColor(r: 90, g: 90, b: 90), margin_right: -40)
     }
     
+    @objc func barcode(sender: UIButton) {
+        let vc = BarcodeScannerVC();
+        vc.searchVC = self
+        present(vc, animated: true, completion: nil)
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        API.User.search(query: textField.text ?? "") { (json) in
+        search()
+        return false
+    }
+    
+    func search() {
+        API.User.search(query: searchField.text ?? "") { (json) in
             self.result = Book.transformNaverBook(fromJSON: json)
             self.tableView.reloadData()
             self.view.endEditing(true)
         }
-        return false
     }
 
     func previewVC(for index:Int) -> PreviewVC {

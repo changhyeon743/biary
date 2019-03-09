@@ -52,7 +52,7 @@ class WriteVC: UIViewController {
     
     func createViews() {
         
-        backBtn.setImage(UIImage(named:"arrow_back"), for: .normal)
+        backBtn.setImage(UIImage(named:"close"), for: .normal)
         backBtn.addTarget(self, action: #selector(back(_:)), for: .touchUpInside)
         backBtn.tintColor = UIColor(r: 90, g: 90, b: 90)
         
@@ -104,8 +104,15 @@ class WriteVC: UIViewController {
     
     
     @objc func back(_ button: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+        //self.navigationController?.popViewController(animated: true)
         //self.dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "닫기", message: "완료를 눌러 저장하지 않으면 작성한 내용은 사라집니다.", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "계속 쓰기", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "나가기", style: .destructive, handler: { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true)
     }
     
     @objc func done(_ button: UIButton) {
@@ -121,16 +128,15 @@ class WriteVC: UIViewController {
 //                return
 //            }
             save()
+            self.dismiss(animated: true, completion: nil)
             
-            
-            self.navigationController?.popViewController(animated: true)
+            //self.navigationController?.popViewController(animated: true)
         }
     }
     
     func save() {
         guard let title = titleLbl.text, !title.isEmpty else { return }
         guard let content = contentTextView.text, !content.isEmpty else { return }
-        
         if (contentInfo == nil) { //새로 생성 중
             Content.append(title: title, article: content, token: bookInfo.token)
         } else {
@@ -140,7 +146,7 @@ class WriteVC: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        save()
+        //save()
     }
     
     @objc func updateTextView(notification:Notification) {
