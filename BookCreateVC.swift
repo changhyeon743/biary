@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 import Spring
 
-class BookCreateVC: UIViewController,UITextViewDelegate {
+class BookCreateVC: UIViewController {
     @IBOutlet weak var titleField: SpringTextField!
     @IBOutlet weak var authorField: SpringTextField!
     @IBOutlet weak var publisherField: SpringTextField!
@@ -29,6 +29,8 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
             titleField.text = bookTitle;
         }
     }
+    
+    var bookInfo:Book?
     
     
     
@@ -59,13 +61,10 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        explainTextView.text = "설명"
-        explainTextView.textColor = UIColor.lightGray
-        explainTextView.delegate = self
-        
-        
         explainTextView.textContainerInset = UIEdgeInsets.zero
         explainTextView.textContainer.lineFragmentPadding = 0
+        explainTextView.placeholder = "설명"
+        
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "책 추가하기")
         
@@ -99,23 +98,40 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
         navigationBar.setConstraints()
         navigationBar.setToAnotherNavigation(sub: "아래에 있는 텍스트를 눌러 정보를 수정할 수 있습니다.")
         
-        
+        setBookInfos()
+    }
+    
+    func setBookInfos() {
+        if let book = bookInfo { //수정중일경우
+            self.titleField.text = book.title
+            self.authorField.text = book.author
+            self.publisherField.text = book.publisher
+            self.explainTextView.text = book.description
+            self.bookshelfs = API.currentUser.bookShelf.filter{for i in $0.books {
+                if (i==book.token) {
+                    return true
+                }}
+                return false
+            }
+            self.imgLink = book.imageURL
+            self.importedBook = book
+        }
     }
     
     @objc func doneBtnPressed(_ sender: Any) {
-        guard let title = titleField.text, !title.isEmpty else {
+        guard let title = titleField.text?.withoutHtml, !title.isEmpty else {
             self.titleField.animation = "shake"
             self.titleField.force = 0.5
             self.titleField.animate()
             return
         }
-        guard let author = authorField.text, !author.isEmpty else {
+        guard let author = authorField.text?.withoutHtml, !author.isEmpty else {
             self.authorField.animation = "shake"
             self.authorField.force = 0.5
             self.authorField.animate()
             return
         }
-        guard let publisher = publisherField.text, !publisher.isEmpty else {
+        guard let publisher = publisherField.text?.withoutHtml, !publisher.isEmpty else {
             self.publisherField.animation = "shake"
             self.publisherField.force = 0.5
             self.publisherField.animate()
@@ -127,6 +143,8 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
             self.explainTextView.animate()
             return
         }
+        let isbn = importedBook?.isbn ?? ""
+        let imageLink = importedBook?.imageURL ?? ""
         if (bookshelfs.count == 0) {
             self.bookShelfsBtn.animation = "shake"
             self.bookShelfsBtn.force = 0.5
@@ -135,11 +153,13 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
         }
         
         //bookImageView.image = imageWith(name: title)
-        if let book = importedBook {
-            Book.append(title: book.title, author: book.author, publisher: book.publisher, isbn: book.isbn, imageURL: book.imageURL, description: book.description, bookshelfs: bookshelfs)
-        } else {
-            Book.append(title: title, author: author, publisher: publisher, isbn: "", imageURL: "", description: description, bookshelfs: bookshelfs)
+        if (bookInfo == nil) {
+            Book.append(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs)
+        } else if let book = bookInfo {
+            Book.edit(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs, bookToken: book.token)
         }
+        
+        
         
         dismiss(animated: true, completion: nil)
     }
@@ -161,18 +181,5 @@ class BookCreateVC: UIViewController,UITextViewDelegate {
         
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22) {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "설명"
-            textView.textColor = UIColor(red: 0, green: 0, blue: 0.0980392, alpha: 0.22)
-        }
-    }
     
 }

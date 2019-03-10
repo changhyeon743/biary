@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import UITextView_Placeholder
 
 class WriteVC: UIViewController {
     
@@ -29,7 +30,7 @@ class WriteVC: UIViewController {
         createViews()
         setConstraints()
         setContent()
-        
+        contentTextView.placeholder = "책에 대한 생각을 들려주세요!"
         contentTextView.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
         
         //TextView

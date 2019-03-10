@@ -14,6 +14,9 @@ class BookShelfSelectingVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var doneBtn: UIButton!
+    var addBtn: UIButton!
+
+    
     
     var checked = [Bool]()
     
@@ -35,7 +38,6 @@ class BookShelfSelectingVC: UIViewController {
                 
             }
         }
-        print(checked)
         tableView.reloadData()
         super.viewDidLoad()
         navigationBar = NavigationBar(frame: CGRect.zero, title: "책장 선택")
@@ -58,13 +60,24 @@ class BookShelfSelectingVC: UIViewController {
 
         self.view.addSubview(doneBtn)
         doneBtn.translatesAutoresizingMaskIntoConstraints = false
+        
+        addBtn = UIButton()
+        addBtn.setTitle("책장 추가", for: .normal)
+        addBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        addBtn.setTitleColor(UIColor.mainColor, for: .normal)
+        
+        self.view.addSubview(addBtn)
+        addBtn.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             navigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             navigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             navigationBar.heightAnchor.constraint(equalToConstant: 130),
             doneBtn.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16),
-            doneBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12)
+            doneBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12),
+            addBtn.rightAnchor.constraint(equalTo: self.doneBtn.leftAnchor, constant: -16),
+            addBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12)
             ])
         navigationBar.setConstraints()
         navigationBar.setToAnotherNavigation(sub: "여러 개도 선택할 수 있습니다.")
@@ -77,6 +90,7 @@ class BookShelfSelectingVC: UIViewController {
             ])
         
         doneBtn.addTarget(self, action: #selector(doneBtnPressed(sender:)), for: .touchUpInside)
+        addBtn.addTarget(self, action: #selector(addBtnPressed(sender:)), for: .touchUpInside)
     }
     
     
@@ -92,6 +106,27 @@ class BookShelfSelectingVC: UIViewController {
         }
     }
 
+    @objc func addBtnPressed(sender:Any) {
+        let alertController = UIAlertController(title: "책장 추가", message: "", preferredStyle: .alert)
+        alertController.addTextField { (textfield) in
+            textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요."
+        }
+        let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
+            guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
+            if (textField.text?.isEmpty == false) {
+                if (API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""}.count <= 0) { //겹치는게 없을 경우
+                    Bookshelf.append(title: textField.text ?? "")
+                }
+            }
+            self.checked.append(false)
+            self.tableView.reloadData()
+            //compare the current password and do action here
+        }
+        alertController.addAction(confirmAction)
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension BookShelfSelectingVC:UITableViewDelegate, UITableViewDataSource {

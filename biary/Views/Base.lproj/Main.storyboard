@@ -501,7 +501,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="84" id="bD3-np-01B"/>
                                         </constraints>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea </string>
                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -514,7 +513,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-Fk-0Qn">
-                                <rect key="frame" x="285" y="287" width="52" height="33"/>
+                                <rect key="frame" x="299" y="375.5" width="52" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="불러오기">
                                     <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -557,14 +556,14 @@
                             <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="xbd-6W-XIR" secondAttribute="trailing" constant="24" id="8h0-qA-KJK"/>
                             <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="AW2-Mb-Pcr" secondAttribute="trailing" constant="24" id="9Qj-hA-M0S"/>
                             <constraint firstItem="NOg-Vh-t2H" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="IRp-Ij-BOn"/>
-                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="qLJ-Fk-0Qn" secondAttribute="trailing" constant="38" id="NOG-5l-i21"/>
                             <constraint firstItem="xbd-6W-XIR" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="WOF-Fd-0Wj"/>
                             <constraint firstItem="HGb-Mr-5ay" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="XpU-hq-Io8"/>
+                            <constraint firstItem="qLJ-Fk-0Qn" firstAttribute="top" secondItem="HGb-Mr-5ay" secondAttribute="bottom" constant="8" id="aX1-0z-JES"/>
                             <constraint firstItem="AW2-Mb-Pcr" firstAttribute="top" secondItem="xbd-6W-XIR" secondAttribute="bottom" constant="4" id="bDb-xf-RiJ"/>
                             <constraint firstItem="NOg-Vh-t2H" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="cuu-e1-mN9"/>
                             <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="HGb-Mr-5ay" secondAttribute="trailing" constant="24" id="dly-ik-DYM"/>
                             <constraint firstItem="HGb-Mr-5ay" firstAttribute="leading" secondItem="NOg-Vh-t2H" secondAttribute="trailing" constant="24" id="gsP-pS-O19"/>
-                            <constraint firstItem="qLJ-Fk-0Qn" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="o5R-zE-zCd"/>
+                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="qLJ-Fk-0Qn" secondAttribute="trailing" constant="24" id="ocB-t5-6Wd"/>
                             <constraint firstItem="AW2-Mb-Pcr" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="rb6-lu-0kG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZWj-ex-wqZ"/>

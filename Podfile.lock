@@ -6,6 +6,7 @@ PODS:
   - SDWebImage/Core (4.4.5)
   - Spring (1.0.6)
   - SwiftyJSON (4.2.0)
+  - "UITextView+Placeholder (1.2.1)"
 
 DEPENDENCIES:
   - Alamofire
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - SDWebImage (~> 4.0)
   - Spring (from `https://github.com/MengTo/Spring.git`)
   - SwiftyJSON (~> 4.0)
+  - "UITextView+Placeholder"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -20,6 +22,7 @@ SPEC REPOS:
     - PeekPop
     - SDWebImage
     - SwiftyJSON
+    - "UITextView+Placeholder"
 
 EXTERNAL SOURCES:
   Spring:
@@ -36,7 +39,8 @@ SPEC CHECKSUMS:
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: 9116e78745b124dfe8798976b83b26dce53b3b1a
+PODFILE CHECKSUM: 972a9725eb85fa102f1fd705ca8469b2becdd159
 
 COCOAPODS: 1.5.3

@@ -191,7 +191,7 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "WriteVC") as! WriteVC
         vc.bookInfo = self.bookInfo
         vc.contentInfo = self.contents[indexPath.row]
-        navigationController?.pushViewController(vc, animated: true)
+        self.present(vc, animated: true, completion: nil)
     }
     
 }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 func imageWith(name: String?) -> UIImage? {
-    let frame = CGRect(x: 0, y: 0, width: 80, height: 128)
+    let frame = CGRect(x: 0, y: 0, width: 70, height: 128)
     
     let nameLabel = UILabel(frame: CGRect(x: 4, y: 0, width: 76, height: 128))
     nameLabel.textAlignment = .center

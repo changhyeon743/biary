@@ -188,7 +188,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         cell.mainViewController = self
         if (API.currentUser.bookShelf.count > 0) {
             cell.shelfInfo = API.currentUser.bookShelf[indexPath.section]
-            cell.bookInfo = (cell.shelfInfo?.books.map{Book.findBook(withToken: $0)})!
+            cell.bookInfo = (cell.shelfInfo?.books.map{API.currentBooks[Book.find(withToken: $0)]})!
         }
         cell.collectionView.reloadData()
        

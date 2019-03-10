@@ -76,29 +76,37 @@ extension Book {
         return books;
     }
     
-    static func findBook(withToken token:String) -> Book{
-        if (API.currentBooks.count != 0) {
-            let index = API.currentBooks.firstIndex(where: { (book) -> Bool in
-                return book.token == token
-            }) ?? 0;
-            return API.currentBooks[index]
-        } else {
-            return API.currentBooks[0]
-        }
-    }
-    
     static func append(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf]) {
         let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: Token.create(), description: description, date: Date())
         
         API.currentBooks.append(book);
         
-        for i in bookshelfs {
-            for (index,l) in API.currentUser.bookShelf.enumerated() {
-                if (l.title == i.title) {
-                    API.currentUser.bookShelf[index].books.append(book.token);
-                }
-            }
+        Bookshelf.addBook(at: bookshelfs, bookToken: book.token)
+    }
+    
+    static func edit(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf], bookToken: String) {
+        
+        Bookshelf.clean(bookToken: bookToken)
+        let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: bookToken, description: description, date: Date())
+        
+        Bookshelf.addBook(at: bookshelfs, bookToken: book.token)
+        API.currentBooks[Book.find(withToken: bookToken)] = book
+    }
+    
+    static func find(withToken token:String) -> Int{
+        if (API.currentBooks.count != 0) {
+            let index = API.currentBooks.firstIndex(where: { (book) -> Bool in
+                return book.token == token
+            }) ?? 0;
+            return index
+        } else {
+            return 0
         }
+    }
+    
+    static func delete(withToken token:String) {
+        API.currentBooks.remove(at: Book.find(withToken: token));
+        Bookshelf.clean(bookToken: token)
     }
     
 }

@@ -10,6 +10,7 @@ target 'biary' do
     pod 'Alamofire'
 pod 'Spring', :git => 'https://github.com/MengTo/Spring.git'
 pod 'PeekPop', '~> 1.0'
+pod 'UITextView+Placeholder'
 
 pod 'SDWebImage', '~> 4.0'
 

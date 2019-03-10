@@ -30,4 +30,24 @@ extension Bookshelf {
         let bookshelf = Bookshelf(title: title, books: [], expanded: true)
         API.currentUser.bookShelf.append(bookshelf);
     }
+    
+    static func clean(bookToken: String) {
+        for (l,e) in API.currentUser.bookShelf.enumerated() {
+            for (i,element) in e.books.enumerated() {
+                if (element == bookToken) {
+                    API.currentUser.bookShelf[l].books.remove(at: i)
+                }
+            }
+        }
+    }
+    
+    static func addBook(at bookshelfs: [Bookshelf], bookToken: String) {
+        for i in bookshelfs {
+            for (index,l) in API.currentUser.bookShelf.enumerated() {
+                if (l.title == i.title) {
+                    API.currentUser.bookShelf[index].books.append(bookToken);
+                }
+            }
+        }
+    }
 }
