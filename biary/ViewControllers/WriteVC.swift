@@ -24,8 +24,11 @@ class WriteVC: UIViewController {
     var bookInfo:Book!
     var contentInfo:Content?
     
+    var firstText: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         line.isHidden = true
         createViews()
         setConstraints()
@@ -48,6 +51,7 @@ class WriteVC: UIViewController {
         if (contentInfo != nil) {
             contentTextView.text = contentInfo?.article
             titleLbl.text = contentInfo?.title
+            firstText = contentTextView.text
         }
     }
     
@@ -107,13 +111,18 @@ class WriteVC: UIViewController {
     @objc func back(_ button: UIButton) {
         //self.navigationController?.popViewController(animated: true)
         //self.dismiss(animated: true, completion: nil)
-        let alert = UIAlertController(title: "닫기", message: "완료를 눌러 저장하지 않으면 작성한 내용은 사라집니다.", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "계속 쓰기", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "나가기", style: .destructive, handler: { (action) in
+        if (firstText != contentTextView.text) {
+            let alert = UIAlertController(title: "닫기", message: "완료를 눌러 저장하지 않으면 작성한 내용은 사라집니다.", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "계속 쓰기", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "나가기", style: .destructive, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true)
+        } else {
             self.dismiss(animated: true, completion: nil)
-        }))
+        }
         
-        self.present(alert, animated: true)
     }
     
     @objc func done(_ button: UIButton) {

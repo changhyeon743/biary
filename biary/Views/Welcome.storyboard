@@ -79,6 +79,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D6A-US-K2d"/>
                     </view>
+                    <connections>
+                        <outlet property="facebookBtn" destination="gaj-CM-bEs" id="eZC-Gh-sDZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="njS-3m-yYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -33,6 +33,8 @@
 		786ED2DE2233DFFE0045E9F1 /* BookImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786ED2DD2233DFFE0045E9F1 /* BookImageView.swift */; };
 		786ED2E02233E07B0045E9F1 /* image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786ED2DF2233E07B0045E9F1 /* image.swift */; };
 		786ED2E22233ECC00045E9F1 /* BarcodeScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786ED2E12233ECC00045E9F1 /* BarcodeScannerVC.swift */; };
+		787515C322350CCB0054127B /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787515C222350CCB0054127B /* Friend.swift */; };
+		787515C722351D0E0054127B /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787515C622351D0E0054127B /* FriendCell.swift */; };
 		787DDFD5219326A300332121 /* DetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787DDFD3219326A300332121 /* DetailCell.swift */; };
 		787DDFD6219326A300332121 /* DetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787DDFD4219326A300332121 /* DetailCell.xib */; };
 		787ED772223112BD0097E79E /* BookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 787ED771223112BD0097E79E /* BookCell.xib */; };
@@ -43,15 +45,10 @@
 		78A239F72195C6EB00F2A835 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A239F62195C6EB00F2A835 /* Colors.swift */; };
 		78A517AC2225415000CB3035 /* BookShelfVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A517AB2225415000CB3035 /* BookShelfVC.swift */; };
 		78BBE4392221DFB900D6ACDD /* Welcome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4382221DFB900D6ACDD /* Welcome.storyboard */; };
-		78BBE4442221E1C600D6ACDD /* NotoSansCJKkr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4432221E1BA00D6ACDD /* NotoSansCJKkr-Black.otf */; };
 		78BBE4452221E1C600D6ACDD /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43B2221E1B300D6ACDD /* NotoSansCJKkr-Bold.otf */; };
-		78BBE4462221E1C600D6ACDD /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43F2221E1B600D6ACDD /* NotoSansCJKkr-DemiLight.otf */; };
 		78BBE4472221E1C600D6ACDD /* NotoSansCJKkr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4422221E1B900D6ACDD /* NotoSansCJKkr-Light.otf */; };
 		78BBE4482221E1C600D6ACDD /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4402221E1B700D6ACDD /* NotoSansCJKkr-Medium.otf */; };
 		78BBE4492221E1C600D6ACDD /* NotoSansCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43D2221E1B400D6ACDD /* NotoSansCJKkr-Regular.otf */; };
-		78BBE44A2221E1C600D6ACDD /* NotoSansCJKkr-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43C2221E1B300D6ACDD /* NotoSansCJKkr-Thin.otf */; };
-		78BBE44B2221E1C600D6ACDD /* NotoSansMonoCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE43E2221E1B500D6ACDD /* NotoSansMonoCJKkr-Bold.otf */; };
-		78BBE44C2221E1C600D6ACDD /* NotoSansMonoCJKkr-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE4412221E1B800D6ACDD /* NotoSansMonoCJKkr-Regular.otf */; };
 		78BBE4502221E59A00D6ACDD /* facebook.svg in Resources */ = {isa = PBXBuildFile; fileRef = 78BBE44F2221E59A00D6ACDD /* facebook.svg */; };
 		78C33983219AE6AE0074B389 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C33982219AE6AE0074B389 /* NavigationBar.swift */; };
 		78DA251C218137D600DAEDE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DA251B218137D600DAEDE4 /* AppDelegate.swift */; };
@@ -93,6 +90,8 @@
 		786ED2DD2233DFFE0045E9F1 /* BookImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookImageView.swift; sourceTree = "<group>"; };
 		786ED2DF2233E07B0045E9F1 /* image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = image.swift; sourceTree = "<group>"; };
 		786ED2E12233ECC00045E9F1 /* BarcodeScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerVC.swift; sourceTree = "<group>"; };
+		787515C222350CCB0054127B /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		787515C622351D0E0054127B /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		787DDFD3219326A300332121 /* DetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCell.swift; sourceTree = "<group>"; };
 		787DDFD4219326A300332121 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		787ED771223112BD0097E79E /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
@@ -104,14 +103,9 @@
 		78A517AB2225415000CB3035 /* BookShelfVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfVC.swift; sourceTree = "<group>"; };
 		78BBE4382221DFB900D6ACDD /* Welcome.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Welcome.storyboard; sourceTree = "<group>"; };
 		78BBE43B2221E1B300D6ACDD /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
-		78BBE43C2221E1B300D6ACDD /* NotoSansCJKkr-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Thin.otf"; sourceTree = "<group>"; };
 		78BBE43D2221E1B400D6ACDD /* NotoSansCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Regular.otf"; sourceTree = "<group>"; };
-		78BBE43E2221E1B500D6ACDD /* NotoSansMonoCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansMonoCJKkr-Bold.otf"; sourceTree = "<group>"; };
-		78BBE43F2221E1B600D6ACDD /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
 		78BBE4402221E1B700D6ACDD /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
-		78BBE4412221E1B800D6ACDD /* NotoSansMonoCJKkr-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansMonoCJKkr-Regular.otf"; sourceTree = "<group>"; };
 		78BBE4422221E1B900D6ACDD /* NotoSansCJKkr-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Light.otf"; sourceTree = "<group>"; };
-		78BBE4432221E1BA00D6ACDD /* NotoSansCJKkr-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Black.otf"; sourceTree = "<group>"; };
 		78BBE44F2221E59A00D6ACDD /* facebook.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = facebook.svg; sourceTree = "<group>"; };
 		78C33982219AE6AE0074B389 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		78DA2518218137D600DAEDE4 /* biary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = biary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,15 +147,10 @@
 		78BBE43A2221E1A500D6ACDD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				78BBE4432221E1BA00D6ACDD /* NotoSansCJKkr-Black.otf */,
 				78BBE43B2221E1B300D6ACDD /* NotoSansCJKkr-Bold.otf */,
-				78BBE43F2221E1B600D6ACDD /* NotoSansCJKkr-DemiLight.otf */,
 				78BBE4422221E1B900D6ACDD /* NotoSansCJKkr-Light.otf */,
 				78BBE4402221E1B700D6ACDD /* NotoSansCJKkr-Medium.otf */,
 				78BBE43D2221E1B400D6ACDD /* NotoSansCJKkr-Regular.otf */,
-				78BBE43C2221E1B300D6ACDD /* NotoSansCJKkr-Thin.otf */,
-				78BBE43E2221E1B500D6ACDD /* NotoSansMonoCJKkr-Bold.otf */,
-				78BBE4412221E1B800D6ACDD /* NotoSansMonoCJKkr-Regular.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -217,6 +206,7 @@
 			children = (
 				78BBE4382221DFB900D6ACDD /* Welcome.storyboard */,
 				78DA251F218137D600DAEDE4 /* Main.storyboard */,
+				787515C622351D0E0054127B /* FriendCell.swift */,
 				781D8DBE21855281006D9551 /* MainTableCell.swift */,
 				781D8DC021855376006D9551 /* MainCollectionCell.swift */,
 				783341F3218ECE140032678C /* DetailHeaderView.swift */,
@@ -256,6 +246,7 @@
 				786BA3DC2223BFFB00280503 /* Bookshelf.swift */,
 				78F0719E218346E70034E417 /* Network */,
 				786BA3E22223D42300280503 /* Token.swift */,
+				787515C222350CCB0054127B /* Friend.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -360,24 +351,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78BBE4462221E1C600D6ACDD /* NotoSansCJKkr-DemiLight.otf in Resources */,
 				78DA2526218137D800DAEDE4 /* LaunchScreen.storyboard in Resources */,
 				78BBE4392221DFB900D6ACDD /* Welcome.storyboard in Resources */,
 				786BA3E6222532F200280503 /* search.svg in Resources */,
 				786BA3EA222532FC00280503 /* setting.svg in Resources */,
-				78BBE44A2221E1C600D6ACDD /* NotoSansCJKkr-Thin.otf in Resources */,
-				78BBE4442221E1C600D6ACDD /* NotoSansCJKkr-Black.otf in Resources */,
 				78DA2523218137D800DAEDE4 /* Assets.xcassets in Resources */,
 				78BBE4452221E1C600D6ACDD /* NotoSansCJKkr-Bold.otf in Resources */,
 				787DDFD6219326A300332121 /* DetailCell.xib in Resources */,
 				78BBE4472221E1C600D6ACDD /* NotoSansCJKkr-Light.otf in Resources */,
 				78DA2521218137D600DAEDE4 /* Main.storyboard in Resources */,
-				78BBE44C2221E1C600D6ACDD /* NotoSansMonoCJKkr-Regular.otf in Resources */,
 				78BBE4482221E1C600D6ACDD /* NotoSansCJKkr-Medium.otf in Resources */,
 				786BA3E8222532F600280503 /* add.svg in Resources */,
 				78BBE4502221E59A00D6ACDD /* facebook.svg in Resources */,
 				787ED772223112BD0097E79E /* BookCell.xib in Resources */,
-				78BBE44B2221E1C600D6ACDD /* NotoSansMonoCJKkr-Bold.otf in Resources */,
 				787ED7782231309C0097E79E /* Preview.xib in Resources */,
 				78BBE4492221E1C600D6ACDD /* NotoSansCJKkr-Regular.otf in Resources */,
 			);
@@ -394,6 +380,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-biary/Pods-biary-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/PeekPop/PeekPop.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Spring/Spring.framework",
@@ -403,6 +393,10 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PeekPop.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spring.framework",
@@ -461,6 +455,7 @@
 				783341F2218ECD510032678C /* BookDetailVC.swift in Sources */,
 				783341F4218ECE140032678C /* DetailHeaderView.swift in Sources */,
 				786BA3E32223D42300280503 /* Token.swift in Sources */,
+				787515C322350CCB0054127B /* Friend.swift in Sources */,
 				786BA3D72223BF2900280503 /* Book.swift in Sources */,
 				783FFBED219D8606002B6977 /* WriteVC.swift in Sources */,
 				786ED2DE2233DFFE0045E9F1 /* BookImageView.swift in Sources */,
@@ -469,6 +464,7 @@
 				786BA3E12223D33300280503 /* AuthAPI.swift in Sources */,
 				784E4FEB2221EA2300B617AA /* API.swift in Sources */,
 				786BA3DD2223BFFB00280503 /* Bookshelf.swift in Sources */,
+				787515C722351D0E0054127B /* FriendCell.swift in Sources */,
 				78F071A0218348410034E417 /* MainVC.swift in Sources */,
 				78226460222BC8C800C21546 /* FriendsVC.swift in Sources */,
 				786ED2E02233E07B0045E9F1 /* image.swift in Sources */,
@@ -622,7 +618,34 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = biary/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FacebookCore\"",
+					"-framework",
+					"\"PeekPop\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"Spring\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UITextView_Placeholder\"",
+					"-Objc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = changhyeon.biary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -638,7 +661,34 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = biary/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"FacebookCore\"",
+					"-framework",
+					"\"PeekPop\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"Spring\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"UITextView_Placeholder\"",
+					"-Objc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = changhyeon.biary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

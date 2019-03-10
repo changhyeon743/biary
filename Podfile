@@ -13,5 +13,8 @@ pod 'PeekPop', '~> 1.0'
 pod 'UITextView+Placeholder'
 
 pod 'SDWebImage', '~> 4.0'
+pod 'FacebookCore'
+    pod 'FBSDKLoginKit'
+
 
 end

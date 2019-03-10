@@ -23,7 +23,7 @@ class MainTableCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(sender:)))
-        longPressGR.minimumPressDuration = 0.5
+        longPressGR.minimumPressDuration = 0.3
         longPressGR.delaysTouchesBegan = true
         self.collectionView.addGestureRecognizer(longPressGR)
     
@@ -38,25 +38,27 @@ class MainTableCell: UITableViewCell {
             if let indexPath = collectionView.indexPathForItem(at: touchPoint) {
                 let cb = bookInfo[indexPath.row];
                 let actionSheet = UIAlertController(title: cb.title, message: cb.description, preferredStyle: .actionSheet)
-                let action = UIAlertAction(title: NSLocalizedString("공유", comment: ""), style: .default, handler: { _ in
+                let action = UIAlertAction(title: "공유", style: .default, handler: { _ in
                 })
                 
-                //let image = UIImage(named: "ssss")
-                //action.setValue(image?.withRenderingMode(.alwaysOriginal), forKey: "image")
+//                let image = UIImage(named: "ssss")
+//                actionSheet.setValue(image?.withRenderingMode(.alwaysOriginal), forKey: "image")
                 actionSheet.addAction(action)
                 actionSheet.addAction(UIAlertAction(title: "편집", style: .default, handler: { _ in
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
                     vc.bookInfo = cb;
                     self.mainViewController.present(vc, animated: true, completion: nil)
                 }))
-                actionSheet.addAction(UIAlertAction(title: "삭제", style: .default, handler: { _ in
+                
+                actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
                     let real = UIAlertController(title: "정말 삭제하시겠습니까?", message: "삭제한 책은 복구할 수 없습니다.", preferredStyle: .alert);
-                    real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.cancel, handler: { _ in
+                    real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
                         Book.delete(withToken: cb.token);
                     }))
                     real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
                     self.mainViewController.present(real, animated: true, completion: nil)
                 }))
+                
                 actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
                 
                 

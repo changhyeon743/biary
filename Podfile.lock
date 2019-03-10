@@ -1,5 +1,18 @@
 PODS:
   - Alamofire (4.8.1)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FacebookCore (0.5.0):
+    - Bolts (~> 1.9)
+    - FBSDKCoreKit (~> 4.37)
+  - FBSDKCoreKit (4.40.0):
+    - Bolts (~> 1.9)
+  - FBSDKLoginKit (4.40.0):
+    - FBSDKCoreKit
   - PeekPop (1.0.0)
   - SDWebImage (4.4.5):
     - SDWebImage/Core (= 4.4.5)
@@ -10,6 +23,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FacebookCore
+  - FBSDKLoginKit
   - PeekPop (~> 1.0)
   - SDWebImage (~> 4.0)
   - Spring (from `https://github.com/MengTo/Spring.git`)
@@ -19,6 +34,10 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - Bolts
+    - FacebookCore
+    - FBSDKCoreKit
+    - FBSDKLoginKit
     - PeekPop
     - SDWebImage
     - SwiftyJSON
@@ -35,12 +54,16 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FacebookCore: 74288d0add931d361b1596beae787ab72c438249
+  FBSDKCoreKit: ae214474b25033399c131dc81d258e412582a2ba
+  FBSDKLoginKit: 7a1e411d46acc8834588eca437daf34de42e1d52
   PeekPop: dcac0f339476b99eb50f8e3bc584f332c744ecf1
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: 972a9725eb85fa102f1fd705ca8469b2becdd159
+PODFILE CHECKSUM: 796c7a52d698ccbf3272988de143d0aa2883dfd7
 
 COCOAPODS: 1.5.3
