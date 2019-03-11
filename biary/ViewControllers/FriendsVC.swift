@@ -10,7 +10,8 @@ import UIKit
 
 class FriendsVC: UIViewController {
     var navigationBar:NavigationBar!
-
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar = NavigationBar(frame: CGRect.zero, title: "탐험")
@@ -35,4 +36,25 @@ class FriendsVC: UIViewController {
 
     
 
+}
+
+extension FriendsVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return API.currentFriends.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendCell
+        
+        cell.imageView.sd_setImage(with: URL(string: API.currentFriends[indexPath.row].profileURL), completed: nil)
+        cell.nameLbl.text = API.currentFriends[indexPath.row].name
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        API.User.fetch_friends(friends: [API.currentFriends[indexPath.row].name]) { (json) in
+            print(json)
+        }
+    }
+    
 }
