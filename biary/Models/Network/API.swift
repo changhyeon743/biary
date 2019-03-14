@@ -29,4 +29,5 @@ class API {
     static var currentContents:[Content] = []
     static var currentFriends:[Friend] = []
     
+    static var currentShowingFriend:Info? = nil
 }

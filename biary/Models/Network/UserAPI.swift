@@ -55,8 +55,11 @@ class UserAPI {
         let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
+        let paramsJSON = JSON(friends)
+        let paramsString = paramsJSON.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions.prettyPrinted)!
+        print(paramsString)
         let parameters = [
-            "friendList": "["+friends.joined(separator: ",")+"]",
+            "friendList": paramsString,
             "userToken" : API.currentUser.token
         ]
         
@@ -67,6 +70,7 @@ class UserAPI {
                     completion(JSON(value))
                 }
             })
+        
         
         
     }

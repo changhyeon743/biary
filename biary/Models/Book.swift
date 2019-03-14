@@ -104,6 +104,17 @@ extension Book {
         }
     }
     
+    static func find(withToken token:String,at books: [Book]) -> Int{
+        if (books.count != 0) {
+            let index = books.firstIndex(where: { (book) -> Bool in
+                return book.token == token
+            }) ?? 0;
+            return index
+        } else {
+            return 0
+        }
+    }
+    
     static func delete(withToken token:String) {
         API.currentBooks.remove(at: Book.find(withToken: token));
         Bookshelf.clean(bookToken: token)

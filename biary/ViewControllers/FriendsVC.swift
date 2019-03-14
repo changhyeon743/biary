@@ -16,6 +16,10 @@ class FriendsVC: UIViewController {
         super.viewDidLoad()
         navigationBar = NavigationBar(frame: CGRect.zero, title: "탐험")
         
+        navigationBar.settingBtnHandler = {
+            self.collectionView.reloadData()
+        }
+        
         navigationBar.settingBtn.isHidden = false
         navigationBar.addBtn.isHidden = true
         navigationBar.searchBtn.isHidden = true
@@ -52,8 +56,16 @@ extension FriendsVC: UICollectionViewDelegate, UICollectionViewDataSource {
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        API.User.fetch_friends(friends: [API.currentFriends[indexPath.row].name]) { (json) in
-            print(json)
+        API.User.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
+            API.currentShowingFriend = Info.make(data: json["data"][0])
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+            
+//            vc.navigationBar.titleLbl.text = API.currentShowingFriend?.user.name ?? "" + "의 서재"
+//
+            vc.friendMode = true
+            
+            self.present(vc, animated: true, completion: nil)
         }
     }
     

@@ -95,8 +95,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Je3-aB-QL1"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="서재" id="uNW-Xi-noi"/>
                     <navigationItem key="navigationItem" title="타이틀" id="gS1-y8-fZb"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="VKq-EM-UTc" id="Bf1-YM-Z6g"/>
                         <segue destination="Nue-bm-cuJ" kind="show" identifier="gotoDetail" id="4uR-qm-kaG"/>
@@ -158,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="6530" y="256"/>
         </scene>
-        <!--Item-->
+        <!--탐험-->
         <scene sceneID="KHU-Rc-UB0">
             <objects>
                 <viewController id="IBF-L8-F6u" customClass="FriendsVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
@@ -219,7 +221,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="wze-ZC-VUU"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="M9Y-J0-sgI"/>
+                    <tabBarItem key="tabBarItem" title="탐험" id="M9Y-J0-sgI"/>
                     <connections>
                         <outlet property="collectionView" destination="t87-Bi-ad4" id="2nV-qj-GYd"/>
                     </connections>

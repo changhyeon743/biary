@@ -22,6 +22,7 @@ class MainVC: UIViewController {
     }
     var navigationBar:NavigationBar!
     
+    var friendMode = false;
     
     override func viewDidAppear(_ animated: Bool) {
         reloadBooks()
@@ -32,7 +33,8 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-
+        
+        
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
@@ -66,10 +68,23 @@ class MainVC: UIViewController {
         ])
         
         
-        
+        if (friendMode == true) {
+            makeToFriendMode()
+        }
         
         
     }
+    
+    func makeToFriendMode() {
+        self.navigationBar.titleLbl.text = API.currentShowingFriend?.user.name ?? "" + "의 서재"
+        self.navigationBar.settingBtnHandler = {
+            self.dismiss(animated: true, completion: nil)
+        }
+        self.navigationBar.searchBtn.isHidden = true
+        self.navigationBar.addBtn.isHidden = true
+        self.navigationBar.settingBtn.setImage(UIImage(named:"close"), for: .normal)
+    }
+    
     
     func reloadBooks() {
         //self.expanded = Array(repeating: true, count: API.currentUser.bookShelf.count)
@@ -120,7 +135,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
         
         let label = UILabel(frame: CGRect(x: 17, y: 0, width: 200, height: headerHeight))
-        label.text = API.currentUser.bookShelf[section].title
+        label.text = (friendMode) ? API.currentShowingFriend?.user.bookShelf[section].title :  API.currentUser.bookShelf[section].title
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         let expandImage = UIImage(named: "arrow_back")!
@@ -186,10 +201,21 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell",for: indexPath) as! MainTableCell
         cell.mainViewController = self
-        if (API.currentUser.bookShelf.count > 0) {
-            cell.shelfInfo = API.currentUser.bookShelf[indexPath.section]
-            cell.bookInfo = (cell.shelfInfo?.books.map{API.currentBooks[Book.find(withToken: $0)]})!
+        
+        if (friendMode) {
+            if let info = API.currentShowingFriend {
+                if (info.user.bookShelf.count > 0) {
+                    cell.shelfInfo = info.user.bookShelf[indexPath.section]
+                    cell.bookInfo = (cell.shelfInfo?.books.map{info.books[Book.find(withToken: $0,at: info.books)]})!
+                }
+            }
+        } else {
+            if (API.currentUser.bookShelf.count > 0) {
+                cell.shelfInfo = API.currentUser.bookShelf[indexPath.section]
+                cell.bookInfo = (cell.shelfInfo?.books.map{API.currentBooks[Book.find(withToken: $0)]})!
+            }
         }
+        
         cell.collectionView.reloadData()
        
         //print("저는 ",indexPath.row,"번 책장입니다. \n 제가 가지고 있는 책은",cell.shelfInfo?.books.count ?? 0)
