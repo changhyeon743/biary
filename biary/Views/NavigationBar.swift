@@ -41,8 +41,9 @@ class NavigationBar: UIView {
         subLbl.isHidden = true
         self.addSubview(subLbl)
         
-        line.backgroundColor = UIColor(r: 217, g: 217, b: 217)
+        line.backgroundColor = UIColor(r: 220, g: 220, b: 220)
         line.isHidden = true
+        
         self.addSubview(line)
         
         

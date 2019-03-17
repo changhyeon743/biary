@@ -15,9 +15,9 @@ class FriendCell: UICollectionViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     
     override func awakeFromNib() {
-        imageView.layer.borderWidth = 1
+        //imageView.layer.borderWidth = 1
         imageView.layer.masksToBounds = false
-        imageView.layer.borderColor = UIColor.black.cgColor
+        //imageView.layer.borderColor = UIColor.black.cgColor
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
     }

@@ -38,10 +38,19 @@ class MainVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
-        
+        navigationBar.line.isHidden = false
         navigationBar.settingBtnHandler = {
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
-            self.present(vc, animated: true, completion: nil)
+            let action = UIAlertController(title: "설정", message: "", preferredStyle: .actionSheet)
+            action.addAction(UIAlertAction(title: "전체 설정", style: .default, handler: { _ in
+                print("전체 설정")
+            }))
+            action.addAction(UIAlertAction(title: "책장 설정", style: .default, handler: { _ in
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
+                self.present(vc, animated: true, completion: nil)
+            }))
+            
+            self.present(action, animated: true, completion: nil)
+            
             //self.performSegue(withIdentifier: "bookshelfSegue", sender: nil)
         }
         
@@ -76,7 +85,7 @@ class MainVC: UIViewController {
     }
     
     func makeToFriendMode() {
-        self.navigationBar.titleLbl.text = API.currentShowingFriend?.user.name ?? "" + "의 서재"
+        self.navigationBar.titleLbl.text = API.currentShowingFriend!.user.name
         self.navigationBar.settingBtnHandler = {
             self.dismiss(animated: true, completion: nil)
         }

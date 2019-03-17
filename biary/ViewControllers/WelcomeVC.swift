@@ -71,8 +71,13 @@ class WelcomeVC: UIViewController {
     }
     
     @IBAction func nonLoginPressed(_ sender: Any) {
-        
-        gotoMain()
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let vc  = storyboard.instantiateInitialViewController() as! UITabBarController
+        //        let ad = UIApplication.shared.delegate as! AppDelegate
+        //        ad.setRootVC(to: vc)
+        self.view.window?.rootViewController = vc
+        self.present(vc, animated: true, completion: nil)
+        //gotoMain()
         //vc.dismiss(animated: true, completion: nil)
 
     }

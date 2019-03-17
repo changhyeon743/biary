@@ -26,7 +26,11 @@ class BookDetailVC: UIViewController {
     var bookInfo: Book!
     var contents: [Content] {
         get {
-            return API.currentContents.filter{$0.bookToken == self.bookInfo.token}
+            if (bookInfo.writerToken == API.currentUser.token) { //자기 책일경우
+                return API.currentContents.filter{$0.bookToken == self.bookInfo.token}
+            } else {
+                return API.currentShowingFriend!.contents.filter{$0.bookToken == self.bookInfo.token}
+            }
         }
     }
     
