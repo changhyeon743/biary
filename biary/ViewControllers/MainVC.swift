@@ -8,7 +8,9 @@
 
 import UIKit
 import Alamofire
+import Disk
 import SwiftyJSON
+import FBSDKLoginKit
 
 class MainVC: UIViewController {
     @IBOutlet weak var tableView:UITableView!
@@ -17,7 +19,7 @@ class MainVC: UIViewController {
     //var expanded = [true,true,true]
     var bookshelfs: [Bookshelf] {
         get {
-            return API.currentUser.bookShelf
+            return API.currentUser?.bookShelf ?? []
         }
     }
     var navigationBar:NavigationBar!
@@ -38,16 +40,21 @@ class MainVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
+        navigationBar.searchBtn.isHidden = true
         navigationBar.line.isHidden = false
         navigationBar.settingBtnHandler = {
-            let action = UIAlertController(title: "설정", message: "", preferredStyle: .actionSheet)
+            let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             action.addAction(UIAlertAction(title: "전체 설정", style: .default, handler: { _ in
-                print("전체 설정")
+                print(API.currentBooks.count)
+                do {try Disk.clear(.documents)} catch {}
+                FBSDKLoginManager().logOut()
+                self.tableView.reloadData()
             }))
             action.addAction(UIAlertAction(title: "책장 설정", style: .default, handler: { _ in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
                 self.present(vc, animated: true, completion: nil)
             }))
+            action.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
             
             self.present(action, animated: true, completion: nil)
             

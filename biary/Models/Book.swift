@@ -10,6 +10,7 @@
 import Foundation
 import SwiftyJSON
 
+
 /*
  "title": "나미야 잡화점의 기적",
  "author": "히가시노 게이고",
@@ -22,7 +23,7 @@ import SwiftyJSON
  "date": "2018-01-01T00:00:00.000Z",
  
  */
-struct Book {
+struct Book:Codable {
     var title: String
     var author: String
     var publisher: String

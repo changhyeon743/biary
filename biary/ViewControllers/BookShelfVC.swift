@@ -36,7 +36,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
 
     @IBAction func addBtnPressed(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "책장 추가", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "책장 추가", message: nil, preferredStyle: .alert)
         alertController.addTextField { (textfield) in
             textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요."
         }
@@ -77,7 +77,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
             API.currentUser.bookShelf.remove(at: indexPath.row)
             // Delete the row from the TableView tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
-            API.User.update { (json) in
+            API.user.update { (json) in
                 //print(json)
             }
             
@@ -90,7 +90,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         API.currentUser.bookShelf.remove(at: fromIndexPath.row)
         API.currentUser.bookShelf.insert(rowToMove, at: toIndexPath.row)
         
-        API.User.update { (json) in
+        API.user.update { (json) in
             //print(json)
         }
         

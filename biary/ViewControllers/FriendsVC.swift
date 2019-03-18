@@ -24,7 +24,8 @@ class FriendsVC: UIViewController {
         
        
         
-        navigationBar.settingBtn.isHidden = false
+        navigationBar.settingBtn.isHidden = true
+        navigationBar.line.isHidden = false
         navigationBar.addBtn.isHidden = true
         navigationBar.searchBtn.isHidden = true
         navigationBar.setConstraints()

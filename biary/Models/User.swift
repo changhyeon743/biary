@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftyJSON
-
+import FBSDKCoreKit
 /*
  "user": {
  "_id": "5c3c3806e64a560e43b651e6",
@@ -37,7 +37,7 @@ import SwiftyJSON
  }
  
  */
-struct User {
+struct User: Codable {
     var name: String
     var facebookId: String
     var profileURL: String
@@ -57,6 +57,19 @@ extension User {
         
         //print(user)
         return user
+    }
+    
+    static func makeInitialUser(withName name:String, profile: String) -> User{
+        let facebookid = FBSDKAccessToken.current()?.userID ?? "null"
+        let user = User(name: name, facebookId: facebookid, profileURL: profile, token: Token.create(), bookShelf: [])
+        
+        return user;
+    }
+    
+    static func makeInitialUser() -> User{
+        let user = User(name: "이름 없음", facebookId: "null", profileURL: "", token: Token.create(), bookShelf: [])
+        
+        return user;
     }
 }
 

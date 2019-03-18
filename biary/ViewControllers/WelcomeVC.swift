@@ -21,13 +21,9 @@ class WelcomeVC: UIViewController {
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(loginBtnPressed(_:)))
         facebookBtn.addGestureRecognizer(gesture)
         
-        API.User.fetch(token: "changhyeontoken123") { (temp) in
-            let json = temp["data"]
-            //print(json)
-            API.User.setUser(fromJSON: json)
-            API.User.setBooks(fromJSON: json)
-            API.User.setContents(fromJSON: json)
-        }
+        //첫유저가 들어와서 로그인 없이 계속을 누르면 initialize가 나오겎지? 그럼 loadall에서 새로운 계정일 경우에서만
+        //서버에 add 전송하면 되겠지
+        
         // Do any additional setup after loading the view.
     }
     
@@ -43,32 +39,24 @@ class WelcomeVC: UIViewController {
                     }
                     if(fbloginresult.grantedPermissions.contains("user_friends"))
                     {
-                        self.getFBUserData()
+                        API.facebook.getFBfriendData()
+                    }
+                    if(fbloginresult.grantedPermissions.contains("public_profile")) {
+                        API.facebook.getFBUserData()
+                        print(API.currentUser)
                     }
                     
                     self.gotoMain()
                 }
             }
         } else {
-            self.getFBUserData()
+            API.facebook.getFBfriendData()
             self.gotoMain()
         }
         
         
     }
     
-    func getFBUserData(){
-        if((FBSDKAccessToken.current()) != nil){
-            
-            FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
-                if (error == nil){
-                    //everything works print the user data
-                    API.currentFriends = Friend.transform(fromJSON: JSON(result)["data"])
-                    print(API.currentFriends)
-                }
-            })
-        }
-    }
     
     @IBAction func nonLoginPressed(_ sender: Any) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

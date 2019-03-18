@@ -15,6 +15,7 @@ pod 'UITextView+Placeholder'
 pod 'SDWebImage', '~> 4.0'
 pod 'FacebookCore'
     pod 'FBSDKLoginKit'
+    pod 'Disk', '~> 0.4.0'
 
 
 end

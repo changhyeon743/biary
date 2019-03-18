@@ -8,6 +8,8 @@
 
 import UIKit
 import FacebookCore
+import FBSDKCoreKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +20,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = vc;
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
+        
+
+        
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        API.data.loadAll()
+        if let loggedInUsingFBTokenCheck = FBSDKAccessToken.current(){
+            //User is already logged-in. Please do your additional code/task.
+            print(loggedInUsingFBTokenCheck)
+            
+            setRootVC(to: UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController)
+        }else{
+            //User is not logged-in. Allow the user for login using FB.
+        }
         return true
     }
+//    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        // Override point for customization after application launch.
+//
+//        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController
+//        print(vc)
+//        print("Dfsdafdfsadaffsdf")
+//        self.window?.rootViewController = vc
+//        self.window?.makeKeyAndVisible()
+//
+////        if let loggedInUsingFBTokenCheck = FBSDKAccessToken.current(){
+////            //User is already logged-in. Please do your additional code/task.
+////            setRootVC(to: UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController)
+////        }else{
+////            //User is not logged-in. Allow the user for login using FB.
+////        }
+//        return true
+//    }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         let appId: String = SDKSettings.appId

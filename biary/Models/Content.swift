@@ -13,7 +13,7 @@ import SwiftyJSON
 /*
 { "_id" : ObjectId("5c3a3def713d0f6e3d7fdba6"), "title" : "최고의 문장", "article" : "시험은 사람을 판단하지 못해.", "bookToken" : "token2", "date" : ISODate("2018-01-01T00:00:00Z"), "__v" : 0 }
  */
-struct Content {
+struct Content: Codable {
     var title: String
     var article: String
     var bookToken: String

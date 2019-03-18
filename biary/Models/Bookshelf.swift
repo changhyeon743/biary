@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-struct Bookshelf {
+struct Bookshelf:Codable {
     var title: String
     var books: [String]
     var expanded: Bool

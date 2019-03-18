@@ -107,7 +107,7 @@ class BookShelfSelectingVC: UIViewController {
     }
 
     @objc func addBtnPressed(sender:Any) {
-        let alertController = UIAlertController(title: "책장 추가", message: "", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "책장 추가", message: nil, preferredStyle: .alert)
         alertController.addTextField { (textfield) in
             textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요."
         }

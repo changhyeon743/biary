@@ -11,22 +11,32 @@ import SwiftyJSON
 
 class API {
     static var base_url = "http://13.125.252.104:9000"
-    static var Auth = AuthAPI()
-    static var User = UserAPI()
+    static var auth = AuthAPI()
+    static var user = UserAPI()
+    static var facebook = FacebookAPI()
+    static var data = Datas()
 
     //static var Board = BoardAPI()
     
     static var currentJSON:JSON! = nil
     
-    static var currentUser:User! = nil
+    static var currentUser:User! = nil {
+        didSet {
+            API.data.saveUser()
+        }
+    }
     static var currentToken:String = ""
     
     static var currentBooks:[Book] = [] {
         didSet {
-            
+            API.data.saveBooks()
         }
     }
-    static var currentContents:[Content] = []
+    static var currentContents:[Content] = [] {
+        didSet {
+            API.data.saveContents()
+        }
+    }
     static var currentFriends:[Friend] = []
     
     static var currentShowingFriend:Info? = nil

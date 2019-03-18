@@ -108,7 +108,7 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     }
     
     func search() {
-        API.User.search(query: searchField.text ?? "") { (json) in
+        API.user.search(query: searchField.text ?? "") { (json) in
             self.result = Book.transformNaverBook(fromJSON: json)
             self.tableView.reloadData()
             self.view.endEditing(true)
