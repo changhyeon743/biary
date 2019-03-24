@@ -283,6 +283,9 @@
                                 <state key="normal" title="검색">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="searchBtnPressed:" destination="iC2-qa-ZAc" eventType="touchUpInside" id="b0u-tG-ioQ"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목, isbn, 작가 등" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4jb-Pr-sOD">
                                 <rect key="frame" x="139" y="228" width="97" height="30"/>

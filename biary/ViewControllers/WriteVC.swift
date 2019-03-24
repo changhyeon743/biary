@@ -9,6 +9,8 @@
 import UIKit
 import Spring
 import UITextView_Placeholder
+import ActionSheetPicker_3_0
+
 
 class WriteVC: UIViewController {
     
@@ -29,6 +31,11 @@ class WriteVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(titlePressed(_:)))
+        titleLbl.isUserInteractionEnabled = true
+        titleLbl.addGestureRecognizer(gesture)
+        
+        contentTextView.becomeFirstResponder()
         line.isHidden = true
         createViews()
         setConstraints()
@@ -45,6 +52,59 @@ class WriteVC: UIViewController {
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    @objc func titlePressed(_ sender: Any) {
+        print("hhh")
+        let questionList = ["( )p.","책의 시작","생각","좋은 점","나쁜 점","문장","직접 입력"]
+        var initialSelection = questionList.index(of: self.titleLbl.text ?? "")
+        if initialSelection == nil {
+            initialSelection = 0
+        }
+        
+        
+        if let action = ActionSheetStringPicker(title: "글 제목 선택", rows: questionList
+            , initialSelection: initialSelection!, doneBlock: {
+                picker, indexes, values in
+                
+                
+                let selectedText = values! as! String
+                
+                if (selectedText == "직접 입력" || selectedText == "( )p.") {
+                    let alert = UIAlertController(title: "입력", message: nil, preferredStyle: .alert)
+                    let backAction = UIAlertAction(title: "취소", style: .default)
+                    let okAction = UIAlertAction(title: "확인", style: .default) { (alertAction) in
+                        let textField = alert.textFields![0] as UITextField
+                        
+                        self.titleLbl.text = textField.text!
+                        if (selectedText == "( )p.") {
+                            self.titleLbl.text = textField.text!+" P."
+                        }
+                    }
+                    
+                    alert.addTextField { (textField) in
+                        textField.text = ""
+                        textField.placeholder = "제목을 직접 입력해주세요"
+                        if (selectedText == "( )p.") {
+                            textField.keyboardType = .numberPad
+                            textField.placeholder = "페이지를 직접 입력해주세요"
+                        }
+                    }
+                    
+                    alert.addAction(backAction)
+                    alert.addAction(okAction)
+                    
+                    self.present(alert, animated:true, completion: nil)
+                    return
+                }
+                
+                self.titleLbl.text = selectedText
+                return
+        }, cancel: { ActionStringCancelBlock in return }, origin: titleLbl) {
+            
+            action.toolbarButtonsColor = UIColor.mainColor
+            action.show()
+        }
     }
     
     func setContent() {
@@ -152,7 +212,9 @@ class WriteVC: UIViewController {
         } else {
             Content.edit(title: title, article: content, bookToken: bookInfo.token, contentToken: contentInfo!.token)
         }
-        
+        API.user.update { (json) in
+            print(json["status"].intValue)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -182,7 +244,7 @@ class WriteVC: UIViewController {
 }
 
 extension WriteVC : UITextViewDelegate {
-    func addToolBar(textView: UITextView){
+    func addToolBar(textView: UITextView) {
         
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true

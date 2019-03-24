@@ -25,12 +25,16 @@ extension Content {
     static func transformContent(fromJSON temp:JSON) -> [Content] {
         let json = temp.arrayValue
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        let firstDate = json[0]["date"].stringValue;
+        
+        print(firstDate,"\n","thisis : ", dateFormatter.date(from: firstDate))
         
         let contents = json.map{Content(title: $0["title"].stringValue,
                                         article: $0["article"].stringValue,
                                         bookToken: $0["bookToken"].stringValue,
-                                        date: dateFormatter.date(from: $0["date"].stringValue) ?? Date(),
+                                        date: dateFormatter.date(from: $0["date"].stringValue)!,
                                         token: $0["token"].stringValue)}
         
         return contents

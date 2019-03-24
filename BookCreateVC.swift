@@ -144,7 +144,8 @@ class BookCreateVC: UIViewController {
             return
         }
         let isbn = importedBook?.isbn ?? ""
-        let imageLink = importedBook?.imageURL ?? ""
+        var imageLink = importedBook?.imageURL ?? ""
+        imageLink = imageLink.components(separatedBy: "?")[0]
         if (bookshelfs.count == 0) {
             self.bookShelfsBtn.animation = "shake"
             self.bookShelfsBtn.force = 0.5

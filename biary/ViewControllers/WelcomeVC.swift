@@ -42,11 +42,12 @@ class WelcomeVC: UIViewController {
                         API.facebook.getFBfriendData()
                     }
                     if(fbloginresult.grantedPermissions.contains("public_profile")) {
-                        API.facebook.getFBUserData()
-                        print(API.currentUser)
+                        API.facebook.getFBUserData(welcomeVC: self)
                     }
+                   
                     
-                    self.gotoMain()
+                    
+                    
                 }
             }
         } else {
@@ -57,6 +58,20 @@ class WelcomeVC: UIViewController {
         
     }
     
+    func move() {
+        print("move Action..", API.currentUser.isLogined)
+        if (API.currentUser.isLogined) {
+            let alert = UIAlertController(title: "오류", message: "다른 기기에서 사용중인 아이디입니다.\n 계속하려면 기존의 기기 설정에서 로그아웃 해주세요.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+            FBSDKLoginManager().logOut()
+        } else {
+            //로그인이 안되있었을경우 (정상적)
+            API.currentUser.isLogined = true
+            self.gotoMain()
+        }
+    }
     
     @IBAction func nonLoginPressed(_ sender: Any) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

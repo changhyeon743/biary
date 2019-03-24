@@ -104,7 +104,6 @@ class BookDetailVC: UIViewController {
         headerView.date = bookInfo.date
         headerView.imageView.sd_setImage(with: URL(string: bookInfo.imageURL), completed: nil)
         
-        
         tableView.tableHeaderView = nil
         tableView.rowHeight = UITableView.automaticDimension
         tableView.addSubview(headerView)
@@ -183,7 +182,12 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DetailCell
         cell.title = contents[indexPath.row].title
-        cell.content = contents[indexPath.row].article
+        let attributedString = NSMutableAttributedString(string: contents[indexPath.row].article)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 2.5
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        
+        cell.contentLabel.attributedText = attributedString
         cell.dateLabel.text = contents[indexPath.row].date.getDate()
         return cell
     }

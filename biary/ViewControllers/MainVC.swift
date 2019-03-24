@@ -19,7 +19,12 @@ class MainVC: UIViewController {
     //var expanded = [true,true,true]
     var bookshelfs: [Bookshelf] {
         get {
-            return API.currentUser?.bookShelf ?? []
+            if (friendMode) {
+                return API.currentShowingFriend?.user.bookShelf ?? []
+            } else {
+                return API.currentUser?.bookShelf ?? []
+            }
+            
         }
     }
     var navigationBar:NavigationBar!
@@ -45,9 +50,10 @@ class MainVC: UIViewController {
         navigationBar.settingBtnHandler = {
             let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             action.addAction(UIAlertAction(title: "전체 설정", style: .default, handler: { _ in
-                print(API.currentBooks.count)
-                do {try Disk.clear(.documents)} catch {}
-                FBSDKLoginManager().logOut()
+//                print(API.currentBooks.count)
+//                do {try Disk.clear(.documents)} catch {}
+//                FBSDKLoginManager().logOut()
+//                
                 self.tableView.reloadData()
             }))
             action.addAction(UIAlertAction(title: "책장 설정", style: .default, handler: { _ in

@@ -10,9 +10,6 @@ import UIKit
 
 class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPreviewingDelegate {
     
-    
-    
-    
     var navigationBar:NavigationBar!
     
     var searchWithBarcodeBtn: UIButton!
@@ -105,6 +102,11 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         search()
         return false
+    }
+    
+    
+    @IBAction func searchBtnPressed(_ sender: UIButton) {
+        search()
     }
     
     func search() {

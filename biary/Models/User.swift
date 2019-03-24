@@ -40,6 +40,7 @@ import FBSDKCoreKit
 struct User: Codable {
     var name: String
     var facebookId: String
+    var isLogined: Bool
     var profileURL: String
     var token: String
     var bookShelf: [Bookshelf]
@@ -51,6 +52,7 @@ extension User {
         
         let user = User(name: json["name"].stringValue,
                         facebookId: json["facebookId"].stringValue,
+                        isLogined: json["isLogined"].boolValue,
                         profileURL: json["profileURL"].stringValue,
                         token: json["token"].stringValue,
                         bookShelf: json["bookShelf"].arrayValue.map{Bookshelf.transformBookshelf(fromJSON: $0)})
@@ -61,13 +63,13 @@ extension User {
     
     static func makeInitialUser(withName name:String, profile: String) -> User{
         let facebookid = FBSDKAccessToken.current()?.userID ?? "null"
-        let user = User(name: name, facebookId: facebookid, profileURL: profile, token: Token.create(), bookShelf: [])
+        let user = User(name: name, facebookId: facebookid,isLogined: false, profileURL: profile, token: Token.create(), bookShelf: [])
         
         return user;
     }
     
     static func makeInitialUser() -> User{
-        let user = User(name: "이름 없음", facebookId: "null", profileURL: "", token: Token.create(), bookShelf: [])
+        let user = User(name: "이름 없음", facebookId: "null",isLogined: false, profileURL: "", token: Token.create(), bookShelf: [])
         
         return user;
     }

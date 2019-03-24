@@ -31,24 +31,46 @@ class UserAPI {
             })
     }
     func update(completion:@escaping(JSON)->Void) {
-        UserAPI.getJSON()
-        //        let headers: HTTPHeaders = [
-        //            "Content-Type": "application/x-www-form-urlencoded"
-        //        ]
-        //        let parameters = [
-        //            "name" : name,
-        //            "facebookId" : facebookId,
-        //            "profileURL" : profileURL,
-        //            "token" : (token.isEmpty) ? Token.create(length: 15) : token
-        //        ]
-        //
-        //        Alamofire.request("\(API.base_url)/auth/register",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
-        //            .responseJSON(completionHandler: { (response) in
-        //                //1. JSON 변환
-        //                if let value = response.result.value,response.result.isSuccess {
-        //                    completion(JSON(value))
-        //                }
-        //            })
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+        let user = try? encoder.encode(Complete_data.make())
+        
+        
+        if let str = user, let jsonString = String(data: str, encoding: .utf8) {
+                    let headers: HTTPHeaders = [
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    ]
+            print(jsonString)
+                    let parameters = [
+                        "data" : jsonString
+                    ]
+            
+                    Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+                        .responseJSON(completionHandler: { (response) in
+                            //1. JSON 변환
+                            if let value = response.result.value,response.result.isSuccess {
+                                completion(JSON(value))
+                            }
+                        })
+
+        }
+    }
+    
+    func isLogined(facebookId: String="",completion:@escaping (JSON)->Void) {
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        let parameters = [
+            "facebookId": facebookId
+        ]
+        
+        Alamofire.request("\(API.base_url)/auth/isLogined",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+            .responseJSON(completionHandler: { (response) in
+                //1. JSON 변환
+                if let value = response.result.value,response.result.isSuccess {
+                    completion(JSON(value))
+                }
+            })
     }
     
     func fetch(token: String="",completion:@escaping (JSON)->Void) {
@@ -66,8 +88,6 @@ class UserAPI {
                     completion(JSON(value))
                 }
             })
-        
-        
     }
     
     func fetch_friends(friends:[String],completion:@escaping (JSON)->Void) {

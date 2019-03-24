@@ -55,6 +55,7 @@ class MainTableCell: UITableViewCell {
                         let real = UIAlertController(title: "정말 삭제하시겠습니까?", message: "삭제한 책은 복구할 수 없습니다.", preferredStyle: .alert);
                         real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
                             Book.delete(withToken: cb.token);
+                            self.mainViewController.tableView.reloadData()
                         }))
                         real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
                         self.mainViewController.present(real, animated: true, completion: nil)
