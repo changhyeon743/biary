@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else{
             //User is not logged-in. Allow the user for login using FB.
         }
+        
+        
         return true
     }
 //    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -57,58 +57,55 @@ class Datas {
         }
     }
     
-    func loadBooks() -> [Book]? {
+    func loadBooks() -> [Book] {
         
-        do {
-            let books = try Disk.retrieve("datas/books.json", from: .documents, as: [Book].self)
-            return books
-        } catch {
-            
+        var books = try? Disk.retrieve("datas/books.json", from: .documents, as: [Book].self)
+//        API.user.fetch(token: "1VJCNGZAdo0H1D6") { (json) in
+//            books = Book.transformBook(fromJSON: JSON(json)["data"]["books"])
+//        }
+        if let book = books{
+            var flag = false
+            for (index,i) in book.enumerated() {
+                if i.isPublic == nil {
+                    books?[index].isPublic = true
+                    flag = true
+                }
+                if i.date == nil {
+                    books?[index].date = Date()
+                    flag = true
+                }
+            }
+            if flag {
+                //새로운 변수가 추가됐음
+                API.data.saveBooks()
+            }
         }
         
-        return nil
+        return books ?? []
     }
     
-    func loadUser() -> User? {
+    func loadUser() -> User {
+        let user = try? Disk.retrieve("datas/user.json", from: .documents, as: User.self)
+        return user ?? User.makeInitialUser()
         
-        do {
-            let user = try Disk.retrieve("datas/user.json", from: .documents, as: User.self)
-            return user
-        } catch {
-            
-        }
-        
-        return nil
     }
     
-    func loadContents() -> [Content]? {
+    func loadContents() -> [Content] {
+        let contents = try? Disk.retrieve("datas/contents.json", from: .documents, as: [Content].self)
+        return contents ?? []
         
-        do {
-            let contents = try Disk.retrieve("datas/contents.json", from: .documents, as: [Content].self)
-            return contents
-        } catch {
-            
-        }
-        
-        return nil
     }
     
     func loadAll() {
-        API.currentBooks = API.data.loadBooks() ?? []
-        if let user = API.data.loadUser() {
-            API.currentUser = user
-        } else {
-            API.currentUser = User.makeInitialUser()
-            API.user.register(name: API.currentUser.name, facebookId: API.currentUser.facebookId, profileURL: API.currentUser.profileURL, token: API.currentUser.token) { (json) in
-                print(json);
-                print(API.currentUser.token)
-            }
-        }
+        API.currentBooks = API.data.loadBooks()
+        API.currentUser = API.data.loadUser()
         if(FBSDKAccessToken.current() != nil) {
             API.facebook.getFBfriendData()
         }
         
-        print(API.currentFriends)
-        API.currentContents = API.data.loadContents() ?? []
+        print(API.currentBooks)
+        API.currentContents = API.data.loadContents()
+        
+        
     }
 }

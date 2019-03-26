@@ -11,6 +11,8 @@ import SwiftyJSON
 import Alamofire
 
 class UserAPI {
+    
+    
     func register(name: String, facebookId: String, profileURL: String, token: String,completion:@escaping(JSON)->Void) {
         let headers: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"

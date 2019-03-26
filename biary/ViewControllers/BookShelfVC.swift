@@ -78,7 +78,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
             // Delete the row from the TableView tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
             API.user.update { (json) in
-                //print(json)
+                //
             }
             
             tableView.reloadData()

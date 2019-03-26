@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import ActionSheetPicker_3_0
 
 class BookDetailVC: UIViewController {
     
@@ -34,6 +35,11 @@ class BookDetailVC: UIViewController {
         }
     }
     
+    var sortedContents:[Content] = [Content]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -43,13 +49,14 @@ class BookDetailVC: UIViewController {
         setNavigationBar()
         tabBarController?.tabBar.isHidden = true;
         headerHeight = UIWindow().screen.bounds.height * 0.4
-        
+        sortedContents = contents
         //ratio
         self.setUpHeaderView()
         tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
+        sortedContents = contents
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -72,14 +79,90 @@ class BookDetailVC: UIViewController {
         customNavigationBar = DetailNavigationBar(frame: CGRect.zero)
         self.view.addSubview(customNavigationBar)
         
-        
+        customNavigationBar.peopleButton.isHidden = true
+        customNavigationBar.moreButton.setImage(UIImage(named: "setting"), for: .normal)
         customNavigationBar.backBtnHandler = {
             print("backButton button pressed")
             //self.dismiss(animated: true, completion: nil)
             self.navigationController?.popViewController(animated: true)
         }
         customNavigationBar.moreBtnHandler = {
-            print("More button pressed")
+            let cb = self.bookInfo!
+            let actionSheet = UIAlertController(title: cb.title, message: cb.description, preferredStyle: .actionSheet)
+            let action = UIAlertAction(title: "공유", style: .default, handler: { _ in
+            })
+            
+            actionSheet.addAction(UIAlertAction(title: "책일기 정렬", style: .default, handler: { _ in
+                if let action = ActionSheetStringPicker(title: "책일기 정렬", rows: ["오래된 순","최신 순","페이지 순"]
+                    , initialSelection: 0, doneBlock: {
+                        picker, indexes, values in
+                        
+                        
+                        let selectedText = values! as! String
+                        switch selectedText {
+                        case "페이지 순":
+                            self.sortedContents = self.contents.filter { $0.title.range(of: " P.") != nil }
+                            //191 P. 를 191로 만들고 나서 int로 비교
+                            self.sortedContents = self.sortedContents.sorted( by: {
+                                guard let title0 = Int($0.title.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) else { return false }
+                                guard let title1 = Int($1.title.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) else { return false }
+                                
+                                return title0 < title1
+                            })
+                            break
+                        //최신순
+                        case "최신 순":
+                            self.sortedContents = self.contents.sorted( by: {
+                                $0.date > $1.date
+                            })
+                            break
+                            
+                        //오래된 순
+                        case "오래된 순":
+                            self.sortedContents = self.contents.sorted( by: {
+                                $0.date < $1.date
+                            })
+                            break
+                        default:
+                            self.sortedContents = self.contents
+                            break;
+                        }
+                        return
+                }, cancel: { ActionStringCancelBlock in return }, origin: self.customNavigationBar.moreButton) {
+                    
+                    action.toolbarButtonsColor = UIColor.mainColor
+                    action.show()
+                }
+            }))
+            
+            //                let image = UIImage(named: "ssss")
+            //                actionSheet.setValue(image?.withRenderingMode(.alwaysOriginal), forKey: "image")
+            actionSheet.addAction(action)
+            actionSheet.addAction(UIAlertAction(title: "편집", style: .default, handler: { _ in
+                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
+                vc.title = "책 편집하기"
+                vc.bookInfo = cb;
+                self.present(vc, animated: true, completion: nil)
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+                let real = UIAlertController(title: "정말 삭제하시겠습니까?", message: "삭제한 책은 복구할 수 없습니다.", preferredStyle: .alert);
+                
+                real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+                real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
+                    Book.delete(withToken: cb.token);
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                self.present(real, animated: true, completion: nil)
+            }))
+        
+            
+            
+            actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            
+            
+            self.present(actionSheet, animated: true, completion: nil)
+            
         }
         customNavigationBar.peopleBtnHandler = {
             print("People button pressed")
@@ -93,6 +176,9 @@ class BookDetailVC: UIViewController {
         ])
     }
     
+    
+    
+    
     func setUpHeaderView() {
         tableView.backgroundColor = UIColor.white
         headerView = tableView.tableHeaderView as? DetailHeaderView
@@ -101,7 +187,7 @@ class BookDetailVC: UIViewController {
         headerView.title = bookInfo.title
         headerView.subTitle = bookInfo.author + " . " + bookInfo.publisher
         headerView.author = bookInfo.writerName
-        headerView.date = bookInfo.date
+        headerView.date = bookInfo.date ?? Date()
         headerView.imageView.sd_setImage(with: URL(string: bookInfo.imageURL), completed: nil)
         
         tableView.tableHeaderView = nil
@@ -176,19 +262,19 @@ class BookDetailVC: UIViewController {
 
 extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contents.count
+        return sortedContents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! DetailCell
-        cell.title = contents[indexPath.row].title
-        let attributedString = NSMutableAttributedString(string: contents[indexPath.row].article)
+        cell.title = sortedContents[indexPath.row].title
+        let attributedString = NSMutableAttributedString(string: sortedContents[indexPath.row].article)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 2.5
         attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
         
         cell.contentLabel.attributedText = attributedString
-        cell.dateLabel.text = contents[indexPath.row].date.getDate()
+        cell.dateLabel.text = sortedContents[indexPath.row].date.getDate()
         return cell
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -198,8 +284,26 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "WriteVC") as! WriteVC
         vc.bookInfo = self.bookInfo
-        vc.contentInfo = self.contents[indexPath.row]
+        vc.contentInfo = self.sortedContents[indexPath.row]
         self.present(vc, animated: true, completion: nil)
     }
-    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (bookInfo.writerToken == API.currentUser.token) {
+            if editingStyle == .delete {
+                // Delete the row from the data source
+                
+                for (i,item) in API.currentContents.enumerated() {
+                    if item.token == sortedContents[indexPath.row].token {
+                        API.currentContents.remove(at: i)
+                    }
+                }
+                // Delete the row from the TableView tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                
+                
+                sortedContents = contents
+                tableView.reloadData()
+            }
+        }
+        
+    }
 }

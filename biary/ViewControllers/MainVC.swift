@@ -41,7 +41,6 @@ class MainVC: UIViewController {
         super.viewDidLoad()
     
         
-        
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
@@ -49,16 +48,17 @@ class MainVC: UIViewController {
         navigationBar.line.isHidden = false
         navigationBar.settingBtnHandler = {
             let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            action.addAction(UIAlertAction(title: "전체 설정", style: .default, handler: { _ in
-//                print(API.currentBooks.count)
-//                do {try Disk.clear(.documents)} catch {}
-//                FBSDKLoginManager().logOut()
-//                
-                self.tableView.reloadData()
-            }))
+            
             action.addAction(UIAlertAction(title: "책장 설정", style: .default, handler: { _ in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
                 self.present(vc, animated: true, completion: nil)
+            }))
+            action.addAction(UIAlertAction(title: "전체 설정", style: .default, handler: { _ in
+                //                print(API.currentBooks.count)
+                //                do {try Disk.clear(.documents)} catch {}
+                //                FBSDKLoginManager().logOut()
+                //
+                self.tableView.reloadData()
             }))
             action.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
             
@@ -93,6 +93,7 @@ class MainVC: UIViewController {
         if (friendMode == true) {
             makeToFriendMode()
         }
+        
         
         
     }
@@ -228,13 +229,21 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
             if let info = API.currentShowingFriend {
                 if (info.user.bookShelf.count > 0) {
                     cell.shelfInfo = info.user.bookShelf[indexPath.section]
-                    cell.bookInfo = (cell.shelfInfo?.books.map{info.books[Book.find(withToken: $0,at: info.books)]})!
+                    cell.shelfIndex = indexPath.section
+                    
+                    cell.bookInfo = (cell.shelfInfo?.books.map{info.books[Book.find(withToken: $0,at: info.books)]}) ?? []
+                    
                 }
             }
         } else {
             if (API.currentUser.bookShelf.count > 0) {
                 cell.shelfInfo = API.currentUser.bookShelf[indexPath.section]
-                cell.bookInfo = (cell.shelfInfo?.books.map{API.currentBooks[Book.find(withToken: $0)]})!
+                cell.shelfIndex = indexPath.section
+                if (API.currentBooks.count > 0) {
+                    cell.bookInfo = (cell.shelfInfo?.books.map{API.currentBooks[Book.find(withToken: $0)]}) ?? []
+                }
+                
+                
             }
         }
         

@@ -67,6 +67,9 @@ class BookCreateVC: UIViewController {
         
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "책 추가하기")
+        if title != nil {
+            navigationBar.titleLbl.text = title!
+        }
         
         navigationBar.settingBtnHandler = {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
@@ -157,7 +160,7 @@ class BookCreateVC: UIViewController {
         if (bookInfo == nil) {
             Book.append(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs)
         } else if let book = bookInfo {
-            Book.edit(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs, bookToken: book.token)
+            Book.edit(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs, isPublic: true, bookToken: book.token)
         }
         
         

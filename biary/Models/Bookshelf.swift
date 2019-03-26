@@ -26,6 +26,8 @@ extension Bookshelf {
         return bookshelf
     }
     
+    
+    
     static func append(title:String) {
         let bookshelf = Bookshelf(title: title, books: [], expanded: true)
         API.currentUser.bookShelf.append(bookshelf);

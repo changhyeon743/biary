@@ -214,6 +214,13 @@ class WriteVC: UIViewController {
         }
         API.user.update { (json) in
             print(json["status"].intValue)
+            if (json["status"].intValue != 200) {
+                let action = UIAlertController(title: "앗! 서버와 통신 중에 문제가 발생했습니다!", message: nil, preferredStyle: .alert)
+                
+                action.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                
+                self.present(action, animated: true, completion: nil)
+            }
         }
     }
     

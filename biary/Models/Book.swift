@@ -33,7 +33,8 @@ struct Book:Codable {
     var writerName: String
     var token: String
     var description: String
-    var date: Date
+    var date: Date?
+    var isPublic: Bool?
 }
 
 extension Book {
@@ -51,7 +52,8 @@ extension Book {
                                   writerName: $0["writerName"].stringValue,
                                   token: $0["token"].stringValue,
                                   description: $0["description"].stringValue,
-                                  date: dateFormatter.date(from: $0["date"].stringValue) ?? Date())}
+                                  date: dateFormatter.date(from: $0["date"].stringValue) ?? Date(),
+                                  isPublic: $0["isPublic"].boolValue)}
         
         //print(books)
         
@@ -61,6 +63,7 @@ extension Book {
     static func transformNaverBook(fromJSON temp:JSON) -> [Book] {
         let json = temp["items"].arrayValue
         let dateFormatter = DateFormatter()
+        
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
         let books = json.map{Book(title: $0["title"].stringValue,
@@ -72,23 +75,24 @@ extension Book {
             writerName: "",
             token: "",
             description: $0["description"].stringValue,
-            date: dateFormatter.date(from: $0["pubdate"].stringValue) ?? Date())}
+            date: dateFormatter.date(from: $0["pubdate"].stringValue) ?? Date(),
+            isPublic: true)}
         
         return books;
     }
     
     static func append(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf]) {
-        let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: Token.create(), description: description, date: Date())
+        let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: Token.create(), description: description, date: Date(),isPublic: true)
         
         API.currentBooks.append(book);
         
         Bookshelf.addBook(at: bookshelfs, bookToken: book.token)
     }
     
-    static func edit(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf], bookToken: String) {
+    static func edit(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf],isPublic: Bool, bookToken: String) {
         
         Bookshelf.clean(bookToken: bookToken)
-        let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: bookToken, description: description, date: Date())
+        let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: bookToken, description: description, date: Date(), isPublic: isPublic)
         
         Bookshelf.addBook(at: bookshelfs, bookToken: book.token)
         API.currentBooks[Book.find(withToken: bookToken)] = book
