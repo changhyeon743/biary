@@ -15,14 +15,20 @@ struct Info {
     var books:[Book] = []
     var contents:[Content] = []
 }
-
+//친구 정보 불러올 때
 extension Info {
     static func make(data: JSON) -> Info {
         let json = data["data"]
-        let temp = Info(user: User.transformUser(fromJSON: json["user"]),
+        var temp = Info(user: User.transformUser(fromJSON: json["user"]),
                         books: Book.transformBook(fromJSON: json["books"]),
                         contents: Content.transformContent(fromJSON: json["contents"]))
         
+//        print(privates)
+//        for i in privates {
+//            print(i)
+//            temp.user.bookShelf = Bookshelf.clean(from: temp.user.bookShelf, bookToken: i.token)
+//        }
+//        print(temp.user.bookShelf)
         return temp;
     }
 }

@@ -71,6 +71,7 @@ class FacebookAPI {
                 API.user.register(name: API.currentUser.name, facebookId: API.currentUser.facebookId, profileURL: API.currentUser.profileURL, token: API.currentUser.token) { (json) in
                     print(json)
                 }
+                welcomeVC.move()
             }
         })
     }

@@ -35,6 +35,10 @@ class BookDetailVC: UIViewController {
         }
     }
     
+    var isMine: Bool {
+        return (bookInfo.writerToken == API.currentUser.token)
+    }
+    
     var sortedContents:[Content] = [Content]() {
         didSet {
             self.tableView.reloadData()
@@ -79,7 +83,11 @@ class BookDetailVC: UIViewController {
         customNavigationBar = DetailNavigationBar(frame: CGRect.zero)
         self.view.addSubview(customNavigationBar)
         
-        customNavigationBar.peopleButton.isHidden = true
+        customNavigationBar.peopleButton.isHidden = !isMine
+        
+        customNavigationBar.peopleButton.setTitle("공개", for: .normal)
+        customNavigationBar.peopleButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+
         customNavigationBar.moreButton.setImage(UIImage(named: "setting"), for: .normal)
         customNavigationBar.backBtnHandler = {
             print("backButton button pressed")
@@ -165,7 +173,14 @@ class BookDetailVC: UIViewController {
             
         }
         customNavigationBar.peopleBtnHandler = {
-            print("People button pressed")
+            let a = API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic ?? true
+            API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic = !a
+            if (!a == true) {//바꾼 값
+                self.customNavigationBar.peopleButton.setTitle("공개", for: .normal)
+            } else {
+                self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
+            }
+            print(API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic)
         }
 
         NSLayoutConstraint.activate([

@@ -35,7 +35,7 @@ class DetailNavigationBar: UIView {
         
         backButton.setImage(UIImage(named:"arrow_back"), for: .normal)
         moreButton.setImage(UIImage(named:"more"), for: .normal)
-        peopleButton.setImage(UIImage(named:"people"), for: .normal)
+        //peopleButton.setImage(UIImage(named:"people"), for: .normal)
         
         backButton.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
         moreButton.addTarget(self, action: #selector(buttonAction(_:)), for: .touchUpInside)
@@ -78,10 +78,10 @@ class DetailNavigationBar: UIView {
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         //MoreButton
             moreButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
-            moreButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            moreButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 8),
         //People
             peopleButton.rightAnchor.constraint(equalTo: self.moreButton.leftAnchor, constant: -16),
-            peopleButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            peopleButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 8),
         ])
         
     }

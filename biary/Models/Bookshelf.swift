@@ -43,6 +43,28 @@ extension Bookshelf {
         }
     }
     
+    static func clean(from: [Bookshelf], bookToken: String) -> [Bookshelf] {
+        var bookshelf = from;
+        for (l,e) in from.enumerated() {
+            for (i,element) in e.books.enumerated() {
+                if (element == bookToken) {
+                    bookshelf[l].books.remove(at: i)
+                }
+            }
+        }
+        return bookshelf
+    }
+    
+    static func getCount(bookToken: String) -> Int{
+        
+        var count = 0;
+        for i in API.currentUser.bookShelf {
+            count += i.books.filter{$0 == bookToken}.count
+        }
+        return count;
+    }
+    
+    
     static func addBook(at bookshelfs: [Bookshelf], bookToken: String) {
         for i in bookshelfs {
             for (index,l) in API.currentUser.bookShelf.enumerated() {

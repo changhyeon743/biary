@@ -72,14 +72,30 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            // Delete the row from the data source
-            API.currentUser.bookShelf.remove(at: indexPath.row)
-            // Delete the row from the TableView tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            
-            API.user.update { (json) in
-                //
+            if (API.currentUser.bookShelf[indexPath.row].books.count>0) {
+                
+                for i in API.currentUser.bookShelf[indexPath.row].books {
+                    print(API.currentBooks[Book.find(withToken: i)].title, Bookshelf.getCount(bookToken: i))
+                    if (Bookshelf.getCount(bookToken: i) == 1) { //모든 책장 중 자기 책장에만 있으면 안됨
+                        let alert = UIAlertController(title: "계속하면 "+API.currentBooks[Book.find(withToken: i)].title+"도 사라지게 됩니다.", message: "이 책장에만 존재하는 다른 책도 함께 삭제됩니다", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "계속", style: UIAlertAction.Style.destructive, handler: {_ in
+                            
+                        }))
+                        alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            } else {
+                API.currentUser.bookShelf.remove(at: indexPath.row)
+                
+                API.user.update { (json) in
+                    
+                }
             }
+            
+            
             
             tableView.reloadData()
         }
