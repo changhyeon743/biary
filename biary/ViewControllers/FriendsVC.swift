@@ -14,7 +14,7 @@ class FriendsVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let titles = ["친구들","공개적인"]
+    let titles = ["친구들"]
     var expanded = [true,true]
     let headerHeight:CGFloat = 60;
 

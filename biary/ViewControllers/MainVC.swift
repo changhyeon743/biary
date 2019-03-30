@@ -11,6 +11,7 @@ import Alamofire
 import Disk
 import SwiftyJSON
 import FBSDKLoginKit
+import AMPopTip
 
 class MainVC: UIViewController {
     @IBOutlet weak var tableView:UITableView!
@@ -40,7 +41,7 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
+       
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
@@ -58,7 +59,8 @@ class MainVC: UIViewController {
                 //                do {try Disk.clear(.documents)} catch {}
                 //                FBSDKLoginManager().logOut()
                 //
-                self.tableView.reloadData()
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
+                self.present(vc, animated: true, completion: nil)
             }))
             action.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
             
@@ -66,6 +68,8 @@ class MainVC: UIViewController {
             
             //self.performSegue(withIdentifier: "bookshelfSegue", sender: nil)
         }
+        
+       
         
         navigationBar.addBtnHandler = {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
@@ -93,6 +97,7 @@ class MainVC: UIViewController {
         if (friendMode == true) {
             makeToFriendMode()
         }
+        
         
         
         
@@ -207,8 +212,15 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         let indexPaths = [IndexPath(row: 0, section: button.tag)]
         
         //Change
-        API.currentUser.bookShelf[button.tag].expanded = !bookshelfs[button.tag].expanded
-        
+        if (friendMode) {
+            let a = !(API.currentShowingFriend?.user.bookShelf[button.tag].expanded ?? true)
+            API.currentShowingFriend?.user.bookShelf[button.tag].expanded = a
+//            API.currentShowingFriend?.user.bookShelf[button.tag].expanded = !bookshelfs[button.tag].expanded
+        } else {
+            API.currentUser.bookShelf[button.tag].expanded = !bookshelfs[button.tag].expanded
+        }
+//
+//
         if (bookshelfs[button.tag].expanded) {
             tableView.insertRows(at: indexPaths, with: .automatic)
             turn(button: button, to: CGFloat(Double.pi))

@@ -1,6 +1,7 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.8.1)
+  - AMPopTip (3.6.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -26,6 +27,7 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3.0)
   - Alamofire
+  - AMPopTip
   - Disk (~> 0.4.0)
   - FacebookCore
   - FBSDKLoginKit
@@ -39,6 +41,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
+    - AMPopTip
     - Bolts
     - Disk
     - FacebookCore
@@ -61,6 +64,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AMPopTip: ebfa860ade372f383e8b3500d3101e8c4a4f73ce
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Disk: ef2956657d5bb56034b38b29b352170165226440
   FacebookCore: 74288d0add931d361b1596beae787ab72c438249
@@ -72,6 +76,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
 
-PODFILE CHECKSUM: dbc7dae685b17264341703ffe0c0bd616ba729d2
+PODFILE CHECKSUM: 0848388ca5d9f0524f666b80c2ac76756c13f1f3
 
 COCOAPODS: 1.5.3

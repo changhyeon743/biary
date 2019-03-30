@@ -158,7 +158,7 @@ class BookDetailVC: UIViewController {
                 
                 real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
                 real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
-                    Book.delete(withToken: cb.token);
+                    Book.remove(withToken: cb.token);
                     self.dismiss(animated: true, completion: nil)
                 }))
                 self.present(real, animated: true, completion: nil)
@@ -182,6 +182,7 @@ class BookDetailVC: UIViewController {
             }
             print(API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic)
         }
+        
 
         NSLayoutConstraint.activate([
             customNavigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -200,6 +201,7 @@ class BookDetailVC: UIViewController {
         headerView.setUpView()
         
         headerView.title = bookInfo.title
+        
         headerView.subTitle = bookInfo.author + " . " + bookInfo.publisher
         headerView.author = bookInfo.writerName
         headerView.date = bookInfo.date ?? Date()

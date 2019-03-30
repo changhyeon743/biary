@@ -28,7 +28,7 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
         super.viewDidLoad()
         
         registerForPreviewing(with: self, sourceView: tableView)
-
+        searchField.becomeFirstResponder()
         searchField.delegate = self
         navigationBar = NavigationBar(frame: CGRect.zero, title: "책 검색")
         

@@ -17,5 +17,6 @@ pod 'FacebookCore'
     pod 'FBSDKLoginKit'
     pod 'Disk', '~> 0.4.0'
 pod 'ActionSheetPicker-3.0', '~> 2.3.0'
+pod 'AMPopTip'
 
 end

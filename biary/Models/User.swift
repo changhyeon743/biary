@@ -63,13 +63,13 @@ extension User {
     
     static func makeInitialUser(withName name:String, profile: String) -> User{
         let facebookid = FBSDKAccessToken.current()?.userID ?? "null"
-        let user = User(name: name, facebookId: facebookid,isLogined: false, profileURL: profile, token: Token.create(), bookShelf: [])
+        let user = User(name: name, facebookId: facebookid,isLogined: false, profileURL: profile, token: Token.create(), bookShelf: [Bookshelf(title: "읽고 있는 책", books: [], expanded: true)])
         
         return user;
     }
     
     static func makeInitialUser() -> User{
-        let user = User(name: "이름 없음", facebookId: "null",isLogined: false, profileURL: "", token: Token.create(), bookShelf: [])
+        let user = User(name: "이름 없음", facebookId: "null",isLogined: false, profileURL: "", token: Token.create(), bookShelf: [Bookshelf(title: "읽고 있는 책", books: [], expanded: true)])
         
         return user;
     }

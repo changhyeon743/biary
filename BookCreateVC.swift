@@ -60,7 +60,7 @@ class BookCreateVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        titleField.becomeFirstResponder()
         explainTextView.textContainerInset = UIEdgeInsets.zero
         explainTextView.textContainer.lineFragmentPadding = 0
         explainTextView.placeholder = "설명"

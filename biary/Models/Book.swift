@@ -120,7 +120,7 @@ extension Book {
         }
     }
     
-    static func delete(withToken token:String) {
+    static func remove(withToken token:String) {
         API.currentBooks.remove(at: Book.find(withToken: token));
         Bookshelf.clean(bookToken: token)
     }

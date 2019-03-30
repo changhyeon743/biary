@@ -64,12 +64,24 @@
                                     <action selector="nonLoginPressed:" destination="YE3-is-Ps1" eventType="touchUpInside" id="n8d-bD-oIa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cd1-cs-Rge">
+                                <rect key="frame" x="145.5" y="624" width="84" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="개인정보처리방침">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="personalInfoBtnPressed:" destination="YE3-is-Ps1" eventType="touchUpInside" id="IN5-0C-ljc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gaj-CM-bEs" firstAttribute="leading" secondItem="D6A-US-K2d" secondAttribute="leading" constant="27" id="7B0-sc-Y8w"/>
                             <constraint firstItem="uAX-Ds-eYU" firstAttribute="top" secondItem="gaj-CM-bEs" secondAttribute="bottom" constant="20" id="UKk-Dt-6ZP"/>
                             <constraint firstItem="UbB-im-wEc" firstAttribute="leading" secondItem="D6A-US-K2d" secondAttribute="leading" constant="27" id="VkK-Eb-nml"/>
+                            <constraint firstItem="Cd1-cs-Rge" firstAttribute="centerX" secondItem="vpP-Ag-kmO" secondAttribute="centerX" id="aNo-Ic-EMA"/>
+                            <constraint firstItem="D6A-US-K2d" firstAttribute="bottom" secondItem="Cd1-cs-Rge" secondAttribute="bottom" constant="16" id="bA8-tg-jvB"/>
                             <constraint firstItem="gaj-CM-bEs" firstAttribute="centerY" secondItem="vpP-Ag-kmO" secondAttribute="centerY" id="eNp-Qg-J9x"/>
                             <constraint firstItem="uAX-Ds-eYU" firstAttribute="centerX" secondItem="vpP-Ag-kmO" secondAttribute="centerX" id="lvb-bZ-XQR"/>
                             <constraint firstItem="D6A-US-K2d" firstAttribute="trailing" secondItem="gaj-CM-bEs" secondAttribute="trailing" constant="27" id="oZ0-J0-AOZ"/>

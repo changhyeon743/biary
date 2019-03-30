@@ -23,6 +23,7 @@ class API {
     static var currentUser:User! = nil {
         didSet {
             API.data.saveUser()
+            API.user.update()
         }
     }
     static var currentToken:String = ""
@@ -30,11 +31,13 @@ class API {
     static var currentBooks:[Book] = [] {
         didSet {
             API.data.saveBooks()
+            API.user.update()
         }
     }
     static var currentContents:[Content] = [] {
         didSet {
             API.data.saveContents()
+            API.user.update()
         }
     }
     static var currentFriends:[Friend] = []

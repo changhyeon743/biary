@@ -86,6 +86,7 @@ class DetailHeaderView: UIView {
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLbl)
         titleLbl.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
+        titleLbl.numberOfLines = 3
         titleLbl.textColor = UIColor.white
         
         subTitleLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -115,6 +116,7 @@ class DetailHeaderView: UIView {
             subTitleLbl.bottomAnchor.constraint(equalTo: authorLbl.topAnchor, constant: -24),
             
             titleLbl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: horizontalMargin),
+            titleLbl.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -horizontalMargin),
             titleLbl.bottomAnchor.constraint(equalTo: subTitleLbl.topAnchor, constant: -5),
             
             dateLbl.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -horizontalMargin),

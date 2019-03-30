@@ -32,30 +32,60 @@ class UserAPI {
                 }
             })
     }
-    func update(completion:@escaping(JSON)->Void) {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
-        let user = try? encoder.encode(Complete_data.make())
-        
-        
-        if let str = user, let jsonString = String(data: str, encoding: .utf8) {
-                    let headers: HTTPHeaders = [
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    ]
-            print(jsonString)
-                    let parameters = [
-                        "data" : jsonString
-                    ]
+    
+    func update() {
+        if (API.currentUser.isLogined) {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+            let user = try? encoder.encode(Complete_data.make())
             
-                    Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
-                        .responseJSON(completionHandler: { (response) in
-                            //1. JSON 변환
-                            if let value = response.result.value,response.result.isSuccess {
-                                completion(JSON(value))
-                            }
-                        })
-
+            
+            if let str = user, let jsonString = String(data: str, encoding: .utf8) {
+                let headers: HTTPHeaders = [
+                    "Content-Type": "application/x-www-form-urlencoded"
+                ]
+                print(jsonString)
+                let parameters = [
+                    "data" : jsonString
+                ]
+                
+                Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+                    .responseJSON(completionHandler: { (response) in
+                        //1. JSON 변환
+                    })
+                
+            }
         }
+        
+    }
+    
+    func update(completion:@escaping(JSON)->Void) {
+        if (API.currentUser.isLogined) {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+            let user = try? encoder.encode(Complete_data.make())
+            
+            
+            if let str = user, let jsonString = String(data: str, encoding: .utf8) {
+                let headers: HTTPHeaders = [
+                    "Content-Type": "application/x-www-form-urlencoded"
+                ]
+                print(jsonString)
+                let parameters = [
+                    "data" : jsonString
+                ]
+                
+                Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+                    .responseJSON(completionHandler: { (response) in
+                        //1. JSON 변환
+                        if let value = response.result.value,response.result.isSuccess {
+                            completion(JSON(value))
+                        }
+                    })
+                
+            }
+        }
+        
     }
     
     func isLogined(facebookId: String="",completion:@escaping (JSON)->Void) {
@@ -73,6 +103,14 @@ class UserAPI {
                     completion(JSON(value))
                 }
             })
+    }
+    
+    func notice(completion:@escaping (JSON)->Void) {
+        Alamofire.request("\(API.base_url)/notice").responseJSON { (response) in
+            if let value = response.result.value,response.result.isSuccess {
+                completion(JSON(value))
+            }
+        }
     }
     
     func fetch(token: String="",completion:@escaping (JSON)->Void) {

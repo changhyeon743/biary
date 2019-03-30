@@ -27,12 +27,17 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         return cell;
     }
 
+    @IBOutlet weak var subTitleLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.tableView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0);
         
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        subTitleLbl.text = "총 "+String(API.currentUser.bookShelf.count)+"개의 책장이 있습니다." 
     }
 
     @IBAction func addBtnPressed(_ sender: UIButton) {
@@ -76,17 +81,27 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             if (API.currentUser.bookShelf[indexPath.row].books.count>0) {
                 
+                var bookTokens = [String]()
+                var bookNames = [String]()
                 for i in API.currentUser.bookShelf[indexPath.row].books {
                     print(API.currentBooks[Book.find(withToken: i)].title, Bookshelf.getCount(bookToken: i))
                     if (Bookshelf.getCount(bookToken: i) == 1) { //모든 책장 중 자기 책장에만 있으면 안됨
-                        let alert = UIAlertController(title: "계속하면 "+API.currentBooks[Book.find(withToken: i)].title+"도 사라지게 됩니다.", message: "이 책장에만 존재하는 다른 책도 함께 삭제됩니다", preferredStyle: UIAlertController.Style.alert)
-                        alert.addAction(UIAlertAction(title: "계속", style: UIAlertAction.Style.destructive, handler: {_ in
-                            
-                        }))
-                        alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        bookTokens.append(API.currentBooks[Book.find(withToken: i)].token)
+                        bookNames.append(API.currentBooks[Book.find(withToken: i)].title)
                     }
                 }
+                
+                let msg = (bookTokens.count > 0 ? "계속하면 "+bookNames.joined(separator: ", ")+"도 사라지게 됩니다." : nil)
+                let alert = UIAlertController(title: "책장을 삭제합니다",message: msg, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "계속", style: UIAlertAction.Style.destructive, handler: {_ in
+                    API.currentUser.bookShelf.remove(at: indexPath.row)
+                    for i in bookTokens {
+                        Book.remove(withToken: i)
+                    }
+                    tableView.reloadData()
+                }))
+                alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             } else {
                 API.currentUser.bookShelf.remove(at: indexPath.row)
                 
@@ -114,6 +129,24 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        print(tableView.isEditing)
+        if tableView.isEditing {
+            let alertController = UIAlertController(title: "책장 이름 변경", message: nil, preferredStyle: .alert)
+            alertController.addTextField { (textfield) in
+                textfield.text = API.currentUser.bookShelf[indexPath.row].title
+            }
+            let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
+                guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
+                if (textField.text?.isEmpty == false) {
+                    API.currentUser.bookShelf[indexPath.row].title = textField.text ?? ""
+                }
+                
+                self.tableView.reloadData()
+                //compare the current password and do action here
+            }
+            alertController.addAction(confirmAction)
+            alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
     }
 }

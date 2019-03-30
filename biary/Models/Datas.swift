@@ -9,6 +9,7 @@
 import Foundation
 import Disk
 import FBSDKCoreKit
+import FBSDKLoginKit
 import SwiftyJSON
 
 class Datas {
@@ -58,7 +59,6 @@ class Datas {
     }
     
     func loadBooks() -> [Book] {
-        
         var books = try? Disk.retrieve("datas/books.json", from: .documents, as: [Book].self)
 //        API.user.fetch(token: "1VJCNGZAdo0H1D6") { (json) in
 //            books = Book.transformBook(fromJSON: JSON(json)["data"]["books"])
@@ -81,6 +81,7 @@ class Datas {
             }
         }
         
+        
         return books ?? []
     }
     
@@ -97,7 +98,10 @@ class Datas {
     }
     
     func loadAll() {
-        API.currentBooks = API.data.loadBooks()
+        let book = API.data.loadBooks()
+        print("df",book)
+        API.currentBooks = book
+        print(API.currentBooks)
         API.currentUser = API.data.loadUser()
         if(FBSDKAccessToken.current() != nil) {
             API.facebook.getFBfriendData()
