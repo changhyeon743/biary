@@ -55,7 +55,6 @@ class WriteVC: UIViewController {
     }
     
     @objc func titlePressed(_ sender: Any) {
-        print("hhh")
         let questionList = ["( )p.","책의 시작","생각","좋은 점","나쁜 점","문장","직접 입력"]
         var initialSelection = questionList.index(of: self.titleLbl.text ?? "")
         if initialSelection == nil {
@@ -173,6 +172,7 @@ class WriteVC: UIViewController {
         //self.dismiss(animated: true, completion: nil)
         if (firstText != contentTextView.text) {
             let alert = UIAlertController(title: "닫기", message: "완료를 눌러 저장하지 않으면 작성한 내용은 사라집니다.", preferredStyle: .actionSheet)
+            alert.popoverPresentationController?.sourceView = button
             alert.addAction(UIAlertAction(title: "계속 쓰기", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "나가기", style: .destructive, handler: { (action) in
                 self.dismiss(animated: true, completion: nil)
@@ -213,7 +213,7 @@ class WriteVC: UIViewController {
             Content.edit(title: title, article: content, bookToken: bookInfo.token, contentToken: contentInfo!.token)
         }
         API.user.update { (json) in
-            print(json["status"].intValue)
+            print("server send",json)
             if (json["status"].intValue != 200) {
                 let action = UIAlertController(title: "앗! 서버와 통신 중에 문제가 발생했습니다!", message: nil, preferredStyle: .alert)
                 

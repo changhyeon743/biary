@@ -129,7 +129,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(tableView.isEditing)
+        //print(tableView.isEditing)
         if tableView.isEditing {
             let alertController = UIAlertController(title: "책장 이름 변경", message: nil, preferredStyle: .alert)
             alertController.addTextField { (textfield) in

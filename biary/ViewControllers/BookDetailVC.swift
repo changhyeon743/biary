@@ -97,7 +97,19 @@ class BookDetailVC: UIViewController {
         customNavigationBar.moreBtnHandler = {
             let cb = self.bookInfo!
             let actionSheet = UIAlertController(title: cb.title, message: cb.description, preferredStyle: .actionSheet)
+            actionSheet.popoverPresentationController?.sourceView = self.customNavigationBar.moreButton
             let action = UIAlertAction(title: "공유", style: .default, handler: { _ in
+                // text to share
+                let content = self.contents.map{$0.title+"\n"+$0.article}.joined(separator:"\n")
+                let text = self.bookInfo.title + "\n"+self.bookInfo.author + " . " + self.bookInfo.publisher+"\n\n"+content+"\n\nBiary - 책 읽고 책일기"
+                
+                // set up activity view controller
+                let textToShare = [ text ]
+                let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+                
+                // present the view controller
+                self.present(activityViewController, animated: true, completion: nil)
             })
             
             actionSheet.addAction(UIAlertAction(title: "책일기 정렬", style: .default, handler: { _ in
@@ -180,7 +192,7 @@ class BookDetailVC: UIViewController {
             } else {
                 self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
             }
-            print(API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic)
+            //print(API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic)
         }
         
 

@@ -19,13 +19,13 @@ struct Info {
 extension Info {
     static func make(data: JSON) -> Info {
         let json = data["data"]
+        print("friend INFO:: -> \n",json)
         var temp = Info(user: User.transformUser(fromJSON: json["user"]),
                         books: Book.transformBook(fromJSON: json["books"]),
                         contents: Content.transformContent(fromJSON: json["contents"]))
         
         let publicbooks = temp.books.filter{$0.isPublic ?? true}
         let privatebooks = temp.books.filter{!($0.isPublic ?? true)}
-        print(privatebooks)
         for i in privatebooks {
             temp.user.bookShelf = Bookshelf.clean(from: temp.user.bookShelf, bookToken: i.token)
         }

@@ -45,11 +45,15 @@ class MainVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
+        
+        
+        
         navigationBar.searchBtn.isHidden = true
         navigationBar.line.isHidden = false
         navigationBar.settingBtnHandler = {
             let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            
+            action.popoverPresentationController?.sourceView = self.navigationBar.settingBtn
+
             action.addAction(UIAlertAction(title: "책장 설정", style: .default, handler: { _ in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
                 self.present(vc, animated: true, completion: nil)
@@ -99,9 +103,22 @@ class MainVC: UIViewController {
         }
         
         
+        if (API.currentBooks.count < 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.pop.shouldDismissOnTap = true
+                self.pop.bubbleColor = UIColor.mainColor
+                self.pop.padding = 10
+                self.pop.offset = 20
+                self.pop.show(text: "눌러서 책을 추가하세요", direction: .down, maxWidth: 200, in: self.view, from: self.navigationBar.addBtn.frame)
+            }
+        }
+        
+        
+        
         
         
     }
+    let pop = PopTip()
     
     func makeToFriendMode() {
         self.navigationBar.titleLbl.text = API.currentShowingFriend!.user.name

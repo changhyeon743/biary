@@ -28,7 +28,7 @@ extension Content {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
         let firstDate = json[0]["date"].stringValue;
-        print("date is: ",firstDate)
+        //print("date is: ",firstDate)
         
         print(firstDate,"\n","thisis : ", dateFormatter.date(from: firstDate))
         

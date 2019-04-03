@@ -10,6 +10,7 @@
 		7810740F218F0D6D0039A92A /* DetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810740E218F0D6D0039A92A /* DetailNavigationBar.swift */; };
 		7810F411224E5B9B00C8EB94 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F410224E5B9B00C8EB94 /* SettingVC.swift */; };
 		7810F413224F67D800C8EB94 /* NoticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F412224F67D800C8EB94 /* NoticeVC.swift */; };
+		7810F415224FA7E800C8EB94 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F414224FA7E800C8EB94 /* Setting.swift */; };
 		781D8DBF21855281006D9551 /* MainTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781D8DBE21855281006D9551 /* MainTableCell.swift */; };
 		781D8DC121855376006D9551 /* MainCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781D8DC021855376006D9551 /* MainCollectionCell.swift */; };
 		78226460222BC8C800C21546 /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7822645F222BC8C800C21546 /* FriendsVC.swift */; };
@@ -74,13 +75,14 @@
 		7810740E218F0D6D0039A92A /* DetailNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNavigationBar.swift; sourceTree = "<group>"; };
 		7810F410224E5B9B00C8EB94 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		7810F412224F67D800C8EB94 /* NoticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeVC.swift; sourceTree = "<group>"; };
+		7810F414224FA7E800C8EB94 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		781D8DBE21855281006D9551 /* MainTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableCell.swift; sourceTree = "<group>"; };
 		781D8DC021855376006D9551 /* MainCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionCell.swift; sourceTree = "<group>"; };
 		7822645F222BC8C800C21546 /* FriendsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FriendsVC.swift; path = biary/ViewControllers/FriendsVC.swift; sourceTree = SOURCE_ROOT; };
 		783341F1218ECD510032678C /* BookDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookDetailVC.swift; path = biary/ViewControllers/BookDetailVC.swift; sourceTree = SOURCE_ROOT; };
 		783341F3218ECE140032678C /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		783D31D9218B35D8004B5DBC /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
-		783FFBEC219D8606002B6977 /* WriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WriteVC.swift; path = biary/ViewControllers/WriteVC.swift; sourceTree = SOURCE_ROOT; };
+		783FFBEC219D8606002B6977 /* WriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteVC.swift; sourceTree = SOURCE_ROOT; };
 		784B1A6322294F8E009F779C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		784E4FEA2221EA2300B617AA /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		785FFF57222620D00040E1F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				788D76EB22329073007CA9B3 /* BookCreateVC.swift */,
 				78E37E3D222E852100D2CC05 /* BookAddSearchVC.swift */,
 				78E37E3B222D549D00D2CC05 /* BookShelfSelectingVC.swift */,
+				783FFBEC219D8606002B6977 /* WriteVC.swift */,
 				787ED77522312A900097E79E /* PreviewVC.swift */,
 			);
 			name = Adding;
@@ -243,7 +246,6 @@
 				7810F412224F67D800C8EB94 /* NoticeVC.swift */,
 				7810F410224E5B9B00C8EB94 /* SettingVC.swift */,
 				786BA3DE2223C56E00280503 /* WelcomeVC.swift */,
-				783FFBEC219D8606002B6977 /* WriteVC.swift */,
 				786ED2E12233ECC00045E9F1 /* BarcodeScannerVC.swift */,
 				7822645F222BC8C800C21546 /* FriendsVC.swift */,
 				78F0719F218348410034E417 /* MainVC.swift */,
@@ -265,6 +267,7 @@
 				786BA3E22223D42300280503 /* Token.swift */,
 				787515C222350CCB0054127B /* Friend.swift */,
 				78C897E2223FCBAB00DC2BE4 /* Datas.swift */,
+				7810F414224FA7E800C8EB94 /* Setting.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				78A239F72195C6EB00F2A835 /* Colors.swift in Sources */,
 				78A517AC2225415000CB3035 /* BookShelfVC.swift in Sources */,
 				781D8DBF21855281006D9551 /* MainTableCell.swift in Sources */,
+				7810F415224FA7E800C8EB94 /* Setting.swift in Sources */,
 				786ED2E22233ECC00045E9F1 /* BarcodeScannerVC.swift in Sources */,
 				786BA3D92223BF9E00280503 /* Content.swift in Sources */,
 				787DDFD5219326A300332121 /* DetailCell.swift in Sources */,

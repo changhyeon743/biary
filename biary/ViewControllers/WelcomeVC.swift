@@ -76,7 +76,7 @@ class WelcomeVC: UIViewController {
     }
     
     func move() {
-        print("move Action..", API.currentUser)
+        //print("move Action..", API.currentUser)
         if (API.currentUser.isLogined) {
             let alert = UIAlertController(title: "오류", message: "다른 기기에서 사용중인 아이디입니다.\n 계속하려면 기존의 기기 설정에서 로그아웃 해주세요.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
@@ -87,7 +87,7 @@ class WelcomeVC: UIViewController {
             //로그인이 안되있었을경우 (정상적)
             API.currentUser.isLogined = true
             API.user.update { (json) in
-                print(json)
+                //print(json)
             }
             self.gotoMain()
         }

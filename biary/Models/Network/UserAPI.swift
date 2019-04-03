@@ -33,18 +33,51 @@ class UserAPI {
             })
     }
     
+    func logoutUpdate() {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        encoder.dateEncodingStrategy = .formatted(formatter)
+        
+        let user = try? encoder.encode(Complete_data.make())
+        
+        if let str = user, let jsonString = String(data: str, encoding: .utf8) {
+            print("logout.. json??",jsonString)
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/x-www-form-urlencoded"
+            ]
+            //print(jsonString)
+            let parameters = [
+                "data" : jsonString
+            ]
+            
+            Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+                .responseJSON(completionHandler: { (response) in
+                    //1. JSON 변환
+                })
+            
+        }
+    }
+    
     func update() {
         if (API.currentUser.isLogined) {
             let encoder = JSONEncoder()
             encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            encoder.dateEncodingStrategy = .formatted(formatter)
             let user = try? encoder.encode(Complete_data.make())
             
             
             if let str = user, let jsonString = String(data: str, encoding: .utf8) {
+                print("update.. json??",jsonString)
+
                 let headers: HTTPHeaders = [
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
-                print(jsonString)
+                //print(jsonString)
                 let parameters = [
                     "data" : jsonString
                 ]
@@ -63,6 +96,9 @@ class UserAPI {
         if (API.currentUser.isLogined) {
             let encoder = JSONEncoder()
             encoder.outputFormatting = [.sortedKeys, .prettyPrinted]
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            encoder.dateEncodingStrategy = .formatted(formatter)
             let user = try? encoder.encode(Complete_data.make())
             
             
@@ -70,7 +106,7 @@ class UserAPI {
                 let headers: HTTPHeaders = [
                     "Content-Type": "application/x-www-form-urlencoded"
                 ]
-                print(jsonString)
+                //print(jsonString)
                 let parameters = [
                     "data" : jsonString
                 ]
@@ -136,7 +172,7 @@ class UserAPI {
         ]
         let paramsJSON = JSON(friends)
         let paramsString = paramsJSON.rawString(String.Encoding.utf8, options: JSONSerialization.WritingOptions.prettyPrinted)!
-        print(paramsString)
+        //print(paramsString)
         let parameters = [
             "friendList": paramsString,
             "userToken" : API.currentUser.token

@@ -44,7 +44,7 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
-            print(json)
+            //print(json)
             API.currentShowingFriend = Info.make(data: json["data"][0])
             if let f = API.currentShowingFriend,f.books.count > 0 {
                 let vc = self.friendVC.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC

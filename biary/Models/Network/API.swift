@@ -31,13 +31,13 @@ class API {
     static var currentBooks:[Book] = [] {
         didSet {
             API.data.saveBooks()
-            API.user.update()
+            //API.user.update()
         }
     }
     static var currentContents:[Content] = [] {
         didSet {
             API.data.saveContents()
-            API.user.update()
+            //API.user.update()
         }
     }
     static var currentFriends:[Friend] = []

@@ -99,9 +99,9 @@ class Datas {
     
     func loadAll() {
         let book = API.data.loadBooks()
-        print("df",book)
+        //print("df",book)
         API.currentBooks = book
-        print(API.currentBooks)
+        //print("fd",API.currentBooks)
         API.currentUser = API.data.loadUser()
         if(FBSDKAccessToken.current() != nil) {
             API.facebook.getFBfriendData()

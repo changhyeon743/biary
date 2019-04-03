@@ -78,7 +78,10 @@ class SettingVC: UIViewController {
         case "페이스북 페이지":
             UIApplication.shared.open(URL(string: "http://facebook.com/biaryapp")!, options: [:], completionHandler: nil)
             break;
-        case "튜토리얼":
+        case "리뷰 남기기":
+            UIApplication.shared.open(URL(string: "itms-apps://itunes.apple.com/app/" + "")!, options: [:], completionHandler: nil)
+            
+
             break;
         case "이름 변경":
             let alert = UIAlertController(title: "이름 변경", message: nil, preferredStyle: .alert)
@@ -101,7 +104,6 @@ class SettingVC: UIViewController {
         case "초기화":
             let alert = UIAlertController(title: "초기화", message: "모든 책과 글이 사라집니다. ", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "초기화", style: .destructive, handler: { (_) in
-                API.currentUser = User.makeInitialUser()
                 API.currentBooks = []
                 API.currentContents = []
                 FBSDKLoginManager().logOut()
@@ -120,7 +122,9 @@ class SettingVC: UIViewController {
             alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "로그아웃", style: .destructive, handler: { (_) in
                 API.currentUser.isLogined = false
+                API.user.logoutUpdate()
                 FBSDKLoginManager().logOut()
+                
                 self.setLoginBtn()
             }))
             
@@ -132,7 +136,7 @@ class SettingVC: UIViewController {
         default:
             break;
         }
-        print(sender.titleLabel?.text ?? "")
+        //print(sender.titleLabel?.text ?? "")
     }
     
     func notice() {
@@ -173,7 +177,6 @@ class SettingVC: UIViewController {
     }
     
     func loginIssue(isLogined: Bool, token: String) { //서버에 이미 데이터가 있습니다.
-        
         let alert = UIAlertController(title: "데이터 충돌", message: "서버에 이미 데이터가 있습니다.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "기존 데이터 유지", style: .default, handler: { (_) in
             
@@ -181,7 +184,8 @@ class SettingVC: UIViewController {
         
         alert.addAction(UIAlertAction(title: "서버 데이터 불러오기", style: .cancel, handler: { (_) in
             
-            if (API.currentUser.isLogined == false) { //찾아냈는데로그인이 안된 계정일 경우
+            if (isLogined == false) { //찾아냈는데로그인이 안된 계정일 경우
+                //print("fetching",token)
                 API.user.fetch(token: token, completion: { (json) in
                     let data = json["data"]
                     API.currentContents = Content.transformContent(fromJSON: data["contents"])
