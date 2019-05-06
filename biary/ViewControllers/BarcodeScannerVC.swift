@@ -20,6 +20,7 @@ class BarcodeScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
         
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         

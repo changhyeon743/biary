@@ -50,6 +50,7 @@ class MainVC: UIViewController {
         
         navigationBar.searchBtn.isHidden = true
         navigationBar.line.isHidden = false
+        
         navigationBar.settingBtnHandler = {
             let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             action.popoverPresentationController?.sourceView = self.navigationBar.settingBtn
