@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wW7-SM-7Ai">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -25,7 +25,7 @@
             <objects>
                 <viewController storyboardIdentifier="MainVC" title="나의 서재" useStoryboardIdentifierAsRestorationIdentifier="YES" id="m0Z-EO-PFq" customClass="MainVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lsR-HW-xo3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="VKq-EM-UTc">
@@ -34,7 +34,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="175" id="ZDq-uF-cka" customClass="MainTableCell" customModule="biary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="175"/>
+                                        <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZDq-uF-cka" id="8cK-W3-v2k">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
@@ -51,7 +51,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="book" id="JpV-pZ-60q" customClass="MainCollectionCell" customModule="biary" customModuleProvider="target">
-                                                            <rect key="frame" x="17" y="23.5" width="83" height="128"/>
+                                                            <rect key="frame" x="17" y="23.666666666666668" width="83" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                                 <rect key="frame" x="0.0" y="0.0" width="83" height="128"/>
@@ -115,7 +115,7 @@
             <objects>
                 <viewController storyboardIdentifier="BookShelfSelectingVC" title="BookShelfSelecting" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LCv-bk-8pS" customClass="BookShelfSelectingVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HtD-Kk-P8Q">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xs5-4w-0Er">
@@ -127,11 +127,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uOs-OL-apf" id="RD0-9v-zo2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yjy-0P-xiz">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="17"/>
@@ -166,18 +166,18 @@
             <objects>
                 <viewController id="IBF-L8-F6u" customClass="FriendsVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iLp-bD-gdH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="300" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Oz-4W-RiP">
-                                <rect key="frame" x="0.0" y="123" width="375" height="495"/>
+                                <rect key="frame" x="0.0" y="147" width="375" height="582"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="6td-Tb-c1H" customClass="FriendTableCell" customModule="biary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6td-Tb-c1H" id="bd8-e9-Zvg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t87-Bi-ad4">
@@ -204,7 +204,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JX-RT-ZLC">
-                                                                        <rect key="frame" x="0.0" y="60.5" width="50" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="60.666666666666664" width="50" height="19.333333333333336"/>
                                                                         <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="13"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -272,7 +272,7 @@
             <objects>
                 <viewController storyboardIdentifier="BookAddSearchVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iC2-qa-ZAc" customClass="BookAddSearchVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5oY-hH-KDH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p0s-e1-wbD">
@@ -311,6 +311,7 @@
                         <outlet property="searchBtn" destination="6Gf-9d-6BV" id="vLh-3u-y4h"/>
                         <outlet property="searchField" destination="4jb-Pr-sOD" id="io4-ep-9jN"/>
                         <outlet property="tableView" destination="p0s-e1-wbD" id="NLv-qA-syX"/>
+                        <segue destination="fH7-cZ-goN" kind="show" identifier="search_end" id="laG-tJ-K9y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnY-sj-Svm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,17 +323,17 @@
             <objects>
                 <viewController storyboardIdentifier="SettingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ItH-Mz-1zk" customClass="SettingVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ypE-RI-CHn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="지원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgm-Js-frg">
-                                <rect key="frame" x="20" y="153" width="31.5" height="25.5"/>
+                                <rect key="frame" x="20" y="177" width="31.666666666666671" height="25.666666666666657"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPQ-x0-JfO">
-                                <rect key="frame" x="20" y="198.5" width="96" height="33"/>
+                                <rect key="frame" x="20" y="222.66666666666666" width="96" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="공지사항/이벤트">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -342,7 +343,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="00R-RN-fjX">
-                                <rect key="frame" x="20" y="264.5" width="95" height="33"/>
+                                <rect key="frame" x="20" y="288.66666666666669" width="95" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="페이스북 페이지">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -352,7 +353,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKO-W2-WFN">
-                                <rect key="frame" x="20" y="231.5" width="52" height="33"/>
+                                <rect key="frame" x="20" y="255.66666666666663" width="52" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="문의하기">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -362,7 +363,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLe-yM-Be4">
-                                <rect key="frame" x="20" y="462" width="39" height="33"/>
+                                <rect key="frame" x="20" y="486" width="39" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="초기화">
                                     <color key="titleColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
@@ -372,7 +373,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDa-og-l7w">
-                                <rect key="frame" x="20" y="495" width="52" height="33"/>
+                                <rect key="frame" x="20" y="519" width="52" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="로그아웃">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -382,7 +383,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sly-4R-ZkJ">
-                                <rect key="frame" x="20" y="429" width="56" height="33"/>
+                                <rect key="frame" x="20" y="453" width="56" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="이름 변경">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -392,7 +393,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQ4-ye-Jtv">
-                                <rect key="frame" x="20" y="297.5" width="69" height="33"/>
+                                <rect key="frame" x="20" y="321.66666666666669" width="69" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="리뷰 남기기">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -402,7 +403,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTx-ff-YwR">
-                                <rect key="frame" x="20" y="330.5" width="52" height="33"/>
+                                <rect key="frame" x="20" y="354.66666666666669" width="52" height="33"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="14"/>
                                 <state key="normal" title="라이센스">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -412,7 +413,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="계정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8S-6F-lhf">
-                                <rect key="frame" x="20" y="383.5" width="31.5" height="25.5"/>
+                                <rect key="frame" x="20" y="407.66666666666669" width="31.666666666666671" height="25.333333333333314"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -456,29 +457,29 @@
             <objects>
                 <viewController storyboardIdentifier="NoticeVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uWK-h3-rRG" customClass="NoticeVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3vL-Jt-ZUI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="er5-nw-HWC">
-                                <rect key="frame" x="0.0" y="153" width="375" height="514"/>
+                                <rect key="frame" x="0.0" y="177" width="375" height="601"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="wu4-xc-2G4" detailTextLabel="Gek-pL-wZQ" style="IBUITableViewCellStyleSubtitle" id="vi0-kH-fZh">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vi0-kH-fZh" id="RdP-h2-tyA">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wu4-xc-2G4">
-                                                    <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
+                                                    <rect key="frame" x="15" y="5" width="33.333333333333336" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gek-pL-wZQ">
-                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                                    <rect key="frame" x="14.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -516,11 +517,11 @@
             <objects>
                 <viewController storyboardIdentifier="bookshelf" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sd1-rZ-uks" customClass="BookShelfVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rmI-A7-iNz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UAb-tW-0G3">
-                                <rect key="frame" x="14" y="37" width="24" height="24"/>
+                                <rect key="frame" x="14" y="61" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="BmL-mb-xgp"/>
                                     <constraint firstAttribute="width" constant="24" id="ssF-b0-CmZ"/>
@@ -532,19 +533,19 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbh-PK-aqp">
-                                <rect key="frame" x="24" y="77" width="53.5" height="43"/>
+                                <rect key="frame" x="23.999999999999996" y="101" width="53.666666666666657" height="43"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 5개의 책장이 있습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNY-aM-h2X">
-                                <rect key="frame" x="24" y="121" width="130" height="18"/>
+                                <rect key="frame" x="24" y="145" width="130" height="18"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="12"/>
                                 <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKQ-6p-zUE">
-                                <rect key="frame" x="328" y="34" width="30" height="35"/>
+                                <rect key="frame" x="328" y="58" width="30" height="35"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="15"/>
                                 <state key="normal" title="편집">
                                     <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -554,7 +555,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezw-Cx-BUj">
-                                <rect key="frame" x="251" y="34" width="60" height="35"/>
+                                <rect key="frame" x="251" y="58" width="60" height="35"/>
                                 <fontDescription key="fontDescription" name="NotoSansCJKkr-Medium" family="Noto Sans CJK KR" pointSize="15"/>
                                 <state key="normal" title="책장 추가">
                                     <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -564,18 +565,18 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xa3-V0-Roz">
-                                <rect key="frame" x="0.0" y="151" width="375" height="467"/>
+                                <rect key="frame" x="0.0" y="175" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="BoM-mg-1m9" style="IBUITableViewCellStyleDefault" id="hTv-1f-ehC">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hTv-1f-ehC" id="30f-V6-mlX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BoM-mg-1m9">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="16" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" name="NotoSansCJKkr-Regular" family="Noto Sans CJK KR" pointSize="17"/>
@@ -628,11 +629,11 @@
             <objects>
                 <viewController storyboardIdentifier="BookDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Nue-bm-cuJ" customClass="BookDetailVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IX1-jl-V2b">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rgD-zp-seD">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="n8m-VF-R7C" customClass="DetailHeaderView" customModule="biary" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
@@ -645,7 +646,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TuH-8X-6Mk">
-                                <rect key="frame" x="297.5" y="589.5" width="58.5" height="58.5"/>
+                                <rect key="frame" x="297.66666666666669" y="700.66666666666663" width="58.333333333333314" height="58.333333333333371"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58.5" id="Qqx-Gm-YjO"/>
                                     <constraint firstAttribute="width" constant="58.5" id="itf-Gb-YCH"/>
@@ -664,7 +665,7 @@
                             <constraint firstAttribute="bottom" secondItem="rgD-zp-seD" secondAttribute="bottom" id="EoP-WH-Rzo"/>
                             <constraint firstItem="rgD-zp-seD" firstAttribute="leading" secondItem="owY-0D-YKe" secondAttribute="leading" id="QVq-1o-RSJ"/>
                             <constraint firstItem="owY-0D-YKe" firstAttribute="trailing" secondItem="TuH-8X-6Mk" secondAttribute="trailing" constant="19" id="ios-ex-dQw"/>
-                            <constraint firstItem="rgD-zp-seD" firstAttribute="top" secondItem="owY-0D-YKe" secondAttribute="top" id="q3H-HW-SZJ"/>
+                            <constraint firstItem="rgD-zp-seD" firstAttribute="top" secondItem="IX1-jl-V2b" secondAttribute="top" id="q3H-HW-SZJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="owY-0D-YKe"/>
                     </view>
@@ -683,7 +684,7 @@
             <objects>
                 <viewController storyboardIdentifier="WriteVC" id="ogA-mg-Kex" customClass="WriteVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bge-9R-sA0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6ZO-yq-1TE" customClass="SpringTextView" customModule="Spring">
@@ -741,7 +742,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="9IY-ft-Uuh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dmW-R0-Dox">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -758,11 +759,11 @@
             <objects>
                 <viewController storyboardIdentifier="BookCreateVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fH7-cZ-goN" customClass="BookCreateVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8xs-ce-Cp5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="NOg-Vh-t2H">
-                                <rect key="frame" x="24" y="231" width="223" height="145"/>
+                                <rect key="frame" x="24" y="303.66666666666669" width="223" height="145"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="책 제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DXN-Qi-x6q" customClass="SpringTextField" customModule="Spring">
                                         <rect key="frame" x="0.0" y="0.0" width="223" height="26"/>
@@ -803,32 +804,22 @@
                                     <constraint firstAttribute="trailing" secondItem="nJE-VT-x8D" secondAttribute="trailing" id="nxA-Ze-VJF"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLJ-Fk-0Qn">
-                                <rect key="frame" x="299" y="371.5" width="52" height="33"/>
-                                <fontDescription key="fontDescription" name="NotoSansCJKkr-Bold" family="Noto Sans CJK KR" pointSize="14"/>
-                                <state key="normal" title="불러오기">
-                                    <color key="titleColor" red="0.73725490199999999" green="0.54901960780000003" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="importBtnPressed:" destination="fH7-cZ-goN" eventType="touchUpInside" id="6Jb-nV-vdw"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HGb-Mr-5ay" customClass="BookImageView" customModule="biary" customModuleProvider="target">
-                                <rect key="frame" x="271" y="239.5" width="80" height="128"/>
+                                <rect key="frame" x="271" y="312" width="80" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="atG-50-Mfm"/>
                                     <constraint firstAttribute="height" constant="128" id="t1a-nd-tQH"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AW2-Mb-Pcr">
-                                <rect key="frame" x="24" y="215.5" width="327" height="1"/>
+                                <rect key="frame" x="24" y="288" width="327" height="1"/>
                                 <color key="backgroundColor" red="0.4392156862745098" green="0.4392156862745098" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="FTD-qX-ABN"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbd-6W-XIR" customClass="SpringButton" customModule="Spring">
-                                <rect key="frame" x="24" y="181.5" width="327" height="30"/>
+                                <rect key="frame" x="24" y="254" width="327" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bSV-Hg-73Q"/>
                                 </constraints>
@@ -849,12 +840,10 @@
                             <constraint firstItem="NOg-Vh-t2H" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="IRp-Ij-BOn"/>
                             <constraint firstItem="xbd-6W-XIR" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="WOF-Fd-0Wj"/>
                             <constraint firstItem="HGb-Mr-5ay" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="XpU-hq-Io8"/>
-                            <constraint firstItem="qLJ-Fk-0Qn" firstAttribute="top" secondItem="HGb-Mr-5ay" secondAttribute="bottom" constant="4" id="aX1-0z-JES"/>
                             <constraint firstItem="AW2-Mb-Pcr" firstAttribute="top" secondItem="xbd-6W-XIR" secondAttribute="bottom" constant="4" id="bDb-xf-RiJ"/>
                             <constraint firstItem="NOg-Vh-t2H" firstAttribute="centerY" secondItem="8xs-ce-Cp5" secondAttribute="centerY" constant="-30" id="cuu-e1-mN9"/>
                             <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="HGb-Mr-5ay" secondAttribute="trailing" constant="24" id="dly-ik-DYM"/>
                             <constraint firstItem="HGb-Mr-5ay" firstAttribute="leading" secondItem="NOg-Vh-t2H" secondAttribute="trailing" constant="24" id="gsP-pS-O19"/>
-                            <constraint firstItem="ZWj-ex-wqZ" firstAttribute="trailing" secondItem="qLJ-Fk-0Qn" secondAttribute="trailing" constant="24" id="ocB-t5-6Wd"/>
                             <constraint firstItem="AW2-Mb-Pcr" firstAttribute="leading" secondItem="ZWj-ex-wqZ" secondAttribute="leading" constant="24" id="rb6-lu-0kG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZWj-ex-wqZ"/>
@@ -864,7 +853,6 @@
                         <outlet property="bookImageView" destination="HGb-Mr-5ay" id="1lq-1t-8py"/>
                         <outlet property="bookShelfsBtn" destination="xbd-6W-XIR" id="Qah-TM-ELM"/>
                         <outlet property="explainTextView" destination="w1y-Wl-xCi" id="CFY-Kn-r1z"/>
-                        <outlet property="importBtn" destination="qLJ-Fk-0Qn" id="2oU-32-xfp"/>
                         <outlet property="publisherField" destination="sad-sm-4od" id="8aA-Wx-pi3"/>
                         <outlet property="titleField" destination="DXN-Qi-x6q" id="BiW-q7-kjN"/>
                         <segue destination="iC2-qa-ZAc" kind="show" identifier="search" id="8Im-Lb-qUo"/>
@@ -881,4 +869,7 @@
         <image name="close" width="24" height="24"/>
         <image name="friend" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Im-Lb-qUo"/>
+    </inferredMetricsTieBreakers>
 </document>

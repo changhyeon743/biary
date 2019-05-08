@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AMPopTip
 
 class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPreviewingDelegate {
     
@@ -71,7 +72,7 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             tableView.topAnchor.constraint(equalTo: self.searchField.bottomAnchor, constant: 12),
             
             searchField.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 8),
@@ -87,7 +88,18 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
             ])
         
         tableView.register(UINib(nibName: "BookCell", bundle: nil), forCellReuseIdentifier: "cell")
+        
+//        if (API.currentBooks.count < 2) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                self.pop.shouldDismissOnTap = true
+//                self.pop.bubbleColor = UIColor.mainColor
+//                self.pop.padding = 10
+//                self.pop.offset = 5
+//                self.pop.show(text: "검색하고자 하고자 하는 책의 제목을 입력해주세요.", direction: .up , maxWidth: 200, in: self.view, from: self.searchField.frame)
+//            }
+//        }
     }
+//    let pop = PopTip()
     
     override func viewDidLayoutSubviews() {
         searchField.addBorderBottom(height: 1, color: UIColor(r: 90, g: 90, b: 90), margin_right: -40)
@@ -167,16 +179,20 @@ extension BookAddSearchVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let vc = bookCreateVC {
-            let book = result[indexPath.row]
-            vc.titleField.text = book.title.withoutHtml
-            vc.authorField.text = book.author.withoutHtml
-            vc.publisherField.text = book.publisher.withoutHtml
-            vc.explainTextView.text = book.description.withoutHtml
-            vc.imgLink = book.imageURL
-            vc.importedBook = book
+        let vc = storyboard?.instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
+//        print("1010",vc)
+        //if let vc = bookCreateVC {
+//            let book = result[indexPath.row]
+//            vc.titleField.text = book.title.withoutHtml
+//            vc.authorField.text = book.author.withoutHtml
+//            vc.publisherField.text = book.publisher.withoutHtml
+//            vc.explainTextView.text = book.description.withoutHtml
+//            vc.imgLink = book.imageURL
+//            vc.importedBook = book
+        //}
+        present(vc, animated: true) {
+            vc.setText(book: self.result[indexPath.row])
         }
-        dismiss(animated: true, completion: nil)
     }
     
 }

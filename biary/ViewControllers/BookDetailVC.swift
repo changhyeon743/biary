@@ -203,6 +203,7 @@ class BookDetailVC: UIViewController {
             customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
         ])
+        
     }
     
     
