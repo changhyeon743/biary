@@ -107,7 +107,7 @@ class Datas {
             API.facebook.getFBfriendData()
         }
         
-        print(API.currentBooks)
+        //print(API.currentBooks)
         API.currentContents = API.data.loadContents()
         
         

@@ -44,7 +44,6 @@ class BookDetailVC: UIViewController {
             self.tableView.reloadData()
         }
     }
-    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -90,7 +89,7 @@ class BookDetailVC: UIViewController {
 
         customNavigationBar.moreButton.setImage(UIImage(named: "setting"), for: .normal)
         customNavigationBar.backBtnHandler = {
-            print("backButton button pressed")
+            //print("backButton button pressed")
             //self.dismiss(animated: true, completion: nil)
             self.navigationController?.popViewController(animated: true)
         }
@@ -113,7 +112,7 @@ class BookDetailVC: UIViewController {
             })
             
             actionSheet.addAction(UIAlertAction(title: "책일기 정렬", style: .default, handler: { _ in
-                if let action = ActionSheetStringPicker(title: "책일기 정렬", rows: ["오래된 순","최신 순","페이지 순"]
+                if let action = ActionSheetStringPicker(title: "책일기 정렬", rows: ["오래된 순","최신 순","페이지 순","책의 시작","생각","좋은 점","나쁜 점","문장"]
                     , initialSelection: 0, doneBlock: {
                         picker, indexes, values in
                         
@@ -144,7 +143,8 @@ class BookDetailVC: UIViewController {
                             })
                             break
                         default:
-                            self.sortedContents = self.contents
+                            self.sortedContents = self.contents.filter { $0.title ==
+                                selectedText }
                             break;
                         }
                         return
@@ -171,7 +171,8 @@ class BookDetailVC: UIViewController {
                 real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
                 real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
                     Book.remove(withToken: cb.token);
-                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: true)
+                    //self.dismiss(animated: true, completion: nil)
                 }))
                 self.present(real, animated: true, completion: nil)
             }))
@@ -197,13 +198,12 @@ class BookDetailVC: UIViewController {
         
 
         NSLayoutConstraint.activate([
-            customNavigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
+            customNavigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
-    
     
     
     

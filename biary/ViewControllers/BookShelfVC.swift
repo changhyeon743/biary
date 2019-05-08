@@ -84,7 +84,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
                 var bookTokens = [String]()
                 var bookNames = [String]()
                 for i in API.currentUser.bookShelf[indexPath.row].books {
-                    print(API.currentBooks[Book.find(withToken: i)].title, Bookshelf.getCount(bookToken: i))
+                    //print(API.currentBooks[Book.find(withToken: i)].title, Bookshelf.getCount(bookToken: i))
                     if (Bookshelf.getCount(bookToken: i) == 1) { //모든 책장 중 자기 책장에만 있으면 안됨
                         bookTokens.append(API.currentBooks[Book.find(withToken: i)].token)
                         bookNames.append(API.currentBooks[Book.find(withToken: i)].title)

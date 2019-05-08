@@ -94,10 +94,11 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     }
     
     @objc func barcode(sender: UIButton) {
+        print("")
         let vc = BarcodeScannerVC();
         vc.searchVC = self
         let navigationController = UINavigationController(rootViewController: vc)
-        self.navigationController?.pushViewController(navigationController, animated: true)
+        self.present(navigationController, animated: true, completion: nil) 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

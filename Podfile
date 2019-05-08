@@ -18,5 +18,12 @@ pod 'FacebookCore'
     pod 'Disk', '~> 0.4.0'
 pod 'ActionSheetPicker-3.0', '~> 2.3.0'
 pod 'AMPopTip'
+pod 'Carte'
+pod "SwiftRater"
 
+end
+
+post_install do |installer|
+  pods_dir = File.dirname(installer.pods_project.path)
+  at_exit { `ruby #{pods_dir}/Carte/Sources/Carte/carte.rb configure` }
 end

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AMPopTip
 
 class FriendsVC: UIViewController {
     
@@ -17,6 +18,7 @@ class FriendsVC: UIViewController {
     let titles = ["친구들"]
     var expanded = [true,true]
     let headerHeight:CGFloat = 60;
+    let pop = PopTip()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,20 @@ class FriendsVC: UIViewController {
             tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
             ])
-        
+        if (API.currentBooks.count < 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.pop.shouldDismissOnTap = true
+                self.pop.bubbleColor = UIColor.mainColor
+                self.pop.padding = 10
+                self.pop.offset = 20
+                
+                
+                self.pop.show(text: "페이스북 친구 중 책일기를 사용하는 사람들입니다.", direction: .down, maxWidth: 200, in: self.view, from: self.navigationBar.titleLbl.frame)
+                
+                
+                
+            }
+        }
     }
     
 

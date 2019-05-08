@@ -27,10 +27,10 @@ extension Content {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
-        let firstDate = json[0]["date"].stringValue;
-        //print("date is: ",firstDate)
-        
-        print(firstDate,"\n","thisis : ", dateFormatter.date(from: firstDate))
+//        let firstDate = json[0]["date"].stringValue;
+//        //print("date is: ",firstDate)
+//        
+//        print(firstDate,"\n","thisis : ", dateFormatter.date(from: firstDate))
         
         let contents = json.map{Content(title: $0["title"].stringValue,
                                         article: $0["article"].stringValue,
@@ -43,7 +43,7 @@ extension Content {
     
     static func append(title:String,article: String,token: String) {
         let content = Content(title: title, article: article, bookToken: token, date: Date(), token: Token.create())
-        print("appended")
+        //print("appended")
         API.currentContents.append(content);
     }
     

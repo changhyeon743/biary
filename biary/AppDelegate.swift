@@ -9,6 +9,7 @@
 import UIKit
 import FacebookCore
 import FBSDKCoreKit
+import SwiftRater
 
 
 @UIApplicationMain
@@ -33,6 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else{
             //User is not logged-in. Allow the user for login using FB.
         }
+        
+        
+        SwiftRater.daysUntilPrompt = 3
+        SwiftRater.usesUntilPrompt = 3
+        SwiftRater.significantUsesUntilPrompt = 3
+        SwiftRater.daysBeforeReminding = 1
+        SwiftRater.showLaterButton = true
+        SwiftRater.debugMode = true
+        SwiftRater.appLaunched()
         
         
         return true

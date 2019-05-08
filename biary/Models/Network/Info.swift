@@ -28,8 +28,7 @@ extension Info {
         let privatebooks = temp.books.filter{!($0.isPublic ?? true)}
         for i in privatebooks {
             temp.user.bookShelf = Bookshelf.clean(from: temp.user.bookShelf, bookToken: i.token)
-        }
-        
+        } 
         //jj0RTnPhbMtiWBp 가. 없어야함.
 //        print(privates)
 //        for i in privates {

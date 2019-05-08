@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Carte
 import FBSDKCoreKit
 import FBSDKLoginKit
 
@@ -79,9 +80,20 @@ class SettingVC: UIViewController {
             UIApplication.shared.open(URL(string: "http://facebook.com/biaryapp")!, options: [:], completionHandler: nil)
             break;
         case "리뷰 남기기":
-            UIApplication.shared.open(URL(string: "itms-apps://itunes.apple.com/app/" + "")!, options: [:], completionHandler: nil)
-            
+            let id = "1462620302"
+            guard let url = URL(string : "itms-apps://itunes.apple.com/app/id\(id)?mt=8&action=write-review") else { return }
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
 
+            break;
+        case "라이센스":
+            let vc = CarteViewController()
+            let navigationController = UINavigationController(rootViewController: vc)
+            
+        self.present(navigationController, animated: true, completion: nil)
             break;
         case "이름 변경":
             let alert = UIAlertController(title: "이름 변경", message: nil, preferredStyle: .alert)

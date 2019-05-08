@@ -44,7 +44,7 @@ class UserAPI {
         let user = try? encoder.encode(Complete_data.make())
         
         if let str = user, let jsonString = String(data: str, encoding: .utf8) {
-            print("logout.. json??",jsonString)
+            //print("logout.. json??",jsonString)
             let headers: HTTPHeaders = [
                 "Content-Type": "application/x-www-form-urlencoded"
             ]
@@ -72,7 +72,7 @@ class UserAPI {
             
             
             if let str = user, let jsonString = String(data: str, encoding: .utf8) {
-                print("update.. json??",jsonString)
+                //print("update.. json??",jsonString)
 
                 let headers: HTTPHeaders = [
                     "Content-Type": "application/x-www-form-urlencoded"
@@ -182,7 +182,7 @@ class UserAPI {
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
                 if let value = response.result.value,response.result.isSuccess {
-                    print(JSON(value)["status"].intValue)
+                    //print(JSON(value)["status"].intValue)
                     if (JSON(value)["status"].intValue == 200) {
                         completion(JSON(value))
                     }

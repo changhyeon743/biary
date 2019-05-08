@@ -101,10 +101,7 @@ class MainVC: UIViewController {
         
         if (friendMode == true) {
             makeToFriendMode()
-        }
-        
-        
-        if (API.currentBooks.count < 2) {
+        } else if (API.currentBooks.count < 2) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.pop.shouldDismissOnTap = true
                 self.pop.bubbleColor = UIColor.mainColor
@@ -129,6 +126,8 @@ class MainVC: UIViewController {
         self.navigationBar.searchBtn.isHidden = true
         self.navigationBar.addBtn.isHidden = true
         self.navigationBar.settingBtn.setImage(UIImage(named:"close"), for: .normal)
+        
+        print("makeToFriendMode : ",bookshelfs)
     }
     
     
