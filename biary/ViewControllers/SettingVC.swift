@@ -118,6 +118,7 @@ class SettingVC: UIViewController {
             alert.addAction(UIAlertAction(title: "초기화", style: .destructive, handler: { (_) in
                 API.currentBooks = []
                 API.currentContents = []
+                API.currentUser.bookShelf = []
                 FBSDKLoginManager().logOut()
                 
                 self.present(UIStoryboard(name: "Welcome", bundle: nil).instantiateInitialViewController() as! WelcomeVC, animated: true, completion: nil)

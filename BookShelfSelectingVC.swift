@@ -55,7 +55,7 @@ class BookShelfSelectingVC: UIViewController {
         self.view.addSubview(navigationBar)
         doneBtn = UIButton()
         doneBtn.setTitle("완료", for: .normal)
-        doneBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)// UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
 
         self.view.addSubview(doneBtn)
@@ -63,7 +63,7 @@ class BookShelfSelectingVC: UIViewController {
         
         addBtn = UIButton()
         addBtn.setTitle("책장 추가", for: .normal)
-        addBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         addBtn.setTitleColor(UIColor.mainColor, for: .normal)
         
         self.view.addSubview(addBtn)

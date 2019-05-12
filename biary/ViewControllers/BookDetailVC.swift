@@ -35,6 +35,8 @@ class BookDetailVC: UIViewController {
         }
     }
     
+    @IBOutlet weak var addBtn: UIButton!
+    
     var isMine: Bool {
         return (bookInfo.writerToken == API.currentUser.token)
     }
@@ -56,10 +58,14 @@ class BookDetailVC: UIViewController {
         //ratio
         self.setUpHeaderView()
         tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
+        tableView.allowsSelection = isMine
     }
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
         sortedContents = contents
+        if (self.bookInfo.writerToken != API.currentUser.token) {
+            addBtn.isHidden = true
+        }
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -85,7 +91,7 @@ class BookDetailVC: UIViewController {
         customNavigationBar.peopleButton.isHidden = !isMine
         
         customNavigationBar.peopleButton.setTitle("공개", for: .normal)
-        customNavigationBar.peopleButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        customNavigationBar.peopleButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)// UIFont(name: "NotoSansCJKkr-Regular", size: 15)
 
         customNavigationBar.moreButton.setImage(UIImage(named: "setting"), for: .normal)
         customNavigationBar.backBtnHandler = {
@@ -158,24 +164,28 @@ class BookDetailVC: UIViewController {
             //                let image = UIImage(named: "ssss")
             //                actionSheet.setValue(image?.withRenderingMode(.alwaysOriginal), forKey: "image")
             actionSheet.addAction(action)
-            actionSheet.addAction(UIAlertAction(title: "편집", style: .default, handler: { _ in
-                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
-                vc.title = "책 편집하기"
-                vc.bookInfo = cb;
-                self.present(vc, animated: true, completion: nil)
-            }))
             
-            actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
-                let real = UIAlertController(title: "정말 삭제하시겠습니까?", message: "삭제한 책은 복구할 수 없습니다.", preferredStyle: .alert);
-                
-                real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
-                real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
-                    Book.remove(withToken: cb.token);
-                    self.navigationController?.popViewController(animated: true)
-                    //self.dismiss(animated: true, completion: nil)
+            if (self.bookInfo.writerToken == API.currentUser.token) {
+                actionSheet.addAction(UIAlertAction(title: "편집", style: .default, handler: { _ in
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
+                    vc.title = "책 편집하기"
+                    vc.bookInfo = cb;
+                    self.present(vc, animated: true, completion: nil)
                 }))
-                self.present(real, animated: true, completion: nil)
-            }))
+                
+                actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+                    let real = UIAlertController(title: "정말 삭제하시겠습니까?", message: "삭제한 책은 복구할 수 없습니다.", preferredStyle: .alert);
+                    
+                    real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+                    real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
+                        Book.remove(withToken: cb.token);
+                        self.navigationController?.popViewController(animated: true)
+                        //self.dismiss(animated: true, completion: nil)
+                    }))
+                    self.present(real, animated: true, completion: nil)
+                }))
+            }
+            
         
             
             
@@ -203,6 +213,7 @@ class BookDetailVC: UIViewController {
             customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
         ])
+        
         
     }
     
@@ -312,10 +323,12 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "WriteVC") as! WriteVC
-        vc.bookInfo = self.bookInfo
-        vc.contentInfo = self.sortedContents[indexPath.row]
-        self.present(vc, animated: true, completion: nil)
+        if (bookInfo.writerToken == API.currentUser.token) {
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "WriteVC") as! WriteVC
+            vc.bookInfo = self.bookInfo
+            vc.contentInfo = self.sortedContents[indexPath.row]
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (bookInfo.writerToken == API.currentUser.token) {

@@ -46,7 +46,7 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
         self.view.addSubview(navigationBar)
         searchWithBarcodeBtn = UIButton()
         searchWithBarcodeBtn.setTitle("바코드로 검색하기", for: .normal)
-        searchWithBarcodeBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        searchWithBarcodeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         searchWithBarcodeBtn.setTitleColor(UIColor.mainColor, for: .normal)
         searchWithBarcodeBtn.addTarget(self, action: #selector(barcode(sender:)), for: .touchUpInside)
         

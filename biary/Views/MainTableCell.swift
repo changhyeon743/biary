@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import AMPopTip
 
 class MainTableCell: UITableViewCell {
     
@@ -25,34 +26,63 @@ class MainTableCell: UITableViewCell {
         super.awakeFromNib()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         let longPressGR = UILongPressGestureRecognizer(target: self, action: #selector(longPressed(gesture:)))
         
         longPressGR.minimumPressDuration = 0.3
         longPressGR.delaysTouchesBegan = true
         self.collectionView.addGestureRecognizer(longPressGR)
+        
     
     }
     
-    
+    var changed:CGPoint = CGPoint.zero
     
     @objc func longPressed(gesture: UILongPressGestureRecognizer) {
+        
         switch(gesture.state) {
         case .began:
             guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
                 return
             }
+            changed = gesture.location(in: collectionView)
+            
             let cell = collectionView.cellForItem(at: selectedIndexPath) as! MainCollectionCell
             cell.startAnimate()
             collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
         case .changed:
+            
             collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
         case .ended:
+            let point = gesture.location(in: collectionView)
+            if ( changed.distance(toPoint: point) < 50 ) {
+                //수정 툴팁 표시
+//                let pop = PopTip()
+//                guard let selectedIndexPath = collectionView.indexPathForItem(at: point) else {
+//                    return
+//                }
+//                let cell = collectionView.cellForItem(at: selectedIndexPath) as! MainCollectionCell
+//                pop.tapHandler = { popTip in
+//                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
+//                    vc.title = "책 편집하기"
+//                    vc.bookInfo = self.bookInfo[selectedIndexPath.row];
+//                    self.mainViewController.present(vc, animated: true, completion: nil)
+//                }
+//                //pop.bubbleColor = UIColor.mainColor
+//                pop.padding = 10
+//                pop.offset = 5
+//                pop.backgroundColor = .darkGray
+//                pop.shouldDismissOnTapOutside = true
+//                pop.shouldDismissOnTap = true
+//                pop.show(text: "수정", direction: .up , maxWidth: 200, in: self.collectionView, from: cell.frame)
+            }
             
             collectionView.endInteractiveMovement()
             //doneBtn.isHidden = false
+            
             longPressedEnabled = true
             
-            self.collectionView.reloadData()
+            //self.collectionView.reloadData()
         default:
             collectionView.cancelInteractiveMovement()
         }
@@ -108,7 +138,11 @@ extension MainTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
+        if (mainViewController.friendMode) {
+            return false
+        } else {
+            return true
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {

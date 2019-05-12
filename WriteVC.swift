@@ -123,7 +123,7 @@ class WriteVC: UIViewController {
         doneBtn.setTitle("완료", for: .normal)
         
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
-        doneBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
 
         doneBtn.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
         

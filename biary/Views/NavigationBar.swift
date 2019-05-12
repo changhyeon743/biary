@@ -34,10 +34,10 @@ class NavigationBar: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         
         titleLbl.text = title;
-        titleLbl.font = UIFont(name: "NotoSansCJKkr-Medium", size: 22)
+        titleLbl.font = UIFont.systemFont(ofSize: 22,weight: .medium)//UIFont(name: "NotoSansCJKkr-Medium", size: 22)
         self.addSubview(titleLbl)
         
-        subLbl.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12)
+        subLbl.font = UIFont.systemFont(ofSize: 12)//UIFont(name: "NotoSansCJKkr-Regular", size: 12)
         subLbl.isHidden = true
         self.addSubview(subLbl)
         
@@ -131,7 +131,7 @@ class NavigationBar: UIView {
         searchBtn.isHidden = true
         addBtn.isHidden = true
         
-        titleLbl.font = UIFont(name: "NotoSansCJKkr-Bold", size: 29)
+        titleLbl.font = UIFont.systemFont(ofSize: 29, weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 29)
         subLbl.textColor = UIColor(r: 90, g: 90, b: 90, alpha: 1)
         subLbl.text = sub
         

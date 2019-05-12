@@ -43,21 +43,30 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
-            //print(json)
-            API.currentShowingFriend = Info.make(data: json["data"][0])
-            if let f = API.currentShowingFriend,f.books.count > 0 {
-                let vc = self.friendVC.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+        let vc = self.friendVC.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+        
+        //            vc.navigationBar.titleLbl.text = API.currentShowingFriend?.user.name ?? "" + "의 서재"
+        //
+        vc.friendMode = true
+        let navigationController = UINavigationController(rootViewController: vc)
+        self.friendVC.present(navigationController, animated: true) {
+            API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
+                //print(json)
+                API.currentShowingFriend = Info.make(data: json["data"][0])
+                if let f = API.currentShowingFriend,f.books.count > 0 {
+                    //로딩 성공
+                    vc.reloadBooks()
+                    vc.makeTitleToFriend()
+                } else {
+                    //책이 0개
+                    vc.makeTitleToFriend()
+                }
                 
-                //            vc.navigationBar.titleLbl.text = API.currentShowingFriend?.user.name ?? "" + "의 서재"
-                //
-                vc.friendMode = true
-                let navigationController = UINavigationController(rootViewController: vc)
-                
-                self.friendVC.present(navigationController, animated: true, completion: nil)
             }
-            
         }
+        
+        
+        
     }
 
 }

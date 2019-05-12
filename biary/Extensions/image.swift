@@ -16,7 +16,7 @@ func imageWith(name: String?) -> UIImage? {
     nameLabel.textAlignment = .center
     nameLabel.backgroundColor = .lightGray
     nameLabel.textColor = .white
-    nameLabel.font = UIFont(name: "Noto Sans CJK KR Regular", size: 7)
+    nameLabel.font = UIFont.systemFont(ofSize: 7)//UIFont(name: "Noto Sans CJK KR Regular", size: 7)
     nameLabel.text = name
     nameLabel.numberOfLines = 2
     UIGraphicsBeginImageContext(frame.size)

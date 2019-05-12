@@ -86,7 +86,7 @@ class BookCreateVC: UIViewController {
         self.view.addSubview(navigationBar)
         doneBtn = UIButton()
         doneBtn.setTitle("완료", for: .normal)
-        doneBtn.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
         doneBtn.addTarget(self, action: #selector(doneBtnPressed(_:)), for: .touchUpInside)
         

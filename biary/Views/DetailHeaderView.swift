@@ -85,23 +85,24 @@ class DetailHeaderView: UIView {
     func setDescriptionViews(margin:CGFloat) {
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(titleLbl)
-        titleLbl.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
+        
+        titleLbl.font = UIFont.systemFont(ofSize: 20,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 20)
         titleLbl.numberOfLines = 3
         titleLbl.textColor = UIColor.white
         
         subTitleLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(subTitleLbl)
-        subTitleLbl.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
+        subTitleLbl.font = UIFont.systemFont(ofSize: 11)//UIFont(name: "NotoSansCJKkr-Regular", size: 11)
         subTitleLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
         
         authorLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(authorLbl)
-        authorLbl.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
+        authorLbl.font = UIFont.systemFont(ofSize: 11)//UIFont(name: "NotoSansCJKkr-Regular", size: 11)
         authorLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
         
         dateLbl.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(dateLbl)
-        dateLbl.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
+        dateLbl.font = UIFont.systemFont(ofSize: 11)//UIFont(name: "NotoSansCJKkr-Regular", size: 11)
         dateLbl.textColor = UIColor(r: 255, g: 255, b: 255, alpha: 0.8)
         dateLbl.textAlignment = .right
         

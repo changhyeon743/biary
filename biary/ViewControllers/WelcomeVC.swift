@@ -67,6 +67,12 @@ class WelcomeVC: UIViewController {
                 self.gotoMain()
             })
         }))
+        alert.addAction(UIAlertAction(title: "새로 시작하기", style: .default, handler: { (_) in
+            API.currentBooks = []
+            API.currentContents = []
+            API.currentUser.bookShelf = [Bookshelf(title: "읽고 있는 책", books: [], expanded: true)]
+            self.gotoMain()
+        }))
         
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in
             FBSDKLoginManager().logOut()

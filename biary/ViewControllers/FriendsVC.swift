@@ -35,7 +35,7 @@ class FriendsVC: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            navigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
             navigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             navigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             navigationBar.heightAnchor.constraint(equalToConstant: 80),
@@ -45,6 +45,10 @@ class FriendsVC: UIViewController {
             tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
             ])
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if (API.currentBooks.count < 2) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.pop.shouldDismissOnTap = true
@@ -64,8 +68,6 @@ class FriendsVC: UIViewController {
             }
         }
     }
-    
-
     
 
 }

@@ -124,9 +124,13 @@ class MainVC: UIViewController {
     }
     let pop = PopTip()
     
-    func makeToFriendMode() {
+    func makeTitleToFriend() {
         self.navigationBar.titleLbl.text = API.currentShowingFriend!.user.name
+    }
+    
+    func makeToFriendMode() {
         self.navigationBar.settingBtnHandler = {
+            API.currentShowingFriend = nil
             self.dismiss(animated: true, completion: nil)
         }
         self.navigationBar.searchBtn.isHidden = true
@@ -134,6 +138,7 @@ class MainVC: UIViewController {
         self.navigationBar.settingBtn.setImage(UIImage(named:"close"), for: .normal)
         
         print("makeToFriendMode : ",bookshelfs)
+        
     }
     
     
