@@ -90,7 +90,11 @@ class BookDetailVC: UIViewController {
         
         customNavigationBar.peopleButton.isHidden = !isMine
         
-        customNavigationBar.peopleButton.setTitle("공개", for: .normal)
+        if (API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic ?? true) {//바꾼 값
+            self.customNavigationBar.peopleButton.setTitle("공개", for: .normal)
+        } else {
+            self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
+        }
         customNavigationBar.peopleButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)// UIFont(name: "NotoSansCJKkr-Regular", size: 15)
 
         customNavigationBar.moreButton.setImage(UIImage(named: "setting"), for: .normal)
@@ -168,6 +172,7 @@ class BookDetailVC: UIViewController {
             if (self.bookInfo.writerToken == API.currentUser.token) {
                 actionSheet.addAction(UIAlertAction(title: "편집", style: .default, handler: { _ in
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
+                    vc.bookDetailVC = self
                     vc.title = "책 편집하기"
                     vc.bookInfo = cb;
                     self.present(vc, animated: true, completion: nil)
@@ -196,13 +201,16 @@ class BookDetailVC: UIViewController {
             
         }
         customNavigationBar.peopleBtnHandler = {
+            
             let a = API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic ?? true
+            
             API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic = !a
             if (!a == true) {//바꾼 값
                 self.customNavigationBar.peopleButton.setTitle("공개", for: .normal)
             } else {
                 self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
             }
+            API.user.update()
             //print(API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic)
         }
         

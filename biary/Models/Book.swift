@@ -90,12 +90,13 @@ extension Book {
     }
     
     static func edit(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf],isPublic: Bool, bookToken: String) {
-        
         Bookshelf.clean(bookToken: bookToken)
+        Bookshelf.addBook(at: bookshelfs, bookToken: bookToken)
         let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: bookToken, description: description, date: Date(), isPublic: isPublic)
         
-        Bookshelf.addBook(at: bookshelfs, bookToken: book.token)
         API.currentBooks[Book.find(withToken: bookToken)] = book
+        API.data.saveUser()
+        API.data.saveBooks()
     }
     
     static func find(withToken token:String) -> Int{

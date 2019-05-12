@@ -35,7 +35,6 @@ class MainVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         reloadBooks()
         tabBarController?.tabBar.isHidden = false;
-
     }
     
     override func viewDidLoad() {
@@ -127,8 +126,12 @@ class MainVC: UIViewController {
     func makeTitleToFriend() {
         self.navigationBar.titleLbl.text = API.currentShowingFriend!.user.name
     }
+    func makeTitleTo(str:String) {
+        self.navigationBar.titleLbl.text = str
+    }
     
     func makeToFriendMode() {
+        makeTitleTo(str: "불러오는 중입니다")
         self.navigationBar.settingBtnHandler = {
             API.currentShowingFriend = nil
             self.dismiss(animated: true, completion: nil)

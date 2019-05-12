@@ -185,6 +185,8 @@ class UserAPI {
                     //print(JSON(value)["status"].intValue)
                     if (JSON(value)["status"].intValue == 200) {
                         completion(JSON(value))
+                    } else {
+                        completion(JSON(value))
                     }
                 }
             })

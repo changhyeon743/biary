@@ -19,7 +19,7 @@ struct Info {
 extension Info {
     static func make(data: JSON) -> Info {
         let json = data["data"]
-        print("friend INFO:: -> \n",json)
+        //print("friend INFO:: -> \n",json)
         var temp = Info(user: User.transformUser(fromJSON: json["user"]),
                         books: Book.transformBook(fromJSON: json["books"]),
                         contents: Content.transformContent(fromJSON: json["contents"]))

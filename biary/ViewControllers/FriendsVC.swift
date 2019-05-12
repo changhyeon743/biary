@@ -30,12 +30,11 @@ class FriendsVC: UIViewController {
         navigationBar.line.isHidden = false
         navigationBar.addBtn.isHidden = true
         navigationBar.searchBtn.isHidden = true
-        navigationBar.setConstraints()
         self.view.addSubview(navigationBar)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            navigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
+            navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             navigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             navigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             navigationBar.heightAnchor.constraint(equalToConstant: 80),
@@ -46,6 +45,8 @@ class FriendsVC: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
             ])
         
+        navigationBar.setConstraints()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,15 +105,15 @@ extension FriendsVC: UITableViewDelegate,UITableViewDataSource {
         label.text = titles[section]
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
-        let expandImage = UIImage(named: "arrow_back")!
-        let button = UIButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width - 12, y: view.frame.height/2 - expandImage.size.height/2, width: expandImage.size.width, height: expandImage.size.height))
+        let expandImage = UIImage(named: "refresh")!
+        let button = UIButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width*0.8 - 12, y: view.frame.height/2 - expandImage.size.height*0.8/2, width: expandImage.size.width*0.8, height: expandImage.size.height*0.8))
         button.tintColor = UIColor.Gray
         button.setImage(expandImage, for: .normal)
         
         //button.setTitle("", for: .normal)
-        turn(button: button, to: self.expanded[section])
+        //turn(button: button, to: self.expanded[section])
         
-        button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
+        button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         
         button.tag = section
         
@@ -120,6 +121,11 @@ extension FriendsVC: UITableViewDelegate,UITableViewDataSource {
         view.addSubview(label)
         
         return view
+    }
+    
+    @objc func refresh() {
+        //API.currentFriends = API.currentFriends + API.currentFriends
+        tableView.reloadData()
     }
     
     func turn(button:UIButton,to: Bool) {
@@ -178,7 +184,7 @@ extension FriendsVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 280; //150
+        return 280+100; //150
     }
     
 }

@@ -50,15 +50,12 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
         vc.friendMode = true
         let navigationController = UINavigationController(rootViewController: vc)
         self.friendVC.present(navigationController, animated: true) {
+            
             API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
-                //print(json)
                 API.currentShowingFriend = Info.make(data: json["data"][0])
                 if let f = API.currentShowingFriend,f.books.count > 0 {
                     //로딩 성공
                     vc.reloadBooks()
-                    vc.makeTitleToFriend()
-                } else {
-                    //책이 0개
                     vc.makeTitleToFriend()
                 }
                 

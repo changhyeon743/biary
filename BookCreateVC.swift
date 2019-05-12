@@ -117,6 +117,7 @@ class BookCreateVC: UIViewController {
     }
     
     let pop = PopTip()
+    var bookDetailVC:BookDetailVC?
     
     func setBookInfos() {
         if let book = bookInfo { //수정중일경우
@@ -172,15 +173,20 @@ class BookCreateVC: UIViewController {
         
         //bookImageView.image = imageWith(name: title)
         if (bookInfo == nil) {
-            Book.append(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs)
-        } else if let book = bookInfo {
-            Book.edit(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs, isPublic: true, bookToken: book.token)
+            Book.append(title: title, author: author, publisher: publisher, isbn: isbn.withoutHtml, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs)
+        } else if let book = bookInfo { //수정 중 일경우
+            Book.edit(title: title, author: author, publisher: publisher, isbn: isbn.withoutHtml, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs, isPublic: true, bookToken: book.token)
+        }
+        API.user.update { (json) in
+            
         }
         
         
         //API.data.saveBooks()
         if let rootvc = self.view.window?.rootViewController {
+            print("rootVC: ",rootvc)
             rootvc.dismiss(animated: true, completion: nil)
+            
         }
         //dismiss(animated: true, completion: nil)
     }
