@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+extension UIView {
+    func setColorToGlobal() {
+        self.backgroundColor = API.currentColor
+    }
+}
 
 extension UITextField {
     func addBorderBottom(height: CGFloat, color: UIColor, margin_right: CGFloat) {

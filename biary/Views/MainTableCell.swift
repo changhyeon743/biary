@@ -32,8 +32,7 @@ class MainTableCell: UITableViewCell {
         longPressGR.minimumPressDuration = 0.3
         longPressGR.delaysTouchesBegan = true
         self.collectionView.addGestureRecognizer(longPressGR)
-        
-    
+        collectionView.setColorToGlobal()
     }
     
     var changed:CGPoint = CGPoint.zero
@@ -108,6 +107,7 @@ extension MainTableCell: UICollectionViewDataSource, UICollectionViewDelegate,UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "book", for: indexPath) as! MainCollectionCell
+        
         
         if (bookInfo.count > 0) {
             if (bookInfo[indexPath.row].imageURL.isEmpty) {

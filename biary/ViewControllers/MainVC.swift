@@ -39,8 +39,8 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-       
+        self.view.setColorToGlobal()
+        tableView.setColorToGlobal()
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
@@ -117,9 +117,6 @@ class MainVC: UIViewController {
         }
         
         
-        
-        
-        
     }
     let pop = PopTip()
     
@@ -180,6 +177,9 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if (section == bookshelfs.count-1) {
+            return 50
+        }
         return 1
     }
     
@@ -189,7 +189,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: headerHeight))
-        view.backgroundColor = .white
+        view.setColorToGlobal()
         
         
         
@@ -205,9 +205,12 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         //button.setTitle("", for: .normal)
         turn(button: button, to: self.bookshelfs[section].expanded)
         
+        
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         
         button.tag = section
+        
+        
         
         view.addSubview(button)
         view.addSubview(label)

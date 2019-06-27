@@ -51,21 +51,26 @@ class BookDetailVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        //
         setNavigationBar()
         tabBarController?.tabBar.isHidden = true;
         headerHeight = UIWindow().screen.bounds.height * 0.4
+        //여기
         sortedContents = contents
         //ratio
         self.setUpHeaderView()
         tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.allowsSelection = isMine
+
+
     }
     override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
-        sortedContents = contents
         if (self.bookInfo.writerToken != API.currentUser.token) {
             addBtn.isHidden = true
         }
+        sortedContents = contents
+        tableView.reloadData()
+        
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -86,15 +91,20 @@ class BookDetailVC: UIViewController {
     
     func setNavigationBar() {
         customNavigationBar = DetailNavigationBar(frame: CGRect.zero)
+        
         self.view.addSubview(customNavigationBar)
         
+        customNavigationBar.titleLabel.text = bookInfo.title
         customNavigationBar.peopleButton.isHidden = !isMine
         
-        if (API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic ?? true) {//바꾼 값
-            self.customNavigationBar.peopleButton.setTitle("공개", for: .normal)
-        } else {
-            self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
+        if (bookInfo.writerToken == API.currentUser.token) {
+            if (API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic ?? true) {//바꾼 값
+                self.customNavigationBar.peopleButton.setTitle("공개", for: .normal)
+            } else {
+                self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
+            }
         }
+        
         customNavigationBar.peopleButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)// UIFont(name: "NotoSansCJKkr-Regular", size: 15)
 
         customNavigationBar.moreButton.setImage(UIImage(named: "setting"), for: .normal)
@@ -131,6 +141,8 @@ class BookDetailVC: UIViewController {
                         switch selectedText {
                         case "페이지 순":
                             self.sortedContents = self.contents.filter { $0.title.range(of: " P.") != nil }
+                            self.sortedContents = self.sortedContents + (self.contents.filter { $0.title.range(of: " 페이지") != nil})
+                            
                             //191 P. 를 191로 만들고 나서 int로 비교
                             self.sortedContents = self.sortedContents.sorted( by: {
                                 guard let title0 = Int($0.title.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) else { return false }
@@ -231,9 +243,7 @@ class BookDetailVC: UIViewController {
         tableView.backgroundColor = UIColor.white
         headerView = tableView.tableHeaderView as? DetailHeaderView
         headerView.setUpView()
-        
         headerView.title = bookInfo.title
-        
         headerView.subTitle = bookInfo.author + " . " + bookInfo.publisher
         headerView.author = bookInfo.writerName
         headerView.date = bookInfo.date ?? Date()
@@ -324,10 +334,9 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
         
         cell.contentLabel.attributedText = attributedString
         cell.dateLabel.text = sortedContents[indexPath.row].date.getDate()
+        
+        
         return cell
-    }
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -175,7 +175,13 @@ class BookCreateVC: UIViewController {
         if (bookInfo == nil) {
             Book.append(title: title, author: author, publisher: publisher, isbn: isbn.withoutHtml, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs)
         } else if let book = bookInfo { //수정 중 일경우
+            Bookshelf.clean(bookToken: book.token)
+            Bookshelf.addBook(at: bookshelfs, bookToken: book.token)
             Book.edit(title: title, author: author, publisher: publisher, isbn: isbn.withoutHtml, imageURL: imageLink, description: explain.withoutHtml, bookshelfs: bookshelfs, isPublic: true, bookToken: book.token)
+            bookDetailVC?.headerView.title = title
+            bookDetailVC?.headerView.subTitle = author + " . " + publisher
+            bookDetailVC?.headerView.author = author
+            bookDetailVC?.tableView.reloadData()
         }
         API.user.update { (json) in
             

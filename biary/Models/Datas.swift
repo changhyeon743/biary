@@ -11,6 +11,7 @@ import Disk
 import FBSDKCoreKit
 import FBSDKLoginKit
 import SwiftyJSON
+import Alamofire
 
 class Datas {
     func saveBooks() {
@@ -111,5 +112,29 @@ class Datas {
         API.currentContents = API.data.loadContents()
         
         
+    }
+    
+    
+    func removeAll() {
+        try? Disk.remove("datas/contents.json", from: .documents)
+        try? Disk.remove("datas/books.json", from: .documents)
+        try? Disk.remove("datas/user.json", from: .documents)
+    }
+    
+    func removeUser(token:String,completion:@escaping (JSON)->Void) {
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        let parameters = [
+            "token": token
+        ]
+        
+        Alamofire.request("\(API.base_url)/userDelete",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+            .responseJSON(completionHandler: { (response) in
+                //1. JSON 변환
+                if let value = response.result.value,response.result.isSuccess {
+                    completion(JSON(value))
+                }
+            })
     }
 }

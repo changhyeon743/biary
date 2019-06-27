@@ -11,6 +11,7 @@ import Carte
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+
 class SettingVC: UIViewController {
     var navigationBar: NavigationBar!
     
@@ -65,6 +66,7 @@ class SettingVC: UIViewController {
         switch sender.titleLabel?.text ?? "" {
         case "공지사항/이벤트":
             notice()
+            print(API.currentUser)
             break;
         case "문의하기":
             let email = "changhyeon743@gmail.com"
@@ -119,6 +121,9 @@ class SettingVC: UIViewController {
                 API.currentBooks = []
                 API.currentContents = []
                 API.currentUser.bookShelf = []
+                
+                //API.data.removeAll()
+                
                 FBSDKLoginManager().logOut()
                 
                 self.present(UIStoryboard(name: "Welcome", bundle: nil).instantiateInitialViewController() as! WelcomeVC, animated: true, completion: nil)
@@ -185,6 +190,8 @@ class SettingVC: UIViewController {
                     
                 }
             }
+        } else {
+            API.currentUser.isLogined = true
         }
         
     }

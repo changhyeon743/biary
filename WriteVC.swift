@@ -55,7 +55,7 @@ class WriteVC: UIViewController {
     }
     
     @objc func titlePressed(_ sender: Any) {
-        let questionList = ["( )p.","책의 시작","생각","좋은 점","나쁜 점","문장","직접 입력"]
+        let questionList = ["페이지","책의 시작","생각","좋은 점","나쁜 점","문장","직접 입력"]
         var initialSelection = questionList.index(of: self.titleLbl.text ?? "")
         if initialSelection == nil {
             initialSelection = 0
@@ -69,14 +69,14 @@ class WriteVC: UIViewController {
                 
                 let selectedText = values! as! String
                 
-                if (selectedText == "직접 입력" || selectedText == "( )p.") {
+                if (selectedText == "직접 입력" || selectedText == "페이지") {
                     let alert = UIAlertController(title: "입력", message: nil, preferredStyle: .alert)
                     let backAction = UIAlertAction(title: "취소", style: .default)
                     let okAction = UIAlertAction(title: "확인", style: .default) { (alertAction) in
                         let textField = alert.textFields![0] as UITextField
                         
                         self.titleLbl.text = textField.text!
-                        if (selectedText == "( )p.") {
+                        if (selectedText == "페이지") {
                             self.titleLbl.text = textField.text!+" P."
                         }
                     }
@@ -84,7 +84,7 @@ class WriteVC: UIViewController {
                     alert.addTextField { (textField) in
                         textField.text = ""
                         textField.placeholder = "제목을 직접 입력해주세요"
-                        if (selectedText == "( )p.") {
+                        if (selectedText == "페이지") {
                             textField.keyboardType = .numberPad
                             textField.placeholder = "페이지를 직접 입력해주세요"
                         }

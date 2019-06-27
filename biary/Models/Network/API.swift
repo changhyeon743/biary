@@ -43,4 +43,6 @@ class API {
     static var currentFriends:[Friend] = []
     
     static var currentShowingFriend:Info? = nil
+    
+    static var currentColor:UIColor = UIColor(r: 255, g: 255, b: 255)
 }

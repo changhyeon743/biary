@@ -56,7 +56,7 @@ class WelcomeVC: UIViewController {
     }
     
     func alreadyLogined(token: String) { //이미 로그인된 계정일 경우
-        
+        print("token:" ,token)
         let alert = UIAlertController(title: "이미 다른 기기에 로그인된 계정입니다.", message: "기기들 중 하나의 기기의 데이터만 서버에 올라갑니다.\n 주의해주세요. ", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "불러오기", style: .default, handler: { (_) in
             API.user.fetch(token: token, completion: { (json) in
@@ -68,10 +68,15 @@ class WelcomeVC: UIViewController {
             })
         }))
         alert.addAction(UIAlertAction(title: "새로 시작하기", style: .default, handler: { (_) in
-            API.currentBooks = []
-            API.currentContents = []
-            API.currentUser.bookShelf = [Bookshelf(title: "읽고 있는 책", books: [], expanded: true)]
-            self.gotoMain()
+            
+            API.user.fetch(token: token, completion: { (json) in
+                let data = json["data"]
+                API.currentContents = []
+                API.currentUser = User.transformUser(fromJSON: data["user"])
+                API.currentBooks = []
+                API.currentUser.bookShelf = [Bookshelf(title: "읽고 있는 책", books: [], expanded: true)]
+                self.gotoMain()
+            })
         }))
         
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in

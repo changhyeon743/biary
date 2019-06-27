@@ -178,16 +178,13 @@ class UserAPI {
             "userToken" : API.currentUser.token
         ]
         
-        Alamofire.request("\(API.base_url)/fetch/friend",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+    Alamofire.request("\(API.base_url)/fetch/friend",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
+                if let value = response.result.value {
+                    //print(value)
                     //print(JSON(value)["status"].intValue)
-                    if (JSON(value)["status"].intValue == 200) {
-                        completion(JSON(value))
-                    } else {
-                        completion(JSON(value))
-                    }
+                    completion(JSON(value))
                 }
             })
         

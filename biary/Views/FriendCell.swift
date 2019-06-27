@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FriendCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!

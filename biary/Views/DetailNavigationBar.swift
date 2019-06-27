@@ -29,8 +29,9 @@ class DetailNavigationBar: UIView {
     }
     
     func setContents() {
-        titleLabel.text = "나미야 잡화점의 기적"
+        titleLabel.text = "책 이름"
         titleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        
         titleLabel.textAlignment = .center
         
         backButton.setImage(UIImage(named:"arrow_back"), for: .normal)
@@ -74,8 +75,9 @@ class DetailNavigationBar: UIView {
             backButton.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 16),
             backButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 8),
         //TitleLabel
-            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor,constant: 6),
+            titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 48),
+            titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -48),
         //MoreButton
             moreButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
             moreButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 8),

@@ -17,13 +17,13 @@ class MainCollectionCell: UICollectionViewCell,UIGestureRecognizerDelegate {
     
     override func awakeFromNib() {
         
-//        self.layer.shadowColor = UIColor.gray.cgColor
-//        self.layer.shadowOffset = CGSize(width: 0, height: 0)
-//        self.layer.shadowRadius = 6
-//        self.layer.shadowOpacity = 0.6
-//        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.lightGray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 0.6
+        self.layer.masksToBounds = false
 //
-        self.imageView.layer.cornerRadius = 5
+        //self.imageView.layer.cornerRadius = 5
         self.imageView.clipsToBounds = true
 //
 //        if (traitCollection.forceTouchCapability == .available) {

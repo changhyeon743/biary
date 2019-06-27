@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class FriendTableCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,7 +23,7 @@ class FriendTableCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 
@@ -52,12 +53,24 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
         self.friendVC.present(navigationController, animated: true) {
             
             API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
-                API.currentShowingFriend = Info.make(data: json["data"][0])
-                if let f = API.currentShowingFriend,f.books.count > 0 {
-                    //로딩 성공
-                    vc.reloadBooks()
-                    vc.makeTitleToFriend()
+                print(json)
+                if (json["status"].intValue != 200) {
+                    vc.makeTitleTo(str: "정보가 존재하지 않습니다.")
+                    
+                } else {
+                    API.currentShowingFriend = Info.make(data: json["data"][0])
+                    if let f = API.currentShowingFriend {
+                        for (num,item) in f.user.bookShelf.enumerated() {
+                            if (item.books.count == 0) {
+                                API.currentShowingFriend?.user.bookShelf[num].expanded = false
+                            }
+                        }
+                        //로딩 성공
+                        vc.reloadBooks()
+                        vc.makeTitleToFriend()
+                    }
                 }
+                
                 
             }
         }

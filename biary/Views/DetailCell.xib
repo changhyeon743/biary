@@ -35,7 +35,7 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아무 위에 하늘에는 있습니다. 까닭이요, 오면 별 비둘기,토끼, 하나에 버리었습니다. 때 별이 많은 토끼, 별 밤이 잠, 계십니다. 때 하나에 써 추억과 위에 까닭입니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coN-dG-YOn">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아무 위에 하늘에는 있습니다. 까닭이요, 오면 별 비둘기,토끼, 하나에 버리었습니다. 때 별이 많은 토끼, 별 밤이 잠, 계십니다. 때 하나에 써 추억과 위에 까닭입니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coN-dG-YOn">
                         <rect key="frame" x="20" y="53" width="280" height="70.5"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                         <nil key="textColor"/>

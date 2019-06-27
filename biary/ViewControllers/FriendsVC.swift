@@ -8,6 +8,7 @@
 
 import UIKit
 import AMPopTip
+import Spring
 
 class FriendsVC: UIViewController {
     
@@ -106,14 +107,15 @@ extension FriendsVC: UITableViewDelegate,UITableViewDataSource {
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         let expandImage = UIImage(named: "refresh")!
-        let button = UIButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width*0.8 - 12, y: view.frame.height/2 - expandImage.size.height*0.8/2, width: expandImage.size.width*0.8, height: expandImage.size.height*0.8))
+        let button = SpringButton(frame: CGRect(x: self.view.frame.width - expandImage.size.width*0.8 - 12, y: view.frame.height/2 - expandImage.size.height*0.8/2, width: expandImage.size.width*0.8, height: expandImage.size.height*0.8))
+        
         button.tintColor = UIColor.Gray
         button.setImage(expandImage, for: .normal)
         
         //button.setTitle("", for: .normal)
         //turn(button: button, to: self.expanded[section])
         
-        button.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        button.addTarget(self, action: #selector(refresh(sender:)), for: .touchUpInside)
         
         button.tag = section
         
@@ -123,9 +125,17 @@ extension FriendsVC: UITableViewDelegate,UITableViewDataSource {
         return view
     }
     
-    @objc func refresh() {
+    @objc func refresh(sender: UIButton) {
+//        button.tintColor = UIColor.black
         //API.currentFriends = API.currentFriends + API.currentFriends
         tableView.reloadData()
+        
+//        UIView.animate(withDuration:2.0, animations: {
+//            button.transform = CGAffineTransform(rotationAngle: CGFloat(360))
+//        })
+//        button.animation = "shake"
+//        button.force = 0.5
+//        button.animate()
     }
     
     func turn(button:UIButton,to: Bool) {
