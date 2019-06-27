@@ -78,7 +78,7 @@
 		783341F1218ECD510032678C /* BookDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookDetailVC.swift; path = biary/ViewControllers/BookDetailVC.swift; sourceTree = SOURCE_ROOT; };
 		783341F3218ECE140032678C /* DetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderView.swift; sourceTree = "<group>"; };
 		783D31D9218B35D8004B5DBC /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
-		783FFBEC219D8606002B6977 /* WriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteVC.swift; sourceTree = SOURCE_ROOT; };
+		783FFBEC219D8606002B6977 /* WriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WriteVC.swift; path = biary/ViewControllers/WriteVC.swift; sourceTree = SOURCE_ROOT; };
 		784B1A6322294F8E009F779C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		784E4FEA2221EA2300B617AA /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		785FFF57222620D00040E1F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		787DDFD4219326A300332121 /* DetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailCell.xib; sourceTree = "<group>"; };
 		787ED771223112BD0097E79E /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
 		787ED773223114C20097E79E /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
-		787ED77522312A900097E79E /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewVC.swift; path = biary/Views/PreviewVC.swift; sourceTree = "<group>"; };
+		787ED77522312A900097E79E /* PreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewVC.swift; sourceTree = "<group>"; };
 		787ED7772231309C0097E79E /* Preview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Preview.xib; sourceTree = "<group>"; };
 		788D76EB22329073007CA9B3 /* BookCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCreateVC.swift; sourceTree = "<group>"; };
 		78A239F62195C6EB00F2A835 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 		78DA2522218137D800DAEDE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78DA2525218137D800DAEDE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		78DA2527218137D800DAEDE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		78E37E3B222D549D00D2CC05 /* BookShelfSelectingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfSelectingVC.swift; sourceTree = SOURCE_ROOT; };
+		78E37E3B222D549D00D2CC05 /* BookShelfSelectingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookShelfSelectingVC.swift; path = biary/ViewControllers/BookShelfSelectingVC.swift; sourceTree = SOURCE_ROOT; };
 		78E37E3D222E852100D2CC05 /* BookAddSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAddSearchVC.swift; sourceTree = "<group>"; };
 		78F0719F218348410034E417 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		9A920514E662420FB7067EF1 /* Pods-biary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biary.release.xcconfig"; path = "Pods/Target Support Files/Pods-biary/Pods-biary.release.xcconfig"; sourceTree = "<group>"; };
@@ -193,19 +193,6 @@
 			path = biary;
 			sourceTree = "<group>";
 		};
-		78E37E3F222E853500D2CC05 /* Adding */ = {
-			isa = PBXGroup;
-			children = (
-				788D76EB22329073007CA9B3 /* BookCreateVC.swift */,
-				78E37E3D222E852100D2CC05 /* BookAddSearchVC.swift */,
-				78E37E3B222D549D00D2CC05 /* BookShelfSelectingVC.swift */,
-				783FFBEC219D8606002B6977 /* WriteVC.swift */,
-				787ED77522312A900097E79E /* PreviewVC.swift */,
-			);
-			name = Adding;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		78F0719A218346BE0034E417 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,7 +226,11 @@
 				78F0719F218348410034E417 /* MainVC.swift */,
 				783341F1218ECD510032678C /* BookDetailVC.swift */,
 				78A517AB2225415000CB3035 /* BookShelfVC.swift */,
-				78E37E3F222E853500D2CC05 /* Adding */,
+				78E37E3D222E852100D2CC05 /* BookAddSearchVC.swift */,
+				788D76EB22329073007CA9B3 /* BookCreateVC.swift */,
+				78E37E3B222D549D00D2CC05 /* BookShelfSelectingVC.swift */,
+				783FFBEC219D8606002B6977 /* WriteVC.swift */,
+				787ED77522312A900097E79E /* PreviewVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
