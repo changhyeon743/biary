@@ -20,6 +20,8 @@ pod 'ActionSheetPicker-3.0', '~> 2.3.0'
 pod 'AMPopTip'
 pod 'Carte'
 pod "SwiftRater"
+pod 'CropViewController'
+
 
 end
 

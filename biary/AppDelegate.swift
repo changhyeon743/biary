@@ -25,8 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
         
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         API.data.loadAll()
-        if let loggedInUsingFBTokenCheck = FBSDKAccessToken.current(){
+        
+        if let loggedInUsingFBTokenCheck = AccessToken.current{
             //User is already logged-in. Please do your additional code/task.
             print(loggedInUsingFBTokenCheck)
             

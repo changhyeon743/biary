@@ -35,7 +35,7 @@ pod "SwiftRater"
 ```
 ### Carthage
 
-SwiftRoutes is compatible with [Carthage](https://github.com/Carthage/Carthage). Add it to your `Cartfile`:
+SwiftRater is compatible with [Carthage](https://github.com/Carthage/Carthage). Add it to your `Cartfile`:
 
 ```ruby
 github "takecian/SwiftRater"
@@ -95,13 +95,13 @@ func postComment() {
 
 ```
 
-4(Optional).Call `SwiftRater.rateApp()` to let your users to review your app on the App Store/in your app directly.
+4(Optional).Call `SwiftRater.rateApp(host:)` to let your users to review your app on the App Store/in your app directly.
 
 ```
 func rateButtonDidClick(sender: UIButton) {
     // do something ..
 
-	SwiftRater.rateApp()
+	SwiftRater.rateApp(host: self)
 }
 
 ```

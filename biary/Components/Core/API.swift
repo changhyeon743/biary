@@ -14,6 +14,7 @@ class API {
     static var auth = AuthAPI()
     static var user = UserAPI()
     static var facebook = FacebookAPI()
+    static var imageToText = ImageToTextAPI()
     static var data = Datas()
 
     //static var Board = BoardAPI()

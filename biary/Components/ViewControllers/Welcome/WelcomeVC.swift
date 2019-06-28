@@ -28,8 +28,8 @@ class WelcomeVC: UIViewController {
     }
     
     @objc func loginBtnPressed(_ sender: Any) {
-        if ( FBSDKAccessToken.current() == nil ) {
-            let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
+        if ( AccessToken.current() == nil ) {
+            let fbLoginManager : LoginManager = FBSDKLoginManager()
             fbLoginManager.logIn(withReadPermissions: ["public_profile","email","user_friends"], from: self) { (result, error) -> Void in
                 if (error == nil){
                     let fbloginresult : FBSDKLoginManagerLoginResult = result!
@@ -80,7 +80,7 @@ class WelcomeVC: UIViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in
-            FBSDKLoginManager().logOut()
+            LoginManager().logOut()
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -93,7 +93,7 @@ class WelcomeVC: UIViewController {
             alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
-            FBSDKLoginManager().logOut()
+            LoginManager().logOut()
         } else {
             //로그인이 안되있었을경우 (정상적)
             API.currentUser.isLogined = true

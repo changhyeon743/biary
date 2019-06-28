@@ -19,12 +19,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Bolts.xcscheme</key>
+		<key>Carte.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Carte.xcscheme</key>
+		<key>CropViewController-TOCropViewControllerBundle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>CropViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

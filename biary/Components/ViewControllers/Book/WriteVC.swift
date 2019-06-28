@@ -10,6 +10,7 @@ import UIKit
 import Spring
 import UITextView_Placeholder
 import ActionSheetPicker_3_0
+import Photos
 
 
 class WriteVC: UIViewController {
@@ -257,6 +258,8 @@ extension WriteVC : UITextViewDelegate {
         toolBar.isTranslucent = true
         let highLightBtn = UIBarButtonItem(image: UIImage(named:"highlight"), style: .plain, target: self, action: #selector(highlightPressed))
         
+        let cameraBtn = UIBarButtonItem(barButtonSystemItem: .camera, target: nil, action: #selector(cameraBtnPressed))
+        cameraBtn.tintColor = UIColor.mainColor
         
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         
@@ -272,14 +275,14 @@ extension WriteVC : UITextViewDelegate {
         let redoBtn_ = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         redoBtn_.setBackgroundImage(UIImage(named: "undo")?.withHorizontallyFlippedOrientation(), for: .normal)
         redoBtn_.addTarget(self, action: #selector(redoPressed), for: .touchUpInside)
-        redoBtn_.tintColor = UIColor(r: 85, g: 85, b: 85)
+        redoBtn_.tintColor = UIColor(r: 85, g: 85, b: 85) //gray
         
         
         let redoBtn = UIBarButtonItem(customView: redoBtn_)
         
         
         
-        toolBar.setItems([highLightBtn,space,undoBtn,fixedSpaceBetweenBtns,redoBtn], animated: false)
+        toolBar.setItems([cameraBtn,highLightBtn,space,undoBtn,fixedSpaceBetweenBtns,redoBtn], animated: false)
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
         
@@ -291,6 +294,14 @@ extension WriteVC : UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         updateUndoBtns()
+    }
+    
+    @objc func cameraBtnPressed() {
+//        let picker = UIImagePickerController()
+//        picker.delegate = self
+//        picker.allowsEditing = true
+//        let alert = UIAlertController(title: "이미지", message: <#T##String?#>, preferredStyle: <#T##UIAlertController.Style#>)
+//        picker.sourceType = .photoLibrary
     }
     
     func updateUndoBtns() {

@@ -124,13 +124,14 @@ class SettingVC: UIViewController {
                 
                 //API.data.removeAll()
                 
-                FBSDKLoginManager().logOut()
+                
+                LoginManager().logOut()
                 
                 self.present(UIStoryboard(name: "Welcome", bundle: nil).instantiateInitialViewController() as! WelcomeVC, animated: true, completion: nil)
             }))
             
             alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in
-                FBSDKLoginManager().logOut()
+                LoginManager().logOut()
             }))
             
             self.present(alert, animated: true, completion: nil)
@@ -141,7 +142,7 @@ class SettingVC: UIViewController {
             alert.addAction(UIAlertAction(title: "로그아웃", style: .destructive, handler: { (_) in
                 API.currentUser.isLogined = false
                 API.user.logoutUpdate()
-                FBSDKLoginManager().logOut()
+                LoginManager().logOut()
                 
                 self.setLoginBtn()
             }))
@@ -171,11 +172,11 @@ class SettingVC: UIViewController {
     }
     
     func loginBtnPressed() {
-        if ( FBSDKAccessToken.current() == nil ) {
-            let fbLoginManager : FBSDKLoginManager = FBSDKLoginManager()
-            fbLoginManager.logIn(withReadPermissions: ["public_profile","email","user_friends"], from: self) { (result, error) -> Void in
+        if ( AccessToken.current == nil ) {
+            let fbLoginManager : LoginManager = LoginManager()
+            fbLoginManager.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) -> Void in
                 if (error == nil){
-                    let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                    let fbloginresult : LoginManagerLoginResult = result!
                     // if user cancel the login
                     if (result?.isCancelled)!{
                         return
@@ -225,7 +226,7 @@ class SettingVC: UIViewController {
                 }))
                 
                 alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in
-                    FBSDKLoginManager().logOut()
+                    LoginManager().logOut()
                 }))
                 
                 self.present(alert, animated: true, completion: nil)

@@ -14,9 +14,9 @@ import SwiftyJSON
 class FacebookAPI {
     ///WelcomeVC에 없을 경우
     func getFBUserData(settingVC: SettingVC) {
-        if((FBSDKAccessToken.current()) != nil){
+        if((AccessToken.current()) != nil){
             
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
+            GraphRequest(graphPath: "me", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
                     print(result)
                     //everything works print the user data
@@ -44,9 +44,9 @@ class FacebookAPI {
     }
     
     func getFBUserData(welcomeVC: WelcomeVC) {
-        if((FBSDKAccessToken.current()) != nil){
+        if((AccessToken.current()) != nil){
             
-            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
+            GraphRequest(graphPath: "me", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
                     print(result)
                     //everything works print the user data
@@ -126,9 +126,9 @@ class FacebookAPI {
     }
     
     func getFBfriendData(){
-        if((FBSDKAccessToken.current()) != nil){
+        if((AccessToken.current()) != nil){
             
-            FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
+            GraphRequest(graphPath: "me/friends", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
                     //everything works print the user data
                     API.currentFriends = Friend.transform(fromJSON: JSON(result)["data"])
