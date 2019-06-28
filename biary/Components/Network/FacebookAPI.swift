@@ -14,7 +14,7 @@ import SwiftyJSON
 class FacebookAPI {
     ///WelcomeVC에 없을 경우
     func getFBUserData(settingVC: SettingVC) {
-        if((AccessToken.current()) != nil){
+        if((AccessToken.current) != nil){
             
             GraphRequest(graphPath: "me", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
@@ -44,7 +44,7 @@ class FacebookAPI {
     }
     
     func getFBUserData(welcomeVC: WelcomeVC) {
-        if((AccessToken.current()) != nil){
+        if((AccessToken.current) != nil){
             
             GraphRequest(graphPath: "me", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){
@@ -126,7 +126,7 @@ class FacebookAPI {
     }
     
     func getFBfriendData(){
-        if((AccessToken.current()) != nil){
+        if((AccessToken.current) != nil){
             
             GraphRequest(graphPath: "me/friends", parameters: ["fields": "id,name,picture"]).start(completionHandler: { (connection, result, error) -> Void in
                 if (error == nil){

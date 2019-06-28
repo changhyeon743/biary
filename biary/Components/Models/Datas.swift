@@ -104,7 +104,7 @@ class Datas {
         API.currentBooks = book
         //print("fd",API.currentBooks)
         API.currentUser = API.data.loadUser()
-        if(AccessToken.current() != nil) {
+        if(AccessToken.current != nil) {
             API.facebook.getFBfriendData()
         }
         

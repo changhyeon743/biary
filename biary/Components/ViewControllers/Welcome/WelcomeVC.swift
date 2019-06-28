@@ -28,11 +28,11 @@ class WelcomeVC: UIViewController {
     }
     
     @objc func loginBtnPressed(_ sender: Any) {
-        if ( AccessToken.current() == nil ) {
-            let fbLoginManager : LoginManager = FBSDKLoginManager()
-            fbLoginManager.logIn(withReadPermissions: ["public_profile","email","user_friends"], from: self) { (result, error) -> Void in
+        if ( AccessToken.current == nil ) {
+            let fbLoginManager : LoginManager = LoginManager()
+            fbLoginManager.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) -> Void in
                 if (error == nil){
-                    let fbloginresult : FBSDKLoginManagerLoginResult = result!
+                    let fbloginresult : LoginManagerLoginResult = result!
                     // if user cancel the login
                     if (result?.isCancelled)!{
                         return

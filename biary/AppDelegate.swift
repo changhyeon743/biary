@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
-        
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKCoreKit.ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+//        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         API.data.loadAll()
         
@@ -69,9 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let appId: String = SDKSettings.appId
+        let appId: String = FBSDKCoreKit.Settings.appID
         if url.scheme != nil && url.scheme!.hasPrefix("fb\(appId)") && url.host ==  "authorize" {
-            return SDKApplicationDelegate.shared.application(app, open: url, options: options)
+            
+            return FBSDKCoreKit.ApplicationDelegate.shared.application(app, open: url, options: options)
         }
         return false
     }

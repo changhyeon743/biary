@@ -12,22 +12,31 @@ import Alamofire
 
 class ImageToTextAPI {
     func run(image: UIImage, profileURL: String, token: String,completion:@escaping(JSON)->Void) {
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/x-www-form-urlencoded"
-        ]
-        let parameters = [
-            "name" : name,
-            "facebookId" : facebookId,
-            "profileURL" : profileURL,
-            "token" : token
-        ]
         
-       Alamofire.upload(<#T##data: Data##Data#>, to: <#T##URLConvertible#>) Alamofire.request("\(API.base_url)/auth/register",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
-            .responseJSON(completionHandler: { (response) in
-                //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
-                    completion(JSON(value))
+        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
+            print("Error while converting image to jpeg")
+            return
+        }
+        guard let to = URL(string: "\(API.base_url)/imageToText") else {
+            return
+        }
+        
+        
+        Alamofire.upload(multipartFormData: { (datas) in
+            datas.append(imageData, withName: "file", fileName: "file", mimeType: "image/jpeg")
+        }, with: URLRequest(url: to) ) { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.uploadProgress { progress in
+                    
                 }
-            })
+                upload.validate()
+                upload.responseJSON { response in
+                    completion(JSON(response))
+                }
+            case .failure(let encodingError):
+                print(encodingError)
+            }
+        }
     }
 }

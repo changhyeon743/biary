@@ -62,7 +62,7 @@ extension User {
     }
     
     static func makeInitialUser(withName name:String, profile: String) -> User{
-        let facebookid = AccessToken.current()?.userID ?? "null"
+        let facebookid = AccessToken.current?.userID ?? "null"
         let user = User(name: name, facebookId: facebookid,isLogined: false, profileURL: profile, token: Token.create(), bookShelf: [Bookshelf(title: "읽고 있는 책", books: [], expanded: true)])
         
         return user;
