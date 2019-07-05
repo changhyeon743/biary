@@ -21,7 +21,7 @@ pod 'AMPopTip'
 pod 'Carte'
 pod "SwiftRater"
 pod 'CropViewController'
-
+pod 'Bolts'
 
 end
 

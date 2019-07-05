@@ -32,6 +32,8 @@ class MainVC: UIViewController {
     
     var friendMode = false;
     
+    var indicator: IndicatorView?
+    
     override func viewDidAppear(_ animated: Bool) {
         reloadBooks()
         tabBarController?.tabBar.isHidden = false;
@@ -39,6 +41,7 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicator = IndicatorView(uiView: self.view)
         self.view.setColorToGlobal()
         tableView.setColorToGlobal()
         navigationController?.navigationBar.isHidden = true
@@ -129,6 +132,7 @@ class MainVC: UIViewController {
     
     func makeToFriendMode() {
         makeTitleTo(str: "불러오는 중입니다")
+        indicator?.start()
         self.navigationBar.settingBtnHandler = {
             API.currentShowingFriend = nil
             self.dismiss(animated: true, completion: nil)

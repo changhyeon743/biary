@@ -69,7 +69,7 @@ extension Bookshelf {
         for i in bookshelfs {
             for (index,l) in API.currentUser.bookShelf.enumerated() {
                 if (l.title == i.title) {
-                    API.currentUser.bookShelf[index].books.append(bookToken);
+                    API.currentUser.bookShelf[index].books.insert(bookToken, at:0)
                 }
             }
         }

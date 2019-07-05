@@ -21,6 +21,9 @@
 		783FFBED219D8606002B6977 /* WriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783FFBEC219D8606002B6977 /* WriteVC.swift */; };
 		784B1A6422294F8E009F779C /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B1A6322294F8E009F779C /* Date.swift */; };
 		784E4FEB2221EA2300B617AA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784E4FEA2221EA2300B617AA /* API.swift */; };
+		7856E8CB22C65DE1006FF73F /* ProgressImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856E8CA22C65DE1006FF73F /* ProgressImageView.swift */; };
+		7856E8CE22C769E6006FF73F /* Poptip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856E8CD22C769E6006FF73F /* Poptip.swift */; };
+		7856E8D022C7703B006FF73F /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7856E8CF22C7703B006FF73F /* IndicatorView.swift */; };
 		785FFF58222620D00040E1F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785FFF57222620D00040E1F4 /* ViewController.swift */; };
 		785FFF5A222626880040E1F4 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785FFF59222626880040E1F4 /* UserAPI.swift */; };
 		78643713223A7C83009F2E6D /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78643712223A7C83009F2E6D /* Info.swift */; };
@@ -63,7 +66,6 @@
 		78E37E3C222D549D00D2CC05 /* BookShelfSelectingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E37E3B222D549D00D2CC05 /* BookShelfSelectingVC.swift */; };
 		78E37E3E222E852100D2CC05 /* BookAddSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E37E3D222E852100D2CC05 /* BookAddSearchVC.swift */; };
 		78F071A0218348410034E417 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0719F218348410034E417 /* MainVC.swift */; };
-		78F9286622C63A35007AC40E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 78F9286522C63A34007AC40E /* Default-568h@2x.png */; };
 		DAF7B565B8891D24097EED22 /* Pods_biary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693EE712C11E1EC02693D9DD /* Pods_biary.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,10 @@
 		783FFBEC219D8606002B6977 /* WriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WriteVC.swift; path = biary/Components/ViewControllers/Book/WriteVC.swift; sourceTree = SOURCE_ROOT; };
 		784B1A6322294F8E009F779C /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		784E4FEA2221EA2300B617AA /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		7856E8CA22C65DE1006FF73F /* ProgressImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressImageView.swift; sourceTree = "<group>"; };
+		7856E8CC22C76846006FF73F /* biary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = biary.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7856E8CD22C769E6006FF73F /* Poptip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poptip.swift; sourceTree = "<group>"; };
+		7856E8CF22C7703B006FF73F /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		785FFF57222620D00040E1F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		785FFF59222626880040E1F4 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		78643712223A7C83009F2E6D /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
@@ -119,16 +125,14 @@
 		78C897E2223FCBAB00DC2BE4 /* Datas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datas.swift; sourceTree = "<group>"; };
 		78C897E4223FD69F00DC2BE4 /* FacebookAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAPI.swift; sourceTree = "<group>"; };
 		78C897E6223FE74300DC2BE4 /* Complete_data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complete_data.swift; sourceTree = "<group>"; };
-		78DA2518218137D600DAEDE4 /* biary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = biary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78DA251B218137D600DAEDE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78DA2520218137D600DAEDE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		78DA2522218137D800DAEDE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		78DA2525218137D800DAEDE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		78DA2527218137D800DAEDE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Supporting files/Info.plist"; sourceTree = "<group>"; };
+		78DA2527218137D800DAEDE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E37E3B222D549D00D2CC05 /* BookShelfSelectingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookShelfSelectingVC.swift; path = biary/Components/ViewControllers/Main/BookShelfSelectingVC.swift; sourceTree = SOURCE_ROOT; };
 		78E37E3D222E852100D2CC05 /* BookAddSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAddSearchVC.swift; sourceTree = "<group>"; };
 		78F0719F218348410034E417 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		78F9286522C63A34007AC40E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9A920514E662420FB7067EF1 /* Pods-biary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-biary.release.xcconfig"; path = "Pods/Target Support Files/Pods-biary/Pods-biary.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +202,7 @@
 			children = (
 				783341F1218ECD510032678C /* BookDetailVC.swift */,
 				783FFBEC219D8606002B6977 /* WriteVC.swift */,
+				7856E8CF22C7703B006FF73F /* IndicatorView.swift */,
 			);
 			path = Book;
 			sourceTree = "<group>";
@@ -291,20 +296,11 @@
 		78DA250F218137D600DAEDE4 = {
 			isa = PBXGroup;
 			children = (
-				78F9286522C63A34007AC40E /* Default-568h@2x.png */,
 				78DA251A218137D600DAEDE4 /* biary */,
-				78DA2519218137D600DAEDE4 /* Products */,
 				D992F4810521594AC907246C /* Pods */,
 				EBB247BE4A4C308252D590F0 /* Frameworks */,
+				7856E8CC22C76846006FF73F /* biary.app */,
 			);
-			sourceTree = "<group>";
-		};
-		78DA2519218137D600DAEDE4 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				78DA2518218137D600DAEDE4 /* biary.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		78DA251A218137D600DAEDE4 /* biary */ = {
@@ -324,6 +320,7 @@
 		78F0719A218346BE0034E417 /* UIs */ = {
 			isa = PBXGroup;
 			children = (
+				7856E8CA22C65DE1006FF73F /* ProgressImageView.swift */,
 				783341F3218ECE140032678C /* DetailHeaderView.swift */,
 				7810740E218F0D6D0039A92A /* DetailNavigationBar.swift */,
 				786ED2DD2233DFFE0045E9F1 /* BookImageView.swift */,
@@ -372,6 +369,7 @@
 				785FFF57222620D00040E1F4 /* ViewController.swift */,
 				784B1A6322294F8E009F779C /* Date.swift */,
 				786ED2DF2233E07B0045E9F1 /* image.swift */,
+				7856E8CD22C769E6006FF73F /* Poptip.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,7 +423,7 @@
 			);
 			name = biary;
 			productName = biary;
-			productReference = 78DA2518218137D600DAEDE4 /* biary.app */;
+			productReference = 7856E8CC22C76846006FF73F /* biary.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -452,7 +450,7 @@
 				Base,
 			);
 			mainGroup = 78DA250F218137D600DAEDE4;
-			productRefGroup = 78DA2519218137D600DAEDE4 /* Products */;
+			productRefGroup = 78DA250F218137D600DAEDE4;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -471,7 +469,6 @@
 				786BA3E6222532F200280503 /* search.svg in Resources */,
 				786BA3EA222532FC00280503 /* setting.svg in Resources */,
 				78DA2523218137D800DAEDE4 /* Assets.xcassets in Resources */,
-				78F9286622C63A35007AC40E /* Default-568h@2x.png in Resources */,
 				787DDFD6219326A300332121 /* DetailCell.xib in Resources */,
 				78DA2521218137D600DAEDE4 /* Main.storyboard in Resources */,
 				786BA3E8222532F600280503 /* add.svg in Resources */,
@@ -494,6 +491,7 @@
 				"${BUILT_PRODUCTS_DIR}/AMPopTip/AMPopTip.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/Carte/Carte.framework",
 				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
@@ -512,6 +510,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AMPopTip.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Carte.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
@@ -592,6 +591,7 @@
 				78A517AC2225415000CB3035 /* BookShelfVC.swift in Sources */,
 				781D8DBF21855281006D9551 /* MainTableCell.swift in Sources */,
 				7810F415224FA7E800C8EB94 /* Setting.swift in Sources */,
+				7856E8CB22C65DE1006FF73F /* ProgressImageView.swift in Sources */,
 				786ED2E22233ECC00045E9F1 /* BarcodeScannerVC.swift in Sources */,
 				786BA3D92223BF9E00280503 /* Content.swift in Sources */,
 				787DDFD5219326A300332121 /* DetailCell.swift in Sources */,
@@ -606,6 +606,7 @@
 				786BA3EC2225367A00280503 /* CGPoint.swift in Sources */,
 				78E37E3E222E852100D2CC05 /* BookAddSearchVC.swift in Sources */,
 				781D8DC121855376006D9551 /* MainCollectionCell.swift in Sources */,
+				7856E8D022C7703B006FF73F /* IndicatorView.swift in Sources */,
 				78C33983219AE6AE0074B389 /* NavigationBar.swift in Sources */,
 				786BA3DB2223BFA400280503 /* User.swift in Sources */,
 				783341F2218ECD510032678C /* BookDetailVC.swift in Sources */,
@@ -614,6 +615,7 @@
 				787515C322350CCB0054127B /* Friend.swift in Sources */,
 				786BA3D72223BF2900280503 /* Book.swift in Sources */,
 				783FFBED219D8606002B6977 /* WriteVC.swift in Sources */,
+				7856E8CE22C769E6006FF73F /* Poptip.swift in Sources */,
 				78C897E7223FE74300DC2BE4 /* Complete_data.swift in Sources */,
 				7810F413224F67D800C8EB94 /* NoticeVC.swift in Sources */,
 				786ED2DE2233DFFE0045E9F1 /* BookImageView.swift in Sources */,
@@ -779,7 +781,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZY7R6DV42;
 				INFOPLIST_FILE = biary/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -819,7 +824,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZY7R6DV42;
 				INFOPLIST_FILE = biary/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

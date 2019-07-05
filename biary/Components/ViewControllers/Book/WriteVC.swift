@@ -8,9 +8,11 @@
 
 import UIKit
 import Spring
+import SwiftyJSON
 import UITextView_Placeholder
 import ActionSheetPicker_3_0
 import Photos
+import CropViewController
 
 
 class WriteVC: UIViewController {
@@ -28,6 +30,12 @@ class WriteVC: UIViewController {
     var contentInfo:Content?
     
     var firstText: String = ""
+    
+    let pop = CustomPopTip()
+    
+    var percent : Double = 0
+    
+    var indicator : IndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +56,8 @@ class WriteVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIWindow.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateTextView(notification:)), name: UIWindow.keyboardWillHideNotification, object: nil)
         addToolBar(textView: contentTextView)
+        
+        indicator = IndicatorView(uiView: self.view)
     }
     
     
@@ -125,7 +135,7 @@ class WriteVC: UIViewController {
         
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
         doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
-
+        
         doneBtn.addTarget(self, action: #selector(done(_:)), for: .touchUpInside)
         
         line.backgroundColor = UIColor(r: 90, g: 90, b: 90, alpha: 1)
@@ -190,6 +200,7 @@ class WriteVC: UIViewController {
         if (contentTextView.isFirstResponder) {
             
             view.endEditing(true)
+            contentTextView.setNeedsDisplay()
             
         } else {
 //            guard let title = titleLbl.text, !title.isEmpty else {
@@ -214,7 +225,7 @@ class WriteVC: UIViewController {
             Content.edit(title: title, article: content, bookToken: bookInfo.token, contentToken: contentInfo!.token)
         }
         API.user.update { (json) in
-            print("server send",json)
+            //print("server send",json)
             if (json["status"].intValue != 200) {
                 let action = UIAlertController(title: "앗! 서버와 통신 중에 문제가 발생했습니다!", message: nil, preferredStyle: .alert)
                 
@@ -248,7 +259,7 @@ class WriteVC: UIViewController {
         contentTextView.scrollRangeToVisible(contentTextView.selectedRange)
     }
     
-
+    
 }
 
 extension WriteVC : UITextViewDelegate {
@@ -260,6 +271,9 @@ extension WriteVC : UITextViewDelegate {
         
         let cameraBtn = UIBarButtonItem(barButtonSystemItem: .camera, target: nil, action: #selector(cameraBtnPressed))
         cameraBtn.tintColor = UIColor.mainColor
+        
+        
+        
         
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         
@@ -286,30 +300,29 @@ extension WriteVC : UITextViewDelegate {
         toolBar.isUserInteractionEnabled = true
         toolBar.sizeToFit()
         
+        guard let item = toolBar.items?[0] else { return }
+        print(item.accessibilityFrame)
+//        pop.show(text: "책 속의 글을 텍스트로 변환합니다.", direction: .up, to: self.view, from: item.accessibilityFrame)
+        
         textView.delegate = self
         textView.inputAccessoryView = toolBar
         
         updateUndoBtns()
+        
     }
     
     func textViewDidChange(_ textView: UITextView) {
         updateUndoBtns()
     }
     
-    @objc func cameraBtnPressed() {
-//        let picker = UIImagePickerController()
-//        picker.delegate = self
-//        picker.allowsEditing = true
-//        let alert = UIAlertController(title: "이미지", message: <#T##String?#>, preferredStyle: <#T##UIAlertController.Style#>)
-//        picker.sourceType = .photoLibrary
-    }
+    
     
     func updateUndoBtns() {
-        let undo = toolBar.items![2]
+        let undo = toolBar.items![3]
         undo.isEnabled = contentTextView.undoManager?.canUndo ?? false;
-        let redo = toolBar.items![4]
+        let redo = toolBar.items![5]
         redo.isEnabled = contentTextView.undoManager?.canRedo ?? false;
-//        if ( == true) {
+//        if (contentTextView.undoManager?.canUndo == true) {
 //            undo.customView?.tintColor = UIColor(r: 85, g: 85, b: 85)
 //            //dark
 //        } else {
@@ -325,7 +338,7 @@ extension WriteVC : UITextViewDelegate {
 //            //gray
 //        }
         
-        //print("changed")
+//        print("changed")
     }
     
     @objc func highlightPressed() {
@@ -341,4 +354,71 @@ extension WriteVC : UITextViewDelegate {
         updateUndoBtns()
     }
     
+}
+
+//IMAGE TO TEXT
+extension WriteVC: UIImagePickerControllerDelegate, CropViewControllerDelegate, UINavigationControllerDelegate {
+    @objc func cameraBtnPressed() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .camera
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+        self.contentTextView.becomeFirstResponder()
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didFinishCancelled cancelled: Bool) {
+        self.contentTextView.becomeFirstResponder()
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        print("picked")
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            print("failed while loading image")
+            return
+        }
+        
+        //present(cropViewController, animated: true, completion: nil)
+        picker.dismiss(animated: true) {
+            let cropViewController = CropViewController(image: image)
+            cropViewController.delegate = self
+            
+            self.topMostController().present(cropViewController, animated: true, completion: nil)
+        }
+        
+        
+        
+    }
+    
+    func topMostController() -> UIViewController {
+        var topController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+        while (topController.presentedViewController != nil) {
+            topController = topController.presentedViewController!
+        }
+        return topController
+    }
+    
+    func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        imageToText(image: image)
+        cropViewController.dismiss(animated: true, completion: nil)
+        self.contentTextView.becomeFirstResponder()
+
+    }
+    
+    func imageToText(image: UIImage) {
+        indicator?.start()
+        API.imageToText.run(image: image, completion: { (json) in
+            self.contentTextView.insertText(json["text"].stringValue)
+            self.toolBar.items![5].tintColor = UIColor.mainColor
+            self.indicator?.stop()
+        }) { (progress) in
+            self.percent = progress
+            
+            self.indicator?.updateTextView(text: String(describing: floor(progress*100)/100) + " %")
+        }
+    }
 }

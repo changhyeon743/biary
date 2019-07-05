@@ -19,7 +19,6 @@ class FriendsVC: UIViewController {
     let titles = ["친구들"]
     var expanded = [true,true]
     let headerHeight:CGFloat = 60;
-    let pop = PopTip()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,25 +48,20 @@ class FriendsVC: UIViewController {
         navigationBar.setConstraints()
 
     }
+    let pop = CustomPopTip()
     
     override func viewDidAppear(_ animated: Bool) {
         if (API.currentBooks.count < 2) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.pop.shouldDismissOnTap = true
-                self.pop.bubbleColor = UIColor.mainColor
-                self.pop.padding = 10
-                self.pop.offset = 40
-                if (UIDevice().userInterfaceIdiom == .phone) {
-                    if (UIScreen.main.nativeBounds.height > 1334) {
-                        self.pop.offset += 30
-                    }
+            
+            
+            pop.offset = 40
+            if (UIDevice().userInterfaceIdiom == .phone) {
+                if (UIScreen.main.nativeBounds.height > 1334) {
+                    pop.offset += 30
                 }
-                
-                self.pop.show(text: "페이스북 친구 중 책일기를 사용하는 사람들입니다.", direction: .down, maxWidth: 200, in: self.view, from: self.navigationBar.titleLbl.frame)
-                
-                
-                
             }
+            pop.show(text: "페이스북 친구 중 책일기를 사용하는 사람들입니다.", direction: .down , to: self.view, from: self.navigationBar.titleLbl.frame, offset: pop.offset)
+            
         }
     }
     

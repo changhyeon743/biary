@@ -24,10 +24,12 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     
     var bookCreateVC: BookCreateVC?
     
+    var indicator: IndicatorView?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        indicator = IndicatorView(uiView: self.view)
         registerForPreviewing(with: self, sourceView: tableView)
         searchField.becomeFirstResponder()
         searchField.delegate = self
@@ -124,9 +126,26 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     }
     
     func search() {
+        indicator?.start()
         API.user.search(query: searchField.text ?? "") { (json) in
             self.result = Book.transformNaverBook(fromJSON: json)
+            self.indicator?.stop()
             self.tableView.reloadData()
+            
+            if (self.result.count == 1) {
+                guard let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) else {return}
+                cell.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1)
+                UIView.animate(withDuration: 0.2, animations: {
+                    cell.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1)
+                },completion: { finished in
+                    UIView.animate(withDuration: 0.2, animations: {
+                        cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                    })
+                })
+            } else if (self.result.count == 0) {
+                self.toast(text: "검색 결과가 없습니다.")
+            }
+            
             self.view.endEditing(true)
         }
     }
@@ -195,4 +214,32 @@ extension BookAddSearchVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+extension BookAddSearchVC {
+    func toast(text: String) {
+        let toastLabel: UILabel = UILabel(frame: CGRect(x: view.frame.size.width / 2 - 150, y: view.frame.size.height - 150, width: 300, height: 30))
+        toastLabel.backgroundColor = UIColor(r: 30, g: 30, b: 30,alpha: 0.65)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = NSTextAlignment.center
+        view.addSubview(toastLabel)
+        
+        toastLabel.text = text
+        toastLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 9
+        toastLabel.clipsToBounds = true
+        UIView.animate(withDuration: 1.6, animations: {
+            toastLabel.layer.cornerRadius = 10
+        }) { (isBool) in
+            UIView.animate(withDuration: 0.5, animations: {
+                toastLabel.alpha = 0.0
+            }, completion: {
+                (isBool) -> Void in
+                self.view.willRemoveSubview(toastLabel)
+                //toastLabel.dismiss(animated: true, completion: nil)
+            })
+        }
+        
+    }
 }

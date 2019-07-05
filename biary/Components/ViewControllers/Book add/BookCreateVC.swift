@@ -104,19 +104,13 @@ class BookCreateVC: UIViewController {
         navigationBar.setToAnotherNavigation(sub: "아래에 있는 텍스트를 눌러 정보를 수정할 수 있습니다.")
         
         setBookInfos()
-//        if (API.currentBooks.count < 2) {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                self.pop.shouldDismissOnTap = true
-//                self.pop.bubbleColor = UIColor.mainColor
-//                self.pop.padding = 10
-//                self.pop.offset = 5
-//                self.pop.show(text: "눌러서 책을 검색하세요", direction: .up , maxWidth: 200, in: self.view, from: self.importBtn.frame)
-//            }
-//        }
+        if (API.currentBooks.count > 2) {
+            //pop.show(text: "이 책은 어느 책장에 들어가나요?", direction: .up , to: self.view, from: self.bookShelfsBtn.frame)
+        }
         
     }
     
-    let pop = PopTip()
+    let pop = CustomPopTip()
     var bookDetailVC:BookDetailVC?
     
     func setBookInfos() {

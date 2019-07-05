@@ -53,10 +53,11 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
         self.friendVC.present(navigationController, animated: true) {
             
             API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
+                
                 print(json)
                 if (json["status"].intValue != 200) {
                     vc.makeTitleTo(str: "정보가 존재하지 않습니다.")
-                    
+                    vc.indicator?.stop()
                 } else {
                     API.currentShowingFriend = Info.make(data: json["data"][0])
                     if let f = API.currentShowingFriend {
@@ -68,6 +69,7 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
                         //로딩 성공
                         vc.reloadBooks()
                         vc.makeTitleToFriend()
+                        vc.indicator?.stop()
                     }
                 }
                 
