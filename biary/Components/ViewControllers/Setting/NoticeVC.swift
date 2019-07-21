@@ -23,7 +23,7 @@ class NoticeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "공지사항")
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "공지사항".localized)
         if title != nil {
             navigationBar.titleLbl.text = title!
         }

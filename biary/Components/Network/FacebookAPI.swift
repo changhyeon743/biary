@@ -88,7 +88,11 @@ class FacebookAPI {
             }
             else {//페북아이디가 존재하지 않을 경우
                 //존재 안함 -> 처음에 로그인 없이 계속 했다가 로그인 한거임
+                API.user.register(name: API.currentUser.name, facebookId: API.currentUser.facebookId, profileURL: API.currentUser.profileURL, token: API.currentUser.token) { (json) in
+                    print(json)
+                }
                 API.currentUser.isLogined = true
+                settingVC.setLoginBtn()
             }
         })
     }

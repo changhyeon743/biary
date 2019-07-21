@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "환영합니다"; ObjectID = "3vz-DZ-8bO"; */
+"3vz-DZ-8bO.text" = "환영합니다";
+
+/* Class = "UIButton"; normalTitle = "개인정보처리방침"; ObjectID = "Cd1-cs-Rge"; */
+"Cd1-cs-Rge.normalTitle" = "개인정보처리방침";
+
+/* Class = "UILabel"; text = "기록하고, 공유하며, 서로를 배우세요."; ObjectID = "UbB-im-wEc"; */
+"UbB-im-wEc.text" = "기록하고, 공유하며, 서로를 배우세요.";
+
+/* Class = "UILabel"; text = "페이스북으로 시작하기"; ObjectID = "nfk-oA-L5L"; */
+"nfk-oA-L5L.text" = "페이스북으로 시작하기";
+
+/* Class = "UIButton"; normalTitle = "로그인 없이 시작하기"; ObjectID = "uAX-Ds-eYU"; */
+"uAX-Ds-eYU.normalTitle" = "로그인 없이 시작하기";

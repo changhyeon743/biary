@@ -46,7 +46,7 @@ class MainVC: UIViewController {
         tableView.setColorToGlobal()
         navigationController?.navigationBar.isHidden = true
         
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재")
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재".localized)
         
         
         
@@ -57,11 +57,11 @@ class MainVC: UIViewController {
             let action = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
             action.popoverPresentationController?.sourceView = self.navigationBar.settingBtn
 
-            action.addAction(UIAlertAction(title: "책장 설정", style: .default, handler: { _ in
+            action.addAction(UIAlertAction(title: "책장 설정".localized, style: .default, handler: { _ in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
                 self.present(vc, animated: true, completion: nil)
             }))
-            action.addAction(UIAlertAction(title: "전체 설정", style: .default, handler: { _ in
+            action.addAction(UIAlertAction(title: "전체 설정".localized, style: .default, handler: { _ in
                 //                print(API.currentBooks.count)
                 //                do {try Disk.clear(.documents)} catch {}
                 //                FBSDKLoginManager().logOut()
@@ -69,7 +69,7 @@ class MainVC: UIViewController {
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingVC") as! SettingVC
                 self.present(vc, animated: true, completion: nil)
             }))
-            action.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            action.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: nil))
             
             self.present(action, animated: true, completion: nil)
             
@@ -115,7 +115,7 @@ class MainVC: UIViewController {
                     }
                 }
                 
-                self.pop.show(text: "눌러서 책을 추가하세요", direction: .down, maxWidth: 200, in: self.view, from: self.navigationBar.addBtn.frame)
+                self.pop.show(text: "눌러서 책을 추가하세요".localized, direction: .down, maxWidth: 200, in: self.view, from: self.navigationBar.addBtn.frame)
             }
         }
         
@@ -131,7 +131,7 @@ class MainVC: UIViewController {
     }
     
     func makeToFriendMode() {
-        makeTitleTo(str: "불러오는 중입니다")
+        makeTitleTo(str: "불러오는 중입니다".localized)
         indicator?.start()
         self.navigationBar.settingBtnHandler = {
             API.currentShowingFriend = nil
@@ -141,7 +141,7 @@ class MainVC: UIViewController {
         self.navigationBar.addBtn.isHidden = true
         self.navigationBar.settingBtn.setImage(UIImage(named:"close"), for: .normal)
         
-        print("makeToFriendMode : ",bookshelfs)
+        //print("makeToFriendMode : ",bookshelfs)
         
     }
     

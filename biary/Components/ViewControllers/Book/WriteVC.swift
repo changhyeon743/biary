@@ -49,7 +49,7 @@ class WriteVC: UIViewController {
         createViews()
         setConstraints()
         setContent()
-        contentTextView.placeholder = "책에 대한 생각을 들려주세요!"
+        contentTextView.placeholder = "책에 대한 생각을 들려주세요!".localized
         contentTextView.textContainer.lineBreakMode = NSLineBreakMode.byTruncatingTail
         
         //TextView
@@ -66,38 +66,38 @@ class WriteVC: UIViewController {
     }
     
     @objc func titlePressed(_ sender: Any) {
-        let questionList = ["페이지","책의 시작","생각","좋은 점","나쁜 점","문장","직접 입력"]
+        let questionList = ["페이지".localized,"책의 시작".localized,"생각".localized,"좋은 점".localized,"나쁜 점".localized,"문장".localized,"직접 입력".localized]
         var initialSelection = questionList.index(of: self.titleLbl.text ?? "")
         if initialSelection == nil {
             initialSelection = 0
         }
         
         
-        if let action = ActionSheetStringPicker(title: "글 제목 선택", rows: questionList
+        if let action = ActionSheetStringPicker(title: "글 제목 선택".localized, rows: questionList
             , initialSelection: initialSelection!, doneBlock: {
                 picker, indexes, values in
                 
                 
                 let selectedText = values! as! String
                 
-                if (selectedText == "직접 입력" || selectedText == "페이지") {
-                    let alert = UIAlertController(title: "입력", message: nil, preferredStyle: .alert)
-                    let backAction = UIAlertAction(title: "취소", style: .default)
-                    let okAction = UIAlertAction(title: "확인", style: .default) { (alertAction) in
+                if (selectedText == "직접 입력".localized || selectedText == "페이지".localized) {
+                    let alert = UIAlertController(title: "입력".localized, message: nil, preferredStyle: .alert)
+                    let backAction = UIAlertAction(title: "취소".localized, style: .default)
+                    let okAction = UIAlertAction(title: "확인".localized, style: .default) { (alertAction) in
                         let textField = alert.textFields![0] as UITextField
                         
                         self.titleLbl.text = textField.text!
-                        if (selectedText == "페이지") {
+                        if (selectedText == "페이지".localized) {
                             self.titleLbl.text = textField.text!+" P."
                         }
                     }
                     
                     alert.addTextField { (textField) in
                         textField.text = ""
-                        textField.placeholder = "제목을 직접 입력해주세요"
-                        if (selectedText == "페이지") {
+                        textField.placeholder = "제목을 직접 입력해주세요".localized
+                        if (selectedText == "페이지".localized) {
                             textField.keyboardType = .numberPad
-                            textField.placeholder = "페이지를 직접 입력해주세요"
+                            textField.placeholder = "페이지를 직접 입력해주세요".localized
                         }
                     }
                     
@@ -131,7 +131,7 @@ class WriteVC: UIViewController {
         backBtn.addTarget(self, action: #selector(back(_:)), for: .touchUpInside)
         backBtn.tintColor = UIColor(r: 90, g: 90, b: 90)
         
-        doneBtn.setTitle("완료", for: .normal)
+        doneBtn.setTitle("완료".localized, for: .normal)
         
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
         doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
@@ -182,10 +182,10 @@ class WriteVC: UIViewController {
         //self.navigationController?.popViewController(animated: true)
         //self.dismiss(animated: true, completion: nil)
         if (firstText != contentTextView.text) {
-            let alert = UIAlertController(title: "닫기", message: "완료를 눌러 저장하지 않으면 작성한 내용은 사라집니다.", preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "닫기".localized, message: "완료를 눌러 저장하지 않으면 작성한 내용은 사라집니다.".localized, preferredStyle: .actionSheet)
             alert.popoverPresentationController?.sourceView = button
-            alert.addAction(UIAlertAction(title: "계속 쓰기", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "나가기", style: .destructive, handler: { (action) in
+            alert.addAction(UIAlertAction(title: "계속 쓰기".localized, style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "나가기".localized, style: .destructive, handler: { (action) in
                 self.dismiss(animated: true, completion: nil)
             }))
             
@@ -227,9 +227,9 @@ class WriteVC: UIViewController {
         API.user.update { (json) in
             //print("server send",json)
             if (json["status"].intValue != 200) {
-                let action = UIAlertController(title: "앗! 서버와 통신 중에 문제가 발생했습니다!", message: nil, preferredStyle: .alert)
+                let action = UIAlertController(title: "앗! 서버와 통신 중에 문제가 발생했습니다!".localized, message: nil, preferredStyle: .alert)
                 
-                action.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+                action.addAction(UIAlertAction(title: "확인".localized, style: .default, handler: nil))
                 
                 self.present(action, animated: true, completion: nil)
             }

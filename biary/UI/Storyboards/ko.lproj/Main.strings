@@ -1,0 +1,99 @@
+
+/* Class = "UIButton"; normalTitle = "페이스북 페이지"; ObjectID = "00R-RN-fjX"; */
+"00R-RN-fjX.normalTitle" = "페이스북 페이지";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2JX-RT-ZLC"; */
+"2JX-RT-ZLC.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "책 제목, isbn, 작가 등"; ObjectID = "4jb-Pr-sOD"; */
+"4jb-Pr-sOD.placeholder" = "책 제목, isbn, 작가 등";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "50D-52-Cep"; */
+"50D-52-Cep.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "검색"; ObjectID = "6Gf-9d-6BV"; */
+"6Gf-9d-6BV.normalTitle" = "검색";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "9IY-ft-Uuh"; */
+"9IY-ft-Uuh.title" = "Item";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "BoM-mg-1m9"; */
+"BoM-mg-1m9.text" = "Title";
+
+/* Class = "UITextField"; placeholder = "책 제목"; ObjectID = "DXN-Qi-x6q"; */
+"DXN-Qi-x6q.placeholder" = "책 제목";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Gek-pL-wZQ"; */
+"Gek-pL-wZQ.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "계정"; ObjectID = "K8S-6F-lhf"; */
+"K8S-6F-lhf.text" = "계정";
+
+/* Class = "UIViewController"; title = "BookShelfSelecting"; ObjectID = "LCv-bk-8pS"; */
+"LCv-bk-8pS.title" = "BookShelfSelecting";
+
+/* Class = "UITabBarItem"; title = "탐험"; ObjectID = "M9Y-J0-sgI"; */
+"M9Y-J0-sgI.title" = "탐험";
+
+/* Class = "UIButton"; normalTitle = "라이센스"; ObjectID = "NTx-ff-YwR"; */
+"NTx-ff-YwR.normalTitle" = "라이센스";
+
+/* Class = "UIButton"; normalTitle = "편집"; ObjectID = "TKQ-6p-zUE"; */
+"TKQ-6p-zUE.normalTitle" = "편집";
+
+/* Class = "UILabel"; text = "무제"; ObjectID = "VIu-J7-Wkk"; */
+"VIu-J7-Wkk.text" = "무제";
+
+/* Class = "UITextField"; placeholder = "작가"; ObjectID = "Xqe-zp-sPB"; */
+"Xqe-zp-sPB.placeholder" = "작가";
+
+/* Class = "UIButton"; normalTitle = "로그아웃"; ObjectID = "YDa-og-l7w"; */
+"YDa-og-l7w.normalTitle" = "로그아웃";
+
+/* Class = "UILabel"; text = "책장"; ObjectID = "Zbh-PK-aqp"; */
+"Zbh-PK-aqp.text" = "책장";
+
+/* Class = "UIButton"; normalTitle = "문의하기"; ObjectID = "cKO-W2-WFN"; */
+"cKO-W2-WFN.normalTitle" = "문의하기";
+
+/* Class = "UIButton"; normalTitle = "책장 추가"; ObjectID = "ezw-Cx-BUj"; */
+"ezw-Cx-BUj.normalTitle" = "책장 추가";
+
+/* Class = "UINavigationItem"; title = "타이틀"; ObjectID = "gS1-y8-fZb"; */
+"gS1-y8-fZb.title" = "타이틀";
+
+/* Class = "UIButton"; normalTitle = "공지사항/이벤트"; ObjectID = "kPQ-x0-JfO"; */
+"kPQ-x0-JfO.normalTitle" = "공지사항/이벤트";
+
+/* Class = "UIButton"; normalTitle = "초기화"; ObjectID = "lLe-yM-Be4"; */
+"lLe-yM-Be4.normalTitle" = "초기화";
+
+/* Class = "UIViewController"; title = "나의 서재"; ObjectID = "m0Z-EO-PFq"; */
+"m0Z-EO-PFq.title" = "나의 서재";
+
+/* Class = "UITextField"; placeholder = "출판사"; ObjectID = "sad-sm-4od"; */
+"sad-sm-4od.placeholder" = "출판사";
+
+/* Class = "UIButton"; normalTitle = "이름 변경"; ObjectID = "sly-4R-ZkJ"; */
+"sly-4R-ZkJ.normalTitle" = "이름 변경";
+
+/* Class = "UITabBarItem"; title = "서재"; ObjectID = "uNW-Xi-noi"; */
+"uNW-Xi-noi.title" = "서재";
+
+/* Class = "UILabel"; text = "지원"; ObjectID = "vgm-Js-frg"; */
+"vgm-Js-frg.text" = "지원";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "wu4-xc-2G4"; */
+"wu4-xc-2G4.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "리뷰 남기기"; ObjectID = "xQ4-ye-Jtv"; */
+"xQ4-ye-Jtv.normalTitle" = "리뷰 남기기";
+
+/* Class = "UIButton"; normalTitle = " 눌러서 책장을 선택하세요."; ObjectID = "xbd-6W-XIR"; */
+"xbd-6W-XIR.normalTitle" = " 눌러서 책장을 선택하세요.";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "yjy-0P-xiz"; */
+"yjy-0P-xiz.text" = "Title";
+
+/* Class = "UILabel"; text = "총 5개의 책장이 있습니다."; ObjectID = "zNY-aM-h2X"; */
+"zNY-aM-h2X.text" = "총 5개의 책장이 있습니다.";

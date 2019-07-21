@@ -37,15 +37,15 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        subTitleLbl.text = "총 "+String(API.currentUser.bookShelf.count)+"개의 책장이 있습니다." 
+        subTitleLbl.text = "총 ".localized+String(API.currentUser.bookShelf.count)+"개의 책장이 있습니다.".localized
     }
 
     @IBAction func addBtnPressed(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "책장 추가", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "책장 추가".localized, message: nil, preferredStyle: .alert)
         alertController.addTextField { (textfield) in
-            textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요."
+            textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요.".localized
         }
-        let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
+        let confirmAction = UIAlertAction(title: "확인".localized, style: .default) { [weak alertController] _ in
             guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
             if (textField.text?.isEmpty == false) {
                 if (API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""}.count <= 0) { //겹치는게 없을 경우
@@ -57,7 +57,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
             //compare the current password and do action here
         }
         alertController.addAction(confirmAction)
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소".localized, style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
@@ -68,11 +68,11 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     @IBAction func editBtnPressed(_ sender: UIButton) {
         if(self.tableView.isEditing == true) {
             self.tableView.isEditing = false
-            editBtn.setTitle("편집", for: .normal)
+            editBtn.setTitle("편집".localized, for: .normal)
         }
         else {
             self.tableView.isEditing = true
-            editBtn.setTitle("완료", for: .normal)
+            editBtn.setTitle("완료".localized, for: .normal)
         }
     }
     
@@ -91,16 +91,16 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
-                let msg = (bookTokens.count > 0 ? "계속하면 "+bookNames.joined(separator: ", ")+"도 사라지게 됩니다." : nil)
-                let alert = UIAlertController(title: "책장을 삭제합니다",message: msg, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "계속", style: UIAlertAction.Style.destructive, handler: {_ in
+                let msg = (bookTokens.count > 0 ? "계속하면 ".localized+bookNames.joined(separator: ", ")+"도 사라지게 됩니다.".localized : nil)
+                let alert = UIAlertController(title: "책장을 삭제합니다".localized,message: msg, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "계속".localized, style: UIAlertAction.Style.destructive, handler: {_ in
                     API.currentUser.bookShelf.remove(at: indexPath.row)
                     for i in bookTokens {
                         Book.remove(withToken: i)
                     }
                     tableView.reloadData()
                 }))
-                alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "취소".localized, style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             } else {
                 API.currentUser.bookShelf.remove(at: indexPath.row)
@@ -131,11 +131,11 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print(tableView.isEditing)
         if tableView.isEditing {
-            let alertController = UIAlertController(title: "책장 이름 변경", message: nil, preferredStyle: .alert)
+            let alertController = UIAlertController(title: "책장 이름 변경".localized, message: nil, preferredStyle: .alert)
             alertController.addTextField { (textfield) in
                 textfield.text = API.currentUser.bookShelf[indexPath.row].title
             }
-            let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
+            let confirmAction = UIAlertAction(title: "확인".localized, style: .default) { [weak alertController] _ in
                 guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
                 if (textField.text?.isEmpty == false) {
                     API.currentUser.bookShelf[indexPath.row].title = textField.text ?? ""
@@ -145,7 +145,7 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
                 //compare the current password and do action here
             }
             alertController.addAction(confirmAction)
-            alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            alertController.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: nil))
             present(alertController, animated: true, completion: nil)
         }
     }

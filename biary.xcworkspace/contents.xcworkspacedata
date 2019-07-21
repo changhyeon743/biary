@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/ichanghyeon/Desktop/biary/biary/UI/ViewControllers/Welcome.storyboard">
+   </FileRef>
+   <FileRef
       location = "group:biary.xcodeproj">
    </FileRef>
    <FileRef

@@ -65,10 +65,10 @@ class BookCreateVC: UIViewController {
         titleField.becomeFirstResponder()
         explainTextView.textContainerInset = UIEdgeInsets.zero
         explainTextView.textContainer.lineFragmentPadding = 0
-        explainTextView.placeholder = "설명"
+        explainTextView.placeholder = "설명".localized
         
         
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "책 추가하기")
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "책 추가하기".localized)
         if title != nil {
             navigationBar.titleLbl.text = title!
         }
@@ -85,7 +85,7 @@ class BookCreateVC: UIViewController {
         
         self.view.addSubview(navigationBar)
         doneBtn = UIButton()
-        doneBtn.setTitle("완료", for: .normal)
+        doneBtn.setTitle("완료".localized, for: .normal)
         doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
         doneBtn.addTarget(self, action: #selector(doneBtnPressed(_:)), for: .touchUpInside)
@@ -101,7 +101,7 @@ class BookCreateVC: UIViewController {
             doneBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12)
             ])
         navigationBar.setConstraints()
-        navigationBar.setToAnotherNavigation(sub: "아래에 있는 텍스트를 눌러 정보를 수정할 수 있습니다.")
+        navigationBar.setToAnotherNavigation(sub: "아래에 있는 텍스트를 눌러 정보를 수정할 수 있습니다.".localized)
         
         setBookInfos()
         if (API.currentBooks.count > 2) {
@@ -157,7 +157,10 @@ class BookCreateVC: UIViewController {
         }
         let isbn = importedBook?.isbn ?? ""
         var imageLink = importedBook?.imageURL ?? ""
-        imageLink = imageLink.components(separatedBy: "?")[0]
+        if (Locale.preferredLanguages[0] == "ko_KR") {
+            imageLink = imageLink.components(separatedBy: "?")[0]
+        }
+        
         if (bookshelfs.count == 0) {
             self.bookShelfsBtn.animation = "shake"
             self.bookShelfsBtn.force = 0.5

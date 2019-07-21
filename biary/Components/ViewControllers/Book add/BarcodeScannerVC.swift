@@ -21,8 +21,8 @@ class BarcodeScannerVC: UIViewController, AVCaptureMetadataOutputObjectsDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-        navigationItem.setRightBarButton(UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(close)), animated: true)
-        navigationItem.title = "책 뒤의 바코드를 찾아주세요."
+        navigationItem.setRightBarButton(UIBarButtonItem(title: "완료".localized, style: .done, target: self, action: #selector(close)), animated: true)
+        navigationItem.title = "책 뒤의 바코드를 찾아주세요.".localized
         
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         

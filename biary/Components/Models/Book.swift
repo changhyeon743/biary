@@ -81,6 +81,27 @@ extension Book {
         return books;
     }
     
+    static func transformGoogleBook(fromJSON temp:JSON) -> [Book] {
+        let json = temp["items"].arrayValue.map{$0["volumeInfo"]}
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let books = json.map{Book(title: $0["title"].stringValue,
+                                  author: $0["authors"].arrayValue.map{$0.stringValue}.joined(separator: ","),
+                                  publisher: $0["publisher"].stringValue,
+                                  isbn: $0["industryIdentifiers"]["identifier"].stringValue,
+                                  imageURL: $0["imageLinks"]["thumbnail"].stringValue,
+                                  writerToken: "",
+                                  writerName: "",
+                                  token: "",
+                                  description: $0["description"].stringValue,
+                                  date: dateFormatter.date(from: $0["publishedDate"].stringValue) ?? Date(),
+                                  isPublic: true)}
+        
+        return books;
+    }
+    
     static func append(title:String,author: String,publisher: String, isbn: String, imageURL: String, description: String, bookshelfs: [Bookshelf]) {
         let book = Book(title: title, author: author, publisher: publisher, isbn: isbn, imageURL: imageURL, writerToken: API.currentUser.token, writerName: API.currentUser.name, token: Token.create(), description: description, date: Date(),isPublic: true)
         

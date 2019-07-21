@@ -1,0 +1,98 @@
+/* 
+  Localizable.strings
+  biary
+
+  Created by 이창현 on 12/07/2019.
+  Copyright © 2019 이창현. All rights reserved.
+*/
+
+
+"나의 서재" = "My Library";
+"친구들" = "Friends";
+"탐험" = "Explore";
+"취소" = "Cancel";
+"편집" = "Edit";
+"확인" = "Confirm";
+"책 편집하기" = "Edit book";
+"정말 삭제하시겠습니까?" = "Are you sure you want to delete it?";
+"삭제한 책은 복구할 수 없습니다." = "The book you deleted cannot be restored.";
+"책일기 정렬" = "Alignment";
+"오래된 순" = "oldest";
+"최신 순" = "newest";
+"페이지 순" = "page order";
+"페이지" = "page";
+"책의 시작" = "the beginning of a book";
+"생각" = "think";
+"좋은 점" = "advantage";
+"나쁜 점" = "weakness";
+"문장" = "sentence";
+"직접 입력" = "Customize";
+"공개" = "public";
+"비공개" = "private";
+"공유" = "Share";
+"삭제" = "Remove";
+"입력" = "Type";
+"앗! 서버와 통신 중에 문제가 발생했습니다!" = "Error.";
+"글 제목 선택" = "Selecting title";
+"책에 대한 생각을 들려주세요!" = "Tell me what you think of the book!";
+"제목을 직접 입력해주세요" = "Please enter the title yourself.";
+"페이지를 직접 입력해주세요" = "Please enter the page yourself.";
+"닫기" = "Close";
+"완료" = "Done";
+"완료를 눌러 저장하지 않으면 작성한 내용은 사라집니다." = "If you do not click Done to save it, your writing will disappear.";
+"계속 쓰기" = "Keep writing";
+"나가기" = "Exit";
+"책장 설정" = "Bookshelf Setting";
+"전체 설정" = "Settings";
+"눌러서 책을 추가하세요" = "Press to add a book.";
+"불러오는 중입니다" = "Loading..";
+"총 " = "There are ";
+"개의 책장이 있습니다." = "shelfs.";
+"책장 추가" = "Add bookshelf";
+"새로 추가할 책장의 이름을 입력하세요." = "Please enter the name of the bookshelf you want to add.";
+"계속하면 " = "";
+
+
+"도 사라지게 됩니다." = " will be disappear.";
+"책장을 삭제합니다" = "Remove the bookshelf";
+"계속" = "Confirm";
+"책장 이름 변경" = "Change Bookshelf's name";
+"책장 선택" = "Select bookshelf";
+"여러 개도 선택할 수 있습니다." = "You have multiple choices.";
+"책 검색" = "Search a book";
+"바코드로 검색하기" = "Use Barcode";
+"Naver Books에서 검색됩니다." = "Searching at Google Books";
+"검색 결과가 없습니다." = "There are no search results.";
+"아래에 있는 텍스트를 눌러 정보를 수정할 수 있습니다." = "You can modify the information by clicking on the text below.";
+"설명" = "explanation";
+"책 추가하기" = "Adding a book";
+
+"책 뒤의 바코드를 찾아주세요." = "Please find the barcode behind the book.";
+"로그아웃" = "logout";
+"로그인" = "login";
+"설정" = "Settings";
+"공지사항/이벤트" = "Notice/Event";
+"문의하기" = "Contact us";
+"페이스북 페이지" = "Facebook Page";
+"리뷰 남기기" = "Review";
+"라이센스" = "License";
+"이름 변경" = "Change name";
+"초기화" = "Reset";
+"모든 책과 글이 사라집니다. " = "All the books and writings disappear. ";
+"정말 로그아웃 하시겠습니까?" = "Are you sure you want to log out?";
+"데이터가 서버에 올라가지 않습니다." = "Data won't be uploaded to the server.";
+
+"데이터 충돌" = "Data Conflicts";
+"서버에 이미 데이터가 있습니다." = "There are already datas on the server.";
+"기존 데이터 유지" = "Keep existing data";
+"서버 데이터 불러오기" = "Import Server Data";
+"이미 다른 기기에 로그인된 계정입니다." = "This account is already logged in to another device.";
+"기기들 중 하나의 기기의 데이터만 서버에 올라갑니다.\n 주의해주세요. " = "Only one device's data is uploaded to the server.\n Please be careful. ";
+
+"불러오기" = "Get data from Server";
+"공지사항" = "Notice";
+"새로 시작하기" = "Start with new";
+"읽고 있는 책" = "Currently Reading";
+"오류" = "Error";
+"다른 기기에서 사용중인 아이디입니다.\n 계속하려면 기존의 기기 설정에서 로그아웃 해주세요." = "This is an ID that is being used by other devices.\n Please log out of existing device settings to continue.";
+"개인정보처리방침" = "Privacy policy";

@@ -57,8 +57,8 @@ class WelcomeVC: UIViewController {
     
     func alreadyLogined(token: String) { //이미 로그인된 계정일 경우
         print("token:" ,token)
-        let alert = UIAlertController(title: "이미 다른 기기에 로그인된 계정입니다.", message: "기기들 중 하나의 기기의 데이터만 서버에 올라갑니다.\n 주의해주세요. ", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "불러오기", style: .default, handler: { (_) in
+        let alert = UIAlertController(title: "이미 다른 기기에 로그인된 계정입니다.".localized, message: "기기들 중 하나의 기기의 데이터만 서버에 올라갑니다.\n 주의해주세요. ".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "불러오기".localized, style: .default, handler: { (_) in
             API.user.fetch(token: token, completion: { (json) in
                 let data = json["data"]
                 API.currentContents = Content.transformContent(fromJSON: data["contents"])
@@ -67,19 +67,19 @@ class WelcomeVC: UIViewController {
                 self.gotoMain()
             })
         }))
-        alert.addAction(UIAlertAction(title: "새로 시작하기", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "새로 시작하기".localized, style: .default, handler: { (_) in
             
             API.user.fetch(token: token, completion: { (json) in
                 let data = json["data"]
                 API.currentContents = []
                 API.currentUser = User.transformUser(fromJSON: data["user"])
                 API.currentBooks = []
-                API.currentUser.bookShelf = [Bookshelf(title: "읽고 있는 책", books: [], expanded: true)]
+                API.currentUser.bookShelf = [Bookshelf(title: "읽고 있는 책".localized, books: [], expanded: true)]
                 self.gotoMain()
             })
         }))
         
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: { (_) in
             LoginManager().logOut()
         }))
         
@@ -89,8 +89,8 @@ class WelcomeVC: UIViewController {
     func move() {
         //print("move Action..", API.currentUser)
         if (API.currentUser.isLogined) {
-            let alert = UIAlertController(title: "오류", message: "다른 기기에서 사용중인 아이디입니다.\n 계속하려면 기존의 기기 설정에서 로그아웃 해주세요.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: "오류".localized, message: "다른 기기에서 사용중인 아이디입니다.\n 계속하려면 기존의 기기 설정에서 로그아웃 해주세요.".localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인".localized, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
             LoginManager().logOut()
@@ -125,7 +125,7 @@ class WelcomeVC: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func personalInfoBtnPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "개인정보처리방침", message:
+        let alert = UIAlertController(title: "개인정보처리방침".localized, message:
 """
 1. 개인정보의 처리 목적 <리마크프레스>(‘https://remarkpress.kr/’이하 ‘리마크프레스’) 은(는) 다음의 목적을 위하여 개인정보를 처리하고 있으며, 다음의 목적 이외의 용도로는 이용하지 않습니다. - 고객 가입의사 확인, 고객에 대한 서비스 제공에 따른 본인 식별.인증, 회원자격 유지.관리, 물품 또는 서비스 공급에 따른 금액 결제, 물품 또는 서비스의 공급.배송 등   2. 개인정보의 처리 및 보유 기간  ① <리마크프레스>(‘https://remarkpress.kr/’이하 ‘리마크프레스’) 은(는) 정보주체로부터 개인정보를 수집할 때 동의 받은 개인정보 보유․이용기간 또는 법령에 따른 개인정보 보유․이용기간 내에서 개인정보를 처리․보유합니다.  ② 구체적인 개인정보 처리 및 보유 기간은 다음과 같습니다. ☞ 아래 예시를 참고하여 개인정보 처리업무와 개인정보 처리업무에 대한 보유기간 및 관련 법령, 근거 등을 기재합니다. (예시)- 고객 가입 및 관리 : 서비스 이용계약 또는 회원가입 해지시까지, 다만 채권․채무관계 잔존시에는 해당 채권․채무관계 정산시까지 - 전자상거래에서의 계약․청약철회, 대금결제, 재화 등 공급기록 : 5년    
             3. 정보주체와 법정대리인의 권리·의무 및 그 행사방법 이용자는 개인정보주체로써 다음과 같은 권리를 행사할 수 있습니다.
@@ -158,7 +158,7 @@ class WelcomeVC: UIViewController {
             1. 개인정보 취급 직원의 최소화 및 교육 개인정보를 취급하는 직원을 지정하고 담당자에 한정시켜 최소화 하여 개인정보를 관리하는 대책을 시행하고 있습니다.  2. 비인가자에 대한 출입 통제 개인정보를 보관하고 있는 물리적 보관 장소를 별도로 두고 이에 대해 출입통제 절차를 수립, 운영하고 있습니다.  
 """
             , preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "확인".localized, style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
 
     }

@@ -29,11 +29,14 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+        
         indicator = IndicatorView(uiView: self.view)
         registerForPreviewing(with: self, sourceView: tableView)
         searchField.becomeFirstResponder()
         searchField.delegate = self
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "책 검색")
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "책 검색".localized)
         
         navigationBar.settingBtnHandler = {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
@@ -47,7 +50,7 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
         
         self.view.addSubview(navigationBar)
         searchWithBarcodeBtn = UIButton()
-        searchWithBarcodeBtn.setTitle("바코드로 검색하기", for: .normal)
+        searchWithBarcodeBtn.setTitle("바코드로 검색하기".localized, for: .normal)
         searchWithBarcodeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         searchWithBarcodeBtn.setTitleColor(UIColor.mainColor, for: .normal)
         searchWithBarcodeBtn.addTarget(self, action: #selector(barcode(sender:)), for: .touchUpInside)
@@ -63,7 +66,7 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
             searchWithBarcodeBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12)
             ])
         navigationBar.setConstraints()
-        navigationBar.setToAnotherNavigation(sub: "Naver Books에서 검색됩니다.")
+        navigationBar.setToAnotherNavigation(sub: "Naver Books에서 검색됩니다.".localized)
         
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -127,27 +130,40 @@ class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPrev
     
     func search() {
         indicator?.start()
-        API.user.search(query: searchField.text ?? "") { (json) in
-            self.result = Book.transformNaverBook(fromJSON: json)
-            self.indicator?.stop()
-            self.tableView.reloadData()
-            
-            if (self.result.count == 1) {
-                guard let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) else {return}
-                cell.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1)
-                UIView.animate(withDuration: 0.2, animations: {
-                    cell.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1)
-                },completion: { finished in
-                    UIView.animate(withDuration: 0.2, animations: {
-                        cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
-                    })
-                })
-            } else if (self.result.count == 0) {
-                self.toast(text: "검색 결과가 없습니다.")
+        let pre = Locale.preferredLanguages[0]
+        if ( pre == "ko-KR") {
+            API.user.search(query: searchField.text ?? "") { (json) in
+                self.result = Book.transformNaverBook(fromJSON: json)
+                self.searchEnded()
             }
-            
-            self.view.endEditing(true)
+        } else {
+            API.user.searchInGoogle(query: searchField.text ?? "") { (json) in
+                self.result = Book.transformGoogleBook(fromJSON: json)
+                self.searchEnded()
+            }
         }
+        
+    }
+    
+    func searchEnded() {
+        self.indicator?.stop()
+        self.tableView.reloadData()
+        
+        if (self.result.count == 1) {
+            guard let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) else {return}
+            cell.layer.transform = CATransform3DMakeScale(0.8, 0.8, 1)
+            UIView.animate(withDuration: 0.2, animations: {
+                cell.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1)
+            },completion: { finished in
+                UIView.animate(withDuration: 0.2, animations: {
+                    cell.layer.transform = CATransform3DMakeScale(1, 1, 1)
+                })
+            })
+        } else if (self.result.count == 0) {
+            self.toast(text: "검색 결과가 없습니다.".localized)
+        }
+        
+        self.view.endEditing(true)
     }
 
     func previewVC(for index:Int) -> PreviewVC {

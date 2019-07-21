@@ -23,16 +23,16 @@ class SettingVC: UIViewController {
     
     func setLoginBtn() {
         if (API.currentUser.isLogined == true) {
-            login.setTitle("로그아웃", for: .normal)
+            login.setTitle("로그아웃".localized, for: .normal)
         } else{
-            login.setTitle("로그인", for: .normal)
+            login.setTitle("로그인".localized, for: .normal)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "설정")
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "설정".localized)
         if title != nil {
             navigationBar.titleLbl.text = title!
         }
@@ -64,11 +64,11 @@ class SettingVC: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         switch sender.titleLabel?.text ?? "" {
-        case "공지사항/이벤트":
+        case "공지사항/이벤트".localized:
             notice()
             print(API.currentUser)
             break;
-        case "문의하기":
+        case "문의하기".localized:
             let email = "changhyeon743@gmail.com"
             if let url = URL(string: "mailto:\(email)") {
                 if #available(iOS 10.0, *) {
@@ -78,10 +78,10 @@ class SettingVC: UIViewController {
                 }
             }
             break;
-        case "페이스북 페이지":
+        case "페이스북 페이지".localized:
             UIApplication.shared.open(URL(string: "http://facebook.com/biaryapp")!, options: [:], completionHandler: nil)
             break;
-        case "리뷰 남기기":
+        case "리뷰 남기기".localized:
             let id = "1462620302"
             guard let url = URL(string : "itms-apps://itunes.apple.com/app/id\(id)?mt=8&action=write-review") else { return }
             if #available(iOS 10.0, *) {
@@ -91,16 +91,16 @@ class SettingVC: UIViewController {
             }
 
             break;
-        case "라이센스":
+        case "라이센스".localized:
             let vc = CarteViewController()
             let navigationController = UINavigationController(rootViewController: vc)
             
         self.present(navigationController, animated: true, completion: nil)
             break;
-        case "이름 변경":
-            let alert = UIAlertController(title: "이름 변경", message: nil, preferredStyle: .alert)
-            let backAction = UIAlertAction(title: "취소", style: .default)
-            let okAction = UIAlertAction(title: "확인", style: .default) { (alertAction) in
+        case "이름 변경".localized:
+            let alert = UIAlertController(title: "이름 변경".localized, message: nil, preferredStyle: .alert)
+            let backAction = UIAlertAction(title: "취소".localized, style: .default)
+            let okAction = UIAlertAction(title: "확인".localized, style: .default) { (alertAction) in
                 let textField = alert.textFields![0] as UITextField
                 
                 API.currentUser.name = textField.text!
@@ -115,9 +115,9 @@ class SettingVC: UIViewController {
             
             self.present(alert, animated:true, completion: nil)
             break;
-        case "초기화":
-            let alert = UIAlertController(title: "초기화", message: "모든 책과 글이 사라집니다. ", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "초기화", style: .destructive, handler: { (_) in
+        case "초기화".localized:
+            let alert = UIAlertController(title: "초기화".localized, message: "모든 책과 글이 사라집니다. ".localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "초기화".localized, style: .destructive, handler: { (_) in
                 API.currentBooks = []
                 API.currentContents = []
                 API.currentUser.bookShelf = []
@@ -130,16 +130,16 @@ class SettingVC: UIViewController {
                 self.present(UIStoryboard(name: "Welcome", bundle: nil).instantiateInitialViewController() as! WelcomeVC, animated: true, completion: nil)
             }))
             
-            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in
+            alert.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: { (_) in
                 LoginManager().logOut()
             }))
             
             self.present(alert, animated: true, completion: nil)
             break;
-        case "로그아웃":
-            let alert = UIAlertController(title: "정말 로그아웃 하시겠습니까?", message: "데이터가 서버에 올라가지 않습니다.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "로그아웃", style: .destructive, handler: { (_) in
+        case "로그아웃".localized:
+            let alert = UIAlertController(title: "정말 로그아웃 하시겠습니까?".localized, message: "데이터가 서버에 올라가지 않습니다.".localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "취소".localized, style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "로그아웃".localized, style: .destructive, handler: { (_) in
                 API.currentUser.isLogined = false
                 API.user.logoutUpdate()
                 LoginManager().logOut()
@@ -149,7 +149,7 @@ class SettingVC: UIViewController {
             
             self.present(alert, animated: true, completion: nil)
             break;
-        case "로그인":
+        case "로그인".localized:
             loginBtnPressed()
             break;
         default:
@@ -198,12 +198,12 @@ class SettingVC: UIViewController {
     }
     
     func loginIssue(isLogined: Bool, token: String) { //서버에 이미 데이터가 있습니다.
-        let alert = UIAlertController(title: "데이터 충돌", message: "서버에 이미 데이터가 있습니다.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "기존 데이터 유지", style: .default, handler: { (_) in
+        let alert = UIAlertController(title: "데이터 충돌".localized, message: "서버에 이미 데이터가 있습니다.".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "기존 데이터 유지".localized, style: .default, handler: { (_) in
             
         }))
         
-        alert.addAction(UIAlertAction(title: "서버 데이터 불러오기", style: .cancel, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "서버 데이터 불러오기".localized, style: .cancel, handler: { (_) in
             
             if (isLogined == false) { //찾아냈는데로그인이 안된 계정일 경우
                 //print("fetching",token)
@@ -215,8 +215,8 @@ class SettingVC: UIViewController {
                 })
                 
             } else { //이미 로그인 된 계정일 경우
-                let alert = UIAlertController(title: "이미 다른 기기에 로그인된 계정입니다.", message: "기기들 중 하나의 기기의 데이터만 서버에 올라갑니다.\n 주의해주세요. ", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "불러오기", style: .default, handler: { (_) in
+                let alert = UIAlertController(title: "이미 다른 기기에 로그인된 계정입니다.".localized, message: "기기들 중 하나의 기기의 데이터만 서버에 올라갑니다.\n 주의해주세요. ".localized, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "불러오기".localized, style: .default, handler: { (_) in
                     API.user.fetch(token: token, completion: { (json) in
                         let data = json["data"]
                         API.currentContents = Content.transformContent(fromJSON: data["contents"])
@@ -225,7 +225,7 @@ class SettingVC: UIViewController {
                     })
                 }))
                 
-                alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (_) in
+                alert.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: { (_) in
                     LoginManager().logOut()
                 }))
                 

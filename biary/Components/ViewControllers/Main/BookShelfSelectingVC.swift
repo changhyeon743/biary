@@ -40,7 +40,7 @@ class BookShelfSelectingVC: UIViewController {
         }
         tableView.reloadData()
         super.viewDidLoad()
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "책장 선택")
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "책장 선택".localized)
         
         navigationBar.settingBtnHandler = {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
@@ -54,7 +54,7 @@ class BookShelfSelectingVC: UIViewController {
         
         self.view.addSubview(navigationBar)
         doneBtn = UIButton()
-        doneBtn.setTitle("완료", for: .normal)
+        doneBtn.setTitle("완료".localized, for: .normal)
         doneBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)// UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         doneBtn.setTitleColor(UIColor.mainColor, for: .normal)
 
@@ -62,7 +62,7 @@ class BookShelfSelectingVC: UIViewController {
         doneBtn.translatesAutoresizingMaskIntoConstraints = false
         
         addBtn = UIButton()
-        addBtn.setTitle("책장 추가", for: .normal)
+        addBtn.setTitle("책장 추가".localized, for: .normal)
         addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15,weight: .bold)//UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         addBtn.setTitleColor(UIColor.mainColor, for: .normal)
         
@@ -80,7 +80,7 @@ class BookShelfSelectingVC: UIViewController {
             addBtn.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 12)
             ])
         navigationBar.setConstraints()
-        navigationBar.setToAnotherNavigation(sub: "여러 개도 선택할 수 있습니다.")
+        navigationBar.setToAnotherNavigation(sub: "여러 개도 선택할 수 있습니다.".localized)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
@@ -107,11 +107,11 @@ class BookShelfSelectingVC: UIViewController {
     }
 
     @objc func addBtnPressed(sender:Any) {
-        let alertController = UIAlertController(title: "책장 추가", message: nil, preferredStyle: .alert)
+        let alertController = UIAlertController(title: "책장 추가".localized, message: nil, preferredStyle: .alert)
         alertController.addTextField { (textfield) in
-            textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요."
+            textfield.placeholder = "새로 추가할 책장의 이름을 입력하세요.".localized
         }
-        let confirmAction = UIAlertAction(title: "확인", style: .default) { [weak alertController] _ in
+        let confirmAction = UIAlertAction(title: "확인".localized, style: .default) { [weak alertController] _ in
             guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
             if (textField.text?.isEmpty == false) {
                 if (API.currentUser.bookShelf.filter{$0.title == textField.text ?? ""}.count <= 0) { //겹치는게 없을 경우
@@ -123,7 +123,7 @@ class BookShelfSelectingVC: UIViewController {
             //compare the current password and do action here
         }
         alertController.addAction(confirmAction)
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "취소".localized, style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }

@@ -14,16 +14,25 @@ class FriendsVC: UIViewController {
     
     var navigationBar:NavigationBar!
 
+    @IBOutlet weak var inviteBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let titles = ["친구들"]
+    let titles = ["친구들".localized]
     var expanded = [true,true]
     let headerHeight:CGFloat = 60;
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "탐험")
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "탐험".localized)
         
+        inviteBtn.tintColor = UIColor.mainColor
+        UIView.animate(withDuration: 1.0, animations: {
+            self.inviteBtn.transform = CGAffineTransform(rotationAngle: CGFloat(-Double.pi/14.5))
+        })
+        if (API.currentFriends.count > 10) {
+            //inviteBtn.isHidden = true
+            
+        }
        
         
         navigationBar.settingBtn.isHidden = true
@@ -37,15 +46,17 @@ class FriendsVC: UIViewController {
             navigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             navigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             navigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            navigationBar.heightAnchor.constraint(equalToConstant: 80),
-            
-            tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            navigationBar.heightAnchor.constraint(equalToConstant: 80)
+            ])
+        navigationBar.setConstraints()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor)
             ])
         
-        navigationBar.setConstraints()
 
     }
     let pop = CustomPopTip()
@@ -65,7 +76,16 @@ class FriendsVC: UIViewController {
         }
     }
     
-
+    @IBAction func inviteBtnPressed(_ sender: UIButton) {
+        
+        if let url = URL(string: "https://apps.apple.com/us/app/biary-%EC%B1%85%EC%9D%BD%EA%B3%A0-%EC%B1%85%EC%9D%BC%EA%B8%B0/id1462620302?l=ko&ls=1") {
+            let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+            
+            activityVC.popoverPresentationController?.sourceView = sender
+            self.present(activityVC, animated: true, completion: nil)
+        }
+    }
+    
 }
 
 extension FriendsVC: UITableViewDelegate,UITableViewDataSource {

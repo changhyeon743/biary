@@ -54,7 +54,7 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
             
             API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
                 
-                print(json)
+                //print(json["data"]["data"]["contents"].arrayValue.debugDescription)
                 if (json["status"].intValue != 200) {
                     vc.makeTitleTo(str: "정보가 존재하지 않습니다.")
                     vc.indicator?.stop()

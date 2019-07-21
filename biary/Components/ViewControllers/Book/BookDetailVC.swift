@@ -99,9 +99,9 @@ class BookDetailVC: UIViewController {
         
         if (bookInfo.writerToken == API.currentUser.token) {
             if (API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic ?? true) {//바꾼 값
-                self.customNavigationBar.peopleButton.setTitle("공개", for: .normal)
+                self.customNavigationBar.peopleButton.setTitle("공개".localized, for: .normal)
             } else {
-                self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
+                self.customNavigationBar.peopleButton.setTitle("비공개".localized, for: .normal)
             }
         }
         
@@ -117,7 +117,7 @@ class BookDetailVC: UIViewController {
             let cb = self.bookInfo!
             let actionSheet = UIAlertController(title: cb.title, message: cb.description, preferredStyle: .actionSheet)
             actionSheet.popoverPresentationController?.sourceView = self.customNavigationBar.moreButton
-            let action = UIAlertAction(title: "공유", style: .default, handler: { _ in
+            let action = UIAlertAction(title: "공유".localized, style: .default, handler: { _ in
                 // text to share
                 let content = self.contents.map{$0.title+"\n"+$0.article}.joined(separator:"\n")
                 let text = self.bookInfo.title + "\n"+self.bookInfo.author + " . " + self.bookInfo.publisher+"\n\n"+content+"\n\nBiary - 책 읽고 책일기"
@@ -131,15 +131,15 @@ class BookDetailVC: UIViewController {
                 self.present(activityViewController, animated: true, completion: nil)
             })
             
-            actionSheet.addAction(UIAlertAction(title: "책일기 정렬", style: .default, handler: { _ in
-                if let action = ActionSheetStringPicker(title: "책일기 정렬", rows: ["오래된 순","최신 순","페이지 순","책의 시작","생각","좋은 점","나쁜 점","문장"]
+            actionSheet.addAction(UIAlertAction(title: "책일기 정렬".localized, style: .default, handler: { _ in
+                if let action = ActionSheetStringPicker(title: "책일기 정렬".localized, rows: ["오래된 순".localized,"최신 순".localized,"페이지 순".localized,"책의 시작".localized,"생각".localized,"좋은 점".localized,"나쁜 점".localized,"문장".localized]
                     , initialSelection: 0, doneBlock: {
                         picker, indexes, values in
                         
                         
                         let selectedText = values! as! String
                         switch selectedText {
-                        case "페이지 순":
+                        case "페이지 순".localized:
                             self.sortedContents = self.contents.filter { $0.title.range(of: " P.") != nil }
                             self.sortedContents = self.sortedContents + (self.contents.filter { $0.title.range(of: " 페이지") != nil})
                             
@@ -152,14 +152,14 @@ class BookDetailVC: UIViewController {
                             })
                             break
                         //최신순
-                        case "최신 순":
+                        case "최신 순".localized:
                             self.sortedContents = self.contents.sorted( by: {
                                 $0.date > $1.date
                             })
                             break
                             
                         //오래된 순
-                        case "오래된 순":
+                        case "오래된 순".localized:
                             self.sortedContents = self.contents.sorted( by: {
                                 $0.date < $1.date
                             })
@@ -182,19 +182,19 @@ class BookDetailVC: UIViewController {
             actionSheet.addAction(action)
             
             if (self.bookInfo.writerToken == API.currentUser.token) {
-                actionSheet.addAction(UIAlertAction(title: "편집", style: .default, handler: { _ in
+                actionSheet.addAction(UIAlertAction(title: "편집".localized, style: .default, handler: { _ in
                     let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BookCreateVC") as! BookCreateVC
                     vc.bookDetailVC = self
-                    vc.title = "책 편집하기"
+                    vc.title = "책 편집하기".localized
                     vc.bookInfo = cb;
                     self.present(vc, animated: true, completion: nil)
                 }))
                 
-                actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
-                    let real = UIAlertController(title: "정말 삭제하시겠습니까?", message: "삭제한 책은 복구할 수 없습니다.", preferredStyle: .alert);
+                actionSheet.addAction(UIAlertAction(title: "삭제".localized, style: .destructive, handler: { _ in
+                    let real = UIAlertController(title: "정말 삭제하시겠습니까?".localized, message: "삭제한 책은 복구할 수 없습니다.".localized, preferredStyle: .alert);
                     
-                    real.addAction(UIAlertAction(title: "취소", style: .default, handler: nil))
-                    real.addAction(UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { _ in
+                    real.addAction(UIAlertAction(title: "취소".localized, style: .default, handler: nil))
+                    real.addAction(UIAlertAction(title: "삭제".localized, style: UIAlertAction.Style.destructive, handler: { _ in
                         Book.remove(withToken: cb.token);
                         self.navigationController?.popViewController(animated: true)
                         //self.dismiss(animated: true, completion: nil)
@@ -206,7 +206,7 @@ class BookDetailVC: UIViewController {
         
             
             
-            actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+            actionSheet.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: nil))
             
             
             self.present(actionSheet, animated: true, completion: nil)
@@ -218,9 +218,9 @@ class BookDetailVC: UIViewController {
             
             API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic = !a
             if (!a == true) {//바꾼 값
-                self.customNavigationBar.peopleButton.setTitle("공개", for: .normal)
+                self.customNavigationBar.peopleButton.setTitle("공개".localized, for: .normal)
             } else {
-                self.customNavigationBar.peopleButton.setTitle("비공개", for: .normal)
+                self.customNavigationBar.peopleButton.setTitle("비공개".localized, for: .normal)
             }
             API.user.update()
             //print(API.currentBooks[Book.find(withToken: self.bookInfo.token)].isPublic)
@@ -247,6 +247,7 @@ class BookDetailVC: UIViewController {
         headerView.subTitle = bookInfo.author + " . " + bookInfo.publisher
         headerView.author = bookInfo.writerName
         headerView.date = bookInfo.date ?? Date()
+        print("image",bookInfo.imageURL)
         headerView.imageView.sd_setImage(with: URL(string: bookInfo.imageURL), completed: nil)
         
         tableView.tableHeaderView = nil
