@@ -23,7 +23,7 @@ class FriendsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar = NavigationBar(frame: CGRect.zero, title: "탐험".localized)
+        navigationBar = NavigationBar(frame: CGRect.zero, title: "친구".localized)
         
         inviteBtn.tintColor = UIColor.mainColor
         UIView.animate(withDuration: 1.0, animations: {
