@@ -717,6 +717,22 @@
             </objects>
             <point key="canvasLocation" x="6530.3999999999996" y="-501.49925037481262"/>
         </scene>
+        <!--탐험-->
+        <scene sceneID="sUS-yZ-uyD">
+            <objects>
+                <viewController title="탐험" id="SJf-Pb-2i8" customClass="ExploreVC" customModule="biary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gA0-Jb-YOO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KH5-As-Mhh"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="탐험" image="search" id="R0w-54-rM8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3DT-HF-1zH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="-502"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="zM5-Ct-Ksv">
             <objects>
@@ -732,6 +748,7 @@
                     <connections>
                         <segue destination="NV3-xZ-Y06" kind="relationship" relationship="viewControllers" id="ALa-TH-rxK"/>
                         <segue destination="IBF-L8-F6u" kind="relationship" relationship="viewControllers" id="Xrd-vR-aFA"/>
+                        <segue destination="SJf-Pb-2i8" kind="relationship" relationship="viewControllers" id="1t4-cL-PRi"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VRh-au-lhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -872,6 +889,7 @@
         <image name="close" width="24" height="24"/>
         <image name="friend" width="24" height="24"/>
         <image name="invite" width="240" height="240"/>
+        <image name="search" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8Im-Lb-qUo"/>
