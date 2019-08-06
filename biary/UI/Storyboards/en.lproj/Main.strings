@@ -35,6 +35,8 @@
 /* Class = "UITabBarItem"; title = "탐험"; ObjectID = "M9Y-J0-sgI"; */
 "M9Y-J0-sgI.title" = "Friends";
 
+"R0w-54-rM8.title" = "Explore";
+
 /* Class = "UIButton"; normalTitle = "라이센스"; ObjectID = "NTx-ff-YwR"; */
 "NTx-ff-YwR.normalTitle" = "License";
 

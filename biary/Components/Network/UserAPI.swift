@@ -11,7 +11,18 @@ import SwiftyJSON
 import Alamofire
 
 class UserAPI {
-    
+    func getRandomBook(completion:@escaping (JSON)->Void) {
+        
+        Alamofire.request("\(API.base_url)/book/random",method:.get)
+            .responseJSON(completionHandler: { (response) in
+                //1. JSON 변환
+                if let value = response.result.value,response.result.isSuccess {
+                    completion(JSON(value))
+                }
+            })
+        
+        
+    }
     
     func register(name: String, facebookId: String, profileURL: String, token: String,completion:@escaping(JSON)->Void) {
         let headers: HTTPHeaders = [
@@ -81,6 +92,7 @@ class UserAPI {
                 let parameters = [
                     "data" : jsonString
                 ]
+                print(jsonString)
                 
                 Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
                     .responseJSON(completionHandler: { (response) in
@@ -231,7 +243,7 @@ class UserAPI {
     }
     
     func setBooks(fromJSON json:JSON){
-        API.currentBooks = Book.transformBook(fromJSON: json["books"])
+        API.currentBooks = Book.transformBooks(fromJSON: json["books"])
         //print(API.currentBooks)
     }
     

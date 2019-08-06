@@ -12,7 +12,8 @@ import UIKit
 class FriendTableCell: UITableViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
-    var friendVC:FriendsVC!
+    //var friendVC:FriendsVC!
+    var friendDelegate: FriendsDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,39 +45,8 @@ extension FriendTableCell: UICollectionViewDelegate, UICollectionViewDataSource 
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = self.friendVC.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
         
-        //            vc.navigationBar.titleLbl.text = API.currentShowingFriend?.user.name ?? "" + "의 서재"
-        //
-        vc.friendMode = true
-        let navigationController = UINavigationController(rootViewController: vc)
-        self.friendVC.present(navigationController, animated: true) {
-            
-            API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
-                
-                //print(json["data"]["data"]["contents"].arrayValue.debugDescription)
-                if (json["status"].intValue != 200) {
-                    vc.makeTitleTo(str: "정보가 존재하지 않습니다.")
-                    vc.indicator?.stop()
-                } else {
-                    API.currentShowingFriend = Info.make(data: json["data"][0])
-                    if let f = API.currentShowingFriend {
-                        for (num,item) in f.user.bookShelf.enumerated() {
-                            if (item.books.count == 0) {
-                                API.currentShowingFriend?.user.bookShelf[num].expanded = false
-                            }
-                        }
-                        //로딩 성공
-                        vc.reloadBooks()
-                        vc.makeTitleToFriend()
-                        vc.indicator?.stop()
-                    }
-                }
-                
-                
-            }
-        }
-        
+        friendDelegate?.selectItem(indexPath: indexPath)
         
         
     }

@@ -9,15 +9,66 @@
 import UIKit
 import AMPopTip
 import Spring
+import SDStateTableView
+
+protocol FriendsDelegate{
+    func selectItem(indexPath: IndexPath)
+}
+
+extension FriendsVC: FriendsDelegate {
+    
+    func selectItem(indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MainVC") as! MainVC
+        
+        //            vc.navigationBar.titleLbl.text = API.currentShowingFriend?.user.name ?? "" + "의 서재"
+        //
+        vc.friendMode = true
+        let navigationController = UINavigationController(rootViewController: vc)
+        
+        
+        self.present(navigationController, animated: true) {
+            
+            API.user.fetch_friends(friends: [API.currentFriends[indexPath.row].facebookId]) { (json) in
+                
+                //print(json.debugDescription)
+                if (json["status"].intValue != 200) {
+                    API.currentShowingFriend = Info(user: nil, books: [], contents: [])
+                    
+                    vc.makeTitleTo(str: "정보가 존재하지 않습니다.".localized)
+                    vc.indicator?.stop()
+                } else {
+                    API.currentShowingFriend = Info.make(data: json["data"][0])
+                    
+                    if let f = API.currentShowingFriend {
+                        guard let user = f.user else {return}
+                        for (num,item) in user.bookShelf.enumerated() ?? [].enumerated() {
+                            if (item.books.count == 0) {
+                                API.currentShowingFriend?.user?.bookShelf[num].expanded = false
+                            }
+                        }
+                        //로딩 성공
+                        vc.reloadBooks()
+                        vc.makeTitleToFriend()
+                        vc.indicator?.stop()
+                    }
+                }
+                
+                
+            }
+        }
+        
+        
+    }
+}
 
 class FriendsVC: UIViewController {
     
     var navigationBar:NavigationBar!
 
     @IBOutlet weak var inviteBtn: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: SDStateTableView!
     
-    let titles = ["친구들".localized]
+    let titles = ["페이스북 친구들".localized]
     var expanded = [true,true]
     let headerHeight:CGFloat = 60;
 
@@ -57,7 +108,20 @@ class FriendsVC: UIViewController {
             tableView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor)
             ])
         
-
+        if (Connectivity.isConnectedToInternet) {
+            tableView.setState(.dataAvailable)
+        } else {
+            tableView.setState(.withButton(errorImage: nil, title: "인터넷 연결 없음".localized,
+                                           message: "인터넷에 연결되어 있지 않으므로 나중에 시도하십시오.".localized,
+                                            buttonTitle: "다시 시도하기".localized,
+                                            buttonConfig: { (button) in
+                                                // You can configure the button here
+            },
+                                            retryAction: {
+                                                self.tableView.reloadData()
+            }))
+        }
+        
     }
     let pop = CustomPopTip()
     
@@ -196,7 +260,7 @@ extension FriendsVC: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell",for: indexPath) as! FriendTableCell
-        cell.friendVC = self
+        cell.friendDelegate = self
         
         cell.collectionView.reloadData()
         

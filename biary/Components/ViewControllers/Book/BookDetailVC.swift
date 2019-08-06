@@ -9,12 +9,13 @@
 import UIKit
 import SDWebImage
 import ActionSheetPicker_3_0
+import SDStateTableView
 
 class BookDetailVC: UIViewController {
     
     var customNavigationBar: DetailNavigationBar!
     
-    @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var tableView:SDStateTableView!
 
     var headerView:DetailHeaderView!
     var headerOpacityView = UIView()
@@ -27,10 +28,12 @@ class BookDetailVC: UIViewController {
     var bookInfo: Book!
     var contents: [Content] {
         get {
+            
+            
             if (bookInfo.writerToken == API.currentUser.token) { //자기 책일경우
                 return API.currentContents.filter{$0.bookToken == self.bookInfo.token}
             } else {
-                return API.currentShowingFriend!.contents.filter{$0.bookToken == self.bookInfo.token}
+                return API.currentShowingFriend?.contents.filter{$0.bookToken == self.bookInfo.token} ?? []
             }
         }
     }
@@ -43,6 +46,17 @@ class BookDetailVC: UIViewController {
     
     var sortedContents:[Content] = [Content]() {
         didSet {
+            if (self.sortedContents.count == 0) {
+                if (isMine) {
+                    self.tableView.setState(.withImage(image: nil, title: "글이 없습니다", message: "우측 하단의 버튼을 눌러 책일기를 써보세요"))
+                } else {
+                    
+                    self.tableView.setState(.withImage(image: nil, title: "글이 없습니다", message: ""))
+                }
+                
+            } else {
+                self.tableView.setState(.dataAvailable)
+            }
             self.tableView.reloadData()
         }
     }
@@ -53,7 +67,6 @@ class BookDetailVC: UIViewController {
     override func viewDidLoad() {
         //
         setNavigationBar()
-        tabBarController?.tabBar.isHidden = true;
         headerHeight = UIWindow().screen.bounds.height * 0.4
         //여기
         sortedContents = contents
@@ -61,7 +74,7 @@ class BookDetailVC: UIViewController {
         self.setUpHeaderView()
         tableView.register(UINib(nibName: "DetailCell", bundle: nil), forCellReuseIdentifier: "cell")
         tableView.allowsSelection = isMine
-
+        tableView.stateViewCenterPositionOffset = CGPoint(x: 0, y: -148)
 
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -70,7 +83,13 @@ class BookDetailVC: UIViewController {
         }
         sortedContents = contents
         tableView.reloadData()
-        
+        //tabBarController?.tabBar.isTranslucent = true;
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //tabBarController?.tabBar.isTranslucent = false;
+
     }
     
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

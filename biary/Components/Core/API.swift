@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class API {
     static var base_url = "http://13.125.252.104:9000"
-    static var auth = AuthAPI()
+    static var book = BookAPI()
     static var user = UserAPI()
     static var facebook = FacebookAPI()
     static var imageToText = ImageToTextAPI()
@@ -24,7 +24,7 @@ class API {
     static var currentUser:User! = nil {
         didSet {
             API.data.saveUser()
-            API.user.update()
+            //API.user.update()
         }
     }
     static var currentToken:String = ""

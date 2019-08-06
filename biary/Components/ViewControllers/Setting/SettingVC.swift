@@ -211,7 +211,7 @@ class SettingVC: UIViewController {
                     let data = json["data"]
                     API.currentContents = Content.transformContent(fromJSON: data["contents"])
                     API.currentUser = User.transformUser(fromJSON: data["user"])
-                    API.currentBooks = Book.transformBook(fromJSON:data["books"])
+                    API.currentBooks = Book.transformBooks(fromJSON:data["books"])
                 })
                 
             } else { //이미 로그인 된 계정일 경우
@@ -221,7 +221,7 @@ class SettingVC: UIViewController {
                         let data = json["data"]
                         API.currentContents = Content.transformContent(fromJSON: data["contents"])
                         API.currentUser = User.transformUser(fromJSON: data["user"])
-                        API.currentBooks = Book.transformBook(fromJSON:data["books"])
+                        API.currentBooks = Book.transformBooks(fromJSON:data["books"])
                     })
                 }))
                 

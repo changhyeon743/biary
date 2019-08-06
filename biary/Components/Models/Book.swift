@@ -38,7 +38,29 @@ struct Book:Codable {
 }
 
 extension Book {
-    static func transformBook(fromJSON temp:JSON) -> [Book] {
+    static func transformBook(fromJSON json:JSON) -> Book {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let book = Book(title: json["title"].stringValue,
+                                  author: json["author"].stringValue,
+                                  publisher: json["publisher"].stringValue,
+                                  isbn: json["isbn"].stringValue,
+                                  imageURL: json["imageURL"].stringValue,
+                                  writerToken: json["writerToken"].stringValue,
+                                  writerName: json["writerName"].stringValue,
+                                  token: json["token"].stringValue,
+                                  description: json["description"].stringValue,
+                                  date: dateFormatter.date(from: json["date"].stringValue) ?? Date(),
+                                  isPublic: json["isPublic"].boolValue)
+        
+        //print(books)
+        
+        return book
+    }
+    
+    static func transformBooks(fromJSON temp:JSON) -> [Book] {
         let json = temp.arrayValue
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

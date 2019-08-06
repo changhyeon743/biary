@@ -96,3 +96,11 @@
 "오류" = "Error";
 "다른 기기에서 사용중인 아이디입니다.\n 계속하려면 기존의 기기 설정에서 로그아웃 해주세요." = "This is an ID that is being used by other devices.\n Please log out of existing device settings to continue.";
 "개인정보처리방침" = "Privacy policy";
+
+"정보가 존재하지 않습니다." = "The information does not exist.";
+"인터넷 연결 없음" = "No Internet Connection";
+"아무개씨" = "Mr. Whom";
+"자세히 보기" = "See more";
+"내 책장에 추가하기" = "Add to my bookshelf";
+"친구" = "Friends";
+"페이스북 친구들" = "Facebook Friends";

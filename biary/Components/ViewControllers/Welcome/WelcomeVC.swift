@@ -63,7 +63,7 @@ class WelcomeVC: UIViewController {
                 let data = json["data"]
                 API.currentContents = Content.transformContent(fromJSON: data["contents"])
                 API.currentUser = User.transformUser(fromJSON: data["user"])
-                API.currentBooks = Book.transformBook(fromJSON:data["books"])
+                API.currentBooks = Book.transformBooks(fromJSON:data["books"])
                 self.gotoMain()
             })
         }))

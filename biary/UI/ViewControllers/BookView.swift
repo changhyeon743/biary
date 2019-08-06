@@ -15,6 +15,7 @@ class BookView: UIView {
     var center_: CGPoint {
         return CGPoint(x: self.frame.width/2, y: self.frame.height/2)
     }
+    let weight:CGFloat   = 2.5;
     
     var exploreDelegate: ExploreDelegate?
     
@@ -29,13 +30,18 @@ class BookView: UIView {
         super.init(frame: frame)
         imageView = UIImageView(image: image)
         self.addSubview(imageView)
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         //tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,constant: 64),
-            imageView.leftAnchor.constraint(equalTo: self.leftAnchor,constant: 64),
-            imageView.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -64),
-            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -64)
+            imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 105*weight),
+            imageView.heightAnchor.constraint(equalToConstant: 154*weight),
+            //imageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,constant: inset),
+            //imageView.leftAnchor.constraint(equalTo: self.leftAnchor,constant: inset),
+            //imageView.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -inset),
+            //imageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -inset)
             ])
         self.layer.shadowColor = UIColor.lightGray.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -57,17 +63,31 @@ class BookView: UIView {
     var origin: CGPoint = CGPoint.zero
     func setDragAndDrop() {
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(draggedView(_:)))
+        self.isUserInteractionEnabled = true
         imageView.isUserInteractionEnabled = true
-        imageView.addGestureRecognizer(panGesture)
+        self.addGestureRecognizer(panGesture)
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap(_:))))
         
-        origin = imageView.center
     }
     
     @objc func tap(_ sender: UITapGestureRecognizer) {
         guard let book = bookInfo else {return}
         let alert = UIAlertController(title: book.title, message: book.description, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "내 책장에 추가하기".localized, style: .destructive, handler: { (_) in
+            if let book = self.bookInfo {
+                self.exploreDelegate?.search(bookInfo: book)
+                
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "자세히 보기".localized, style: .default, handler: { _ in
+            if let book = self.bookInfo {
+                self.exploreDelegate?.show(bookInfo: book)
+                
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "확인".localized, style: .cancel, handler: nil))
+
         exploreDelegate?.sendAlert(alert: alert)
     }
     
@@ -109,16 +129,17 @@ class BookView: UIView {
                 }
             } else {
                 //let velocity = sender.velocity(in: self);
+                self.exploreDelegate?.sendViewToBack(view: self)
+
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions.curveLinear, animations: {
-                        self.imageView.center = CGPoint(x: dx*3, y: dy*3)
+                        self.imageView.center = CGPoint(x: dx*4, y: dy*4)
 
                     }, completion: {_ in
                         self.imageView.center = self.center_
                         self.imageView.transform = CGAffineTransform(rotationAngle: 2*CGFloat.pi)
                         self.imageView.alpha = 1
                         
-                        self.exploreDelegate?.sendViewToBack(view: self)
                     })
                 }
                 

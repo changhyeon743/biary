@@ -22,6 +22,8 @@ pod 'Carte'
 pod "SwiftRater"
 pod 'CropViewController'
 pod 'Bolts'
+pod 'SDStateTableView'
+
 
 end
 

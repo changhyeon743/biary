@@ -12,16 +12,17 @@ import Disk
 import SwiftyJSON
 import FBSDKLoginKit
 import AMPopTip
+import SDStateTableView
 
 class MainVC: UIViewController {
-    @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var tableView:SDStateTableView!
     
     let headerHeight:CGFloat = 60;
     //var expanded = [true,true,true]
     var bookshelfs: [Bookshelf] {
         get {
             if (friendMode) {
-                return API.currentShowingFriend?.user.bookShelf ?? []
+                return API.currentShowingFriend?.user?.bookShelf ?? []
             } else {
                 return API.currentUser?.bookShelf ?? []
             }
@@ -36,7 +37,7 @@ class MainVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         reloadBooks()
-        tabBarController?.tabBar.isHidden = false;
+        //tabBarController?.tabBar.isTranslucent = false;
     }
     
     override func viewDidLoad() {
@@ -124,7 +125,7 @@ class MainVC: UIViewController {
     let pop = PopTip()
     
     func makeTitleToFriend() {
-        self.navigationBar.titleLbl.text = API.currentShowingFriend!.user.name
+        self.navigationBar.titleLbl.text = API.currentShowingFriend?.user?.name ?? ""
     }
     func makeTitleTo(str:String) {
         self.navigationBar.titleLbl.text = str
@@ -132,15 +133,20 @@ class MainVC: UIViewController {
     
     func makeToFriendMode() {
         makeTitleTo(str: "불러오는 중입니다".localized)
+        
+
         indicator?.start()
         self.navigationBar.settingBtnHandler = {
             API.currentShowingFriend = nil
             self.dismiss(animated: true, completion: nil)
         }
+        
+
         self.navigationBar.searchBtn.isHidden = true
         self.navigationBar.addBtn.isHidden = true
         self.navigationBar.settingBtn.setImage(UIImage(named:"close"), for: .normal)
         
+
         //print("makeToFriendMode : ",bookshelfs)
         
     }
@@ -148,7 +154,19 @@ class MainVC: UIViewController {
     
     func reloadBooks() {
         //self.expanded = Array(repeating: true, count: API.currentUser.bookShelf.count)
+        if (friendMode) {
+            if (API.currentShowingFriend?.books.count == 0) {
+                tableView.setState(.withImage(image: nil, title: "비어있는 서재입니다.", message: ""))
+            }
+        } else if (API.currentBooks.count == 0) {
+            tableView.setState(.withImage(image: nil, title: "비어있는 서재입니다.", message: ""))
+        } else {
+            tableView.setState(.dataAvailable)
+        }
+        
+        
         self.tableView.reloadData()
+        
     }
     
     func gotoDetail(withBook book:Book) {
@@ -198,7 +216,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
         
         let label = UILabel(frame: CGRect(x: 17, y: 0, width: 200, height: headerHeight))
-        label.text = (friendMode) ? API.currentShowingFriend?.user.bookShelf[section].title :  API.currentUser.bookShelf[section].title
+        label.text = (friendMode) ? API.currentShowingFriend?.user?.bookShelf[section].title ?? "" :  API.currentUser.bookShelf[section].title
         label.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         let expandImage = UIImage(named: "arrow_back")!
@@ -251,8 +269,8 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         
         //Change
         if (friendMode) {
-            let a = !(API.currentShowingFriend?.user.bookShelf[button.tag].expanded ?? true)
-            API.currentShowingFriend?.user.bookShelf[button.tag].expanded = a
+            let a = !(API.currentShowingFriend?.user?.bookShelf[button.tag].expanded ?? true)
+            API.currentShowingFriend?.user?.bookShelf[button.tag].expanded = a
 //            API.currentShowingFriend?.user.bookShelf[button.tag].expanded = !bookshelfs[button.tag].expanded
         } else {
             API.currentUser.bookShelf[button.tag].expanded = !bookshelfs[button.tag].expanded
@@ -276,9 +294,9 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
         cell.mainViewController = self
         
         if (friendMode) {
-            if let info = API.currentShowingFriend {
-                if (info.user.bookShelf.count > 0) {
-                    cell.shelfInfo = info.user.bookShelf[indexPath.section]
+            if let info = API.currentShowingFriend, let user = API.currentShowingFriend?.user {
+                if (user.bookShelf.count > 0) {
+                    cell.shelfInfo = user.bookShelf[indexPath.section]
                     cell.shelfIndex = indexPath.section
                     
                     cell.bookInfo = (cell.shelfInfo?.books.map{info.books[Book.find(withToken: $0,at: info.books)]}) ?? []
