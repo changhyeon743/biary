@@ -53,6 +53,8 @@
 	<string>책의 바코드 인식을 위해 필요한 권한입니다.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>이미지 라이브러리를 불러오기 위한 권한입니다.</string>
+	<key>UIApplicationShortcutItems</key>
+	<array/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
