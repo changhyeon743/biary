@@ -32,7 +32,7 @@ class MainTableCell: UITableViewCell {
         longPressGR.minimumPressDuration = 0.3
         longPressGR.delaysTouchesBegan = true
         self.collectionView.addGestureRecognizer(longPressGR)
-        collectionView.setColorToGlobal()
+        collectionView.setBackGroundColorToSystem()
     }
     
     var changed:CGPoint = CGPoint.zero

@@ -75,13 +75,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        return true
 //    }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let appId: String = FBSDKCoreKit.Settings.appID
-        if url.scheme != nil && url.scheme!.hasPrefix("fb\(appId)") && url.host ==  "authorize" {
-            
-            return FBSDKCoreKit.ApplicationDelegate.shared.application(app, open: url, options: options)
-        }
-        return false
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return FBSDKCoreKit.ApplicationDelegate.shared.application(application, open: url, options: options)
     }
     
     

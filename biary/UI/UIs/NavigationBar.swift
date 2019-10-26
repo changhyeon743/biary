@@ -41,29 +41,54 @@ class NavigationBar: UIView {
         subLbl.isHidden = true
         self.addSubview(subLbl)
         
-        line.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        if #available(iOS 13.0, *) {
+            line.backgroundColor = UIColor.separator
+        } else {
+            // Fallback on earlier versions
+            line.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        }
         line.isHidden = true
         
         self.addSubview(line)
         
         
         settingBtn.setImage(UIImage(named: "setting"), for: .normal)
-        settingBtn.tintColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            settingBtn.tintColor = UIColor(named: "NavigationButtons")
+        } else {
+            // Fallback on earlier versions
+            settingBtn.tintColor = UIColor.black
+        }
         settingBtn.addTarget(self, action: #selector(settingPressed), for: .touchUpInside)
         self.addSubview(settingBtn)
         
         addBtn.setImage(UIImage(named: "add"), for: .normal)
-        addBtn.tintColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            addBtn.tintColor = UIColor(named: "NavigationButtons")
+        } else {
+            // Fallback on earlier versions
+            addBtn.tintColor = UIColor.black
+        }
         addBtn.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
         self.addSubview(addBtn)
         
         searchBtn.setImage(UIImage(named: "search"), for: .normal)
-        searchBtn.tintColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            searchBtn.tintColor = UIColor(named: "NavigationButtons")
+        } else {
+            // Fallback on earlier versions
+            searchBtn.tintColor = UIColor.black
+        }
         searchBtn.addTarget(self, action: #selector(searchPressed), for: .touchUpInside)
         self.addSubview(searchBtn)
         
         closeBtn.setImage(UIImage(named: "close"), for: .normal)
-        closeBtn.tintColor = UIColor.black
+        if #available(iOS 13.0, *) {
+            closeBtn.tintColor = UIColor(named: "NavigationButtons")
+        } else {
+            // Fallback on earlier versions
+            closeBtn.tintColor = UIColor.black
+        }
         closeBtn.addTarget(self, action: #selector(closePressed), for: .touchUpInside)
         closeBtn.isHidden = true
         self.addSubview(closeBtn)

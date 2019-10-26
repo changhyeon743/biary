@@ -42,9 +42,12 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(true, forKey: "purchased")
+        
+        
         indicator = IndicatorView(uiView: self.view)
-        self.view.setColorToGlobal()
-        tableView.setColorToGlobal()
+        self.view.setBackGroundColorToSystem()
+        tableView.setBackGroundColorToSystem()
         navigationController?.navigationBar.isHidden = true
         
         navigationBar = NavigationBar(frame: CGRect.zero, title: "나의 서재".localized)
@@ -211,7 +214,7 @@ extension MainVC: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: headerHeight))
-        view.setColorToGlobal()
+        view.setBackGroundColorToSystem()
         
         
         

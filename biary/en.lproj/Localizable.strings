@@ -104,3 +104,16 @@
 "내 책장에 추가하기" = "Add to my bookshelf";
 "친구" = "Friends";
 "페이스북 친구들" = "Facebook Friends";
+
+"무작위 책" = "Random book";
+"글이 있는 무작위 책" = "Random book which have writing";
+"다음 제목과 일치" = "Match to the following title";
+"다음 작가와 일치" = "Match to the following author";
+"다음 출판사와 일치" = "Match to the following publisher";
+
+"골라서 탐험하기" = "Pick";
+"작가:" = "Author:";
+"제목:" = "Title:";
+"출판사:" = "Publisher";
+"입력해주세요." = "Write here.";
+"내 책장에서 찾기" = "Find in my bookshelfs";

@@ -17,10 +17,15 @@ class MainCollectionCell: UICollectionViewCell,UIGestureRecognizerDelegate {
     
     override func awakeFromNib() {
         
-        self.layer.shadowColor = UIColor.lightGray.cgColor
+        if #available(iOS 13.0, *) {
+            self.layer.shadowColor = UIColor.systemGray5.cgColor
+        } else {
+            self.layer.shadowColor = UIColor.lightGray.cgColor
+            // Fallback on earlier versions
+        }
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
-        self.layer.shadowRadius = 3
-        self.layer.shadowOpacity = 0.6
+        self.layer.shadowRadius = 2
+        self.layer.shadowOpacity = 0.2
         self.layer.masksToBounds = false
 //
         //self.imageView.layer.cornerRadius = 5

@@ -11,7 +11,29 @@ import SDWebImage
 import ActionSheetPicker_3_0
 import SDStateTableView
 
-class BookDetailVC: UIViewController {
+protocol BookDetailDelegate: class {
+    func scrollTo(_ index: Int)
+    func scrollToLast()
+}
+
+var hasTopNotch: Bool {
+    if #available(iOS 11.0, tvOS 11.0, *) {
+        // with notch: 44.0 on iPhone X, XS, XS Max, XR.
+        // without notch: 24.0 on iPad Pro 12.9" 3rd generation, 20.0 on iPhone 8 on iOS 12+.
+        return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 24
+    }
+    return false
+}
+
+
+class BookDetailVC: UIViewController , BookDetailDelegate{
+    func scrollTo(_ index: Int) {
+        tableView.scrollToRow(at: IndexPath(item: index, section: 0) , at: .bottom, animated: true)
+    }
+    func scrollToLast() {
+        tableView.scrollToRow(at: IndexPath(item: contents.count-1, section: 0) , at: .bottom, animated: true)
+    }
+    
     
     var customNavigationBar: DetailNavigationBar!
     
@@ -60,9 +82,6 @@ class BookDetailVC: UIViewController {
             self.tableView.reloadData()
         }
     }
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
     
     override func viewDidLoad() {
         //
@@ -105,6 +124,7 @@ class BookDetailVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let writeVC = segue.destination as! WriteVC
+        writeVC.detailDelegate = self
         writeVC.bookInfo = self.bookInfo
     }
     
@@ -133,6 +153,7 @@ class BookDetailVC: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
         customNavigationBar.moreBtnHandler = {
+            
             let cb = self.bookInfo!
             let actionSheet = UIAlertController(title: cb.title, message: cb.description, preferredStyle: .actionSheet)
             actionSheet.popoverPresentationController?.sourceView = self.customNavigationBar.moreButton
@@ -151,7 +172,7 @@ class BookDetailVC: UIViewController {
             })
             
             actionSheet.addAction(UIAlertAction(title: "책일기 정렬".localized, style: .default, handler: { _ in
-                if let action = ActionSheetStringPicker(title: "책일기 정렬".localized, rows: ["오래된 순".localized,"최신 순".localized,"페이지 순".localized,"책의 시작".localized,"생각".localized,"좋은 점".localized,"나쁜 점".localized,"문장".localized]
+                if let action = ActionSheetStringPicker(title: "책일기 정렬".localized, rows: ["오래된 순".localized,"최신 순".localized,"페이지 순".localized,"책의 시작".localized,"생각".localized,"좋은 점".localized,"나쁜 점".localized,"문장".localized,"무제".localized]
                     , initialSelection: 0, doneBlock: {
                         picker, indexes, values in
                         
@@ -191,6 +212,12 @@ class BookDetailVC: UIViewController {
                         return
                 }, cancel: { ActionStringCancelBlock in return }, origin: self.customNavigationBar.moreButton) {
                     
+                    if #available(iOS 13.0, *) {
+                        action.pickerBackgroundColor = .systemGray5
+                        action.setTextColor(.label)
+                    } else {
+                        // Fallback on earlier versions
+                    }
                     action.toolbarButtonsColor = UIColor.mainColor
                     action.show()
                 }
@@ -246,20 +273,34 @@ class BookDetailVC: UIViewController {
         }
         
 
-        NSLayoutConstraint.activate([
-            customNavigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
-            customNavigationBar.heightAnchor.constraint(equalToConstant: 48)
-        ])
         
-        
+        if (hasTopNotch) {
+            NSLayoutConstraint.activate([
+                customNavigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
+                customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                customNavigationBar.heightAnchor.constraint(equalToConstant: 96)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                customNavigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+                customNavigationBar.heightAnchor.constraint(equalToConstant: 64)
+            ])
+            
+        }
     }
     
     
     
     func setUpHeaderView() {
-        tableView.backgroundColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            tableView.backgroundColor = UIColor.systemBackground
+        } else {
+            // Fallback on earlier versions
+            tableView.backgroundColor = UIColor.white
+        }
         headerView = tableView.tableHeaderView as? DetailHeaderView
         headerView.setUpView()
         headerView.title = bookInfo.title
@@ -278,7 +319,7 @@ class BookDetailVC: UIViewController {
         headerView.layer.mask = newHeaderLayer
         
         let newheight = headerHeight
-        tableView.contentInset = UIEdgeInsets(top: newheight, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: newheight, left: 0, bottom: 64, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -newheight)
         headerView.setDescriptionViews(margin: -20)
         

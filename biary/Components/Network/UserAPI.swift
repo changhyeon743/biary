@@ -11,15 +11,18 @@ import SwiftyJSON
 import Alamofire
 
 class UserAPI {
-    func getRandomBook(completion:@escaping (JSON)->Void) {
+    func getRandomBook(query:String, completion:@escaping (JSON)->Void) {
+        print("\(API.base_url)/book/random?query="+query)
+        let parameters = [
+            "query" : query,
+        ]
         
-        Alamofire.request("\(API.base_url)/book/random",method:.get)
-            .responseJSON(completionHandler: { (response) in
-                //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
-                    completion(JSON(value))
-                }
-            })
+        Alamofire.request("\(API.base_url)/book/random", method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: nil).responseJSON { (response) in
+            if let value = response.result.value,response.result.isSuccess {
+                completion(JSON(value))
+            }
+        }
+        
         
         
     }

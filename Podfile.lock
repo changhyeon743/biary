@@ -1,25 +1,27 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
-  - Alamofire (4.8.2)
-  - AMPopTip (4.0.1)
+  - Alamofire (4.9.0)
+  - AMPopTip (4.1.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - Carte (2.2.0)
-  - CropViewController (2.5.0)
+  - Carte (2.2.1)
+  - CropViewController (2.5.2)
   - Disk (0.4.0)
-  - FacebookCore (0.7.0):
+  - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
-  - FBSDKCoreKit (5.1.1):
-    - FBSDKCoreKit/Basics (= 5.1.1)
-    - FBSDKCoreKit/Core (= 5.1.1)
-  - FBSDKCoreKit/Basics (5.1.1)
-  - FBSDKCoreKit/Core (5.1.1):
+  - FBSDKCoreKit (5.8.0):
+    - FBSDKCoreKit/Basics (= 5.8.0)
+    - FBSDKCoreKit/Core (= 5.8.0)
+  - FBSDKCoreKit/Basics (5.8.0)
+  - FBSDKCoreKit/Core (5.8.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.1.1):
+  - FBSDKLoginKit (5.8.0):
+    - FBSDKLoginKit/Login (= 5.8.0)
+  - FBSDKLoginKit/Login (5.8.0):
     - FBSDKCoreKit (~> 5.0)
   - PeekPop (1.0.0)
   - SDStateTableView (0.0.3)
@@ -27,9 +29,9 @@ PODS:
     - SDWebImage/Core (= 4.4.7)
   - SDWebImage/Core (4.4.7)
   - Spring (1.0.6)
-  - SwiftRater (1.5.0)
+  - SwiftRater (1.6.0)
   - SwiftyJSON (4.3.0)
-  - "UITextView+Placeholder (1.2.1)"
+  - "UITextView+Placeholder (1.3.3)"
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0 (~> 2.3.0)
@@ -74,27 +76,27 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Spring:
-    :commit: fafd0b2e8d4d46405bd86fa7ba84bb7f73a20b13
+    :commit: 50d92a5b9e08848387ae95bf44c6ad20834f7083
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AMPopTip: 41742f15d743203496cfdcd576f41b596b0efae3
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  AMPopTip: fc50f5cea7743d1a03076dbd6a1a270f2e6b6d55
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
-  Carte: bca44c5112fac5866c2fa3da9fa018fa54eb8ba7
-  CropViewController: 6c962d6fb264cc5cb325b622d5029d50c6c43e72
+  Carte: 6bcff4eaa894ff5b979d646de833fec96e04a38c
+  CropViewController: 1aac40093c5739e60d992b04724a55d12a689a4c
   Disk: ef2956657d5bb56034b38b29b352170165226440
-  FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
-  FBSDKCoreKit: c29b6b65f6a171ca0a317960a622cff62c9ee269
-  FBSDKLoginKit: fdaf402766755e1175ed5c0382f25e2e7dab3c2a
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FBSDKCoreKit: e7dcac0aabcfb09d0166998edd95fe3b05a0ce5d
+  FBSDKLoginKit: 1b0cf04df0370b37404213157b060d6666ede814
   PeekPop: dcac0f339476b99eb50f8e3bc584f332c744ecf1
   SDStateTableView: cb4dd2a3b6d31850a70e91c19dc79ab127a8e7c6
   SDWebImage: c10d14a8883ebd89664f02a422006f66a85c0c5d
   Spring: 3d113f14575ef79aec9c5f906dfa4f5001c03254
-  SwiftRater: 5abec73b6114d54f1f25e083071b2be1bab7dcda
+  SwiftRater: 462ecaa145b0286f130a56b9571d2a2621a10eff
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
-  "UITextView+Placeholder": 0c3efd97f37ea64bde7f34cc6e90fe02e87b3909
+  "UITextView+Placeholder": c407b27599ea23cca425946fee3cf1db5d547008
 
 PODFILE CHECKSUM: f75c10be5adae2d4ee418c69509bc1a00440b6cf
 

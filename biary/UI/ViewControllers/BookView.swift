@@ -15,7 +15,8 @@ class BookView: UIView {
     var center_: CGPoint {
         return CGPoint(x: self.frame.width/2, y: self.frame.height/2)
     }
-    let weight:CGFloat   = 2.5;
+    let weight:CGFloat   = 2.7;
+    let inset:CGFloat = 64;
     
     var exploreDelegate: ExploreDelegate?
     
@@ -38,12 +39,18 @@ class BookView: UIView {
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 105*weight),
             imageView.heightAnchor.constraint(equalToConstant: 154*weight),
-            //imageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,constant: inset),
-            //imageView.leftAnchor.constraint(equalTo: self.leftAnchor,constant: inset),
-            //imageView.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -inset),
-            //imageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -inset)
+//            imageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,constant: inset*2.5),
+//            imageView.leftAnchor.constraint(equalTo: self.leftAnchor,constant: inset*1.3),
+//            imageView.rightAnchor.constraint(equalTo: self.rightAnchor,constant: -inset*1.3),
+//            imageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -inset*1.5),
+            
             ])
-        self.layer.shadowColor = UIColor.lightGray.cgColor
+        if #available(iOS 13.0, *) {
+            self.layer.shadowColor = UIColor.systemGray4.cgColor
+        } else {
+            self.layer.shadowColor = UIColor.lightGray.cgColor
+            // Fallback on earlier versions
+        }
         self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.shadowRadius = 3
         self.layer.shadowOpacity = 0.6

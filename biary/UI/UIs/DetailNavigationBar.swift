@@ -77,7 +77,7 @@ class DetailNavigationBar: UIView {
         //TitleLabel
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor,constant: 6),
             titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 48),
-            titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -48),
+            titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -96),
         //MoreButton
             moreButton.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -16),
             moreButton.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 8),
@@ -101,11 +101,21 @@ class DetailNavigationBar: UIView {
     }
     
     func turnIntoWhite() {
-        self.backgroundColor = .white
-        self.titleLabel.textColor = .black
-        self.backButton.tintColor = .black
-        self.moreButton.tintColor = .black
-        self.peopleButton.tintColor = .black
+        if #available(iOS 13.0, *) {
+            self.backgroundColor = .systemGray6
+            self.titleLabel.textColor = .label
+            self.backButton.tintColor =  UIColor(named: "NavigationButtons")
+            self.moreButton.tintColor =  UIColor(named: "NavigationButtons")
+            self.peopleButton.tintColor =  UIColor(named: "NavigationButtons")
+        } else {
+            // Fallback on earlier versions
+            self.backgroundColor = .white
+            self.titleLabel.textColor = .black
+            self.backButton.tintColor = .black
+            self.moreButton.tintColor = .black
+            self.peopleButton.tintColor = .black
+        }
+        
     }
     
     

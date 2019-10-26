@@ -13,9 +13,12 @@ import UITextView_Placeholder
 import ActionSheetPicker_3_0
 import Photos
 import CropViewController
-
+import AMPopTip
 
 class WriteVC: UIViewController {
+    var detailDelegate: BookDetailDelegate?
+    let pop = PopTip()
+
     
     @IBOutlet weak var titleLbl:SpringLabel!
     let line = UIView()
@@ -31,14 +34,16 @@ class WriteVC: UIViewController {
     
     var firstText: String = ""
     
-    let pop = CustomPopTip()
-    
     var percent : Double = 0
     
     var indicator : IndicatorView?
+    var keyboard : CGRect?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(titlePressed(_:)))
         titleLbl.isUserInteractionEnabled = true
@@ -61,9 +66,6 @@ class WriteVC: UIViewController {
     }
     
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
     
     @objc func titlePressed(_ sender: Any) {
         let questionList = ["페이지".localized,"책의 시작".localized,"생각".localized,"좋은 점".localized,"나쁜 점".localized,"문장".localized,"직접 입력".localized]
@@ -210,6 +212,10 @@ class WriteVC: UIViewController {
 //                return
 //            }
             save()
+            self.dismiss(animated: true) {
+                self.detailDelegate?.scrollToLast()
+                
+            }
             self.dismiss(animated: true, completion: nil)
             
             //self.navigationController?.popViewController(animated: true)
@@ -359,6 +365,7 @@ extension WriteVC : UITextViewDelegate {
 //IMAGE TO TEXT
 extension WriteVC: UIImagePickerControllerDelegate, CropViewControllerDelegate, UINavigationControllerDelegate {
     @objc func cameraBtnPressed() {
+        self.contentTextView.resignFirstResponder()
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = .camera
@@ -411,8 +418,31 @@ extension WriteVC: UIImagePickerControllerDelegate, CropViewControllerDelegate, 
     
     func imageToText(image: UIImage) {
         indicator?.start()
+        contentTextView.resignFirstResponder()
         API.imageToText.run(image: image, completion: { (json) in
-            self.contentTextView.insertText(json["text"].stringValue)
+            let text = json["text"].stringValue
+            if (text.contains("\n")) {
+                self.pop.tapHandler = { _ in
+                    guard let range = self.contentTextView.selectedTextRange else {return}
+                    self.contentTextView.text = String(self.contentTextView.text.filter { !"\n".contains($0) })
+//                    self.contentTextView.replace(range, withText: self.contentTextView.text.trimmingCharacters(in: .newlines))
+
+                    
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.pop.shouldDismissOnTap = true
+                    self.pop.bubbleColor = UIColor.mainColor
+                    self.pop.padding = 10
+                    self.pop.offset = 10
+                    self.pop.shouldDismissOnTapOutside = true
+                    
+                    guard let camera = self.keyboard else {return}
+                    self.pop.show(text: "줄바꿈을 모두 사라지게 만들까요?", direction: .up, maxWidth: 200, in: self.view, from: camera)
+                }
+                
+            }
+            self.contentTextView.insertText(text)
             self.toolBar.items![5].tintColor = UIColor.mainColor
             self.indicator?.stop()
         }) { (progress) in
@@ -420,5 +450,12 @@ extension WriteVC: UIImagePickerControllerDelegate, CropViewControllerDelegate, 
             
             self.indicator?.updateTextView(text: String(describing: floor(progress*100)/100) + " %")
         }
+    }
+    
+    @objc func keyboardWillShow(_ notification:NSNotification) {
+        if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            keyboard = keyboardRect
+        }
+        
     }
 }

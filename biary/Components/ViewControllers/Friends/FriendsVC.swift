@@ -176,7 +176,12 @@ extension FriendsVC: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: headerHeight))
-        view.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = .secondarySystemBackground
+        } else {
+            // Fallback on earlier versions
+            view.backgroundColor = .white
+        }
         
         
         

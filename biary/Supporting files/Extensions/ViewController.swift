@@ -10,8 +10,14 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func setColorToGlobal() {
-        self.backgroundColor = API.currentColor
+    func setBackGroundColorToSystem() {
+//        
+//        if #available(iOS 13.0, *) {
+//            self.backgroundColor = .systemBackground
+//        } else {
+//            // Fallback on earlier versions
+//            self.backgroundColor = .white
+//        }
     }
 }
 

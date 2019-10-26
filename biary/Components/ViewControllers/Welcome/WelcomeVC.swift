@@ -15,8 +15,12 @@ class WelcomeVC: UIViewController {
 
     @IBOutlet weak var facebookBtn: UIView!
     
+    var fbSDKButton: FBLoginButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(loginBtnPressed(_:)))
         facebookBtn.addGestureRecognizer(gesture)
@@ -25,12 +29,21 @@ class WelcomeVC: UIViewController {
         //서버에 add 전송하면 되겠지
         
         // Do any additional setup after loading the view.
+//        facebookBtn.isHidden = true
+        
+        
+//        fbSDKButton = FBLoginButton()
+//        fbSDKButton.center = view.center
+//        self.view.addSubview(fbSDKButton)
     }
     
     @objc func loginBtnPressed(_ sender: Any) {
+        print("pressed")
         if ( AccessToken.current == nil ) {
+            print(FBSDK_VERSION_STRING)
             let fbLoginManager : LoginManager = LoginManager()
             fbLoginManager.logIn(permissions: ["public_profile","email","user_friends"], from: self) { (result, error) -> Void in
+                
                 if (error == nil){
                     let fbloginresult : LoginManagerLoginResult = result!
                     // if user cancel the login
@@ -45,6 +58,8 @@ class WelcomeVC: UIViewController {
                         API.facebook.getFBUserData(welcomeVC: self)
                     }
                    
+                } else {
+                    print(error?.localizedDescription)
                 }
             }
         } else {
