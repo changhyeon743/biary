@@ -18,7 +18,9 @@ class Datas {
         //activityIndicator.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async {
             do {
+                print("exsits: ",Disk.exists("datas/books.json", in: .sharedContainer(appGroupName: "group.biary")))
                 try Disk.save(API.currentBooks, to: .documents, as: "datas/books.json")
+                try Disk.save(API.currentBooks, to: .sharedContainer(appGroupName: "group.biary"), as: "datas/books.json")
             } catch {
                 // ...
             }
@@ -34,6 +36,7 @@ class Datas {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 try Disk.save(API.currentUser, to: .documents, as: "datas/user.json")
+                try Disk.save(API.currentUser, to: .sharedContainer(appGroupName: "group.biary"), as: "datas/user.json")
             } catch {
                 // ...
             }
@@ -49,6 +52,7 @@ class Datas {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 try Disk.save(API.currentContents, to: .documents, as: "datas/contents.json")
+                try Disk.save(API.currentContents, to: .sharedContainer(appGroupName: "group.biary"), as: "datas/contents.json")
             } catch {
                 // ...
             }
@@ -60,7 +64,12 @@ class Datas {
     }
     
     func loadBooks() -> [Book] {
+        
         var books = try? Disk.retrieve("datas/books.json", from: .documents, as: [Book].self)
+        
+        if (Disk.exists("datas/books.json", in: .sharedContainer(appGroupName: "group.biary"))) {
+            books = try? Disk.retrieve("datas/books.json", from: .sharedContainer(appGroupName: "group.biary"), as: [Book].self)
+        }
 //        API.user.fetch(token: "1VJCNGZAdo0H1D6") { (json) in
 //            books = Book.transformBook(fromJSON: JSON(json)["data"]["books"])
 //        }
@@ -87,13 +96,20 @@ class Datas {
     }
     
     func loadUser() -> User {
-        let user = try? Disk.retrieve("datas/user.json", from: .documents, as: User.self)
+        
+        var user = try? Disk.retrieve("datas/user.json", from: .documents, as: User.self)
+        if (Disk.exists("datas/user.json", in: .sharedContainer(appGroupName: "group.biary"))) {
+            user = try? Disk.retrieve("datas/user.json", from: .sharedContainer(appGroupName: "group.biary"), as: User.self)
+        }
         return user ?? User.makeInitialUser()
         
     }
     
     func loadContents() -> [Content] {
-        let contents = try? Disk.retrieve("datas/contents.json", from: .documents, as: [Content].self)
+        var contents = try? Disk.retrieve("datas/contents.json", from: .documents, as: [Content].self)
+        if (Disk.exists("datas/contents.json", in: .sharedContainer(appGroupName: "group.biary"))) {
+            contents = try? Disk.retrieve("datas/contents.json", from: .sharedContainer(appGroupName: "group.biary"), as: [Content].self)
+        }
         return contents ?? []
         
     }
@@ -119,6 +135,10 @@ class Datas {
         try? Disk.remove("datas/contents.json", from: .documents)
         try? Disk.remove("datas/books.json", from: .documents)
         try? Disk.remove("datas/user.json", from: .documents)
+        
+        try? Disk.remove("datas/contents.json", from: .sharedContainer(appGroupName: "group.biary"))
+        try? Disk.remove("datas/books.json", from: .sharedContainer(appGroupName: "group.biary"))
+        try? Disk.remove("datas/user.json", from: .sharedContainer(appGroupName: "group.biary"))
     }
     
     func removeUser(token:String,completion:@escaping (JSON)->Void) {

@@ -13,8 +13,14 @@ import SwiftyJSON
 import FBSDKLoginKit
 import AMPopTip
 import SDStateTableView
-
-class MainVC: UIViewController {
+protocol MainVCDelegate {
+    func refresh()
+}
+class MainVC: UIViewController, MainVCDelegate {
+    func refresh() {
+        reloadBooks()
+    }
+    
     @IBOutlet weak var tableView:SDStateTableView!
     
     let headerHeight:CGFloat = 60;
@@ -40,6 +46,7 @@ class MainVC: UIViewController {
         //tabBarController?.tabBar.isTranslucent = false;
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UserDefaults.standard.set(true, forKey: "purchased")
@@ -63,6 +70,7 @@ class MainVC: UIViewController {
 
             action.addAction(UIAlertAction(title: "책장 설정".localized, style: .default, handler: { _ in
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "bookshelf") as! BookShelfVC
+                vc.mainVCDelegate = self
                 self.present(vc, animated: true, completion: nil)
             }))
             action.addAction(UIAlertAction(title: "전체 설정".localized, style: .default, handler: { _ in
@@ -84,6 +92,7 @@ class MainVC: UIViewController {
         
         navigationBar.addBtnHandler = {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "BookAddSearchVC") as! BookAddSearchVC
+            vc.mainVC = self
             self.present(vc, animated: true, completion: nil)
         }
         self.view.addSubview(navigationBar)

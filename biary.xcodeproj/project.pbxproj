@@ -129,6 +129,7 @@
 		788D76EB22329073007CA9B3 /* BookCreateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCreateVC.swift; sourceTree = "<group>"; };
 		78A239F62195C6EB00F2A835 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		78A517AB2225415000CB3035 /* BookShelfVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfVC.swift; sourceTree = "<group>"; };
+		78A65B652364E495004460C2 /* biary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = biary.entitlements; sourceTree = "<group>"; };
 		78A6E46F22D8C30E00B5F08A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		78A6E47122D8C34800B5F08A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
 		78A6E47222D8C34800B5F08A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 		78DA251A218137D600DAEDE4 /* biary */ = {
 			isa = PBXGroup;
 			children = (
+				78A65B652364E495004460C2 /* biary.entitlements */,
 				780CF1D822C4FD4E008A5A8A /* Components */,
 				780CF1E022C4FEB5008A5A8A /* Supporting files */,
 				780CF1E222C4FF10008A5A8A /* UI */,
@@ -839,8 +841,10 @@
 			baseConfigurationReference = 14B6D4FCFB618B8DDC4E35A6 /* Pods-biary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = biary/biary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = BZY7R6DV42;
 				INFOPLIST_FILE = biary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -848,7 +852,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -886,8 +890,10 @@
 			baseConfigurationReference = 9A920514E662420FB7067EF1 /* Pods-biary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = biary/biary.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = BZY7R6DV42;
 				INFOPLIST_FILE = biary/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -895,7 +901,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

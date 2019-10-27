@@ -127,7 +127,9 @@ class SettingVC: UIViewController {
                 
                 LoginManager().logOut()
                 
-                self.present(UIStoryboard(name: "Welcome", bundle: nil).instantiateInitialViewController() as! WelcomeVC, animated: true, completion: nil)
+                let vc = UIStoryboard(name: "Welcome", bundle: nil).instantiateInitialViewController() as! WelcomeVC
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
             }))
             
             alert.addAction(UIAlertAction(title: "취소".localized, style: .cancel, handler: { (_) in

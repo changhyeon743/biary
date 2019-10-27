@@ -28,6 +28,9 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
     }
 
     @IBOutlet weak var subTitleLbl: UILabel!
+    
+    var mainVCDelegate: MainVCDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.tableView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0);
@@ -76,6 +79,10 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        mainVCDelegate?.refresh()
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
@@ -111,7 +118,8 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
             }
             
             
-            
+            mainVCDelegate?.refresh()
+
             tableView.reloadData()
         }
     }
@@ -124,7 +132,8 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
         API.user.update { (json) in
             //print(json)
         }
-        
+        mainVCDelegate?.refresh()
+
         tableView.reloadData()
     }
     
@@ -140,7 +149,8 @@ class BookShelfVC: UIViewController,UITableViewDelegate, UITableViewDataSource {
                 if (textField.text?.isEmpty == false) {
                     API.currentUser.bookShelf[indexPath.row].title = textField.text ?? ""
                 }
-                
+                self.mainVCDelegate?.refresh()
+
                 self.tableView.reloadData()
                 //compare the current password and do action here
             }

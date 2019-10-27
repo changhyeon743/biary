@@ -14,6 +14,7 @@ import SDStateTableView
 protocol BookDetailDelegate: class {
     func scrollTo(_ index: Int)
     func scrollToLast()
+    func reloadOnce()
 }
 
 var hasTopNotch: Bool {
@@ -27,7 +28,14 @@ var hasTopNotch: Bool {
 
 
 class BookDetailVC: UIViewController , BookDetailDelegate{
+    func reloadOnce() {
+        tableView.reloadData()
+        tableView.layoutSubviews()
+        print("Reloaded", tableView.visibleCells.count, "Real: ", self.contents.count)
+    }
+    
     func scrollTo(_ index: Int) {
+        //tableView.reloadData()
         tableView.scrollToRow(at: IndexPath(item: index, section: 0) , at: .bottom, animated: true)
     }
     func scrollToLast() {
@@ -106,6 +114,10 @@ class BookDetailVC: UIViewController , BookDetailDelegate{
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.layoutSubviews()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         //tabBarController?.tabBar.isTranslucent = false;
 
@@ -125,6 +137,7 @@ class BookDetailVC: UIViewController , BookDetailDelegate{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let writeVC = segue.destination as! WriteVC
         writeVC.detailDelegate = self
+        writeVC.modalPresentationStyle = .fullScreen
         writeVC.bookInfo = self.bookInfo
     }
     
@@ -242,6 +255,9 @@ class BookDetailVC: UIViewController , BookDetailDelegate{
                     real.addAction(UIAlertAction(title: "취소".localized, style: .default, handler: nil))
                     real.addAction(UIAlertAction(title: "삭제".localized, style: UIAlertAction.Style.destructive, handler: { _ in
                         Book.remove(withToken: cb.token);
+                        API.user.update { (json) in
+                            
+                        }
                         self.navigationController?.popViewController(animated: true)
                         //self.dismiss(animated: true, completion: nil)
                     }))
@@ -283,7 +299,7 @@ class BookDetailVC: UIViewController , BookDetailDelegate{
             ])
         } else {
             NSLayoutConstraint.activate([
-                customNavigationBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                customNavigationBar.topAnchor.constraint(equalTo: self.view.topAnchor),
                 customNavigationBar.leftAnchor.constraint(equalTo: self.view.leftAnchor),
                 customNavigationBar.rightAnchor.constraint(equalTo: self.view.rightAnchor),
                 customNavigationBar.heightAnchor.constraint(equalToConstant: 64)
@@ -311,7 +327,6 @@ class BookDetailVC: UIViewController , BookDetailDelegate{
         headerView.imageView.sd_setImage(with: URL(string: bookInfo.imageURL), completed: nil)
         
         tableView.tableHeaderView = nil
-        tableView.rowHeight = UITableView.automaticDimension
         tableView.addSubview(headerView)
         
         newHeaderLayer = CAShapeLayer()
@@ -324,6 +339,10 @@ class BookDetailVC: UIViewController , BookDetailDelegate{
         headerView.setDescriptionViews(margin: -20)
         
         self.updateHeaderView()
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 137
     }
     
     func updateHeaderView() {
@@ -381,6 +400,10 @@ class BookDetailVC: UIViewController , BookDetailDelegate{
 }
 
 extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sortedContents.count
     }
@@ -404,6 +427,7 @@ extension BookDetailVC: UITableViewDelegate,UITableViewDataSource {
         if (bookInfo.writerToken == API.currentUser.token) {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "WriteVC") as! WriteVC
             vc.bookInfo = self.bookInfo
+            vc.modalPresentationStyle = .fullScreen
             vc.contentInfo = self.sortedContents[indexPath.row]
             self.present(vc, animated: true, completion: nil)
         }

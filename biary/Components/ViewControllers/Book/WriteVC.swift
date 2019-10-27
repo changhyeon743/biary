@@ -211,12 +211,18 @@ class WriteVC: UIViewController {
 //                self.titleLbl.animate()
 //                return
 //            }
+            
+            
             save()
+
+            
             self.dismiss(animated: true) {
+                print("2:" ,API.currentContents.count)
+                self.detailDelegate?.reloadOnce()
+                
                 self.detailDelegate?.scrollToLast()
                 
             }
-            self.dismiss(animated: true, completion: nil)
             
             //self.navigationController?.popViewController(animated: true)
         }
@@ -410,6 +416,7 @@ extension WriteVC: UIImagePickerControllerDelegate, CropViewControllerDelegate, 
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        print("image~Start")
         imageToText(image: image)
         cropViewController.dismiss(animated: true, completion: nil)
         self.contentTextView.becomeFirstResponder()
@@ -423,11 +430,7 @@ extension WriteVC: UIImagePickerControllerDelegate, CropViewControllerDelegate, 
             let text = json["text"].stringValue
             if (text.contains("\n")) {
                 self.pop.tapHandler = { _ in
-                    guard let range = self.contentTextView.selectedTextRange else {return}
                     self.contentTextView.text = String(self.contentTextView.text.filter { !"\n".contains($0) })
-//                    self.contentTextView.replace(range, withText: self.contentTextView.text.trimmingCharacters(in: .newlines))
-
-                    
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -448,7 +451,7 @@ extension WriteVC: UIImagePickerControllerDelegate, CropViewControllerDelegate, 
         }) { (progress) in
             self.percent = progress
             
-            self.indicator?.updateTextView(text: String(describing: floor(progress*100)/100) + " %")
+            //self.indicator?.updateTextView(text: String(describing: floor(progress*100)/100) + " %")
         }
     }
     

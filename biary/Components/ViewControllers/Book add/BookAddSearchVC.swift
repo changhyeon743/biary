@@ -10,7 +10,7 @@ import UIKit
 import AMPopTip
 
 class BookAddSearchVC: UIViewController,UITextFieldDelegate,UIViewControllerPreviewingDelegate {
-    
+    var mainVC: MainVC?
     var navigationBar:NavigationBar!
     
     var searchWithBarcodeBtn: UIButton!
@@ -225,6 +225,7 @@ extension BookAddSearchVC: UITableViewDelegate, UITableViewDataSource {
 //            vc.imgLink = book.imageURL
 //            vc.importedBook = book
         //}
+        vc.mainVC = mainVC
         present(vc, animated: true) {
             vc.setText(book: self.result[indexPath.row])
         }

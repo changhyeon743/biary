@@ -34,6 +34,7 @@ class DetailCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        dateLabel.isHidden = true
         // Initialization code
     }
 

@@ -12,6 +12,8 @@ import Spring
 import AMPopTip
 
 class BookCreateVC: UIViewController {
+    var mainVC:MainVC?
+    
     @IBOutlet weak var titleField: SpringTextField!
     @IBOutlet weak var authorField: SpringTextField!
     @IBOutlet weak var publisherField: SpringTextField!
@@ -186,9 +188,12 @@ class BookCreateVC: UIViewController {
         
         
         //API.data.saveBooks()
-        if let rootvc = self.view.window?.rootViewController {
-            print("rootVC: ",rootvc)
-            rootvc.dismiss(animated: true, completion: nil)
+        if let rootvc = self.mainVC {
+            print("rootVC: ",rootvc.debugDescription)
+            
+            rootvc.dismiss(animated: true) {
+                rootvc.reloadBooks()
+            }
             
         }
         //dismiss(animated: true, completion: nil)

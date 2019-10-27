@@ -15,7 +15,7 @@ class BookView: UIView {
     var center_: CGPoint {
         return CGPoint(x: self.frame.width/2, y: self.frame.height/2)
     }
-    let weight:CGFloat   = 2.7;
+    var weight:CGFloat   = 2;
     let inset:CGFloat = 64;
     
     var exploreDelegate: ExploreDelegate?
@@ -34,6 +34,9 @@ class BookView: UIView {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         //tableView.translatesAutoresizingMaskIntoConstraints = false
+        if (hasTopNotch) {
+            weight = 2.7
+        }
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
