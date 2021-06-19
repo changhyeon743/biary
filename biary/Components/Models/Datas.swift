@@ -149,10 +149,10 @@ class Datas {
             "token": token
         ]
         
-        Alamofire.request("\(API.base_url)/userDelete",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+        AF.request("\(API.base_url)/userDelete",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
+                if let value = response.value {
                     completion(JSON(value))
                 }
             })

@@ -17,8 +17,8 @@ class UserAPI {
             "query" : query,
         ]
         
-        Alamofire.request("\(API.base_url)/book/random", method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: nil).responseJSON { (response) in
-            if let value = response.result.value,response.result.isSuccess {
+        AF.request("\(API.base_url)/book/random", method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: nil).responseJSON { (response) in
+            if let value = response.value {
                 completion(JSON(value))
             }
         }
@@ -38,10 +38,10 @@ class UserAPI {
             "token" : token
         ]
         
-        Alamofire.request("\(API.base_url)/auth/register",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+        AF.request("\(API.base_url)/auth/register",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
+                if let value = response.value {
                     completion(JSON(value))
                 }
             })
@@ -67,7 +67,7 @@ class UserAPI {
                 "data" : jsonString
             ]
             
-            Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+            AF.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
                 .responseJSON(completionHandler: { (response) in
                     //1. JSON 변환
                 })
@@ -97,7 +97,7 @@ class UserAPI {
                 ]
                 print(jsonString)
                 
-                Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+                AF.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
                     .responseJSON(completionHandler: { (response) in
                         //1. JSON 변환
                     })
@@ -126,10 +126,10 @@ class UserAPI {
                     "data" : jsonString
                 ]
                 
-                Alamofire.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+                AF.request("\(API.base_url)/update",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
                     .responseJSON(completionHandler: { (response) in
                         //1. JSON 변환
-                        if let value = response.result.value,response.result.isSuccess {
+                        if let value = response.value {
                             completion(JSON(value))
                         }
                     })
@@ -147,18 +147,18 @@ class UserAPI {
             "facebookId": facebookId
         ]
         
-        Alamofire.request("\(API.base_url)/auth/isLogined",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+        AF.request("\(API.base_url)/auth/isLogined",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
+                if let value = response.value {
                     completion(JSON(value))
                 }
             })
     }
     
     func notice(completion:@escaping (JSON)->Void) {
-        Alamofire.request("\(API.base_url)/notice").responseJSON { (response) in
-            if let value = response.result.value,response.result.isSuccess {
+        AF.request("\(API.base_url)/notice").responseJSON { (response) in
+            if let value = response.value {
                 completion(JSON(value))
             }
         }
@@ -172,10 +172,10 @@ class UserAPI {
             "token" : (token.isEmpty) ? Token.create() : token
         ]
         
-        Alamofire.request("\(API.base_url)/fetch",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+        AF.request("\(API.base_url)/fetch",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
+                if let value = response.value {
                     completion(JSON(value))
                 }
             })
@@ -193,10 +193,10 @@ class UserAPI {
             "userToken" : API.currentUser.token
         ]
         
-    Alamofire.request("\(API.base_url)/fetch/friend",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
+    AF.request("\(API.base_url)/fetch/friend",method:.post,parameters:parameters,encoding:URLEncoding.httpBody,headers:headers)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value {
+                if let value = response.value {
                     //print(value)
                     //print(JSON(value)["status"].intValue)
                     completion(JSON(value))
@@ -213,10 +213,10 @@ class UserAPI {
             "query" : query
         ]
         
-        Alamofire.request("\(API.base_url)/book/search",method:.get,parameters:parameters)
+        AF.request("\(API.base_url)/book/search",method:.get,parameters:parameters)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
+                if let value = response.value {
                     completion(JSON(value))
                 }
             })
@@ -230,10 +230,10 @@ class UserAPI {
             "query" : query
         ]
         
-        Alamofire.request("\(API.base_url)/book/search/google",method:.get,parameters:parameters)
+        AF.request("\(API.base_url)/book/search/google",method:.get,parameters:parameters)
             .responseJSON(completionHandler: { (response) in
                 //1. JSON 변환
-                if let value = response.result.value,response.result.isSuccess {
+                if let value = response.value {
                     completion(JSON(value))
                 }
             })

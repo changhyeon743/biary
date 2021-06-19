@@ -23,24 +23,16 @@ class ImageToTextAPI {
             return
         }
         
-        Alamofire.upload(multipartFormData: { (datas) in
+        AF.upload(multipartFormData: { (datas) in
             datas.append(imageData, withName: "file", fileName: "file.jpeg", mimeType: "image/jpeg")
-        }, usingThreshold: UInt64.init(), to: to, method: .post, headers: headers) { (result) in
-            switch result {
-            case .success(let upload, _, _):
-                
-                upload.uploadProgress { pg in
-                    print(pg.fractionCompleted)
-                    progress(pg.fractionCompleted)
-                }
-                upload.validate()
-                upload.responseJSON { response in
-                    completion(JSON(response.result.value))
-                }
-            case .failure(let encodingError):
-                print(encodingError)
-            }
-        }
+        }, to: to, usingThreshold: UInt64.init(), method: .post, headers: headers) .uploadProgress(queue: .main, closure: { pg in
+            progress(pg.fractionCompleted)
+        })
+        .responseJSON(completionHandler: { data in
+            //Do what ever you want to do with response
+            completion(JSON(data.value))
+
+        })
     }
 }
 
